@@ -198,6 +198,7 @@ nav ul li a{
         /* Hoe leen je iets uit? */
 .uitleen_uitleg h2{
     padding-left: 1em;
+
 }
         .uitleen_uitleg ul li h3{
     color: white;
@@ -267,7 +268,7 @@ nav ul li a{
 
         /* apparaat */
 .apparatenlijst{
-    display: flex;
+    display: block;
     width: 97%;
     height: 12em;
     list-style: none;
@@ -277,7 +278,7 @@ nav ul li a{
     width: 100%;
     height: 100%;
     border-radius: 2em;
-    background-color: green;
+    background-color: tomato;
     margin-top: 1em;
 }
 .apparaat a{
@@ -296,13 +297,29 @@ nav ul li a{
 }
 .toevoegen{
     display: flex;
+    width: 20%;
+    align-items: center;
+}
+.toevoegen img{
     width: 4em;
-    background-color: #1BBCB6;
+    margin: auto;
+}
+
+.beschikbaarheid_apparaat{
+    display: flex;
+    width: 20%;
+    color: #1BBCB6;
+    font-weight: bold;
+}
+.beschikbaarheid_apparaat img{
+    width: 4em;
+    margin: 0em 2em;
+    filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg) brightness(90%) contrast(89%);
 }
 
 /*Footer*/
 footer{
-
+    position: relative;
     background-color: #303030;
     color: white;
 }
