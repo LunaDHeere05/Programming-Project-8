@@ -74,9 +74,33 @@ nav ul li a{
 
         /*  zoekbalk */
 
+.zoekbalk_container{
+    background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash\ \(1\).jpg) no-repeat center center/cover;   
+    height: 6em;
+    display: flex;
+}
 .zoekbalk{
-    height: 10%;
-    background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash\ \(1\).jpg);    
+    display: flex;
+    height: 50%;
+    width: 60%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5em;
+}
+#zoek_input{
+    background: none;
+    border: none;
+    color: #5B5B5B;
+    width: 95%;
+    margin-left: 1em;
+}
+#zoek_btn img{
+    height: 80%;
+    width: 70%;
+}
+#zoek_btn{
+    background: none;
+    border: none;
 }
         /* categorie lijst */
 
