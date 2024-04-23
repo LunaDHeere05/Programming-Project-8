@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventaris</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        </style>
+</head>
+<body>
+    <!-- bovenste navigatie -->
+    <nav>
+        <a href="Home.html"><img class="ehb_logo" src="/images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
+        <ul>
+            <li><a href="/html/Info.html"><h1>Info</h1></a></li>
+            <li><a href="/html/Inventaris.html"><h1>Inventaris</h1></a></li>
+            <li><a href="/html/Kalender.html"><h1>Kalender</h1></a></li>
+            <li><a href="/html/Reservaties.html"><h1>Reservaties</h1></a></li>
+        </ul>
+        <div class="rechter_navigatie">
+            <a href="#"><img src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a>
+            <a href="#"><img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
+            <a href="#"><img src="/images/svg/user-solid.svg" alt="profiel - logout"></a>
+        </div>
+    </nav>
+
+    <!-- zoekbalk -->
+    <div class="zoekbalk_container">
+        <div class="zoekbalk">
+            <select name="categorie" id="" >
+                <option value="alles"></option>
+                <option value="audio">Audio</option>
+                <option value="belichting">Belichting</option>
+                <option value="tools">Tools</option>
+                <option value="varia">Varia</option>
+                <option value="video">Video</option>
+                <option value="xr">XR</option>
+            </select>
+            <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
+            <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
+        </div>
+    </div> 
+    
+    <!-- verfijn zoekresultaat -->
+    <!-- De zaken waaruit je gaat kunnen filteren gaan wel afhangen van de databank -->
+
+    <div class="zoekresultaat_container"> 
+        <h3>Verfijn je resultaat: </h3>
+        <ul class="filters">
+            <li>
+                <select name="Categorie" id="">
+                    <option value="categorie">Categorie</option>
+                </select>
+            </li>
+            <li>
+                <select name="Merk" id="">
+                    <option value="merk">Merk</option>
+                </select>
+            </li>
+            <li>
+                <select name="Beschrijving" id="">
+                    <option value="beschrijving">Beschrijving</option>
+                </select>
+            </li>
+            <li>
+                <select name="Beschikbaarheid" id="">
+                    <option value="Beschikbaarheid">beschikbaarheid</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

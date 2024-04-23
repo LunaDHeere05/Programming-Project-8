@@ -232,4 +232,25 @@ nav ul li a{
     color: white;
 }
 
-        
+/* Inventaris pagina */
+        /* filters onder zoekbalk */
+
+.zoekresultaat_container{
+    margin-top: 1em;
+    display: flex;
+}
+.zoekresultaat_container h3{
+    margin-right: 2em;
+}
+.filters{
+    display: flex;
+    list-style: none;
+    width: 40%;
+    justify-content: space-between;
+}
+.filters select{
+    border-radius: 1em;
+    border: none;
+    background-color: rgb(193, 193, 193);
+    padding: 0em 1em;
+}
