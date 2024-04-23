@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        </style>
 </head>
 <body>
     <!-- bovenste navigatie -->
     <nav>
+        <a href="#"><img class="ehb_logo" src="/images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
         <ul>
-            <li><a href="#"><img src="/images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a></li>
-            <li><a href="#">Info</a></li>
-            <li><a href="#">Aanbod</a></li>
-            <li><a href="#">Agenda</a></li>
-            <li><a href="#">Reservaties</a></li>
-            <li><a href="#"><img src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a></li>
-            <li><a href="#"><img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a></li>
-            <li><a href="#"><img src="/images/svg/user-solid.svg" alt="profiel - logout"></a></li>
+            <li><a href="#"><h1>Info</h1></a></li>
+            <li><a href="#"><h1>Inventaris</h1></a></li>
+            <li><a href="#"><h1>Kalender</h1></a></li>
+            <li><a href="#"><h1>Reservaties</h1></a></li>
         </ul>
+        <div class="rechter_navigatie">
+            <a href="#"><img class="favorieten" src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a>
+            <a href="#"><img class="winkelmandje" src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
+            <a href="#"><img class="profiel" src="/images/svg/user-solid.svg" alt="profiel - logout"></a>
+        </div>
     </nav>
+
     <!-- searchbar -->
     <div class="searchbar">
         <input type="text" placeholder="Zoek een film">
         <button><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
     </div>
+
     <!-- categorielijst -->
     <div class="categorie">
-        <h1><a href="#">Categorieën</a></h1>
+        <h2><a href="#">Categorieën</a></h2>
         <ul class="categorie_lijst">
             <li><a href="#">Audio</a></li>
             <li><a href="#">Belichting</a></li>
@@ -36,6 +44,33 @@
             <li><a href="#">XR</a></li>
         </ul>
     </div>
-    
+
+    <!-- Recent bekeken lijst -->
+    <div class="recent">
+        <h2>Recent bekeken</h2>
+        <ul>
+            <li><a href="#">
+                <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Canon - M50">
+                <h3>Canon-M50</h3>
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Hoe leen je iets uit? -->
+    <div class="uitleen_uitleg">
+        <h2>Hoe leen je iets uit?</h2>
+        <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+        </ul>
+        <div class="meer_info">
+            <a href="#">
+                <h3>Meer info</h3>
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>
