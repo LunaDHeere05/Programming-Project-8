@@ -196,6 +196,13 @@ nav ul li a{
 }
 
         /* Hoe leen je iets uit? */
+.uitleen_uitleg ul li h3{
+    color: white;
+}
+.uitleen_uitleg ul li p{
+    font-size: 85%;
+    padding: 1em;
+}
 
 .uitleen_uitleg ul{
     list-style: none;
@@ -225,11 +232,69 @@ nav ul li a{
     border-radius: 1em;
     width: 10%;
     text-align: center;
-    margin: 1.5em 0em 0em 74em;
+    margin: 1.5em 0em 1em auto;
+    background-color: red;
 }
 .meer_info a{ 
     text-decoration: none;
     color: white;
 }
 
-        
+/*Footer*/
+footer{
+
+    background-color: black;
+    color: white;
+}
+.ehb-info li a{
+text-decoration: none;
+color: white;
+} 
+
+.ehb-info ul{
+    padding: 1em;
+}
+.ehb-info li{
+    list-style: none;
+    padding: 0.5em;
+    
+}
+
+.ehb-info a img{
+    width: 1.2em;
+    height: auto;
+    padding: 0em 1em 0em 0em;
+    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
+}
+
+.footer_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+.opening-hours{
+    padding: 0em 1em 0em 0em;
+    margin: 0;
+}
+.opening-hours table {
+    border-collapse: collapse;
+}
+
+.opening-hours h1{
+padding: 0em 0em 0.5em 0em ;
+color: white;
+}
+.opening-hours table,th, td {
+border: 0.05em solid white;
+}
+
+.opening-hours th,td{
+    padding: 0.5em;
+}
+
+.einde {
+    background-color: red;
+    text-align: center;
+    padding: 0.5em;
+    font-size: large;
+}
