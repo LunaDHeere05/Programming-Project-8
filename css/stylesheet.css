@@ -4,3 +4,32 @@
 /* #303030 = footer achtergrond kleur */
 /* #FFFFFF = wit voor achtergrond kleur */
 /* #000000 = zwart voor logo's */
+/* font-family: "Poppins", sans-serif; = font */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+h1, h2, h3{
+    color: #000000;
+    font-weight: bold;
+}
+/* homepage */
+
+        /* bovenste navigatie */
+
+nav ul{
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+.ehb-logo{
+    width: 60.85em;
+    height: auto;
+    margin-left: 10px;
+}
