@@ -15,7 +15,7 @@ h1, h2, h3{
     color: #000000;
     font-weight: bold;
 }
-body{
+.inhoud_body{
     margin: 0em 1em;
 }
 /* homepage */
@@ -196,7 +196,10 @@ nav ul li a{
 }
 
         /* Hoe leen je iets uit? */
-.uitleen_uitleg ul li h3{
+.uitleen_uitleg h2{
+    padding-left: 1em;
+}
+        .uitleen_uitleg ul li h3{
     color: white;
 }
 .uitleen_uitleg ul li p{
@@ -232,8 +235,7 @@ nav ul li a{
     border-radius: 1em;
     width: 10%;
     text-align: center;
-    margin: 1.5em 0em 1em auto;
-    background-color: red;
+    margin: 1.5em 9em 1em auto;
 }
 .meer_info a{ 
     text-decoration: none;
@@ -301,7 +303,7 @@ nav ul li a{
 /*Footer*/
 footer{
 
-    background-color: black;
+    background-color: #303030;
     color: white;
 }
 .ehb-info li a{
