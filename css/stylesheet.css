@@ -71,3 +71,22 @@ nav ul li a{
 .rechter_navigatie a:hover{
     filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
 }
+
+        /*  zoekbalk */
+
+.zoekbalk{
+    height: 10%;
+    background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash\ \(1\).jpg);    
+}
+        /* categorie lijst */
+
+.categorie a{
+    text-decoration: none;
+}
+.categorie_lijst{
+    list-style: none;
+}
+.categorie_lijst a{
+    text-decoration: none;
+    color: #000000;
+}
