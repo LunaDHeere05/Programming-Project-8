@@ -508,9 +508,11 @@ border: 0.05em solid white;
 }
 
 /* van dezelfde categorie */
-
 .dezelfde_categorie{
     width: 100%;
+}
+.dezelfde_categorie_container{
+    display: flex;
 }
 .dezelfde_categorie h2{
     margin: 3em 0em 0em 2em;
@@ -521,4 +523,27 @@ border: 0.05em solid white;
     width: 90%;
     margin: 2em auto;
     justify-content: space-evenly;
+}
+.slider{
+    width: 2em;
+    height: auto;
+    margin: 1em;
+}
+.lijst_apparaten li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    background-color: rgb(193, 193, 193);
+    padding: 1em 1em 0.5em 1em;
+    border-radius: 2em;
+    margin: 0.7em;
+}
+.lijst_apparaten li img{
+    width: 80%;
+    background-color: white;
+    border-radius: 1em;
+}
+.lijst_apparaten li h3{
+    padding-top: 1em;
 }
