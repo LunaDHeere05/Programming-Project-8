@@ -251,7 +251,7 @@ nav ul li a{
     display: flex;
 }
 .zoekresultaat_container h3{
-    margin-right: 2em;
+    margin: 0em 2em;
 }
 .filters{
     display: flex;
@@ -268,7 +268,7 @@ nav ul li a{
 
         /* apparaat */
 .apparatenlijst{
-    display: block;
+    display: inline-block;
     width: 97%;
     height: 12em;
     list-style: none;
@@ -279,7 +279,7 @@ nav ul li a{
     height: 100%;
     border-radius: 2em;
     background-color: rgb(193, 193, 193);
-    margin-top: 1em;
+    margin: 1em 0em 0em 2em;
 }
 .apparaat a{
     display: flex;
@@ -319,9 +319,10 @@ nav ul li a{
 
 /*Footer*/
 footer{
-    
+    display: block; 
     background-color: #303030;
     color: white;
+    margin-top: 4em;
 }
 .ehb-info li a{
 text-decoration: none;
