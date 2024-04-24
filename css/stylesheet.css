@@ -7,518 +7,607 @@
 /* font-family: "Poppins", sans-serif; = font */
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
-h1, h2, h3{
-    color: #000000;
-    font-weight: bold;
+h1,
+h2,
+h3 {
+  color: #000000;
+  font-weight: bold;
 }
-.inhoud_body{
-    margin: 0em 1em;
+.inhoud_body {
+  margin: 0em 1em;
 }
 /* homepage */
 
-        /* bovenste navigatie */
+/* bovenste navigatie */
 
-nav{
-    display: flex;
-    justify-content: space-between;
-}
-
-nav ul{
-    list-style: none;
-    display: flex;
-    font-size: 17px;
+nav {
+  display: flex;
+  justify-content: space-between;
 }
 
-nav ul li{
-    height: 100%;
-}
-nav ul li a h1{
-    height: 100%;
-    padding-right: 2em;;
-}
-nav ul li a h1:hover{
-    color: #1BBCB6;
-}
-nav ul li a{
-    text-decoration: none;
+nav ul {
+  list-style: none;
+  display: flex;
+  font-size: 17px;
 }
 
-.ehb_logo{
-    width: auto;
-    height: 54px;
-    margin-left: 10px;
+nav ul li {
+  height: 100%;
+}
+nav ul li a h1 {
+  height: 100%;
+  padding-right: 2em;
+}
+nav ul li a h1:hover {
+  color: #1bbcb6;
+}
+nav ul li a {
+  text-decoration: none;
 }
 
-.rechter_navigatie{
-    display: flex;
-    width: 10em;
-    height: auto;
-    justify-content: space-between;
+.ehb_logo {
+  width: auto;
+  height: 54px;
+  margin-left: 10px;
 }
 
-.rechter_navigatie img{
-    width: 100%;
-    height: 100%;
+.rechter_navigatie {
+  display: flex;
+  width: 10em;
+  height: auto;
+  justify-content: space-between;
 }
 
-.rechter_navigatie a{
-    padding-left: 1em;
-}
-.rechter_navigatie a:hover{
-    filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+.rechter_navigatie img {
+  width: 100%;
+  height: 100%;
 }
 
-        /*  zoekbalk */
+.rechter_navigatie a {
+  padding-left: 1em;
+}
+.rechter_navigatie a:hover {
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+}
 
-.zoekbalk_container{
-    background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash\ \(1\).jpg) no-repeat center center/cover;   
-    height: 6em;
-    display: flex;
+/*  zoekbalk */
+
+.zoekbalk_container {
+  background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash\\(1\).jpg) no-repeat
+    center center/cover;
+  height: 6em;
+  display: flex;
 }
-.zoekbalk{
-    display: flex;
-    height: 50%;
-    width: 60%;
-    margin: auto;
-    background-color: white;
-    border-radius: 5em;
+.zoekbalk {
+  display: flex;
+  height: 50%;
+  width: 60%;
+  margin: auto;
+  background-color: white;
+  border-radius: 5em;
 }
-#zoek_input{
-    background: none;
-    border: none;
-    color: #5B5B5B;
-    width: 95%;
-    margin-left: 1em;
+#zoek_input {
+  background: none;
+  border: none;
+  color: #5b5b5b;
+  width: 95%;
+  margin-left: 1em;
 }
-#zoek_input:focus{
-    outline: none;
+#zoek_input:focus {
+  outline: none;
 }
-#zoek_btn img{
-    height: 80%;
-    width: 70%;
+#zoek_btn img {
+  height: 80%;
+  width: 70%;
 }
-#zoek_btn{
-    background: none;
-    border: none;
-    margin-right: 1em;
-}
-.zoekbalk select{
-    background: none;
-    border: none;
-    color: #5B5B5B;
-    width: 10%;
-    margin-left: 1em;
-    background: url(/images/svg/sliders-solid.svg) no-repeat center;
-    background-size: 20%;
+#zoek_btn {
+  background: none;
+  border: none;
+  margin-right: 1em;
 }
 .zoekbalk select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
+  background: none;
+  border: none;
+  color: #5b5b5b;
+  width: 10%;
+  margin-left: 1em;
+  background: url(/images/svg/sliders-solid.svg) no-repeat center;
+  background-size: 20%;
+}
+.zoekbalk select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+.zoekbalk select:focus {
+  outline: none;
+}
+
+/* categorie lijst */
+
+.categorie a {
+  margin-top: 1em;
+  text-decoration: none;
+  display: block;
+}
+.categorie_lijst {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+.categorie_lijst a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background-color: #1bbcb6;
+  padding: 3em;
+  border-radius: 2em;
+  margin-right: 3em;
+  width: 5em;
+  text-align: center;
+}
+
+/* Recent bekeken */
+
+.recent_lijst_container {
+  display: flex;
+  justify-content: space-between;
+}
+.recent_lijst_container img {
+  width: 2em;
+  margin: 1em;
+}
+.recent_container {
+  display: block;
+}
+.recent_container h2 {
+  margin: 1em 0em;
+}
+.recent_lijst {
+  display: flex;
+  margin-top: 1em;
+  width: 80%;
+  list-style: none;
+  margin: auto;
+  justify-content: space-between;
+}
+.recent_lijst a {
+  text-decoration: none;
+}
+.recent_lijst li {
+  margin: auto;
+  background-color: #edededcf;
+  margin-right: 1em;
+  height: 80%;
+  width: 20%;
+  text-align: center;
+  border-radius: 1em;
+}
+.recent_lijst li img {
+  width: 70%;
+  height: 50%;
+  background-color: white;
+  margin-top: 1em;
+}
+
+/* Hoe leen je iets uit? */
+.uitleen_uitleg h2 {
+  padding-left: 1em;
+}
+.uitleen_uitleg ul li h3 {
+  color: white;
+}
+.uitleen_uitleg ul li p {
+  font-size: 85%;
+  padding: 1em;
+}
+
+.uitleen_uitleg ul {
+  list-style: none;
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-between;
+  margin: auto;
+  width: 80%;
+}
+.uitleen_uitleg h2 {
+  margin: 1em 0em;
+}
+.uitleen_uitleg ul li {
+  width: 15%;
+  height: 8em;
+  border-radius: 1em;
+  text-align: center;
+  background-color: #1bbcb6;
+}
+.uitleen_uitleg ul li a {
+  text-decoration: none;
+  padding: 1em;
+  color: white;
+}
+.meer_info {
+  background-color: rgb(193, 193, 193);
+  border-radius: 1em;
+  width: 10%;
+  text-align: center;
+  margin: 1.5em 9em 1em auto;
+}
+.meer_info a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Info pagina  */
+/*Info Hoe leen je iets uit? */
+.info-chevron-left img{
+    width: 1em;
+    height: auto;
+    padding: 1em;
+}
+.info-chevron-left {
+    display: flex;
+}
+.info-chevron-left p{
+    padding-top: 0.9em;
+    font-size: large;
+}
+.info_uitleen_uitleg h2 {
+  padding-left: 1em;
+}
+.info_uitleen_uitleg ul li h3 {
+  color: white;
+}
+.info_uitleen_uitleg ul li p {
+  font-size: 85%;
+  padding: 1em;
+}
+.info_uitleen_uitleg{
+padding-bottom: 4em;
+
+}
+
+.info_uitleen_uitleg ul {
+  list-style: none;
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-between;
+  margin: auto;
+  width: 90%;
+
+}
+.info_uitleen_uitleg h2 {
+  margin: 1em 0em;
+}
+.info_uitleen_uitleg ul li {
+  width: 15em;
+  height: 10em;
+  border-radius: 1em;
+  text-align: center;
+  background-color: #1bbcb6;
+  text-decoration: none;
+  padding: 1em;
+  color: white;
+}
+
+/* openings uren  */
+.info-opening-hours h1{
+  padding: 0.5em;
+  text-align: center;
+}
+
+.info-opening-hours {
+    padding: 0em 1em 0em 0em;
+    margin: 0;
   }
-.zoekbalk select:focus{
-    outline: none;
-}
+.info-opening-hours table {
+    border-collapse: collapse;
+    margin: auto auto;
+    width: 35em;
+    height: 25em;
+  }
+  
+.info-opening-hours h1 {
+    padding: 0em 0em 0.5em 0em;
+  }
 
-        /* categorie lijst */
+.info-opening-hours table,th,td {
+    text-align: start;
+    padding: 0.5em;
+  }
 
+  .info-opening-hours td  {
+    border: 0.1em solid black;
+  }
 
-.categorie a{
-    margin-top: 1em;
-    text-decoration: none;
-    display: block;
-}
-.categorie_lijst{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-}
-.categorie_lijst a{
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    letter-spacing: 1px;
-    background-color: #1BBCB6;
-    padding: 3em;
-    border-radius: 2em;
-    margin-right: 3em;
-    width: 5em;
-    text-align: center;
-}
-
-        /* Recent bekeken */
-
-.recent_lijst_container{
-    display: flex;
-    justify-content:space-between;
-}
-.recent_lijst_container img{
-    width: 2em;
-    margin: 1em;
-}
-.recent_container{
-    display: block;
-}
-.recent_container h2{
-    margin: 1em 0em;
-}
-.recent_lijst{
-    display: flex;
-    margin-top: 1em;
-    width: 80%;
-    list-style: none;
-    margin: auto;
-    justify-content: space-between;
-}
-.recent_lijst a{
-    text-decoration: none;
-}
-.recent_lijst li{
-    margin: auto;
-    background-color: #edededcf;
-    margin-right: 1em;
-    height: 80%;
-    width: 20%;
-    text-align: center;
-    border-radius: 1em;
-}
-.recent_lijst li img{
-    width: 70%;
-    height: 50%;
-    background-color: white;
-    margin-top: 1em;
-}
-
-        /* Hoe leen je iets uit? */
-.uitleen_uitleg h2{
-    padding-left: 1em;
-
-}
-        .uitleen_uitleg ul li h3{
-    color: white;
-}
-.uitleen_uitleg ul li p{
-    font-size: 85%;
-    padding: 1em;
-}
-
-.uitleen_uitleg ul{
-    list-style: none;
-    display: flex;
-    margin-top: 1em;
-    justify-content: space-between;
-    margin: auto;
-    width: 80%;
-}
-.uitleen_uitleg h2{
-    margin: 1em 0em;
-}
-.uitleen_uitleg ul li{
-    width: 15%;
-    height: 8em;
-    border-radius: 1em;
-    text-align: center;
-    background-color: #1BBCB6;
-}
-.uitleen_uitleg ul li a{
-    text-decoration: none;
-    padding: 1em;
-    color: white;
-}
-.meer_info{
-    background-color: rgb(193, 193, 193);
-    border-radius: 1em;
-    width: 10%;
-    text-align: center;
-    margin: 1.5em 9em 1em auto;
-}
-.meer_info a{ 
-    text-decoration: none;
-    color: white;
-}
+  .info-opening-hours th {
+    border: 0.1em solid black;
+  }
 
 /* Inventaris pagina */
-        /* filters onder zoekbalk */
+/* filters onder zoekbalk */
 
-.zoekresultaat_container{
-    margin-top: 1em;
-    display: flex;
+.zoekresultaat_container {
+  margin-top: 1em;
+  display: flex;
 }
-.zoekresultaat_container h3{
-    margin: 0em 2em;
+.zoekresultaat_container h3 {
+  margin: 0em 2em;
 }
-.filters{
-    display: flex;
-    list-style: none;
-    width: 40%;
-    justify-content: space-between;
+.filters {
+  display: flex;
+  list-style: none;
+  width: 40%;
+  justify-content: space-between;
 }
-.filters select{
-    border-radius: 1em;
-    border: none;
-    background-color: rgb(193, 193, 193);
-    padding: 0em 1em;
-}
-
-        /* apparaat */
-.apparatenlijst{
-    display: inline-block;
-    width: 97%;
-    height: 12em;
-    list-style: none;
-    margin: auto;
-}
-.apparaat{
-    width: 100%;
-    height: 100%;
-    border-radius: 2em;
-    background-color: rgb(193, 193, 193);
-    margin: 1em 0em 0em 2em;
-}
-.apparaat a{
-    display: flex;
-    justify-content: space-between;
-    text-decoration: none;
-    color:#000000;
-    align-items: center;
-}
-.apparaat_foto{
-    height: 10em;
-    margin: 1em;
-    width: auto;
-    background: white;
-    border-radius: 2em;
-}
-.toevoegen{
-    display: flex;
-    width: 20%;
-    align-items: center;
-}
-.toevoegen img{
-    width: 4em;
-    margin: auto;
+.filters select {
+  border-radius: 1em;
+  border: none;
+  background-color: rgb(193, 193, 193);
+  padding: 0em 1em;
 }
 
-.beschikbaarheid_apparaat{
-    display: flex;
-    width: 20%;
-    color: #1BBCB6;
-    font-weight: bold;
+/* apparaat */
+.apparatenlijst {
+  display: inline-block;
+  width: 97%;
+  height: 12em;
+  list-style: none;
+  margin: auto;
 }
-.beschikbaarheid_apparaat img{
-    width: 4em;
-    margin: 0em 2em;
-    filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg) brightness(90%) contrast(89%);
+.apparaat {
+  width: 100%;
+  height: 100%;
+  border-radius: 2em;
+  background-color: rgb(193, 193, 193);
+  margin: 1em 0em 0em 2em;
+}
+.apparaat a {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #000000;
+  align-items: center;
+}
+.apparaat_foto {
+  height: 10em;
+  margin: 1em;
+  width: auto;
+  background: white;
+  border-radius: 2em;
+}
+.toevoegen {
+  display: flex;
+  width: 20%;
+  align-items: center;
+}
+.toevoegen img {
+  width: 4em;
+  margin: auto;
+}
+
+.beschikbaarheid_apparaat {
+  display: flex;
+  width: 20%;
+  color: #1bbcb6;
+  font-weight: bold;
+}
+.beschikbaarheid_apparaat img {
+  width: 4em;
+  margin: 0em 2em;
+  filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg)
+    brightness(90%) contrast(89%);
 }
 
 /*Footer*/
-footer{
-    display: block; 
-    background-color: #303030;
-    color: white;
-    margin-top: 4em;
+footer {
+  display: block;
+  background-color: #303030;
+  color: white;
+  margin-top: 4em;
 }
-.ehb-info li a{
-text-decoration: none;
-color: white;
-} 
-
-.ehb-info ul{
-    padding: 1em;
-}
-.ehb-info li{
-    list-style: none;
-    padding: 0.5em;
-    
+.ehb-info li a {
+  text-decoration: none;
+  color: white;
 }
 
-.ehb-info a img{
-    width: 1.2em;
-    height: auto;
-    padding: 0em 1em 0em 0em;
-    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
+.ehb-info ul {
+  padding: 1em;
+}
+.ehb-info li {
+  list-style: none;
+  padding: 0.5em;
 }
 
-.footer_container{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5em;
+.ehb-info a img {
+  width: 1.2em;
+  height: auto;
+  padding: 0em 1em 0em 0em;
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%)
+    contrast(101%);
 }
-.opening-hours{
-    padding: 0em 1em 0em 0em;
-    margin: 0;
+
+.footer_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+.opening-hours {
+  padding: 0em 1em 0em 0em;
+  margin: 0;
 }
 .opening-hours table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
-.opening-hours h1{
-padding: 0em 0em 0.5em 0em ;
-color: white;
+.opening-hours h1 {
+  padding: 0em 0em 0.5em 0em;
+  color: white;
 }
-.opening-hours table,th, td {
-border: 0.05em solid white;
+.opening-hours table,th,td {
+  border: 0.05em solid white;
 }
 
-.opening-hours th,td{
-    padding: 0.5em;
+.opening-hours th,td {
+  padding: 0.5em;
 }
 
 .einde {
-    background-color: #E30613;
-    text-align: center;
-    padding: 0.5em;
-    font-size: large;
+  background-color: #e30613;
+  text-align: center;
+  padding: 0.5em;
+  font-size: large;
 }
 
 /* apparaat info */
-.apparaat_info{
-    background-color: rgb(193, 193, 193);
-    width: 80%;
-    margin: auto;
-    margin-top: 2em;
-    border-radius: 2em;
-    padding-bottom: 2em;
+.apparaat_info {
+  background-color: rgb(193, 193, 193);
+  width: 80%;
+  margin: auto;
+  margin-top: 2em;
+  border-radius: 2em;
+  padding-bottom: 2em;
 }
 
-.apparaat_info_container{
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
+.apparaat_info_container {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
 }
-.download_handleiding{
-    list-style: none;
+.download_handleiding {
+  list-style: none;
 }
-.download_handleiding img{
-    background-color: white;
-    border-radius: 2em;
-    width: 70%;
-    margin: 2em 0em 0em 2em;
+.download_handleiding img {
+  background-color: white;
+  border-radius: 2em;
+  width: 70%;
+  margin: 2em 0em 0em 2em;
 }
-.download_handleiding a{
-    background-color: #1BBCB6;
-    text-decoration: none;
-    color: white;
-    padding: 1em;
-    border-radius: 2em;
+.download_handleiding a {
+  background-color: #1bbcb6;
+  text-decoration: none;
+  color: white;
+  padding: 1em;
+  border-radius: 2em;
 }
-.download_handleiding li{
-    margin: 3em 0em 0em 2em;
-}
-
-.apparaat_beschrijving{
-    margin: 2em 0em 0em 0em;
-    width: 60%;
-}
-.apparaat_beschrijving h2{
-    margin: 0em 0em 1em 0em;
-}
-.apparaat_beschrijving li{
-    margin: 0.5em 0em;
-}
-.doos_kolom{
-    display: block;
-    justify-content: space-between;
-    margin: 2em 0em 0em 0em;
-    width: 50%;
-}
-.doos_kolom h2{
-    margin: 0em 0em 1em 0em;
-}
-.doos_kolom li{
-    margin: 0.5em 0em;
+.download_handleiding li {
+  margin: 3em 0em 0em 2em;
 }
 
-.doos_kolom .defecten{
-    margin: 2em 0em 0em 0em;
-    color: #E30613;
+.apparaat_beschrijving {
+  margin: 2em 0em 0em 0em;
+  width: 60%;
+}
+.apparaat_beschrijving h2 {
+  margin: 0em 0em 1em 0em;
+}
+.apparaat_beschrijving li {
+  margin: 0.5em 0em;
+}
+.doos_kolom {
+  display: block;
+  justify-content: space-between;
+  margin: 2em 0em 0em 0em;
+  width: 50%;
+}
+.doos_kolom h2 {
+  margin: 0em 0em 1em 0em;
+}
+.doos_kolom li {
+  margin: 0.5em 0em;
 }
 
-.reservatie{
-    margin: 3em 0em 1em 2em;
+.doos_kolom .defecten {
+  margin: 2em 0em 0em 0em;
+  color: #e30613;
 }
-.reservatie_plaatsen{
-    background-color: #1BBCB6;
-    width: 80%;
-    margin: auto;
-    border-radius: 2em;
-    display: flex;
-    list-style: none;
+
+.reservatie {
+  margin: 3em 0em 1em 2em;
 }
-.reservatie_plaatsen li{
-    text-decoration: none;
-    color: white;
-    padding: 1em;
-    display: flex;
+.reservatie_plaatsen {
+  background-color: #1bbcb6;
+  width: 80%;
+  margin: auto;
+  border-radius: 2em;
+  display: flex;
+  list-style: none;
+}
+.reservatie_plaatsen li {
+  text-decoration: none;
+  color: white;
+  padding: 1em;
+  display: flex;
 }
 
 /* kits */
 
-.kits h2{
-    margin: 3em 0em 0em 2em;
-
+.kits h2 {
+  margin: 3em 0em 0em 2em;
 }
-.kits ul{
-    display: flex;
-    list-style: none;
-    width: 90%;
-    margin: 2em auto;
-    justify-content: space-between;
+.kits ul {
+  display: flex;
+  list-style: none;
+  width: 90%;
+  margin: 2em auto;
+  justify-content: space-between;
 }
-#selectie_toevoegen{
-    background-color: #1BBCB6;
-    color: white;
-    padding: 1em;
-    border-radius: 2em;
-    margin: auto 0em;
-    height: 20%;
-    width: 10%;
-    text-align: center;
+#selectie_toevoegen {
+  background-color: #1bbcb6;
+  color: white;
+  padding: 1em;
+  border-radius: 2em;
+  margin: auto 0em;
+  height: 20%;
+  width: 10%;
+  text-align: center;
 }
-.kits ul li{
-    background-color: rgb(193, 193, 193);
-    border-radius: 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    position: relative;
-    padding: 1em 0em 0.5em 0em;
+.kits ul li {
+  background-color: rgb(193, 193, 193);
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  position: relative;
+  padding: 1em 0em 0.5em 0em;
 }
-.kits ul li img{
-    width: 70%;
-    height: auto;
-    margin: 0em 0em 1em 0em;
-    background-color: white;
-    border-radius: 1em;
+.kits ul li img {
+  width: 70%;
+  height: auto;
+  margin: 0em 0em 1em 0em;
+  background-color: white;
+  border-radius: 1em;
 }
-#selectiebol{
-    background: none;
-    filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
-    position: absolute;
-    width: 2em;
-    right: 0.5em;
-    top: 0.5em;
+#selectiebol {
+  background: none;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+  position: absolute;
+  width: 2em;
+  right: 0.5em;
+  top: 0.5em;
 }
 
 /* van dezelfde categorie */
 
-.dezelfde_categorie{
-    width: 100%;
+.dezelfde_categorie {
+  width: 100%;
 }
-.dezelfde_categorie h2{
-    margin: 3em 0em 0em 2em;
+.dezelfde_categorie h2 {
+  margin: 3em 0em 0em 2em;
 }
-.dezelfde_categorie ul{
-    display: flex;
-    list-style: none;
-    width: 90%;
-    margin: 2em auto;
-    justify-content: space-evenly;
+.dezelfde_categorie ul {
+  display: flex;
+  list-style: none;
+  width: 90%;
+  margin: 2em auto;
+  justify-content: space-evenly;
 }
