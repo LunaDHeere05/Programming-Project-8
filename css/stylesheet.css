@@ -457,3 +457,42 @@ border: 0.05em solid white;
     padding: 1em;
     display: flex;
 }
+
+/* kits */
+
+.kits h2{
+    margin: 3em 0em 0em 2em;
+
+}
+.kits ul{
+    display: flex;
+    list-style: none;
+    width: 90%;
+    margin: 2em auto;
+    justify-content: space-between;
+}
+#selectie_toevoegen{
+    background-color: #1BBCB6;
+    color: white;
+    padding: 1em;
+    border-radius: 2em;
+    margin: auto 0em;
+    height: 20%;
+    width: 10%;
+    text-align: center;
+}
+.kits ul li{
+    background-color: rgb(193, 193, 193);
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+.kits ul li img{
+    width: 70%;
+    height: auto;
+    margin: 1em 0em 1em 0em;
+    background-color: white;
+    border-radius: 1em;
+}
