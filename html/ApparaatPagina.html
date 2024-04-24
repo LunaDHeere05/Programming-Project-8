@@ -3,9 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Apparaat</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
+    <nav>
+        <a href="Home.html"><img class="ehb_logo" src="/images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
+        <ul>
+            <li><a href="/html/Info.html"><h1>Info</h1></a></li>
+            <li><a href="/html/Inventaris.html"><h1>Inventaris</h1></a></li>
+            <li><a href="/html/Kalender.html"><h1>Kalender</h1></a></li>
+            <li><a href="/html/Reservaties.html"><h1>Reservaties</h1></a></li>
+        </ul>
+        <div class="rechter_navigatie">
+            <a href="#"><img src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a>
+            <a href="#"><img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
+            <a href="#"><img src="/images/svg/user-solid.svg" alt="profiel - logout"></a>
+        </div>
+    </nav>
     
+    <!-- zoekbalk -->
+    <div class="zoekbalk_container">
+        <div class="zoekbalk">
+            <select name="categorie" id="" >
+                <option value="alles"></option>
+                <option value="audio">Audio</option>
+                <option value="belichting">Belichting</option>
+                <option value="tools">Tools</option>
+                <option value="varia">Varia</option>
+                <option value="video">Video</option>
+                <option value="xr">XR</option>
+            </select>
+            <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
+            <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
+        </div>
+    </div>
+    <div class="apparaat_info">
+        <ul class="apparaat_info_container">
+            <li>
+                <ul class="download_handleiding">
+                    <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">
+                    <li><a href="#" download>Download de gebruikershandleiding</a></li>
+                </ul>
+            </li>
+            <li class="apparaat_beschrijving">
+                <h2>Canon-M50</h2>
+                <ul>
+                    <li>24.1 megapixel APS-C CMOS sensor</li>
+                    <li>4K video-opname</li>
+                    <li>kantelbaar touchscreen</li>
+                    <li>ingebouwde Wi-Fi en bluetooth-connectiviteit</li>
+                </ul>
+            </li>
+            <li class="doos_kolom">
+                <h2>In de doos:</h2>
+                <ul>
+                    <li>Het fototoestel</li>
+                    <li>De gebruikershandleiding</li>
+                    <li>Kabel</li>
+                    <li>Extra batterij</li>
+                </ul>
+                <h2 class="defecten"><span>Defecten</span></h2>
+                <ul>
+                    <li>Kras op de lens</li>
+                </ul>
+            </li>
+        </ul>
+        <h2 class="reservatie">Plaats je reservatie</h2>
+        <ul class="reservatie_plaatsen">
+            <li>
+                <label for="start_date">Start datum:</label>
+                <input type="date" id="start_date" name="start_date">
+            </li>
+            <li>
+                <label for="end_date">Eind datum:</label>
+                <input type="date" id="end_date" name="end_date">
+            </li>
+            <li>
+                <label for="aantal">Aantal:</label>
+                <input type="number" id="aantal_apparaten" name="aantal_apparaten">
+            </li>
+            <li>
+                <button>Reserveer Nu</button>
+            </li>
+            <li>
+                <button>Voeg toe</button>
+                <img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+            </li>
+        </ul>
+    </div>
+
+     <footer>
+        <div class="footer_container">
+      <div class="ehb-info">
+        <ul>
+          <!-- emial linken met echte mail -->
+          <li>
+            <a href="#"><img src="../images/svg/envelope-solid.svg" alt="envelope"> medialab.ehb@ehb.be</a>
+          </li>
+          <!-- linken so that it calls directly -->
+          <li><a href="#"><img src="../images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>
+          <!-- linken so that it can directly go to the webside -->
+          <li>
+            <a href="#"><img src="../images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a>
+          </li>
+          <!-- linken met google maps -->
+          <li>
+            <a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170,1070 Anderlecht</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="opening-hours">
+        <h1>Openingsuren</h1>
+        <table>
+          <tr>
+            <th>Maandag</th>
+            <td>10:00 - 12:00</td>
+            <td>12:30 - 17:00</td>
+          </tr>
+          <tr>
+            <th>Dinsdag</th>
+            <td>/</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <th>Woensdag</th>
+            <td>/</td>
+            <td>/</td>
+          </tr>
+          <tr>
+            <th>Donderdag</th>
+            <td>10:00 - 12:00</td>
+            <td>12:30 - 17:00</td>
+          </tr>
+          <tr>
+            <th>Vrijdag</th>
+            <td>10:00 - 12:00</td>
+            <td>12:30 - 17:00</td>
+          </tr>
+          <tr>
+            <th>Weekend</th>
+            <td>/</td>
+            <td>/</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+      <div class="einde"><p>&copy;Groep 8 - Programming Project</p></div>
+    </footer>   
 </body>
 </html>
