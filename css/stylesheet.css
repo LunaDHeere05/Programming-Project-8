@@ -260,7 +260,7 @@ nav ul li a {
     font-size: large;
 }
 .info_uitleen_uitleg h2 {
-  padding-left: 1em;
+  padding-left: 1.5em;
 }
 .info_uitleen_uitleg ul li h3 {
   color: white;
@@ -305,7 +305,7 @@ padding-bottom: 4em;
 
 .info-opening-hours {
     padding: 0em 1em 0em 0em;
-    margin: 0;
+    margin-bottom: 1em;
   }
 .info-opening-hours table {
     border-collapse: collapse;
@@ -330,6 +330,24 @@ padding-bottom: 4em;
   .info-opening-hours th {
     border: 0.1em solid black;
   }
+
+/* sancties/defect  */
+.info-sancties{
+    margin: 1.5em;
+}
+.info-sancties p{
+    padding-top: 0.5em;
+}
+.info-sancties p b{
+    color: #E30613;
+}
+
+.info-defect{
+    margin: 1.5em;
+}
+.info-defect p{
+    padding-top: 0.5em;
+}
 
 /* Inventaris pagina */
 /* filters onder zoekbalk */
