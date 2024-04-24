@@ -488,11 +488,37 @@ border: 0.05em solid white;
     flex-direction: column;
     align-items: center;
     width: 20%;
+    position: relative;
+    padding: 1em 0em 0.5em 0em;
 }
 .kits ul li img{
     width: 70%;
     height: auto;
-    margin: 1em 0em 1em 0em;
+    margin: 0em 0em 1em 0em;
     background-color: white;
     border-radius: 1em;
+}
+#selectiebol{
+    background: none;
+    filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+    position: absolute;
+    width: 2em;
+    right: 0.5em;
+    top: 0.5em;
+}
+
+/* van dezelfde categorie */
+
+.dezelfde_categorie{
+    width: 100%;
+}
+.dezelfde_categorie h2{
+    margin: 3em 0em 0em 2em;
+}
+.dezelfde_categorie ul{
+    display: flex;
+    list-style: none;
+    width: 90%;
+    margin: 2em auto;
+    justify-content: space-evenly;
 }
