@@ -547,3 +547,43 @@ border: 0.05em solid white;
 .lijst_apparaten li h3{
     padding-top: 1em;
 }
+
+.reserverenEnTerug{
+    display: flex;
+}
+.reserverenEnTerug h1{
+    margin: 0.8em 0.5em;
+}
+.reserverenEnTerug a img{
+    width: 1.5em;
+    height: auto;
+    margin: 1.5em;
+}
+.bevestig{
+    margin: 0em 4em;
+    font-size: 20px;
+}
+.item_info_container{
+    background-color: rgb(193, 193, 193);
+    width: 80%;
+    margin: 1em auto;
+    border-radius: 2em;
+}
+.item_info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative
+}
+.item_info img{
+    width: 15%;
+    height: 15%;
+    margin: auto 1em;
+}
+.verwijder{
+    position: absolute;
+    width: 0.7em;
+    height: auto;
+    right: 0;
+    top: 0;
+}
