@@ -658,7 +658,7 @@ footer {
     display: flex;
 }
 .reserverenEnTerug h1{
-    margin: 0.8em 0.5em;
+    margin: 0.8em 0.5em 0em 0.5em;
 }
 .reserverenEnTerug a img{
     width: 1.5em;
@@ -666,7 +666,7 @@ footer {
     margin: 1.5em;
 }
 .bevestig{
-    margin: 0em 4em;
+    margin: 0em 4em 2em 4em;
     font-size: 20px;
 }
 .item_info_container{
@@ -692,4 +692,20 @@ footer {
     height: auto;
     right: 0;
     top: 0;
+}
+.bevestig_btn{
+    background-color: #1bbcb6;
+    padding: 1em;
+    border-radius: 2em;
+    margin: auto;
+    width: 10em;
+    text-align: center;
+}
+.bevestig_btn button{
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
