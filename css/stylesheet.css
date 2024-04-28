@@ -300,6 +300,7 @@ padding-bottom: 4em;
 .info-opening-hours h1{
   padding: 0.5em;
   text-align: center;
+  font-size: 1.5em;
 }
 
 .info-opening-hours {
@@ -334,6 +335,9 @@ padding-bottom: 4em;
 .info-sancties{
     margin: 1.5em;
 }
+.info-sancties h2{
+  font-size: 1.5em;
+}
 .info-sancties p{
     padding-top: 0.5em;
 }
@@ -342,11 +346,81 @@ padding-bottom: 4em;
 }
 
 .info-defect{
-    margin: 1.5em;
+    margin: 1.5em 1.5em 3.5em 1.5em;
+
 }
 .info-defect p{
     padding-top: 0.5em;
 }
+
+/* veel gestelde vragen  */
+
+.info-veel-vragen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: left;
+}
+.info-veel-vragen h1{
+  font-size: 1.5em;
+}
+.info-box{
+  position: relative;
+  padding: 1em;
+  border: 0.5em solid transparent;
+  border-bottom-color: #1bbcb6;
+background-color: transparent;
+width: 50%;
+height: 2.5em;
+cursor: pointer;
+transition: all 0.4s ease;
+}
+.info-box h2{
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+.info-box p {
+  font-size: 1em;
+  line-height: 1.3;
+  opacity: 0;
+  transition: all 0.2s;
+}
+.info-button {
+position: absolute;
+right: 2em;
+font-size: 1em;
+background-color: transparent;
+border: none;
+outline: none;
+color: #000000;
+}
+.info-button i{
+  display: none;
+}
+.info-angle-down{
+  display: block;
+}
+
+
+.info-box.active {
+  height: 6em;
+}
+
+.info-box.active p{
+opacity: 1;
+}
+
+.info-box.active .info-button .info-angle-down{
+  display: none;
+}
+.info-box.active .info-button .info-angle-up{
+  display: none;
+}
+
+/* form  */
+
+
 
 /* Inventaris pagina */
 /* filters onder zoekbalk */
