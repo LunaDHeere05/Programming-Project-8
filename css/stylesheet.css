@@ -812,7 +812,7 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: relative
+    position: relative;
 }
 .item_info img{
     width: 15%;
@@ -821,10 +821,12 @@ footer {
 }
 .verwijder{
     position: absolute;
-    width: 0.7em;
-    height: auto;
     right: 0;
-    top: 0;
+    top: 0.5em;
+    width: 2em !important;
+}
+.item_info_container img{
+  width: 15%;
 }
 .bevestig_btn{
     background-color: #1bbcb6;
@@ -888,6 +890,10 @@ footer {
 .jaarkalender table tr:last-child td{
   border-bottom: none;
   padding: 1em;
+}
+
+.empty{
+  padding:5em;
 }
 
 .activiteit{
@@ -979,3 +985,28 @@ footer {
 }
 
 /* defect melden */
+.defecte_apparaten_container{
+  display: flex;
+  width: 100%;
+}
+.item_info_en_selectiebol{
+  display: flex;
+  justify-content: flex-start;
+}
+#selectie_bol img{
+  margin: auto;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+}
+#selectie_bol{
+  width: 3em;
+  margin: auto;
+  margin-right: 0em;
+}
+
+.defecte_apparaten{
+  display: flex;
+  background-color: rgb(193, 193, 193);
+  height: 20em;
+  border-radius: 2em;
+}
