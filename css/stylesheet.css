@@ -908,3 +908,59 @@ footer {
 .info_activiteit h4{
   color:#1bbcb6;
 }
+
+/* mijn favorietenlijst pagina */
+
+.favorietenEnTerug{
+  display: flex;
+}
+.favorietenEnTerug img{
+  width: 1.5em;
+  height: auto;
+  margin: 1.5em;
+}
+.favorietenEnTerug h1{
+  margin: 0.6em 0.5em 0em 0.5em;
+}
+.favoriet_apparaat_container{
+  width: 90%;
+  height: 15em;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.favoriet_apparaat{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: rgb(193, 193, 193);
+  border-radius: 2em;
+  width: 20%;
+  margin: 1em;
+}
+.favoriet_apparaat .mijnFavorieteApparaat_foto{
+  width: 60%;
+  height: auto;
+  margin: 0.5em auto;
+  background-color: white;
+  border-radius: 1em;
+}
+.text_apparaat{
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  display: flex;
+}
+.text_apparaat img{
+  width: 1.5em;
+  height: auto;
+  margin: 0em 0.5em;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+}
+.verwijder_btn{
+  width: 1.5em;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+}
