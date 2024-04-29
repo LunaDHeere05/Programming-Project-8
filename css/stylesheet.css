@@ -1010,3 +1010,9 @@ footer {
   height: 20em;
   border-radius: 2em;
 }
+
+.beschrijving_defect{
+  width: 80%;
+  margin: auto;
+  height: 5em;
+}
