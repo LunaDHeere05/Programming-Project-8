@@ -130,16 +130,26 @@ nav ul li a {
 
 /* categorie lijst */
 
-.categorie a {
-  margin-top: 1em;
+.categorie{
+  width: 100%;
+  height: 15em;
+  display: block
+}
+.categorie a h1{
+}
+.categorie a{
   text-decoration: none;
-  display: block;
 }
 .categorie_lijst {
+  height: 80%;
+  justify-content: center;
+  width: 90%;
   list-style: none;
   display: flex;
-  justify-content: center;
-  margin-top: 1em;
+  margin: auto;
+}
+.categorie_lijst li{
+  margin: auto;
 }
 .categorie_lijst a {
   text-decoration: none;
@@ -345,25 +355,22 @@ padding-bottom: 4em;
   }
 
 /* sancties/defect  */
+
 .info-sancties{
-    margin: 1.5em;
+    margin: 1em 0em 1em 3em;
 }
-.info-sancties h2{
-  font-size: 1.5em;
-}
-.info-sancties p{
-    padding-top: 0.5em;
+.info-sancties h2, p{
+  margin: 2em  0em 1em 0em;
 }
 .info-sancties p b{
     color: #E30613;
 }
+.info-sancties p, .info-defect p{
+  width: 95%;
+}
 
 .info-defect{
-    margin: 1.5em 1.5em 3.5em 1.5em;
-
-}
-.info-defect p{
-    padding-top: 0.5em;
+    margin: 2em 0em 1em 3em;
 }
 
 /* veel gestelde vragen  */
@@ -375,8 +382,10 @@ padding-bottom: 4em;
   flex-direction: column;
   text-align: left;
 }
-.info-veel-vragen h1{
-  font-size: 1.5em;
+.veel_vragen{
+  align-self: left;
+  margin-left: 2em;
+  margin-top: 2em;
 }
 .info-box{
   position: relative;
@@ -432,9 +441,8 @@ opacity: 1;
 }
 
 /* form  */
-.info-form-h1 {
-  font-size: 1.5em;
-  margin: 2em 0em 1em 2em;
+.info-form-h2 {
+  margin: 3em 0em 1em 2em;
   color: #1bbcb6;
 }
 
@@ -478,7 +486,7 @@ opacity: 1;
   color: white;
   font-weight: bold;
 }
-.info-submit input[type=submit]::placeholder{
+.info-submit input[type=submit]::-ms-value{
   font-size: 15px;
 }
 

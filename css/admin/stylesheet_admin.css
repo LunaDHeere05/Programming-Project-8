@@ -1,0 +1,184 @@
+/* #1BBCB6 = blauw */
+/* #E30613 = rood */
+/* #5B5B5B = donker grijs*/
+/* #303030 = footer achtergrond kleur */
+/* #FFFFFF = wit voor achtergrond kleur */
+/* #000000 = zwart voor logo's */
+/* font-family: "Poppins", sans-serif; = font */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+h1,
+h2,
+h3 {
+    color: #000000;
+    font-weight: bold;
+}
+.inhoud_body{
+  display: grid;
+  grid-template-columns: [first] 20% [second] 80%;
+  grid-template-rows: auto;
+}
+
+/* homepage */
+
+/* bovenste navigatie */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  
+}
+
+.ehb_logo {
+  width: auto;
+  height: 54px;
+  margin-left: 10px;
+}
+.rechter_navigatie{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;  
+}
+.rechter_navigatie a{
+    width: 3em;
+}
+.rechter_navigatie img {
+    width: 100%;
+    height: 100%;
+}
+.rechter_navigatie a:hover {
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+}
+
+/*  zoekbalk */
+
+.zoekbalk_container {
+  background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;
+  height: 6em;
+  display: flex;
+}
+
+/* linker navigatie */
+
+.linker_nav{
+  height: 100%;
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+.linker_nav ul{
+  list-style: none; 
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 2em;
+}
+.linker_nav ul li a{
+  text-decoration: none;
+  color: #5B5B5B;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+/* keer terug + zoeken container binnen pagina zelf */
+.keer_terug{
+  display: flex;
+  margin: 0.5em 1.5em 1.5em 1.5em;
+}
+.keer_terug img{
+  width: 1.5em;
+  height: 3.2em;
+}
+.keer_terug h1{
+  margin-left: 0.5em;
+}
+
+.zoeken_container{
+  width: 100%;
+  height: 3em;
+  margin: auto;
+}
+.zoeken{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  height: 100%;
+  border-radius: 2em;
+  border: 2px solid rgb(193,193,193);
+}
+.zoeken input{
+  width: 90%;
+  height: 100%;
+  border: none;
+  margin: auto;
+}
+.zoeken button{
+  width: 2em;
+  height: auto;
+  background: none;
+  border: none;
+  margin-right: 1.5em;
+}
+
+/* dashboard agenda */
+
+.agenda_container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 2em;
+}
+.datums{
+  display: flex;
+  list-style: none;
+  margin-top: 2em;
+  align-items: center;
+}
+.datums li{
+  background-color: rgb(193,193,193);
+  width: 5em;
+  height: 5em;
+  margin: 1em;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+}
+.datums li h3{
+  margin: auto;
+}
+.datums li:first-child , .datums li:last-child{
+  width: 2em;
+  height: 2em;
+  background: none;
+}
+.datums .active{
+  background-color: #E30613;
+}
+
+/* dashboard uitleningen */
+
+.uitleningen_dashboard_container{
+  width: 100%;
+}
+.uitleningen_dashboard_details{
+  display: flex;
+  width: 90%;
+  background-color: rgb(193,193,193);
+  margin: auto;
+  border-radius: 2em;
+  justify-content: space-between;
+  align-items: center;
+}
+.naam_reservatieID{
+  margin-left: 2em;
+}
+.naam_reservatieID span{
+  font-weight:normal;
+}
