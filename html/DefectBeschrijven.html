@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalender</title>
+    <title>Defect beschrijving</title>
     <link rel="stylesheet" href="/css/stylesheet.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -19,8 +19,8 @@
             <li><a href="/html/Reservaties.html"><h1>Reservaties</h1></a></li>
         </ul>
         <div class="rechter_navigatie">
-            <a href="#"><img src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a>
-            <a href="#"><img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
+            <a href="/html/Favorietenlijst.html"><img src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a>
+            <a href="/html/Winkelmandje.html"><img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
             <a href="#"><img src="/images/svg/user-solid.svg" alt="profiel - logout"></a>
         </div>
     </nav>
@@ -42,58 +42,31 @@
         </div>
     </div>
 
-    <div class="agendaEnTerug">
+    
+    <div class="annulerenEnTerug">
         <a href="#"><img src="/images/svg/chevron-left-solid.svg" alt=""></a>
-        <h1>Kalender</h1>
+        <h1>Defect melden</h1> 
     </div>
 
-    <div class="jaarkalender">
-      <h2>Jaarkalender</h2>
-    <p>Op deze dagen zal het medialab <b>gesloten</b> zijn voor het uitlenen of inleveren van apparaten. Meeste van deze data kunnen jullie ook in jullie lessenrooster terugvinden.</p>
-    <table>
-        <tr>
-            <td width="70%">28/10/2024 - 03/11/2024</td>
-            <td class="uitleg">Allerheiligen</td>
-        </tr>
-        <tr>
-            <td>01/11/2024 (vrijdag)</td>
-            <td class="uitleg">Wapenstilstand</td>
-        </tr>
-        <tr>
-            <td>11/11/2024 (maandag)</td>
-            <td class="uitleg">Herfstvakantie</td>
-        </tr>
-        <tr>
-            <td><b>27/11/2024 (maandag)</b></td>
-            <td class="uitleg"><b>Uitzonderlijk gesloten</b></td>
-        </tr>
-        <tr>
-            <td>23/12/2024 - 05/01/2025</td>
-            <td class="uitleg">Kerstvakantie</td>
-        </tr>
-        <tr>
-            <td>01/04/2025 (maandag)</td>
-            <td class="uitleg">Paasmaandag</td>
-        </tr>
-        <tr class="empty">
-          <td  class="empty"> </td>
-          <td  class="empty"></td>
-        </tr>
-    </table>
+          <div class="item_info_container">
+              <div class="item_info">
+                  <img  src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+              <h2>Canon-M50</h2>
+              <div class="apparaat_id">
+                  <h3>Apparaat ID:</h3>
+                  <p>123456</p>
+              </div>
+              <img class="verwijder" src="/images/svg/xmark-solid.svg" alt="klik weg">
+              </div>
+          </div>
+        </div>
 
-    </div>
-  
-    <h2 class="subtitel">Activiteiten</h2>
-
-    <div class="activiteit">
-      <img src="/images/png/workshop.png" alt="workshop flyer">
-      <div class="info_activiteit">
-        <h3>Workshop 3D printing</h3>
-        <p>Deze workshop dient als een introductie tot het gebruik van 3D-printers, waarmee je later je eigen ontwerpen kunt leren printen. We willen benadrukken dat de workshop laagdrempelig is en geschikt is voor alle studenten, ongeacht hun ervaringsniveau. Maak je geen zorgen als je nog nooit met 3D-printers hebt gewerkt - we zullen je stap voor stap begeleiden. </p>
-        <h4>Wanneer?</h4>
-      </div>
-    </div>
-
+    <p class="beschrijf">Beschrijf het defect zo precies mogelijk</p>
+    <input class="beschrijving_defect" type="text" size="50" maxlength="5000" placeholder="Voorbeeld: Mijn camera heeft een rare zwarte vlek in de rechterbovenhoek van elke foto, zelfs na het schoonmaken van de lens. Het begon nadat ik het apparaat per ongeluk liet vallen tijdens een wandeling in het park gisteren">
+    
+<div class="bevestig_btn">
+    <a href="/html/FinalDefectMelden.html"><button>Bevestig</button></a>
+</div>
     <footer>
         <div class="footer_container">
       <div class="ehb-info">
@@ -154,7 +127,5 @@
       <div class="einde"><p>&copy;Groep 8 - Programming Project</p></div>
     </footer>
 
-</body>
-</html>
 </body>
 </html>

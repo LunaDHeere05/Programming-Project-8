@@ -528,10 +528,12 @@ color: #fff;
 
 /*Footer*/
 footer {
-  display: block;
   background-color: #303030;
   color: white;
   margin-top: 4em;
+  width: 100%;
+  height: 100%;
+
 }
 .ehb-info li a {
   text-decoration: none;
@@ -655,6 +657,7 @@ footer {
 .reservatie_plaatsen {
   background-color: #1bbcb6;
   width: 80%;
+  height: 6em;
   margin: auto;
   border-radius: 2em;
   display: flex;
@@ -665,6 +668,64 @@ footer {
   color: white;
   padding: 1em;
   display: flex;
+}
+.aantal{
+  background-color: white;
+  border-radius: 2em;
+  margin: auto;
+  width: 13%;
+  height: 10%;
+  align-items: center;
+}
+.aantal label{
+  color: black;
+  font-weight: bold;
+}
+.aantal input{
+  border: none;
+  width: 100%;
+  height: 2em;
+  text-align: center;
+  font-size: 14px;
+}
+.reserveer_nu_btn{
+  width: 14%;
+  background-color: white;
+  height: 10%;
+  border-radius: 2em;
+  margin: auto;
+  align-items: center;
+}
+.reserveer_nu_btn a{
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  margin: 0em auto;
+}
+.winkelmand_toevoegen_btn{
+  background-color: white;
+  height: 10%;
+  margin-right: 1em;
+  margin: auto;
+  align-items: center;
+  width: 10%;
+  border-radius: 2em;
+}
+.winkelmand_toevoegen_btn button{
+  border: none;
+  background-color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+.winkelmand_toevoegen_btn img{
+  width: 20%;
+  margin: 0em 0em 0em 0.2em
+}
+
+.datum{
+  display: flex;
+  flex-direction: column;
 }
 
 /* kits */
@@ -761,7 +822,7 @@ footer {
     display: flex;
 }
 .reserverenEnTerug h1{
-    margin: 0.8em 0.5em;
+    margin: 0.8em 0.5em 0em 0.5em;
 }
 .reserverenEnTerug a img{
     width: 1.5em;
@@ -769,7 +830,7 @@ footer {
     margin: 1.5em;
 }
 .bevestig{
-    margin: 0em 4em;
+    margin: 0em 4em 2em 4em;
     font-size: 20px;
 }
 .item_info_container{
@@ -782,7 +843,7 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: relative
+    position: relative;
 }
 .item_info img{
     width: 15%;
@@ -791,8 +852,233 @@ footer {
 }
 .verwijder{
     position: absolute;
-    width: 0.7em;
-    height: auto;
     right: 0;
-    top: 0;
+    top: 0.5em;
+    width: 2em !important;
+}
+.item_info_container img{
+  width: 15%;
+}
+.bevestig_btn{
+    background-color: #1bbcb6;
+    padding: 1em;
+    border-radius: 2em;
+    margin: auto;
+    width: 10em;
+    text-align: center;
+}
+.bevestig_btn button{
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+/* kalender pagina */
+.agendaEnTerug{
+    display: flex;
+}
+.agendaEnTerug img{
+    width: 1.5em;
+    height: auto;
+    margin: 1.5em;
+}
+.agendaEnTerug h1{
+    margin: 0.6em 0.5em 0em 0.5em;
+}
+.subtitel, .jaarkalender h2{
+    color: #5B5B5B;
+    margin: 0.5em 4em;
+}
+.jaarkalender p{
+    margin: 0em 6em;
+}
+.jaarkalender p b{
+    color: #E30613;
+}
+.jaarkalender table{
+  width: 80%;
+  margin: 3em auto;
+  border-collapse: collapse;
+}
+.jaarkalender table b{
+  color:#E30613;
+}
+.jaarkalender table .uitleg{
+  text-align: right;
+  padding-left: 0em;
+  border-bottom: 2px solid rgb(193, 193, 193);
+}
+.jaarkalender table tr td{
+  padding: 1em;
+  border-bottom: 2px solid rgb(193, 193, 193);
+}
+.jaarkalender table tr td:first-child{
+  border-right: 2px solid rgb(193, 193, 193);
+}
+.jaarkalender table tr:last-child td{
+  border-bottom: none;
+  padding: 1em;
+}
+
+.empty{
+  padding:5em;
+}
+
+.activiteit{
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+}
+.activiteit img{
+  width: 25%;
+  margin: 1em 3em 0em 5em;
+}
+.info_activiteit{
+  width: 40%;
+}
+.info_activiteit p{
+  margin: 1.5em 0em;
+}
+.info_activiteit h4{
+  color:#1bbcb6;
+}
+
+/* mijn favorietenlijst pagina */
+
+.favorietenEnTerug{
+  display: flex;
+}
+.favorietenEnTerug img{
+  width: 1.5em;
+  height: auto;
+  margin: 1.5em;
+}
+.favorietenEnTerug h1{
+  margin: 0.6em 0.5em 0em 0.5em;
+}
+.favoriet_apparaat_container{
+  width: 90%;
+  height: 15em;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;   /*hierdoor is er probleem wnt komt over*/
+}
+.favoriet_apparaat{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: rgb(193, 193, 193);
+  border-radius: 2em;
+  width: 20%;
+  margin: 1em;
+}
+.favoriet_apparaat .mijnFavorieteApparaat_foto{
+  width: 60%;
+  height: auto;
+  margin: 0.5em auto;
+  background-color: white;
+  border-radius: 1em;
+}
+.text_apparaat{
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  display: flex;
+}
+.text_apparaat img{
+  width: 1.5em;
+  height: auto;
+  margin: 0em 0.5em;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+}
+.verwijder_btn{
+  width: 1.5em;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+}
+
+/* annuleren van reservatie */
+.annulerenEnTerug{
+  display: flex;
+}
+.annulerenEnTerug img{
+  width: 1.5em;
+  height: auto;
+  margin: 1.5em;
+}
+.annulerenEnTerug h1{
+  margin: 0.6em 0.5em 0em 0.5em;
+}
+
+/* defect melden */
+.defecte_apparaten_container{
+  display: flex;
+  width: 100%;
+}
+.item_info_en_selectiebol{
+  display: flex;
+  justify-content: flex-start;
+}
+#selectie_bol img{
+  margin: auto;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
+    brightness(103%) contrast(79%);
+}
+#selectie_bol{
+  width: 3em;
+  margin: auto;
+  margin-right: 0em;
+}
+
+.defecte_apparaten{
+  display: flex;
+  background-color: rgb(193, 193, 193);
+  height: 20em;
+  border-radius: 2em;
+}
+
+.beschrijving_defect {
+  width: 90%;
+  margin: auto;
+  height: 20em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  color: black;
+  border: 0.5px solid grey;
+  border-radius: 2em;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+.beschrijving_defect:focus {
+  border: none;
+  outline: 0.5px solid #1bbcb6;
+}
+.beschrijving_defect::placeholder{
+  height: 100%;
+  text-wrap: wrap;
+  font-size: 16px;
+}
+.beschrijf{
+  margin: 0em 0em 0em 4em;
+}
+
+/* defect melden final bevestiging */
+
+.melding h2{
+  margin: 2em 0em 0em 2em;
+}
+.melding p{
+  width: 85%;
+  margin: auto;
+  background-color: rgb(193, 193, 193);
+  padding: 4em;
+  border-radius: 1em;
+  margin-top: 2em;
 }
