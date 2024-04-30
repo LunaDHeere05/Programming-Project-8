@@ -490,7 +490,155 @@ opacity: 1;
   font-size: 15px;
 }
 
+/* reservatie  */
 
+.reservatie-chevron-left img{
+  width: 1em;
+  height: auto;
+  padding: 1em;
+  
+}
+.reservatie-chevron-left {
+    display: flex;
+}
+.reservatie-chevron-left h1{
+    padding-top: 0.9em;
+    font-size: large;
+}
+.reservatie-top h2{
+  font-size: 1em;
+  color: #1bbcb6;
+  padding: 1em;
+  }
+  .reservatie-top{
+    display: flex;
+    align-items: baseline;
+  }
+
+  .reservatie-top a {
+    color: #fff;
+    background-color: #E30613;
+    border-radius: 2em;
+    border: #E30613;
+    padding: 0.5em 0.5em 0em 1em;
+    height: 2em;
+    text-decoration: none;
+  }
+  .reservatie-top a img {
+    margin: auto;
+    height: 1em;
+    width: auto;
+    padding: 0em 0em 0em 0.5em;
+    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) contrast(100%);
+    }
+
+  .reservatie-annuleren img{
+  margin: auto;
+height: 1em;
+width: auto;
+padding: 0em 0em 0em 0.5em;
+filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) contrast(100%);
+  }
+  
+.reservatie-annuleren a{
+    display: flex;
+    height: 1.5em;
+    width: 7em;
+    margin-top: 3.5em;
+    text-align: center;
+    padding: 0.5em;
+    background-color: #E30613;
+    border: #E30613;
+    border-radius: 2em;
+    text-decoration:none;
+    color: #fff;
+  }
+
+  .reservatie-box-full{
+    background-color: rgb(193, 193, 193);
+    border-radius: 2em;
+    margin: 2.5em;
+    padding: 1em;
+    height: 10em;
+    width: 80em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .reservatie-box-info img{
+   width: 10em;
+   height: auto;
+   background-color: #fff; 
+  }
+
+.reservatie-box1{
+  display: flex;
+  align-items: center;
+}
+
+  /* Customize the label (the container) */
+.reservatie-checkbox-container {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.reservatie-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.reservatie-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0.5em;
+  height: 1em;
+  width: 1em;
+  background-color: #eee;
+  border-radius: 0.5em;
+}
+
+
+/* On mouse-over, add a grey background color */
+.reservatie-checkbox-container:hover input ~ .reservatie-checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.reservatie-checkbox-container input:checked ~ .reservatie-checkmark {
+  background-color: #1bbcb6;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.reservatie-checkbox-container:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.reservatie-container input:checked ~ .reservatie-checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.reservatie-container .reservatie-checkmark:after {
+ border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 
 /* Inventaris pagina */
 /* filters onder zoekbalk */
