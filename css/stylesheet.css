@@ -213,14 +213,15 @@ nav ul li a {
   margin-top: 1em;
   justify-content: space-between;
   margin: auto;
-  width: 80%;
+  width: 90%;
 }
 .uitleen_uitleg ul li {
-  width: 25%;
+  width: 20%;
   height: 10em;
   border-radius: 1em;
   text-align: center;
   background-color: #1bbcb6;
+  margin: 1em
 }
 .uitleen_uitleg ul li a {
   text-decoration: none;
@@ -242,7 +243,7 @@ nav ul li a {
 /* Info pagina  */
 /*Info Hoe leen je iets uit? */
 .info-chevron-left img{
-    width: 1em;
+    width: 1.5em;
     height: auto;
     padding: 1em;
 }
@@ -254,7 +255,7 @@ nav ul li a {
     font-size: large;
 }
 .info_uitleen_uitleg h2 {
-  padding-left: 1.5em;
+  padding-left: 2em;
 }
 .info_uitleen_uitleg ul li h3 {
   color: white;
@@ -265,7 +266,9 @@ nav ul li a {
 }
 .info_uitleen_uitleg{
 padding-bottom: 4em;
-
+}
+.info_titel{
+  margin: 0.3em 0em 0em 0.5em;
 }
 
 .info_uitleen_uitleg ul {
