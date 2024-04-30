@@ -158,7 +158,6 @@ nav ul li a {
 
 .recent_lijst_container {
   display: flex;
-  justify-content: space-between;
 }
 .recent_lijst_container img {
   width: 2em;
@@ -167,16 +166,16 @@ nav ul li a {
 .recent_container {
   display: block;
 }
-.recent_container h2 {
+.recent_container h1 {
   margin: 1em 0em;
 }
 .recent_lijst {
   display: flex;
   margin-top: 1em;
-  width: 80%;
+  width: 100%;
   list-style: none;
   margin: auto;
-  justify-content: space-between;
+
 }
 .recent_lijst a {
   text-decoration: none;
@@ -184,7 +183,6 @@ nav ul li a {
 .recent_lijst li {
   margin: auto;
   background-color: #edededcf;
-  margin-right: 1em;
   height: 80%;
   width: 20%;
   text-align: center;
@@ -198,17 +196,17 @@ nav ul li a {
 }
 
 /* Hoe leen je iets uit? */
-.uitleen_uitleg h2 {
-  padding-left: 1em;
+.uitleen_uitleg h1 {
+  padding-left: 0.5em;
+  margin: 1em 0em;
 }
 .uitleen_uitleg ul li h3 {
   color: white;
 }
 .uitleen_uitleg ul li p {
-  font-size: 85%;
+  font-size: 90%;
   padding: 1em;
 }
-
 .uitleen_uitleg ul {
   list-style: none;
   display: flex;
@@ -217,12 +215,9 @@ nav ul li a {
   margin: auto;
   width: 80%;
 }
-.uitleen_uitleg h2 {
-  margin: 1em 0em;
-}
 .uitleen_uitleg ul li {
-  width: 15%;
-  height: 8em;
+  width: 25%;
+  height: 10em;
   border-radius: 1em;
   text-align: center;
   background-color: #1bbcb6;
@@ -308,19 +303,34 @@ padding-bottom: 4em;
     margin-bottom: 1em;
   }
 .info-opening-hours table {
-    border-collapse: collapse;
-    margin: auto auto;
-    width: 35em;
-    height: 25em;
+  margin: auto;
+  width: 80%;
+  border-collapse: collapse;
   }
   
 .info-opening-hours h1 {
     padding: 0em 0em 0.5em 0em;
+    text-align: left;
+    margin: 0em 0em 1em 2em;
   }
 
 .info-opening-hours table,th,td {
+    text-align: center;
+    padding: 1.5em;
+}
+.info-opening-hours table th {
     text-align: start;
-    padding: 0.5em;
+    border: none;
+    border-bottom: 2px solid rgb(193, 193, 193);
+  }
+  .info-opening-hours table td{
+    border: none;
+    border-bottom: 2px solid rgb(193, 193, 193);
+    border-left: 2px solid rgb(193, 193, 193);
+  }
+  .info-opening-hours table tr:last-child th, .info-opening-hours table tr:last-child td{
+    height: 2em;
+    border-bottom: none;
   }
 
   .info-opening-hours td  {
