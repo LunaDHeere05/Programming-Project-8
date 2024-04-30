@@ -380,11 +380,11 @@ padding-bottom: 4em;
   padding: 1em;
   border: 0.5em solid transparent;
   border-bottom-color: #1bbcb6;
-background-color: transparent;
-width: 50%;
-height: 2.5em;
-cursor: pointer;
-transition: all 0.4s ease;
+  background-color: transparent;
+  width: 50%;
+  height: 2.5em;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 .info-box h2{
   font-size: 1em;
@@ -431,32 +431,52 @@ opacity: 1;
 /* form  */
 .info-form-h1 {
   font-size: 1.5em;
-  margin-top: 2em;
-  text-align: center;
+  margin: 2em 0em 1em 2em;
   color: #1bbcb6;
 }
 
 .info-form{
   display: flex;
   flex-direction: column;
- align-items: center;
+  align-items: center;
 }
 
+.info-text{
+  width: 100%;
+  display: flex;
+}
 .info-text input[type=text]{
-width: 70em;
-height: 15em;
-background-color: #5B5B5B;
-border: #5B5B5B;
-color: #fff;
+  width: 90%;
+  height: 20em;
+  border-radius: 2em;
+  background-color: rgb(193, 193, 193);
+  border: none;
+  color: #fff;
+  margin: auto;
+  padding: 2em;
+}
+.info-text input[type=text]:focus{
+  outline: none;
 
+}
+.info-submit{
+  width: 100%;
+  height: 5em;
+  display: flex;
+  justify-content: center;
 }
 .info-submit input[type=submit]{
   background-color: #1bbcb6;
-  border-radius: 1em;
-  width: 7em;
-  height: 2em;
-  margin: 1em auto 1em auto  ;
+  border-radius: 2em;
+  width: 15%;
+  height: 70%;;
+  margin: auto;
   border: 0;
+  color: white;
+  font-weight: bold;
+}
+.info-submit input[type=submit]::placeholder{
+  font-size: 15px;
 }
 
 
