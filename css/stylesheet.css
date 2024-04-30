@@ -499,10 +499,12 @@ opacity: 1;
 
 /*Footer*/
 footer {
-  display: block;
   background-color: #303030;
   color: white;
   margin-top: 4em;
+  width: 100%;
+  height: 100%;
+
 }
 .ehb-info li a {
   text-decoration: none;
@@ -933,7 +935,7 @@ footer {
   height: 15em;
   margin: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;   /*hierdoor is er probleem wnt komt over*/
 }
 .favoriet_apparaat{
   display: flex;
