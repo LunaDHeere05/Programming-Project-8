@@ -202,7 +202,7 @@ nav {
   filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
   brightness(103%) contrast(79%);
 }
-.verwijder{
+.verwijder_btn{
   filter: invert(13%) sepia(91%) saturate(6506%) hue-rotate(353deg) brightness(88%) contrast(103%);
 }
 
@@ -218,3 +218,75 @@ nav {
   text-decoration: none;
   color: white;
 }
+
+/* te laat pagina */
+
+.te_laat_tabel{
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  margin-top: 2em;
+}
+.te_laat_tabel table{
+  border-collapse: collapse;
+  margin: auto;
+  width: 100%;
+}
+.te_laat_tabel th, td{
+  width: 30%;
+  border-collapse: collapse;
+  border-bottom: 2px solid rgb(193,193,193);
+  border-left: 2px solid rgb(193,193,193);
+}
+.te_laat_tabel tr:last-child td{
+  border-bottom: none;
+}
+.te_laat_tabel th:first-child, td:first-child{
+  border-left: none;
+}
+.te_laat_tabel img{
+  width: 100%;
+  width: 2em;
+  height: auto;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
+  padding-top: 0.5em;
+}
+
+/* blacklist tabel */
+.blacklist_tabel{
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  margin-top: 2em;
+}
+.blacklist_tabel table{
+  border-collapse: collapse;
+  margin: auto;
+  width: 100%;
+}
+.blacklist_tabel th, td{
+  width: 30%;
+  border-collapse: collapse;
+  border-bottom: 2px solid rgb(193,193,193);
+  border-left: 2px solid rgb(193,193,193);
+}
+.blacklist_tabel tr:last-child td{
+  border-bottom: none;
+}
+.blacklist_tabel th:first-child, td:first-child{
+  border-left: none;
+}
+.blacklist_tabel .meer_info{
+  width: 2em;
+  height: auto;
+  padding-top: 0.5em;
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
+}
+.verwijder{
+    filter: invert(13%) sepia(91%) saturate(6506%) hue-rotate(353deg) brightness(88%) contrast(103%);
+    width: 2em;
+    height: auto;
+    padding-top: 0.5em;
+  }
+/* uitleningen */
+

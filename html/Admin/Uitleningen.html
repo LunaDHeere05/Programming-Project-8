@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Uitleningen</title>
     <link rel="stylesheet" href="/css/admin/stylesheet_admin.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -22,7 +22,7 @@
     </div>
 <div class="keer_terug">
         <img src="/images/svg/chevron-left-solid.svg" alt="">
-        <h1>Dashboard</h1>
+        <h1>Uitleningen</h1>
 </div>
 <div class="inhoud_body">
     <div class="linker_nav">
@@ -45,39 +45,31 @@
                 <button type="submit"><img src="/images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
             </div>
         </div>
-        <div class="agenda_container">
-            <h2>Maart</h2>
-            <ul class="datums">
-                <li><img src="/images/svg/chevron-left-solid.svg" alt="links"></li>
-                <li><h3>1</h3></li>
-                <li><h3>2</h3></li>
-                <li><h3>3</h3></li>
-                <li class="active"><h3>4</h3></li>
-                <li><h3>5</h3></li>
-                <li><h3>6</h3></li>
-                <li><h3>7</h3></li>
-                <li><img src="/images/svg/chevron-right-solid.svg" alt=""></li>
-            </ul>
-        </div>
-        <div class="uitleningen_dashboard_container">
-            <div class="uitleningen_dashboard_details">
-                <div class="naam_reservatieID">
-                    <h3>Luna D'Heere</h3>
-                    <h3>Reservatie-ID: <span>04536</span></h3>
-                </div>
-                <h3>Apparaat: USB-C</h3>
-                <p>Ophalen</p>
-                <div class="iconen">
-                    <img src="/images/svg/screwdriver-wrench-solid.svg" alt="">
-                    <img class="check" src="/images/svg/circle-check-solid.svg" alt="">
-                    <img class="verwijder_btn" src="/images/svg/circle-xmark-solid.svg" alt="">
+        <div class="rechter_grid">
+            <div class="zoeken_container">
+                <div class="zoeken">
+                    <input type="text" placeholder="Voer een e-mailadres in...">
+                    <button type="submit"><img src="/images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
                 </div>
             </div>
-        </div>
-        <div class="uitlening_toevoegen">
-            <h2><a href="">Uitlening toevoegen</a></h2>
-        </div>
-    </div>
-</div>
+            <div class="blacklist_tabel">
+                <table>
+                    <tr>
+                        <th>E-mail</th>
+                        <th>Rede</th>
+                        <th>Dagen op blacklist</th>
+                        <th>Meer info</th>
+                        <th>Verwijder</th>
+                    </tr>
+                    <tr>
+                        <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
+                        <td>2x te laat</td>
+                        <td>5</td>
+                        <td><a href="#"><img class="meer_info" src="/images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
+                        <td><a href="#"><img class="verwijder" src="/images/svg/circle-xmark-solid.svg" alt="verwijder van blacklist"></a></td>
+                    </tr>
+                </table>
+            </div>
+    
 </body>
 </html>
