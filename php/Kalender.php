@@ -6,7 +6,7 @@
     <title>Kalender</title>
 </head>
 <body>
-<?php include 'components/top_nav.php'; ?>
+<?php include 'top_nav.php'; ?>
 <div class="agendaEnTerug">
         <a href="#"><img src="/images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Kalender</h1>
@@ -59,7 +59,7 @@
       </div>
 </div>
 </body>
-<?php include 'components/footer.php'; ?>
+<?php include 'footer.php'; ?>
 </html>
 
 
