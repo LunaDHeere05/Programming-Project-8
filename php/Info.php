@@ -1,4 +1,3 @@
-<?php include("top_nav.php")?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -373,4 +372,4 @@ opacity: 1;
   <div class="info-text"><input type="text"></div>
   <div class="info-submit"><input type="submit" value="Verstuur"></div>
 </form>
-<?php include "footer.php"; ?>
+<?php include("footer.php"); ?>
