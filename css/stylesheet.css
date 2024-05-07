@@ -366,7 +366,7 @@ padding-bottom: 4em;
 .info-sancties{
     margin: 1em 0em 1em 3em;
 }
-.info-sancties h2, p{
+.info-sancties h2 p{
   margin: 2em  0em 1em 0em;
 }
 .info-sancties p b{
@@ -571,6 +571,10 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) 
     width: 80em;
     display: flex;
     justify-content: space-between;
+  }
+
+  .reservatie-box-full p{
+    margin: 0.1em 0em 0.5em 0em;
   }
   .reservatie-box1 b {
     color: #E30613;
