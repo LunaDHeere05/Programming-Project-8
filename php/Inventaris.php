@@ -145,3 +145,4 @@
   filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg)
     brightness(90%) contrast(89%);
 }</style>
+<?php include("footer.php"); ?>
