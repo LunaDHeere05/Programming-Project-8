@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris</title>
+
 </head>
 <body>
-<?php include 'components/top_nav.php'; ?> 
+<?php include 'top_nav.php'; ?> 
  <!--zoekresultaat container  -->
 <div class="zoekresultaat_container"> 
         <h3>Verfijn je resultaat: </h3>
@@ -38,37 +39,49 @@
         <ul class="apparatenlijst">
           <!-- gaat gegenereerd moeten worden met onze javascript of iets anders -->
             <li class="apparaat"><a href="ApparaatPagina.html">
-                <img class="apparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
+            <?php
+              echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
+              ?>
                 <div class="korte_beschrijving">
                     <h3>Canon M50</h3>
                     <p>Fototoestel</p> 
                 </div>
                 <div class="beschikbaarheid_apparaat">
                     <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <img src="/images/svg/circle-check-solid.svg" alt="check">
+                    <?php
+                    echo '<img src="images/svg/circle-check-solid.svg" alt="check">'
+                    ?>
                 </div>
                 <div class="toevoegen">
-                    <img src="/images/svg/heart-solid.svg" alt="favorietenlijst">
-                    <img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+                <?php
+                  echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
+                  echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">'
+                  ?>
                 </div>
             </a></li>
             <li class="apparaat"><a href="#">
-                <img class="apparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
+              <?php
+              echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
+              ?>
                 <div class="korte_beschrijving">
                     <h3>Canon M50</h3>
                     <p>Fototoestel</p> 
                 </div>
                 <div class="beschikbaarheid_apparaat">
                     <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <img src="/images/svg/circle-check-solid.svg" alt="check">
+                    <?php
+                    echo '<img src="images/svg/circle-check-solid.svg" alt="check">'
+                    ?>
                 </div>
                 <div class="toevoegen">
-                    <img src="/images/svg/heart-solid.svg" alt="favorietenlijst">
-                    <img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+                  <?php
+                  echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
+                  echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">'
+                  ?>
                 </div>
             </a></li>
         </ul>  
-<?php include 'components/footer.php'; ?>
+<?php include 'footer.php'; ?>
 </body>
 </html>
 
@@ -145,3 +158,4 @@
   filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg)
     brightness(90%) contrast(89%);
 }</style>
+<?php include("footer.php"); ?>
