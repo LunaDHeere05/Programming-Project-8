@@ -7,17 +7,24 @@
     <link rel="stylesheet" href="/css/stylesheet.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        <style>
-.categorie a {
-  margin-top: 1em;
+
+
+.categorie a h2{
+  margin: 1em;
   text-decoration: none;
   display: block;
+  color: black;
+}
+.categorie a{
+  text-decoration: none;
 }
 .categorie_lijst {
   list-style: none;
   display: flex;
   justify-content: center;
   margin-top: 1em;
+  height: 8em;
+  align-items: center;
 }
 .categorie_lijst a {
   text-decoration: none;
@@ -46,7 +53,7 @@
   display: block;
 }
 .recent_container h2 {
-  margin: 1em 0em;
+  margin: 1em 0em 1em 1em;
 }
 .recent_lijst {
   display: flex;
@@ -56,8 +63,12 @@
   margin: auto;
   justify-content: space-between;
 }
-.recent_lijst a {
+.recent_lijst a{
   text-decoration: none;
+}
+.recent_lijst a h3{
+  text-decoration: none;
+  color: black;
 }
 .recent_lijst li {
   margin: auto;
@@ -128,14 +139,18 @@
 <div class="inhoud_body">
     <!-- categorielijst -->
     <div class="categorie">
-      <a href="#"><h2>Categorieën</h2></a>
+      <?php
+      echo '<a href="Categorie.php"><h2>Categorieën</h2></a>'
+      ?>
       <ul class="categorie_lijst">
-          <li><a href="#">Audio</a></li>
-          <li><a href="#">Belichting</a></li>
-          <li><a href="#">Tools</a></li>
-          <li><a href="#">Varia</a></li>
-          <li><a href="#">Video</a></li>
-          <li><a href="#">XR</a></li>
+          <?php
+          echo '<li><a href="#">Audio</a></li>';
+          echo '<li><a href="#">Belichting</a></li>';
+          echo '<li><a href="#">Tools</a></li>';
+          echo '<li><a href="#">Varia</a></li>';
+          echo '<li><a href="#">Video</a></li>';
+          echo '<li><a href="#">XR</a></li>';
+          ?>
       </ul>
   </div>
 
