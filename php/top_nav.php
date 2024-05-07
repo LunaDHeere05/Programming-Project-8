@@ -24,7 +24,8 @@ nav ul li{
 }
 nav ul li a h1{
     height: 100%;
-    padding-right: 2em;;
+    padding-right: 2em;
+    color: black;
 }
 nav ul li a h1:hover{
     color: #1BBCB6;
@@ -62,7 +63,7 @@ nav ul li a{
 
 .zoekbalk_container{
     <?php
-        echo 'background: url(images\jpg\jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;';
+    echo 'background: url(images/jpg/jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;';
     ?>;
     height: 6em;
     display: flex;
@@ -147,6 +148,8 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
             <option value="xr">XR</option>
         </select>
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
-        <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
+        <?php
+        echo '<button id="zoek_btn"><img src="images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>';
+        ?>
     </div>
 </div>
