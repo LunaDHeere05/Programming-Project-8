@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uitleningen</title>
+    <title>Uitlening toevoegen</title>
     <link rel="stylesheet" href="/css/admin/stylesheet_admin.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -22,7 +22,7 @@
     </div>
 <div class="keer_terug">
         <img src="/images/svg/chevron-left-solid.svg" alt="">
-        <h1>Uitleningen</h1>
+        <h1>Uitlening toevoegen</h1>
 </div>
 <div class="inhoud_body">
     <div class="linker_nav">
@@ -39,32 +39,21 @@
         </ul>
     </div>
     <div class="rechter_grid">
-        <div class="zoeken_container">
-            <div class="zoeken">
-                <input type="text" placeholder="Voer een naam of ID in...">
-                <button type="submit"><img src="/images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
+        <div class="uitlening_specificaties">
+            <form action="">
+                <input type="email" placeholder="Vul het e-mailadres in ...">
+                <input type="text" placeholder="Voer het apparaat-id of kit-id in ...">
+                <div class="datum_kiezen">
+                    <input type="date" placeholder="Bepaal het uitleentermijn">
+                </div>
+            </form>
+            <div class="apparaat_uitlening_toevoegen">
+                <img src="/images/svg/plus-circle.svg" alt="">
+                <h3>Apparaat toevoegen aan uitlening</h3>
             </div>
-        </div>
-            <div class="blacklist_tabel">
-                <table>
-                    <tr>
-                        <th>E-mail</th>
-                        <th>Apparaat</th>
-                        <th>Inleverdatum</th>
-                        <th>Meer info</th>
-                        <th>Verwijder</th>
-                    </tr>
-                    <tr>
-                        <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
-                        <td>Canon-M50</td>
-                        <td>02/06</td>
-                        <td><a href="#"><img class="meer_info" src="/images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
-                        <td><a href="#"><img class="verwijder" src="/images/svg/circle-xmark-solid.svg" alt="verwijder van blacklist"></a></td>
-                    </tr>
-                </table>
+            <div class="bevestig">
+                <button type="submit">Bevestig</button>
             </div>
-            <div class="uitlening_toevoegen">
-                <h3><a href="/html/Admin/UitleningToevoegen.html">Uitlening toevoegen</a></h3>
-            </div>
+    
 </body>
 </html>

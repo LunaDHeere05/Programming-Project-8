@@ -171,17 +171,18 @@ nav {
 
 .uitleningen_dashboard_container{
   width: 100%;
-  margin-top: 2em;
+  margin-top: 1.5em;
 }
 .uitleningen_dashboard_details{
   display: flex;
   width: 90%;
-  background-color: rgb(193,193,193);
+  background-color: #D9D9D9;
   margin: auto;
   border-radius: 2em;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1em;
+  padding: 0.5em;
 }
 .naam_reservatieID{
   margin-left: 2em;
@@ -289,4 +290,8 @@ nav {
     padding-top: 0.5em;
   }
 /* uitleningen */
-
+/* verlengingen */
+.inlever_uitleen span{
+  font-weight: normal;
+  margin-left: 0.5em;
+}
