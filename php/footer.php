@@ -2,21 +2,12 @@
         <div class="footer_container">
       <div class="ehb-info">
         <ul>
-          <!-- emial linken met echte mail -->
-          <li>
-            <a href="#"><img src="../images/svg/envelope-solid.svg" alt="envelope"> medialab.ehb@ehb.be</a>
-          </li>
-          <!-- linken so that it calls directly -->
-          <li><a href="#"><img src="../images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>
-          <!-- linken so that it can directly go to the webside -->
-          <li>
-            <a href="#"><img src="../images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a>
-          </li>
-          <!-- linken met google maps -->
-          <li>
-            <a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170,1070 Anderlecht</a
-            >
-          </li>
+          <?php
+          echo '<li><a href="#"><img src="../images/svg/envelope-solid.svg" alt="envelope">medialab.ehb@ehb.be</a></li>';
+          echo '<li><a href="#"><img src="../images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>';
+          echo '<li><a href="#"><img src="../images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a></li>';
+          echo '<li><a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170,1070 Anderlecht</a></li>';
+          ?>
         </ul>
       </div>
       <div class="opening-hours">
@@ -80,7 +71,8 @@ footer{
 }
 
 .ehb-info a img{
-    width: 1.2em;
+    height: 2em;
+    width: 2em;
     height: auto;
     padding: 0em 1em 0em 0em;
     filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
