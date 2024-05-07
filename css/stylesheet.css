@@ -561,15 +561,23 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) 
     color: #fff;
   }
 
+
   .reservatie-box-full{
     background-color: rgb(193, 193, 193);
     border-radius: 2em;
-    margin: 2.5em;
+    margin: 1em 1em 1em 2.5em;
     padding: 1em;
     height: 10em;
     width: 80em;
     display: flex;
     justify-content: space-between;
+  }
+  .reservatie-box1 b {
+    color: #E30613;
+  }
+
+  .reservatie-box2 b {
+    color: #1bbcb6;
   }
 
   .reservatie-box-info img{
@@ -582,7 +590,77 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) 
   display: flex;
   align-items: center;
 }
+.reservatie-box2{
+  display: flex;
+  align-items: center;
+}
 
+.reservatie-opgehaald{
+  display: flex;
+  align-items: baseline;
+}
+.reservatie-opgehaald h2{
+  font-size: 1em;
+  color: #1bbcb6;
+  padding: 1em;
+  }
+.reservatie-opgehaald a {
+  color: #fff;
+  background-color:#1bbcb6;
+  border-radius: 2em;
+  border: #1bbcb6;
+  padding: 0.5em 0.5em 0em 1em;
+  height: 2em;
+  text-decoration: none;
+}
+.reservatie-opgehaald a img {
+  margin: auto;
+  height: 1em;
+  width: auto;
+  padding: 0em 0em 0em 0.5em;
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) contrast(100%);
+  }
+
+  .reservatie-artikel-info-aantal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reservatie-verleng-box1{
+    display: flex;
+    flex-direction: column;
+  }
+  .reservatie-verleng-box1 a{
+    text-decoration: none;
+    color: #fff;
+  }
+  .reservatie-verleng-box1 img{
+   margin: auto;
+    width: 1.1em;
+    height: auto;
+    padding: 0em 0em 0em 0.5em;
+  }
+  .reservatie-defect{
+    background-color: #000000;
+    border-radius: 2em;
+    border: #000000;
+    padding: 0.5em 0.5em 0.5em 1em;
+    height: auto;
+    width: 6em;
+  }
+  .reservatie-verleng-box1 img{
+    filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
+  }
+  .reservatie-verlengen{
+    background-color: #1bbcb6;
+    border-radius: 2em;
+    border: #1bbcb6;
+    padding: 0.5em 0.5em 0.5em 1em;
+    height: auto;
+    width: 6em;
+    margin: 1em 0em 0em 0em;
+  }
   /* Customize the label (the container) */
 .reservatie-checkbox-container {
   display: flex;
