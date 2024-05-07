@@ -7,24 +7,23 @@
     <link rel="stylesheet" href="/css/stylesheet.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-      * Info pagina  */
-/*Info Hoe leen je iets uit? */
+
 .info-chevron-left{
-    width: 50em;
+    width: 100%;
     align-items: center;
-    background-color: tomato;
     display: flex;
 }
 .info-chevron-left a img{
     width: 1.5em;
 }
 .info_titel{
-    padding-top: 0.9em;
-    background-color: green;
-    width: 50%;
+    height: 100%;
+    text-align: center;
+    margin: auto;
 }
 .info_uitleen_uitleg h2 {
   padding-left: 2em;
+  margin: auto;
 }
 .info_uitleen_uitleg ul li h3 {
   color: white;
