@@ -1,3 +1,4 @@
+<?php include("top_nav.php")?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>

@@ -1,14 +1,6 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<style>               
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+               
 nav{
     display: flex;
     justify-content: space-between;
@@ -22,18 +14,16 @@ nav ul{
 
 nav ul li{
     height: 100%;
-    color:
 }
 nav ul li a h1{
     height: 100%;
-    padding-right: 2em;
+    padding-right: 2em;;
 }
 nav ul li a h1:hover{
     color: #1BBCB6;
 }
 nav ul li a{
     text-decoration: none;
-    color: black;
 }
 
 .ehb_logo{
@@ -64,7 +54,9 @@ nav ul li a{
         /*  zoekbalk */
 
 .zoekbalk_container{
-    background: url(../php/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;
+    <?php
+        echo 'background: url(images\jpg\jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;';
+    ?>
     height: 6em;
     display: flex;
 }
@@ -148,8 +140,6 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
             <option value="xr">XR</option>
         </select>
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
-        <?php 
-        echo '<button id="zoek_btn"><img src="images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>';
-        ?>
+        <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
     </div>
 </div>

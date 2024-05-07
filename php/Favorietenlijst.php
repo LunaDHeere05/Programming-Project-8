@@ -1,4 +1,4 @@
-<?php include 'database.php'; ?>
+<?php include("database.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,3 +112,6 @@
 }
     
 </style>
+
+
+<?php include("footer.php") ?>
