@@ -1,3 +1,4 @@
+<?php include 'database.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +57,7 @@
 </html>
 
 <style>
-    .favorietenEnTerug{
+.favorietenEnTerug{
   display: flex;
 }
 .favorietenEnTerug img{

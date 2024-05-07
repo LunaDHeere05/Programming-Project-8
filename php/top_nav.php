@@ -1,37 +1,7 @@
-<nav>
-    <a href="Home.html"><img class="ehb_logo" src="/images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
-    <ul>
-        <li><a href="/html/Info.html"><h1>Info</h1></a></li>
-        <li><a href="/html/Inventaris.html"><h1>Inventaris</h1></a></li>
-        <li><a href="/html/Kalender.html"><h1>Kalender</h1></a></li>
-        <li><a href="/html/Reservaties.html"><h1>Reservaties</h1></a></li>
-    </ul>
-    <div class="rechter_navigatie">
-        <a href="#"><img src="/images/svg/heart-solid.svg" alt="favorietenlijst"></a>
-        <a href="#"><img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
-        <a href="#"><img src="/images/svg/user-solid.svg" alt="profiel - logout"></a>
-    </div>
-</nav>
-
-<!-- zoekbalk -->
-<div class="zoekbalk_container">
-    <div class="zoekbalk">
-        <select name="categorie" id="" >
-            <option value="alles"></option>
-            <option value="audio">Audio</option>
-            <option value="belichting">Belichting</option>
-            <option value="tools">Tools</option>
-            <option value="varia">Varia</option>
-            <option value="video">Video</option>
-            <option value="xr">XR</option>
-        </select>
-        <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
-        <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
-    </div>
-</div>
-
 <style>
-    nav{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+               
+nav{
     display: flex;
     justify-content: space-between;
 }
@@ -84,7 +54,9 @@ nav ul li a{
         /*  zoekbalk */
 
 .zoekbalk_container{
-    background: url(/images/jpg/jj-ying-7JX0-bfiuxQ-unsplash\ \(1\).jpg) no-repeat center center/cover;   
+    <?php
+        echo 'background: url(images\jpg\jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;';
+    ?>
     height: 6em;
     display: flex;
 }
@@ -134,3 +106,40 @@ nav ul li a{
     outline: none;
 }
 </style>
+<nav>
+<?php
+echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>';
+?>
+    <ul>
+        <?php
+        echo '<li><a href="Info.php"><h1>Info</h1></a></li>';
+        echo '<li><a href="Inventaris.php"><h1>Inventaris</h1></a></li>';
+        echo '<li><a href="Kalender.php"><h1>Kalender</h1></a></li>';
+        echo '<li><a href="Reservaties.php"><h1>Reservaties</h1></a></li>';
+        ?>
+    </ul>
+    <div class="rechter_navigatie">
+    <?php
+        echo '<a href="#"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>';
+        echo '<a href="#"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>';
+        echo '<a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>';
+        ?>
+    </div>
+</nav>
+
+<!-- zoekbalk -->
+<div class="zoekbalk_container">
+    <div class="zoekbalk">
+        <select name="categorie" id="" >
+            <option value="alles"></option>
+            <option value="audio">Audio</option>
+            <option value="belichting">Belichting</option>
+            <option value="tools">Tools</option>
+            <option value="varia">Varia</option>
+            <option value="video">Video</option>
+            <option value="xr">XR</option>
+        </select>
+        <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
+        <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
+    </div>
+</div>
