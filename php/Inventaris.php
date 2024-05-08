@@ -80,7 +80,7 @@
                 </div>
             </a></li>
         </ul>  
-<?php include 'footer.php'; ?>
+
 </body>
 </html>
 
