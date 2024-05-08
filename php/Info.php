@@ -12,123 +12,117 @@
     width: 100%;
     align-items: center;
     display: flex;
+    margin: 0.5em 1em;
+    gap:0.35em;
+    align-items: center;
 }
+
 .info-chevron-left a img{
     width: 1.5em;
 }
-.info_titel{
-    height: 100%;
-    text-align: center;
-    margin: auto;
-}
-.info_uitleen_uitleg h2 {
+
+/*Info Hoe leen je iets uit? */
+h2{
   padding-left: 2em;
-  margin: auto;
+  padding-bottom:0.3em  
 }
+
 .info_uitleen_uitleg ul li h3 {
   color: white;
 }
-.info_uitleen_uitleg ul li p {
+
+.info_uitleen_uitleg p {
   font-size: 85%;
-  padding: 1em;
 }
+
 .info_uitleen_uitleg{
-padding-bottom: 4em;
+padding-bottom: 1em;
 }
-.info_titel{
-  margin: 0.3em 0em 0em 0.5em;
-}
+
 
 .info_uitleen_uitleg ul {
   list-style: none;
   display: flex;
-  margin-top: 1em;
-  justify-content: space-between;
   margin: auto;
   width: 90%;
+}
 
-}
-.info_uitleen_uitleg h2 {
-  margin: 1em 0em;
-}
 .info_uitleen_uitleg ul li {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  margin:auto;
   width: 15em;
   height: 10em;
   border-radius: 1em;
   text-align: center;
   background-color: #1bbcb6;
   text-decoration: none;
-  padding: 1em;
+  padding: 0.5em;
   color: white;
 }
 
-/* openings uren  */
-.info-opening-hours h1{
-  padding: 0.5em;
+.info_uitleen_uitleg h3{
   text-align: center;
-  font-size: 1.5em;
+  font-size:200%
 }
+
+.info_uitleen_uitleg p{
+  padding:0;
+  margin:auto
+}
+
+/* openings uren  */
 
 .info-opening-hours {
     padding: 0em 1em 0em 0em;
     margin-bottom: 1em;
   }
+
 .info-opening-hours table {
   margin: auto;
   width: 80%;
   border-collapse: collapse;
   }
   
-.info-opening-hours h1 {
-    padding: 0em 0em 0.5em 0em;
-    text-align: left;
-    margin: 0em 0em 1em 2em;
+  .info-opening-hours table th{
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
-
 .info-opening-hours table,th,td {
     text-align: center;
     padding: 1.5em;
 }
 .info-opening-hours table th {
-    text-align: start;
+    text-align: center;
     border: none;
     border-bottom: 2px solid rgb(193, 193, 193);
   }
   .info-opening-hours table td{
     border: none;
     border-bottom: 2px solid rgb(193, 193, 193);
-    border-left: 2px solid rgb(193, 193, 193);
   }
+
   .info-opening-hours table tr:last-child th, .info-opening-hours table tr:last-child td{
     height: 2em;
     border-bottom: none;
   }
 
-  .info-opening-hours td  {
-    border: 0.1em solid black;
+  .info-opening-hours .only{
+    border-top: 3px dotted #1bbcb6;
+    color:#1bbcb6
   }
 
-  .info-opening-hours th {
-    border: 0.1em solid black;
-  }
+
 
 /* sancties/defect  */
 
-.info-sancties{
-    margin: 1em 0em 1em 3em;
-}
-.info-sancties h2 p{
-  margin: 2em  0em 1em 0em;
-}
 .info-sancties p b{
     color: #E30613;
 }
-.info-sancties p, .info-defect p{
-  width: 95%;
-}
 
-.info-defect{
-    margin: 2em 0em 1em 3em;
+p{
+    margin: 0 0em 1em 3em;
 }
 
 /* veel gestelde vragen  */
@@ -138,124 +132,73 @@ padding-bottom: 4em;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  text-align: left;
 }
-.veel_vragen{
-  align-self: left;
-  margin-left: 2em;
-  margin-top: 2em;
-}
+
 .info-box{
-  position: relative;
-  padding: 1em;
+  display: flex;
+  justify-content: center;
+  width:55em;
+  padding-bottom: 1em;
   border: 0.5em solid transparent;
   border-bottom-color: #1bbcb6;
-  background-color: transparent;
-  width: 50%;
-  height: 2.5em;
   cursor: pointer;
-  transition: all 0.4s ease;
 }
-.info-box h2{
-  font-size: 1em;
-  margin-bottom: 1em;
-}
+
 .info-box p {
   font-size: 1em;
   line-height: 1.3;
-  opacity: 0;
-  transition: all 0.2s;
-}
-.info-button {
-position: absolute;
-right: 2em;
-font-size: 1em;
-background-color: transparent;
-border: none;
-outline: none;
-color: #000000;
-}
-.info-button i{
-  display: none;
-}
-.info-angle-down{
-  display: block;
+  color:grey;
+  margin:0;
+  padding:0.5em 0;
 }
 
-
-.info-box.active {
-  height: 6em;
-}
-
-.info-box.active p{
-opacity: 1;
-}
-
-.info-box.active .info-button .info-angle-down{
-  display: none;
-}
-.info-box.active .info-button .info-angle-up{
-  display: none;
-}
 
 /* form  */
-.info-form-h2 {
-  margin: 3em 0em 1em 2em;
-  color: #1bbcb6;
+.vraag-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:1em;
 }
 
-.info-form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.info-form-h2 {
+  color: #1bbcb6;
+  margin-top:1em;
 }
 
 .info-text{
-  width: 100%;
-  display: flex;
-}
-.info-text input[type=text]{
-  width: 90%;
-  height: 20em;
-  border-radius: 2em;
+  width: 80%;
+  border-radius: 0em 3em;
   background-color: rgb(193, 193, 193);
   border: none;
   color: #fff;
-  margin: auto;
   padding: 2em;
 }
-.info-text input[type=text]:focus{
-  outline: none;
 
+.info-text:focus{
+  outline: none;
 }
+
 .info-submit{
-  width: 100%;
-  height: 5em;
-  display: flex;
-  justify-content: center;
-}
-.info-submit input[type=submit]{
-  background-color: #1bbcb6;
-  border-radius: 2em;
-  width: 15%;
-  height: 70%;;
-  margin: auto;
-  border: 0;
+  padding:0.5em 2em;
+  background-color: rgba(27, 188, 182);
+  border-radius: 3em;
+  border: none;
   color: white;
   font-weight: bold;
-}
-.info-submit input[type=submit]::-ms-value{
-  font-size: 15px;
-}
+  box-sizing: border-box;
+  letter-spacing: 2px;
+  font-size:90%;
+  cursor:pointer;
+} 
+
     </style>
   </head>
   <body>
     <?php include "top_nav.php"; ?>
     <div class="info-chevron-left">
-    <?php
-        echo '<a href="#"><img src="images\svg\chevron-left-solid.svg" alt="chevron left"></a>';
-    ?>
-    <h1 class="info_titel">Info</h1>
+    <a href="#"><img src="images\svg\chevron-left-solid.svg" alt="chevron left"></a>;
+    <h1>Info</h1>
     </div>
       <!-- Hoe leen je iets uit? -->
       <div class="info_uitleen_uitleg">
@@ -282,22 +225,23 @@ opacity: 1;
 
     <!-- openings hours  -->
     <div class="info-opening-hours">
-      <h1>Openingsuren</h1>
+      <h2>Openingsuren</h2>
       <table>
         <tr>
-          <th>Maandag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
+          <th >Maandag</th>
+          <td rowspan="2">10:00 - 12:00</td>
+          <td rowspan="2">12:30 - 17:00</td>
+        </tr>
+        <tr>
+        <td class=only>Enkel ophalen</td>
         </tr>
         <tr>
           <th>Dinsdag</th>
-          <td>/</td>
-          <td>/</td>
+          <td colspan=2>Gesloten</td>
         </tr>
         <tr>
           <th>Woensdag</th>
-          <td>/</td>
-          <td>/</td>
+          <td colspan=2>Gesloten</td>
         </tr>
         <tr>
           <th>Donderdag</th>
@@ -306,13 +250,16 @@ opacity: 1;
         </tr>
         <tr>
           <th>Vrijdag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
+          <td rowspan="2">10:00 - 12:00</td>
+          <td rowspan="2">12:30 - 17:00</td>
         </tr>
         <tr>
+        <td class=only >Enkel terugbrengen</td>
+        </tr>
+        <tr>
+        <tr>
           <th>Weekend</th>
-          <td>/</td>
-          <td>/</td>
+          <td colspan=2>Gesloten</td>
         </tr>
       </table>
     </div>
@@ -330,45 +277,27 @@ opacity: 1;
 
 <!-- veel gestelde vragen  -->
 <!-- antwoorden nog bijzetten  -->
-<h2 class="veel_vragen">Veelgestelde vragen</h2>
+<!--Anissa; Ik zal dit doen met js-->
+<h2>Veelgestelde vragen</h2>
 <div class="info-veel-vragen">
 <div class="info-box">
-  <button class="info-button">
-    <i class="info-angle-down"></i>
-    <i class="info-angle-up"></i>
-  </button>
-  <h2>Wat moet ik doen indien ik mijn reservatie niet op tijd kan komen ophalen?</h2>
-  <p>antwoord vraag 1</p>
+  <h3>Wat moet ik doen indien ik mijn reservatie niet op tijd kan komen ophalen?</h3>
 </div>
 <div class="info-box">
-  <button class="info-button">
-    <i class="info-angle-down"></i>
-    <i class="info-angle-up"></i>
-  </button>
-  <h2>Wat moet ik doen indien ik een apparaat beschadig?</h2>
-  <p>antwoord vraag 2</p>
+  <h3>Wat moet ik doen indien ik een apparaat beschadig?</h3>
 </div>
 <div class="info-box">
-  <button class="info-button">
-    <i class="info-angle-down"></i>
-    <i class="info-angle-up"></i>
-  </button>
-  <h2>Hoe lang van tevoren kan ik een reservering maken?</h2>
-  <p>antwoord vraag 3</p>
+  <h3>Hoe lang van tevoren kan ik een reservering maken?</h3>
 </div>
 <div class="info-box">
-  <button class="info-button">
-    <i class="info-angle-down"></i>
-    <i class="info-angle-up"></i>
-  </button>
-  <h2>Hoe ontvang ik een bevestiging van mijn reservering?</h2>
-  <p>antwoord vraag 4</p>
+  <h3>Hoe ontvang ik een bevestiging van mijn reservering?</h3>
 </div>
 </div>
 <!-- form  -->
-<h2 class="info-form-h2">Geen antwoord gevonden op je vraag? Vul dit formulier dan in. </h1>
-<form class="info-form">
-  <div class="info-text"><input type="text"></div>
-  <div class="info-submit"><input type="submit" value="Verstuur"></div>
+<!--moet direct per mail gestuurd worden aan admin-->
+<h2 class="info-form-h2">Geen antwoord gevonden op je vraag? Vul dit formulier dan in. </h2>
+<form class="vraag-box">
+  <input type="text" class="info-text">
+  <input type="submit" value="Verstuur" class="info-submit">
 </form>
 <?php include("footer.php"); ?>

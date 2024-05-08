@@ -10,7 +10,7 @@
           ?>
         </ul>
       </div>
-      <div class="opening-hours">
+      <div>
         <h1>Openingsuren</h1>
         <table>
           <tr>
@@ -46,11 +46,12 @@
       <div class="einde"><p>&copy;Groep 8 - Programming Project</p></div>
     </footer>
 
-<style>
+<style >
   
 footer{ 
  background-color: #303030;
  color: white;
+ margin-top:1em
 }
 
 a{

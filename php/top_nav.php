@@ -11,7 +11,7 @@
 nav{
     display: flex;
     justify-content: space-between;
-    margin:0.2em 0.8em;
+    margin:0.2em 0.8em auto 0.8em;
     align-items: center;
 }
 
@@ -21,6 +21,8 @@ nav{
     font-size: 120%;
     font-weight: bold;
     gap:2em;
+    margin:0.2em 0.8em auto 0.8em;
+
     align-items: center;
 }
 

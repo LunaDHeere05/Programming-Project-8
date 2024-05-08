@@ -123,7 +123,7 @@ padding-top:2em;
   border-radius: 1em;
   width: 10%;
   text-align: center;
-  margin: 0.5em 9em 1em auto;
+  margin: 0.5em 9em 0 auto;
 }
 
 .meer_info a {
@@ -143,11 +143,13 @@ padding-top:2em;
 <body>
     <?php include 'top_nav.php'; ?>
 <div class="inhoud_body">
+
     <!-- categorielijst -->
     <div class="categorie">
       <h1>Categorieën</h1>
       <div class="categorie_lijst">
           <?php
+           //categorieën uit databank halen
           echo '<a href="#">Audio</a>';
           echo '<a href="#">Belichting</a>';
           echo '<a href="#">Tools</a>';
@@ -164,7 +166,8 @@ padding-top:2em;
       <div class="recent_lijst_container">
           <img src="images/svg/chevron-left-solid.svg" alt="">
           <ul class="recent_lijst">
-              <!--in echo want info uit databank halen-->
+              <!--recent bekeken uit databank halen-->
+              <!--wat komt er in de plaats van recent bekeken als recent bekeken lijst leeg is (nieuwe user?) - mss populaire producten?-->
               <?php echo
               '<li><a href="#">
                   <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
