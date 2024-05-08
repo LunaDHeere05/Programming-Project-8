@@ -63,9 +63,9 @@ nav{
 .zoekbalk_container{
     height: 6em;
     display: flex;
-    <?php echo 'background: url(images/jpg/jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;'; ?>
-
+    background: url(images/jpg/jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;
 }
+
 .zoekbalk{
     display: flex;
     height: 50%;

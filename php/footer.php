@@ -6,7 +6,7 @@
           echo '<li><a href="#"><img src="../images/svg/envelope-solid.svg" alt="envelope">medialab.ehb@ehb.be</a></li>';
           echo '<li><a href="#"><img src="../images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>';
           echo '<li><a href="#"><img src="../images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a></li>';
-          echo '<li><a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170,1070 Anderlecht</a></li>';
+          echo '<li><a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170, 1070 Anderlecht</a></li>';
           ?>
         </ul>
       </div>
@@ -46,12 +46,12 @@
       <div class="einde"><p>&copy;Groep 8 - Programming Project</p></div>
     </footer>
 
-<style >
+<style>
   
 footer{ 
  background-color: #303030;
  color: white;
- margin-top:1em
+ margin-top:1em;
 }
 
 a{
@@ -59,53 +59,54 @@ text-decoration: none;
 color: white;
 } 
 
-ul{
+footer ul{
  padding: 1em;
 }
 
-li{
+footer li{
  list-style: none;
  padding: 0.5em;
  display: flex;
  justify-content: start;
 }
 
-.ehb-info a img{
+footer .ehb-info a img{
  width: 1.5em;
  height: auto;
 padding-right:0.5em;
  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
 }
 
-.footer_container{
+footer .footer_container{
  display: flex;
  justify-content: space-around;
  align-items: center;
  padding:1em 0
 }
 
-table {
+footer table {
  border-collapse: collapse;
- padding:1em
+ padding:1em;
+ color:white;
 }
 
-th,td{
+footer th,td{
 padding: 0.5em;
 border-bottom:0.1em solid white
 }
 
-th{
+footer th{
     text-align: left;
 }
-td{
+footer td{
     text-align: center;
 }
 
-table tr:last-child th, table tr:last-child td{
+footer table tr:last-child th, table tr:last-child td{
     border-bottom: none;
   }
 
-.einde {
+footer .einde {
  background-color: red;
  text-align: center;
  padding: 1em;

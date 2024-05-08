@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap:2em
+  gap:1.5em
 }
 
 h1{
@@ -38,6 +38,7 @@ h1{
   border-radius: 1.5em;
   text-transform: uppercase;
   text-align: center;
+  text-decoration: none;
 }
 
 .categorie_lijst a:hover {
@@ -60,9 +61,11 @@ h1{
 .recent_lijst {
   display: flex;
   width: 80%;
+  height:12em;
   list-style: none;
   margin: auto;
   justify-content: space-between;
+  gap:1em;
 }
 .recent_lijst a{
   text-decoration: none;
@@ -74,9 +77,10 @@ h1{
 .recent_lijst li {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #edededcf;
-  height: 80%;
-  width: 20%;
+  height: 100%;
+  width: 30%;
   text-align: center;
   border-radius: 1em;
 }
@@ -87,6 +91,7 @@ h1{
   margin-top: 1em;
 }
 
+
 /* Hoe leen je iets uit? */
 .uitleen_uitleg ul li h3 {
   color: white;
@@ -95,8 +100,6 @@ h1{
 .uitleen_uitleg h3{
   font-size:200%
 }
-
-
 
 .uitleen_uitleg ul {
   list-style: none;
@@ -123,7 +126,7 @@ padding-top:2em;
   border-radius: 1em;
   width: 10%;
   text-align: center;
-  margin: 0.5em 9em 0 auto;
+  margin: 1em 9em 0 auto;
 }
 
 .meer_info a {

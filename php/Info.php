@@ -8,18 +8,20 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.info-chevron-left{
+      .chevron-left{
     width: 100%;
     align-items: center;
     display: flex;
     margin: 0.5em 1em;
-    gap:0.35em;
+    gap:0.5em;
     align-items: center;
+    font-size:90%
 }
 
-.info-chevron-left a img{
+.chevron-left a img{
     width: 1.5em;
 }
+
 
 /*Info Hoe leen je iets uit? */
 h2{
@@ -196,7 +198,7 @@ p{
   </head>
   <body>
     <?php include "top_nav.php"; ?>
-    <div class="info-chevron-left">
+    <div class="chevron-left">
     <a href="#"><img src="images\svg\chevron-left-solid.svg" alt="chevron left"></a>;
     <h1>Info</h1>
     </div>
