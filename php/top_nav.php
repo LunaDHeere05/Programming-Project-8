@@ -128,7 +128,7 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
     </ul>
     <div class="rechter_navigatie">
     <?php
-        echo '<a href="#"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>';
+        echo '<a href="Favorietenlijst.php"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>';
         echo '<a href="#"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>';
         echo '<a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>';
         ?>

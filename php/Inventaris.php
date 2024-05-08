@@ -37,28 +37,27 @@
 
     <!-- apparatenlijst -->
         <ul class="apparatenlijst">
-          <!-- gaat gegenereerd moeten worden met onze javascript of iets anders -->
-            <li class="apparaat"><a href="ApparaatPagina.html">
+        <li class="apparaat"><a href="ApparaatPagina.php">
+        <?php 
+        echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
+        ?>
+        <div class="korte_beschrijving">
+            <h3>Canon M50</h3>
+            <p>Fototoestel</p> 
+        </div>
+        <div class="beschikbaarheid_apparaat">
+            <p>Beschikbaar tot <br><span>30/05/2024</span></p>
             <?php
-              echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
-              ?>
-                <div class="korte_beschrijving">
-                    <h3>Canon M50</h3>
-                    <p>Fototoestel</p> 
-                </div>
-                <div class="beschikbaarheid_apparaat">
-                    <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <?php
-                    echo '<img src="images/svg/circle-check-solid.svg" alt="check">'
-                    ?>
-                </div>
-                <div class="toevoegen">
-                <?php
-                  echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
-                  echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">'
-                  ?>
-                </div>
-            </a></li>
+            echo '<img src="images/svg/circle-check-solid.svg" alt="check">';
+            ?>
+        </div>
+        <div class="toevoegen">
+        <?php
+        echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
+        echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">';
+        ?>
+        </div> 
+      </a></li>
             <li class="apparaat"><a href="#">
               <?php
               echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
