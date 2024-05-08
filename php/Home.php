@@ -136,21 +136,7 @@
     <?php include 'top_nav.php'; ?>
 <div class="inhoud_body">
     <!-- categorielijst -->
-    <div class="categorie">
-      <?php
-      echo '<a href="Categorie.php"><h2>Categorieën</h2></a>'
-      ?>
-      <ul class="categorie_lijst">
-          <?php
-          echo '<li><a href="#">Audio</a></li>';
-          echo '<li><a href="#">Belichting</a></li>';
-          echo '<li><a href="#">Tools</a></li>';
-          echo '<li><a href="#">Varia</a></li>';
-          echo '<li><a href="#">Video</a></li>';
-          echo '<li><a href="#">XR</a></li>';
-          ?>
-      </ul>
-  </div>
+<?php include 'functies\categorie.php'; ?>
 
   <!-- Recent bekeken lijst -->
   <?php include 'functies\recent_bekeken.php'; ?>

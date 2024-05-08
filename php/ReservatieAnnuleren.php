@@ -89,6 +89,7 @@
           document.getElementById('bevestig').addEventListener('click', function() {
             window.location.href = 'FinalAnnulerenReservatie.php';
             });
+        
     </script>
 </body>
 </html>
