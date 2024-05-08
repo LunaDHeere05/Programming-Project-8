@@ -150,7 +150,7 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
         </select>
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
 
-        <button id="zoek_btn"><img src="images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>';
+        <button id="zoek_btn"><img src="images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
         
     </div>
 </div>

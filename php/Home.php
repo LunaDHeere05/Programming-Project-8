@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,31 +153,7 @@
   </div>
 
   <!-- Recent bekeken lijst -->
-  <div class="recent_container">
-      <h2>Recent bekeken</h2>
-      <div class="recent_lijst_container">
-          <img src="images/svg/chevron-left-solid.svg" alt="">
-          <ul class="recent_lijst">
-              <li><a href="#">
-                  <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
-                  <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
-                  <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
-                  <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-          </ul>
-          <img src="images/svg/chevron-right-solid.svg" alt="">
-      </div>
-  </div>
+  <?php include 'functies\recent_bekeken.php'; ?>
 
   <!-- Hoe leen je iets uit? -->
   <div class="uitleen_uitleg">

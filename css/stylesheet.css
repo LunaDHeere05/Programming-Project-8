@@ -503,232 +503,178 @@ opacity: 1;
   width: 1em;
   height: auto;
   padding: 1em;
-  
 }
 .reservatie-chevron-left {
     display: flex;
 }
-.reservatie-chevron-left h1{
-    padding-top: 0.9em;
-    font-size: large;
+.alles_annuleren, .alles_verlengen{
+  display: flex;
+  background-color: #E30613;
+  width: 25%;
+  height: 2em;
+  border-radius: 1em;
+  align-items: center;
+}
+.alles_annuleren a, .alles_verlengen a{
+  display: flex;
+  text-decoration: none;
+  margin: auto;
+  color: white;
+}
+.alles_verlengen{
+  background-color: #1bbcb6;
+
+}
+.reservatie-top{
+  width: 50%;
 }
 .reservatie-top h2{
-  font-size: 1em;
   color: #1bbcb6;
   padding: 1em;
   }
-  .reservatie-top{
+
+.reservatie-top{
     display: flex;
     align-items: baseline;
-  }
-
-  .reservatie-top a {
-    color: #fff;
-    background-color: #E30613;
-    border-radius: 2em;
-    border: #E30613;
-    padding: 0.5em 0.5em 0em 1em;
-    height: 2em;
-    text-decoration: none;
-  }
-  .reservatie-top a img {
+}
+.reservatie-top a img {
     margin: auto;
     height: 1em;
     width: auto;
     padding: 0em 0em 0em 0.5em;
     filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) contrast(100%);
-    }
-
-  .reservatie-annuleren img{
-  margin: auto;
-height: 1em;
-width: auto;
-padding: 0em 0em 0em 0.5em;
-filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) contrast(100%);
-  }
-  
-.reservatie-annuleren a{
+}
+.ophalen_reservatie_container, .opgehaald_reservatie_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 2em 1em 0em;
+}
+.ophalen_reservatie_container input[type=checkbox], .opgehaald_reservatie_container input[type=checkbox]{
+    appearance: none;
+    -webkit-appearance: none;
     display: flex;
-    height: 1.5em;
-    width: 7em;
-    margin-top: 3.5em;
-    text-align: center;
-    padding: 0.5em;
-    background-color: #E30613;
-    border: #E30613;
-    border-radius: 2em;
-    text-decoration:none;
-    color: #fff;
-  }
-
-
-  .reservatie-box-full{
-    background-color: rgb(193, 193, 193);
-    border-radius: 2em;
-    margin: 1em 1em 1em 2.5em;
+    align-content: center;
+    justify-content: center;
     padding: 1em;
-    height: 10em;
-    width: 80em;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .reservatie-box-full p{
-    margin: 0.1em 0em 0.5em 0em;
-  }
-  .reservatie-box1 b {
-    color: #E30613;
-  }
-
-  .reservatie-box2 b {
-    color: #1bbcb6;
-  }
-
-  .reservatie-box-info img{
-   width: 10em;
-   height: auto;
-   background-color: #fff; 
-  }
-
-.reservatie-box1{
-  display: flex;
-  align-items: center;
+    border: 0.25rem solid #1bbcb6;
+    border-radius: 50%;
+    margin-left: 2em;
 }
-.reservatie-box2{
-  display: flex;
-  align-items: center;
-}
-
-.reservatie-opgehaald{
-  display: flex;
-  align-items: baseline;
-}
-.reservatie-opgehaald h2{
-  font-size: 1em;
-  color: #1bbcb6;
-  padding: 1em;
-  }
-.reservatie-opgehaald a {
-  color: #fff;
-  background-color:#1bbcb6;
-  border-radius: 2em;
-  border: #1bbcb6;
-  padding: 0.5em 0.5em 0em 1em;
-  height: 2em;
-  text-decoration: none;
-}
-.reservatie-opgehaald a img {
-  margin: auto;
-  height: 1em;
-  width: auto;
-  padding: 0em 0em 0em 0.5em;
-  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(129deg) brightness(107%) contrast(100%);
-  }
-
-  .reservatie-artikel-info-aantal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .reservatie-verleng-box1{
-    display: flex;
-    flex-direction: column;
-  }
-  .reservatie-verleng-box1 a{
-    text-decoration: none;
-    color: #fff;
-  }
-  .reservatie-verleng-box1 img{
-   margin: auto;
-    width: 1.1em;
-    height: auto;
-    padding: 0em 0em 0em 0.5em;
-  }
-  .reservatie-defect{
-    background-color: #000000;
-    border-radius: 2em;
-    border: #000000;
-    padding: 0.5em 0.5em 0.5em 1em;
-    height: auto;
-    width: 6em;
-  }
-  .reservatie-verleng-box1 img{
-    filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
-  }
-  .reservatie-verlengen{
+.ophalen_reservatie_container input[type=checkbox]:checked, .opgehaald_reservatie_container input[type=checkbox]:checked{
     background-color: #1bbcb6;
-    border-radius: 2em;
-    border: #1bbcb6;
-    padding: 0.5em 0.5em 0.5em 1em;
-    height: auto;
-    width: 6em;
-    margin: 1em 0em 0em 0em;
-  }
-  /* Customize the label (the container) */
-.reservatie-checkbox-container {
+}
+
+.reservatie_item{
+  width: 90%;
+}
+.reservatie_item_a{
+  text-decoration: none;
+  color: black;
+  width: 100%;
+}
+.reservatie_item a{
+  text-decoration: none;
+  color: black;
+}
+.reservatie_item ul{
   display: flex;
-  position: relative;
-  cursor: pointer;
-  font-size: 1.5em;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  list-style: none;
+  background-color: rgb(193, 193, 193);
+  border-radius: 2em;
+  justify-content: space-between;
+}
+.reservatie_item ul li{
+  width: 30%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: center;
+  justify-content: space-between;
+}
+.reservatie_item ul li:last-child{
+  margin-right: 3em;
+  align-items: flex-end;
+}
+.reservatie_item_a ul li:first-child img{
+  width: 10em;
+  margin: auto;
+  margin: 1em auto;
+  background-color: white;
+  padding: 0.5em;
+}
+.status{
+  color:#E30613;
+  font-weight: bold;
+}
+.status span{
+  font-weight: normal;
+}
+.annuleer_btn img{
+  width: 1.5em;
+  height: auto;
+  margin: 1em;
+}
+.annuleer_btn{ 
+  width: 50%;
+}
+.annuleer_btn button{
+  margin: auto;
+  display: flex;
+  background-color: #E30613;
+  border: none;
+  border-radius: 2em;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.annuleer_btn button p{
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 2em;
+
+}
+.annuleer_btn button img{
+  background-color: transparent;
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
 }
 
-/* Hide the browser's default checkbox */
-.reservatie-checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+.opgehaald_reservatie_container .status p{
+  color: #1bbcb6;
+
 }
-
-/* Create a custom checkbox */
-.reservatie-checkmark {
-  position: absolute;
-  top: 0;
-  left: 0.5em;
-  height: 1em;
-  width: 1em;
-  background-color: #eee;
-  border-radius: 0.5em;
+.opgehaald_reservatie_container .reservatie_item ul li:last-child{
+  width: 15%;
 }
-
-
-/* On mouse-over, add a grey background color */
-.reservatie-checkbox-container:hover input ~ .reservatie-checkmark {
-  background-color: #ccc;
+.defect_btn button, .verleng_btn button{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: #303030;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  align-items: center;
 }
-
-/* When the checkbox is checked, add a blue background */
-.reservatie-checkbox-container input:checked ~ .reservatie-checkmark {
+.defect_btn button p, .verleng_btn button p{
+  margin-left: 1em;
+  font-weight: bold;
+  font-size: 16px;
+}
+.defect_btn button img, .verleng_btn button img{
+  width: 1.5em;
+  height: auto;
+  margin: 1em;
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
+}
+.verleng_btn button{
   background-color: #1bbcb6;
+  width: 100%;
+  margin-top: 2em;
 }
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.reservatie-checkbox-container:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.reservatie-container input:checked ~ .reservatie-checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.reservatie-container .reservatie-checkmark:after {
- border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
 /* Inventaris pagina */
 /* filters onder zoekbalk */
 
