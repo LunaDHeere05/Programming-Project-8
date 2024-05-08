@@ -20,13 +20,11 @@
           </tr>
           <tr>
             <th>Dinsdag</th>
-            <td>/</td>
-            <td>/</td>
+            <td colspan="2">Gesloten</td>
           </tr>
           <tr>
             <th>Woensdag</th>
-            <td>/</td>
-            <td>/</td>
+            <td colspan="2">Gesloten</td>
           </tr>
           <tr>
             <th>Donderdag</th>
@@ -40,8 +38,7 @@
           </tr>
           <tr>
             <th>Weekend</th>
-            <td>/</td>
-            <td>/</td>
+            <td colspan="2">Gesloten</td>
           </tr>
         </table>
       </div>
@@ -50,63 +47,67 @@
     </footer>
 
 <style>
-footer{
-    display: block; 
-    background-color: #303030;
-    color: white;
-    margin-top: 4em;
+  
+footer{ 
+ background-color: #303030;
+ color: white;
 }
-.ehb-info li a{
-    text-decoration: none;
-    color: white;
+
+a{
+text-decoration: none;
+color: white;
 } 
 
-.ehb-info ul{
-    padding: 1em;
+ul{
+ padding: 1em;
 }
-.ehb-info li{
-    list-style: none;
-    padding: 0.5em;
-    
+
+li{
+ list-style: none;
+ padding: 0.5em;
+ display: flex;
+ justify-content: start;
 }
 
 .ehb-info a img{
-    height: 2em;
-    width: 2em;
-    height: auto;
-    padding: 0em 1em 0em 0em;
-    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
+ width: 1.5em;
+ height: auto;
+padding-right:0.5em;
+ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
 }
 
 .footer_container{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5em;
-}
-.opening-hours{
-    padding: 0em 1em 0em 0em;
-    margin: 0;
-}
-.opening-hours table {
-    border-collapse: collapse;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ padding:1em 0
 }
 
-.opening-hours h1{
-    padding: 0em 0em 0.5em 0em ;
-    color: white;
-}
-.opening-hours table,th, td {
-    border: 0.05em solid white;
+table {
+ border-collapse: collapse;
+ padding:1em
 }
 
-.opening-hours th,td{
-    padding: 0.5em;
+th,td{
+padding: 0.5em;
+border-bottom:0.1em solid white
 }
+
+th{
+    text-align: left;
+}
+td{
+    text-align: center;
+}
+
+table tr:last-child th, table tr:last-child td{
+    border-bottom: none;
+  }
 
 .einde {
-    background-color: red;
-    text-align: center;
-    padding: 0.5em;
-    font-size: large;
+ background-color: red;
+ text-align: center;
+ padding: 1em;
+ font-size: large;
 }
 </style>

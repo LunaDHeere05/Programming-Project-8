@@ -8,35 +8,42 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
-.categorie a h2{
-  margin: 1em;
-  text-decoration: none;
-  display: block;
-  color: black;
-}
-.categorie a{
-  text-decoration: none;
-}
-.categorie_lijst {
-  list-style: none;
+  .inhoud_body {
+  margin-left: 0.5em;
   display: flex;
-  justify-content: center;
-  margin-top: 1em;
-  height: 8em;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  gap:2em
 }
+
+h1{
+  margin-bottom:0.5em
+}
+/* Categorie */
+
+
+.categorie_lijst {
+  justify-content: space-around;
+  gap: 1em;
+  display: flex;
+  margin:0.6em
+}
+
 .categorie_lijst a {
-  text-decoration: none;
-  color: white;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
+  flex-basis: 20%;
   background-color: #1bbcb6;
-  padding: 3em;
-  border-radius: 2em;
-  margin-right: 3em;
-  width: 5em;
+  padding: 2em;
+  border-radius: 1.5em;
+  text-transform: uppercase;
   text-align: center;
+}
+
+.categorie_lijst a:hover {
+  background-color: white;
+  color: #1bbcb6;
+  border: 0.01em solid #1bbcb6;
 }
 
 /* Recent bekeken */
@@ -49,15 +56,9 @@
   width: 2em;
   margin: 1em;
 }
-.recent_container {
-  display: block;
-}
-.recent_container h2 {
-  margin: 1em 0em 1em 1em;
-}
+
 .recent_lijst {
   display: flex;
-  margin-top: 1em;
   width: 80%;
   list-style: none;
   margin: auto;
@@ -71,9 +72,9 @@
   color: black;
 }
 .recent_lijst li {
-  margin: auto;
+  display: flex;
+  justify-content: center;
   background-color: #edededcf;
-  margin-right: 1em;
   height: 80%;
   width: 20%;
   text-align: center;
@@ -87,51 +88,56 @@
 }
 
 /* Hoe leen je iets uit? */
-.uitleen_uitleg h2 {
-  padding-left: 1em;
-}
 .uitleen_uitleg ul li h3 {
   color: white;
 }
-.uitleen_uitleg ul li p {
-  font-size: 85%;
-  padding: 1em;
+
+.uitleen_uitleg h3{
+  font-size:200%
 }
+
+
 
 .uitleen_uitleg ul {
   list-style: none;
   display: flex;
-  margin-top: 1em;
   justify-content: space-between;
+  align-items: center;
   margin: auto;
   width: 80%;
 }
-.uitleen_uitleg h2 {
-  margin: 1em 0em;
-}
-.uitleen_uitleg ul li {
-  width: 15%;
-  height: 8em;
+
+.uitleen_uitleg li {
+  width: 20%;
+  height: 10em;
+  display: flex;
+  justify-content: center;
+padding-top:2em;
   border-radius: 1em;
   text-align: center;
   background-color: #1bbcb6;
 }
-.uitleen_uitleg ul li a {
-  text-decoration: none;
-  padding: 1em;
-  color: white;
-}
+
 .meer_info {
   background-color: rgb(193, 193, 193);
   border-radius: 1em;
   width: 10%;
   text-align: center;
-  margin: 1.5em 9em 1em auto;
+  margin: 0.5em 9em 1em auto;
 }
+
 .meer_info a {
   text-decoration: none;
-  color: white;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
 }
+
+.meer_info a:hover{
+  color: white;
+
+}
+
     </style>
 </head>
 <body>
@@ -139,52 +145,54 @@
 <div class="inhoud_body">
     <!-- categorielijst -->
     <div class="categorie">
-      <?php
-      echo '<a href="Categorie.php"><h2>Categorieën</h2></a>'
-      ?>
-      <ul class="categorie_lijst">
+      <h1>Categorieën</h1>
+      <div class="categorie_lijst">
           <?php
-          echo '<li><a href="#">Audio</a></li>';
-          echo '<li><a href="#">Belichting</a></li>';
-          echo '<li><a href="#">Tools</a></li>';
-          echo '<li><a href="#">Varia</a></li>';
-          echo '<li><a href="#">Video</a></li>';
-          echo '<li><a href="#">XR</a></li>';
+          echo '<a href="#">Audio</a>';
+          echo '<a href="#">Belichting</a>';
+          echo '<a href="#">Tools</a>';
+          echo '<a href="#">Varia</a>';
+          echo '<a href="#">Video</a>';
+          echo '<a href="#">XR</a>';
           ?>
-      </ul>
+      </div>
   </div>
 
   <!-- Recent bekeken lijst -->
   <div class="recent_container">
-      <h2>Recent bekeken</h2>
-      </div>
+      <h1>Recent bekeken</h1>
       <div class="recent_lijst_container">
-          <img src="/images/svg/chevron-left-solid.svg" alt="">
+          <img src="images/svg/chevron-left-solid.svg" alt="">
           <ul class="recent_lijst">
-              <li><a href="#">
+              <!--in echo want info uit databank halen-->
+              <?php echo
+              '<li><a href="#">
                   <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
                   <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
+              </a></li>'?>
+              <?php echo
+              '<li><a href="#">
                   <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
                   <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
+              </a></li>'?>
+              <?php echo
+              '<li><a href="#">
                   <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
                   <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
+              </a></li>'?>
+              <?php echo
+             '<li><a href="#">
                   <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
                   <h3>Canon-M50</h3>
-              </a></li>
+              </a></li>'?>
           </ul>
-          <img src="/images/svg/chevron-right-solid.svg" alt="">
+          <img src="images/svg/chevron-right-solid.svg" alt="">
       </div>
   </div>
 
   <!-- Hoe leen je iets uit? -->
   <div class="uitleen_uitleg">
-      <h2>Hoe leen je iets uit?</h2>
+      <h1>Hoe leen je iets uit?</h1>
       <ul>
           <li><a href="Info.html">
               <h3>Stap 1</h3>
@@ -205,7 +213,7 @@
       </ul>
       <div class="meer_info">
           <a href="Info.html">
-              <h3>Meer info</h3>
+              <p>Meer info</p>
           </a>
       </div>
   </div>
