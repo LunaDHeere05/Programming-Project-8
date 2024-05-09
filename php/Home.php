@@ -135,11 +135,8 @@
 <body>
     <?php include 'top_nav.php'; ?>
 <div class="inhoud_body">
-    <!-- categorielijst -->
 <?php include 'functies\categorie.php'; ?>
-
-  <!-- Recent bekeken lijst -->
-  <?php include 'functies\recent_bekeken.php'; ?>
+<?php include 'functies\recent_bekeken.php'; ?>
 
   <!-- Hoe leen je iets uit? -->
   <div class="uitleen_uitleg">
@@ -170,5 +167,25 @@
   </div>
 </div>
     <?php include 'footer.php'; ?>
+    <?php 
+    function checkFile(){
+      $currentFile = $_SERVER["PHP_SELF"];
+    if($currentFile == "/php/Home.php"){
+        return 'user';
+    }else{
+        return 'admin';
+    }
+    }
+?>
+    <script>
+      document.getElementById('profileBtn').addEventListener('click', function() {
+           var currentFile = '<?php echo checkFile(); ?>';
+           if(currentFile == 'user'){
+               window.location.href = 'admin/Dashboard.php';     
+          }else{
+              window.location.href = 'Home.php';
+          }
+      });
+    </script>
 </body>
 </html>

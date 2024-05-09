@@ -28,7 +28,7 @@ if ($result) {
     echo '</div>';
 } else {
     // Handle errors
-    echo "Error: " . mysqli_error($connection);
+    echo "Error: " . mysqli_error($conn);
 }
 
 // Close the connection
