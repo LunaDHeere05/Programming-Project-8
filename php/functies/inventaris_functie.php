@@ -1,18 +1,18 @@
 <?php
 include 'database.php';
 
-$beschikbaarheid = "SELECT EXEMPLAAR_ITEM.*, UITGELEEND_ITEM.inlever_datum
-                    FROM EXEMPLAAR_ITEM
-                    LEFT JOIN UITGELEEND_ITEM ON EXEMPLAAR_ITEM.exemplaar_item_id = UITGELEEND_ITEM.exemplaar_item_id
-                    ORDER BY EXEMPLAAR_ITEM.exemplaar_item_id";
+//de query om de beschikbaarheid van het item op te halen: 
+$beschikbaarheid = "SELECT UITGELEEND_ITEM.inlever_datum, UITLENING.uitleen_datum
+                    FROM UITGELEEND_ITEM
+                    LEFT JOIN UITLENING ON UITGELEEND_ITEM.uitleen_id = UITLENING.uitleen_id"; //dit gaat de twee kolommen samenvoegen allee zo naast mekaar zetten
 $availability_result = mysqli_query($conn, $beschikbaarheid);
 
+// de volgende query is gewoon om de info over het apparaat te halen uit de databank:
 $item_info = "SELECT naam, merk, beschrijving FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
-if ($availability_result && $item_info_result) {
     while ($row = mysqli_fetch_assoc($availability_result)) {
-        if ($row['inlever_datum'] != null) {
+        if ($row['inlever_datum'] != null  ) { //deze conditie moet aangepast worden wnt nu checkt da gewoon of da inleverdatum null is
             $availability = "Niet beschikbaar tot " . $row['inlever_datum'];
             $availability_color = '#E30613';
             $availability_img = 'images/svg/circle-xmark-solid.svg';
@@ -33,8 +33,6 @@ if ($availability_result && $item_info_result) {
             echo "<h3>" . $item_info_row['naam'] . "</h3>";
             echo "<p>" . $item_info_row['merk'] . "</p>";
             echo "<p>" . $item_info_row['beschrijving'] . "</p>";
-        } else {
-            echo "Geen item informatie gevonden.";
         }
         
         echo "</div>";
@@ -49,8 +47,5 @@ if ($availability_result && $item_info_result) {
         echo "</a>";
         echo "</li>";
     }
-} else {
-    echo "Geen apparaten gevonden.";
-};
 mysqli_close($conn);
 ?>

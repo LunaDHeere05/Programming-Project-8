@@ -13,23 +13,26 @@
         <h3>Verfijn je resultaat: </h3>
         <ul class="filters">
             <li>
-                <select name="Categorie" id="">
-                    <option value="categorie">Categorie</option>
+                <select name="Categorie" id="categorie">
+                  <option value="Categorie" disabled selected>Categorie</option>
+                  <?php include 'functies\filter_categorie_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Merk" id="">
-                    <option value="merk">Merk</option>
+                <select name="Merk" id="merk">
+                    <option value="merk" disabled selected>Merk</option>
+                    <?php include 'functies\filter_merk_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Beschrijving" id="">
-                    <option value="beschrijving">Beschrijving</option>
+                <select name="Beschrijving" id="beschrijving">
+                    <option value="beschrijving" disabled selected>Beschrijving</option>
+                    <?php include 'functies\filter_beschrijving_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Beschikbaarheid" id="">
-                    <option value="Beschikbaarheid">beschikbaarheid</option>
+                <select name="Beschikbaarheid" id="beschikbaarheid">
+                    <option value="Beschikbaarheid">Beschikbaarheid</option>
                 </select>
             </li>
         </ul>
@@ -38,8 +41,7 @@
     <!-- apparatenlijst -->
         <ul class="apparatenlijst">
         <?php include 'functies\inventaris_functie.php'; ?>
-        </ul>  
-
+        </ul>
 </body>
 </html>
 
