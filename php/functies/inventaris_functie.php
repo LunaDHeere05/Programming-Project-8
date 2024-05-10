@@ -8,14 +8,14 @@ $beschikbaarheid = "SELECT UITGELEEND_ITEM.inlever_datum, UITLENING.uitleen_datu
 $availability_result = mysqli_query($conn, $beschikbaarheid);
 
 //dit is om de item id mee te geven aan de url als er op geklikt wordt (zo krijgen we de juiste informatie op de apparaatpagina)
-$item_id = "SELECT item_id FROM ITEM";
-$item_id_result = mysqli_query($conn, $item_id);
-$row = mysqli_fetch_assoc($item_id_result);
-$apparaat_id = $row['item_id'];
+$item_id_query = "SELECT item_id FROM ITEM";
+$item_id_result = mysqli_query($conn, $item_id_query);
 // de volgende query is gewoon om de info over het apparaat te halen uit de databank:
 $item_info = "SELECT naam, merk, beschrijving FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
+while ($row = mysqli_fetch_assoc($item_id_result)) {
+    $apparaat_id = $row['item_id'];
     while ($row = mysqli_fetch_assoc($availability_result)) {
         if ($row['inlever_datum'] != null  ) { //deze conditie moet aangepast worden wnt nu checkt da gewoon of da inleverdatum null is
             $availability = "Niet beschikbaar tot " . $row['inlever_datum'];
@@ -30,7 +30,8 @@ $item_info_result = mysqli_query($conn, $item_info);
             brightness(103%) contrast(79%)';
         }
         echo "<li class='apparaat'>";
-        echo "<a href='ApparaatPagina.php?device_id".$apparaat_id."'>";
+        echo "<a href='ApparaatPagina.php?apparaat_id=".$apparaat_id."'>";
+
         echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="" class="apparaat_foto">';
         echo "<div class='korte_beschrijving'>";
         
@@ -52,5 +53,6 @@ $item_info_result = mysqli_query($conn, $item_info);
         echo "</a>";
         echo "</li>";
     }
+}
 mysqli_close($conn);
 ?>

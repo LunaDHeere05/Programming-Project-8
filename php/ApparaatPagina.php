@@ -311,7 +311,7 @@
                 </ul>
             </li>
             <li class="apparaat_beschrijving">
-                <h2>Canon-M50</h2>
+                <?php include 'functies\apparaat_pagina_functie.php'?>
                 <ul>
                     <li>24.1 megapixel APS-C CMOS sensor</li>
                     <li>4K video-opname</li>
