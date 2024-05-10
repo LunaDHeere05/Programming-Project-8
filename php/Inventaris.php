@@ -37,48 +37,7 @@
 
     <!-- apparatenlijst -->
         <ul class="apparatenlijst">
-        <li class="apparaat"><a href="ApparaatPagina.php">
-        <?php 
-        echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
-        ?>
-        <div class="korte_beschrijving">
-            <h3>Canon M50</h3>
-            <p>Fototoestel</p> 
-        </div>
-        <div class="beschikbaarheid_apparaat">
-            <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-            <?php
-            echo '<img src="images/svg/circle-check-solid.svg" alt="check">';
-            ?>
-        </div>
-        <div class="toevoegen">
-        <?php
-        echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
-        echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">';
-        ?>
-        </div> 
-      </a></li>
-            <li class="apparaat"><a href="#">
-              <?php
-              echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
-              ?>
-                <div class="korte_beschrijving">
-                    <h3>Canon M50</h3>
-                    <p>Fototoestel</p> 
-                </div>
-                <div class="beschikbaarheid_apparaat">
-                    <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <?php
-                    echo '<img src="images/svg/circle-check-solid.svg" alt="check">'
-                    ?>
-                </div>
-                <div class="toevoegen">
-                  <?php
-                  echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
-                  echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">'
-                  ?>
-                </div>
-            </a></li>
+        <?php include 'functies\inventaris_functie.php'; ?>
         </ul>  
 
 </body>
@@ -156,5 +115,6 @@
   margin: 0em 2em;
   filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg)
     brightness(90%) contrast(89%);
-}</style>
+}
+</style>
 <?php include("footer.php"); ?>
