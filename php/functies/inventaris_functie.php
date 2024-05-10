@@ -14,8 +14,6 @@ $item_id_result = mysqli_query($conn, $item_id_query);
 $item_info = "SELECT naam, merk, beschrijving FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
-while ($row = mysqli_fetch_assoc($item_id_result)) {
-    $apparaat_id = $row['item_id'];
     while ($row = mysqli_fetch_assoc($availability_result)) {
         if ($row['inlever_datum'] != null  ) { //deze conditie moet aangepast worden wnt nu checkt da gewoon of da inleverdatum null is
             $availability = "Niet beschikbaar tot " . $row['inlever_datum'];
@@ -29,8 +27,9 @@ while ($row = mysqli_fetch_assoc($item_id_result)) {
             $availability_filter = 'invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
             brightness(103%) contrast(79%)';
         }
+        while ($row_item = mysqli_fetch_assoc($item_id_result)) {
         echo "<li class='apparaat'>";
-        echo "<a href='ApparaatPagina.php?apparaat_id=".$apparaat_id."'>";
+        echo "<a href='ApparaatPagina.php?apparaat_id=".$row_item['item_id']."'>";
 
         echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="" class="apparaat_foto">';
         echo "<div class='korte_beschrijving'>";

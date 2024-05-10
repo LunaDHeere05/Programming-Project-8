@@ -10,7 +10,7 @@ if(isset($_GET['apparaat_id'])){
         $item_row = mysqli_fetch_assoc($item_result);
 
         if($item_row){
-            echo '<h2>'.$item_row['merk']. '-' .$item_row['naam'].'</h2>';
+            echo '<h2>'.$item_row['merk']. ' - ' .$item_row['naam'].'</h2>';
         }
     }
     else{
