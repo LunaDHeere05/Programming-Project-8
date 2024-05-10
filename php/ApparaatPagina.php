@@ -295,6 +295,11 @@
 </style>
 </head>
 <body>
+  <?php
+  if(isset($_GET['item_id_result'])){
+    $item_id = $_GET['device_id_result'];
+  }
+  ?>
     <div class="apparaat_info">
         <ul class="apparaat_info_container">
             <li>

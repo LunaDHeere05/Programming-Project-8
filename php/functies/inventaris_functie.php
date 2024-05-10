@@ -7,6 +7,11 @@ $beschikbaarheid = "SELECT UITGELEEND_ITEM.inlever_datum, UITLENING.uitleen_datu
                     LEFT JOIN UITLENING ON UITGELEEND_ITEM.uitleen_id = UITLENING.uitleen_id"; //dit gaat de twee kolommen samenvoegen allee zo naast mekaar zetten
 $availability_result = mysqli_query($conn, $beschikbaarheid);
 
+//dit is om de item id mee te geven aan de url als er op geklikt wordt (zo krijgen we de juiste informatie op de apparaatpagina)
+$item_id = "SELECT item_id FROM ITEM";
+$item_id_result = mysqli_query($conn, $item_id);
+$row = mysqli_fetch_assoc($item_id_result);
+$apparaat_id = $row['item_id'];
 // de volgende query is gewoon om de info over het apparaat te halen uit de databank:
 $item_info = "SELECT naam, merk, beschrijving FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
@@ -25,7 +30,7 @@ $item_info_result = mysqli_query($conn, $item_info);
             brightness(103%) contrast(79%)';
         }
         echo "<li class='apparaat'>";
-        echo "<a href='ApparaatPagina.php'>";
+        echo "<a href='ApparaatPagina.php?device_id".$apparaat_id."'>";
         echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="" class="apparaat_foto">';
         echo "<div class='korte_beschrijving'>";
         
