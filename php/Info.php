@@ -7,24 +7,21 @@
     <link rel="stylesheet" href="/css/stylesheet.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-      * Info pagina  */
-/*Info Hoe leen je iets uit? */
-.info-chevron-left{
-    width: 50em;
-    align-items: center;
-    background-color: tomato;
+
+.infoEnTerug{
     display: flex;
 }
-.info-chevron-left a img{
+.infoEnTerug img{
     width: 1.5em;
+    height: auto;
+    margin: 1.5em;
 }
-.info_titel{
-    padding-top: 0.9em;
-    background-color: green;
-    width: 50%;
+.infoEnTerug h1{
+    margin: 0.6em 0.5em 0em 0.5em;
 }
 .info_uitleen_uitleg h2 {
   padding-left: 2em;
+  margin: auto;
 }
 .info_uitleen_uitleg ul li h3 {
   color: white;
@@ -219,7 +216,7 @@ opacity: 1;
   width: 90%;
   height: 20em;
   border-radius: 2em;
-  background-color: rgb(193, 193, 193);
+  background-color: #D9D9D9;
   border: none;
   color: #fff;
   margin: auto;
@@ -252,12 +249,12 @@ opacity: 1;
   </head>
   <body>
     <?php include "top_nav.php"; ?>
-    <div class="info-chevron-left">
-    <?php
-        echo '<a href="#"><img src="images\svg\chevron-left-solid.svg" alt="chevron left"></a>';
-    ?>
-    <h1 class="info_titel">Info</h1>
-    </div>
+    <div class="infoEnTerug">
+      <?php
+      echo '<a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>';
+      ?>
+      <h1>Info</h1>
+</div>
       <!-- Hoe leen je iets uit? -->
       <div class="info_uitleen_uitleg">
         <h2>Hoe leen je iets uit?</h2>

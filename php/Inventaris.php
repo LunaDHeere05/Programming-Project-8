@@ -13,23 +13,26 @@
         <h3>Verfijn je resultaat: </h3>
         <ul class="filters">
             <li>
-                <select name="Categorie" id="">
-                    <option value="categorie">Categorie</option>
+                <select name="Categorie" id="categorie">
+                  <option value="Categorie" disabled selected>Categorie</option>
+                  <?php include 'functies\filter_categorie_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Merk" id="">
-                    <option value="merk">Merk</option>
+                <select name="Merk" id="merk">
+                    <option value="merk" disabled selected>Merk</option>
+                    <?php include 'functies\filter_merk_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Beschrijving" id="">
-                    <option value="beschrijving">Beschrijving</option>
+                <select name="Beschrijving" id="beschrijving">
+                    <option value="beschrijving" disabled selected>Beschrijving</option>
+                    <?php include 'functies\filter_beschrijving_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Beschikbaarheid" id="">
-                    <option value="Beschikbaarheid">beschikbaarheid</option>
+                <select name="Beschikbaarheid" id="beschikbaarheid">
+                    <option value="Beschikbaarheid">Beschikbaarheid</option>
                 </select>
             </li>
         </ul>
@@ -37,51 +40,36 @@
 
     <!-- apparatenlijst -->
         <ul class="apparatenlijst">
-          <!-- gaat gegenereerd moeten worden met onze javascript of iets anders -->
-            <li class="apparaat"><a href="ApparaatPagina.html">
-            <?php
-              echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
-              ?>
-                <div class="korte_beschrijving">
-                    <h3>Canon M50</h3>
-                    <p>Fototoestel</p> 
-                </div>
-                <div class="beschikbaarheid_apparaat">
-                    <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <?php
-                    echo '<img src="images/svg/circle-check-solid.svg" alt="check">'
-                    ?>
-                </div>
-                <div class="toevoegen">
-                <?php
-                  echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
-                  echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">'
-                  ?>
-                </div>
-            </a></li>
-            <li class="apparaat"><a href="#">
-              <?php
-              echo '<img class="apparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
-              ?>
-                <div class="korte_beschrijving">
-                    <h3>Canon M50</h3>
-                    <p>Fototoestel</p> 
-                </div>
-                <div class="beschikbaarheid_apparaat">
-                    <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <?php
-                    echo '<img src="images/svg/circle-check-solid.svg" alt="check">'
-                    ?>
-                </div>
-                <div class="toevoegen">
-                  <?php
-                  echo '<img src="images/svg/heart-solid.svg" alt="favorietenlijst">';
-                  echo '<img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">'
-                  ?>
-                </div>
-            </a></li>
-        </ul>  
-<?php include 'footer.php'; ?>
+        <?php include 'functies\inventaris_functie.php'; ?>
+        </ul>
+
+        <script>
+  document.querySelectorAll('.favoriet').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het hartje aan te klikken
+      let favorite_img = this.querySelector('img');
+      if (favorite_img.src.endsWith('heart-regular.svg')) {
+        favorite_img.src = 'images/svg/heart-solid.svg';
+      } else {
+        favorite_img.src = 'images/svg/heart-regular.svg';
+      }
+    });
+  });
+  document.querySelectorAll('.winkelmand').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het winkelmandje aan te klikken
+      let cart_img = this.querySelector('img');
+      if (cart_img.src.endsWith('cart-shopping-solid.svg')) {
+        cart_img.src = 'images/svg/shopping-cart-regular.svg';
+      } else {
+        cart_img.src = 'images/svg/cart-shopping-solid.svg';
+      }
+    });
+  });
+</script>
+
+
+
 </body>
 </html>
 
@@ -141,9 +129,11 @@
   width: 20%;
   align-items: center;
 }
-.toevoegen img {
+.toevoegen button {
   width: 4em;
   margin: auto;
+  background-color: transparent;
+  border: none;
 }
 
 .beschikbaarheid_apparaat {
@@ -158,4 +148,8 @@
   filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg)
     brightness(90%) contrast(89%);
 }</style>
+
+
+
+</style>
 <?php include("footer.php"); ?>

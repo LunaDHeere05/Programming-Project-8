@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,6 @@
     <title>Home</title>
     <link rel="stylesheet" href="/css/stylesheet.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
 .categorie a h2{
   margin: 1em;
   text-decoration: none;
@@ -137,50 +135,8 @@
 <body>
     <?php include 'top_nav.php'; ?>
 <div class="inhoud_body">
-    <!-- categorielijst -->
-    <div class="categorie">
-      <?php
-      echo '<a href="Categorie.php"><h2>Categorieën</h2></a>'
-      ?>
-      <ul class="categorie_lijst">
-          <?php
-          echo '<li><a href="#">Audio</a></li>';
-          echo '<li><a href="#">Belichting</a></li>';
-          echo '<li><a href="#">Tools</a></li>';
-          echo '<li><a href="#">Varia</a></li>';
-          echo '<li><a href="#">Video</a></li>';
-          echo '<li><a href="#">XR</a></li>';
-          ?>
-      </ul>
-  </div>
-
-  <!-- Recent bekeken lijst -->
-  <div class="recent_container">
-      <h2>Recent bekeken</h2>
-      </div>
-      <div class="recent_lijst_container">
-          <img src="/images/svg/chevron-left-solid.svg" alt="">
-          <ul class="recent_lijst">
-              <li><a href="#">
-                  <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
-                  <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
-                  <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-              <li><a href="#">
-                  <img src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                  <h3>Canon-M50</h3>
-              </a></li>
-          </ul>
-          <img src="/images/svg/chevron-right-solid.svg" alt="">
-      </div>
-  </div>
+<?php include 'functies\categorie.php'; ?>
+<?php include 'functies\recent_bekeken.php'; ?>
 
   <!-- Hoe leen je iets uit? -->
   <div class="uitleen_uitleg">
@@ -211,5 +167,25 @@
   </div>
 </div>
     <?php include 'footer.php'; ?>
+    <?php 
+    function checkFile(){
+      $currentFile = $_SERVER["PHP_SELF"];
+    if($currentFile == "/php/Home.php"){
+        return 'user';
+    }else{
+        return 'admin';
+    }
+    }
+?>
+    <script>
+      document.getElementById('profileBtn').addEventListener('click', function() {
+           var currentFile = '<?php echo checkFile(); ?>';
+           if(currentFile == 'user'){
+               window.location.href = 'admin/Dashboard.php';     
+          }else{
+              window.location.href = 'Home.php';
+          }
+      });
+    </script>
 </body>
 </html>

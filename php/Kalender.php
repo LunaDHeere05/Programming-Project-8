@@ -9,7 +9,7 @@
 <?php include 'top_nav.php'; ?>
 <div class="agendaEnTerug">
   <?php
-  echo '<a href="#"><img src="/images/svg/chevron-left-solid.svg" alt=""></a>';
+  echo '<a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>';
   ?>
         <h1>Kalender</h1>
 </div>

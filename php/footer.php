@@ -6,11 +6,11 @@
           echo '<li><a href="#"><img src="../images/svg/envelope-solid.svg" alt="envelope">medialab.ehb@ehb.be</a></li>';
           echo '<li><a href="#"><img src="../images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>';
           echo '<li><a href="#"><img src="../images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a></li>';
-          echo '<li><a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170,1070 Anderlecht</a></li>';
+          echo '<li><a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170, 1070 Anderlecht</a></li>';
           ?>
         </ul>
       </div>
-      <div class="opening-hours">
+      <div>
         <h1>Openingsuren</h1>
         <table>
           <tr>
@@ -20,13 +20,11 @@
           </tr>
           <tr>
             <th>Dinsdag</th>
-            <td>/</td>
-            <td>/</td>
+            <td colspan="2">Gesloten</td>
           </tr>
           <tr>
             <th>Woensdag</th>
-            <td>/</td>
-            <td>/</td>
+            <td colspan="2">Gesloten</td>
           </tr>
           <tr>
             <th>Donderdag</th>
@@ -40,8 +38,7 @@
           </tr>
           <tr>
             <th>Weekend</th>
-            <td>/</td>
-            <td>/</td>
+            <td colspan="2">Gesloten</td>
           </tr>
         </table>
       </div>
@@ -50,63 +47,69 @@
     </footer>
 
 <style>
-footer{
-    display: block; 
-    background-color: #303030;
-    color: white;
-    margin-top: 4em;
+  
+footer{ 
+ background-color: #303030;
+ color: white;
+ margin-top:1em;
 }
-.ehb-info li a{
-    text-decoration: none;
-    color: white;
+
+a{
+text-decoration: none;
+color: white;
 } 
 
-.ehb-info ul{
-    padding: 1em;
-}
-.ehb-info li{
-    list-style: none;
-    padding: 0.5em;
-    
+footer ul{
+ padding: 1em;
 }
 
-.ehb-info a img{
-    height: 2em;
-    width: 2em;
-    height: auto;
-    padding: 0em 1em 0em 0em;
-    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
+footer li{
+ list-style: none;
+ padding: 0.5em;
+ display: flex;
+ justify-content: start;
 }
 
-.footer_container{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5em;
-}
-.opening-hours{
-    padding: 0em 1em 0em 0em;
-    margin: 0;
-}
-.opening-hours table {
-    border-collapse: collapse;
+footer .ehb-info a img{
+ width: 1.5em;
+ height: auto;
+padding-right:0.5em;
+ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
 }
 
-.opening-hours h1{
-    padding: 0em 0em 0.5em 0em ;
-    color: white;
-}
-.opening-hours table,th, td {
-    border: 0.05em solid white;
-}
-
-.opening-hours th,td{
-    padding: 0.5em;
+footer .footer_container{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ padding:1em 0
 }
 
-.einde {
-    background-color: red;
+footer table {
+ border-collapse: collapse;
+ padding:1em;
+ color:white;
+}
+
+footer th,td{
+padding: 0.5em;
+border-bottom:0.1em solid white
+}
+
+footer th{
+    text-align: left;
+}
+footer td{
     text-align: center;
-    padding: 0.5em;
-    font-size: large;
+}
+
+footer table tr:last-child th, table tr:last-child td{
+    border-bottom: none;
+  }
+
+footer .einde {
+ background-color: red;
+ text-align: center;
+ padding: 1em;
+ font-size: large;
 }
 </style>
