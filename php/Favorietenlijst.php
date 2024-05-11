@@ -1,62 +1,11 @@
-<?php include 'database.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn favorietenlijst</title>
-</head>
-<body>
-<div class="favorietenEnTerug">
-        <a href="#"><img src="/images/svg/chevron-left-solid.svg" alt=""></a>
-        <h1>Mijn favorietenlijst</h1>
-    </div>
-    <div class="favoriet_apparaat_container">
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="/images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="/images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="/images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="/images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="/images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="/images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="/images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="/images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="/images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="/images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-    </div>
-</body>
-</html>
-
-<style>
+    <?php include 'top_nav.php'?>
+    <style>
 .favorietenEnTerug{
   display: flex;
 }
@@ -112,3 +61,56 @@
 }
     
 </style>
+</head>
+<body>
+<div class="favorietenEnTerug">
+        <a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+        <h1>Mijn favorietenlijst</h1>
+    </div>
+    <div class="favoriet_apparaat_container">
+        <div class="favoriet_apparaat">
+            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
+            <div class="text_apparaat">
+                <h3>Canon M50</h3>
+                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
+            </div>
+            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
+        </div>
+        <div class="favoriet_apparaat">
+            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
+            <div class="text_apparaat">
+                <h3>Canon M50</h3>
+                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
+            </div>
+            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
+        </div>
+        <div class="favoriet_apparaat">
+            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
+            <div class="text_apparaat">
+                <h3>Canon M50</h3>
+                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
+            </div>
+            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
+        </div>
+        <div class="favoriet_apparaat">
+            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
+            <div class="text_apparaat">
+                <h3>Canon M50</h3>
+                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
+            </div>
+            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
+        </div>
+        <div class="favoriet_apparaat">
+            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
+            <div class="text_apparaat">
+                <h3>Canon M50</h3>
+                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
+            </div>
+            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
+        </div>
+    </div>
+</body>
+</html>
+
+
+<?php include("footer.php") ?>

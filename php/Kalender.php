@@ -6,9 +6,11 @@
     <title>Kalender</title>
 </head>
 <body>
-<?php include 'components/top_nav.php'; ?>
+<?php include 'top_nav.php'; ?>
 <div class="agendaEnTerug">
-        <a href="#"><img src="/images/svg/chevron-left-solid.svg" alt=""></a>
+  <?php
+  echo '<a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>';
+  ?>
         <h1>Kalender</h1>
 </div>
 
@@ -51,7 +53,9 @@
     <h2 class="subtitel">Activiteiten</h2>
 
 <div class="activiteit">
-      <img src="/images/png/workshop.png" alt="workshop flyer">
+  <?php
+  echo '<img src="images/png/workshop.png" alt="workshop flyer">';
+  ?>
       <div class="info_activiteit">
         <h3>Workshop 3D printing</h3>
         <p>Deze workshop dient als een introductie tot het gebruik van 3D-printers, waarmee je later je eigen ontwerpen kunt leren printen. We willen benadrukken dat de workshop laagdrempelig is en geschikt is voor alle studenten, ongeacht hun ervaringsniveau. Maak je geen zorgen als je nog nooit met 3D-printers hebt gewerkt - we zullen je stap voor stap begeleiden. </p>
@@ -59,7 +63,7 @@
       </div>
 </div>
 </body>
-<?php include 'components/footer.php'; ?>
+<?php include 'footer.php'; ?>
 </html>
 
 

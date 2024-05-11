@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris</title>
+
 </head>
 <body>
-<?php include 'components/top_nav.php'; ?> 
+<?php include 'top_nav.php'; ?> 
  <!--zoekresultaat container  -->
 <div class="zoekresultaat_container"> 
         <h3>Verfijn je resultaat: </h3>
         <ul class="filters">
             <li>
-                <select name="Categorie" id="">
-                    <option value="categorie">Categorie</option>
+                <select name="Categorie" id="categorie">
+                  <option value="Categorie" disabled selected>Categorie</option>
+                  <?php include 'functies\filter_categorie_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Merk" id="">
-                    <option value="merk">Merk</option>
+                <select name="Merk" id="merk">
+                    <option value="merk" disabled selected>Merk</option>
+                    <?php include 'functies\filter_merk_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Beschrijving" id="">
-                    <option value="beschrijving">Beschrijving</option>
+                <select name="Beschrijving" id="beschrijving">
+                    <option value="beschrijving" disabled selected>Beschrijving</option>
+                    <?php include 'functies\filter_beschrijving_inventaris.php' ?>
                 </select>
             </li>
             <li>
-                <select name="Beschikbaarheid" id="">
-                    <option value="Beschikbaarheid">beschikbaarheid</option>
+                <select name="Beschikbaarheid" id="beschikbaarheid">
+                    <option value="Beschikbaarheid">Beschikbaarheid</option>
                 </select>
             </li>
         </ul>
@@ -36,39 +40,8 @@
 
     <!-- apparatenlijst -->
         <ul class="apparatenlijst">
-          <!-- gaat gegenereerd moeten worden met onze javascript of iets anders -->
-            <li class="apparaat"><a href="ApparaatPagina.html">
-                <img class="apparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                <div class="korte_beschrijving">
-                    <h3>Canon M50</h3>
-                    <p>Fototoestel</p> 
-                </div>
-                <div class="beschikbaarheid_apparaat">
-                    <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <img src="/images/svg/circle-check-solid.svg" alt="check">
-                </div>
-                <div class="toevoegen">
-                    <img src="/images/svg/heart-solid.svg" alt="favorietenlijst">
-                    <img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje">
-                </div>
-            </a></li>
-            <li class="apparaat"><a href="#">
-                <img class="apparaat_foto" src="/images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-                <div class="korte_beschrijving">
-                    <h3>Canon M50</h3>
-                    <p>Fototoestel</p> 
-                </div>
-                <div class="beschikbaarheid_apparaat">
-                    <p>Beschikbaar tot <br><span>30/05/2024</span></p>
-                    <img src="/images/svg/circle-check-solid.svg" alt="check">
-                </div>
-                <div class="toevoegen">
-                    <img src="/images/svg/heart-solid.svg" alt="favorietenlijst">
-                    <img src="/images/svg/cart-shopping-solid.svg" alt="winkelmandje">
-                </div>
-            </a></li>
-        </ul>  
-<?php include 'components/footer.php'; ?>
+        <?php include 'functies\inventaris_functie.php'; ?>
+        </ul>
 </body>
 </html>
 
@@ -147,3 +120,6 @@
 }</style>
 
 
+
+</style>
+<?php include("footer.php"); ?>
