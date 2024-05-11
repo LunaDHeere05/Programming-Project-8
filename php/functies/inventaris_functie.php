@@ -14,7 +14,7 @@ $item_id_result = mysqli_query($conn, $item_id_query);
 $item_info = "SELECT naam, merk, beschrijving FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
-    while ($row = mysqli_fetch_assoc($availability_result)) {
+while ($row = mysqli_fetch_assoc($availability_result)) {
         if ($row['inlever_datum'] != null  ) { //deze conditie moet aangepast worden wnt nu checkt da gewoon of da inleverdatum null is
             $availability = "Niet beschikbaar tot " . $row['inlever_datum'];
             $availability_color = '#E30613';
@@ -27,7 +27,7 @@ $item_info_result = mysqli_query($conn, $item_info);
             $availability_filter = 'invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
             brightness(103%) contrast(79%)';
         }
-        while ($row_item = mysqli_fetch_assoc($item_id_result)) {
+    if ($row_item = mysqli_fetch_assoc($item_id_result)) {
         echo "<li class='apparaat'>";
         echo "<a href='ApparaatPagina.php?apparaat_id=".$row_item['item_id']."'>";
 
@@ -46,8 +46,8 @@ $item_info_result = mysqli_query($conn, $item_info);
         echo "<img style= 'filter: $availability_filter;' src='$availability_img' alt='Availability Icon'>";
         echo "</div>";
         echo "<div class='toevoegen'>";
-        echo "<img src='images/svg/heart-solid.svg' alt='Favorietenlijst'>";
-        echo "<img src='images/svg/cart-shopping-solid.svg' alt='Winkelmandje'>";
+        echo "<button class='favoriet'><img src='images/svg/heart-regular.svg' alt='Favorietenlijst'></button>";
+        echo "<button class='winkelmand'><img src='images/svg/shopping-cart-regular.svg' alt='Winkelmandje'></button>";
         echo "</div>";
         echo "</a>";
         echo "</li>";
