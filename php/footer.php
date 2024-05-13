@@ -54,7 +54,12 @@ footer{
  margin-top:1em;
 }
 
-a{
+footer h1{
+  text-align: center;
+  letter-spacing:3px;
+}
+
+footer a{
 text-decoration: none;
 color: white;
 } 
