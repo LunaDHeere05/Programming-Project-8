@@ -74,6 +74,19 @@ nav{
     background-color: white;
     border-radius: 5em;
 }
+#zoeken_functie{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+#zoeken_functie input[type="submit"]{
+    background: url(images/svg/magnifying-glass-solid.svg) no-repeat center;
+    border: none;
+    background-color: none;
+    cursor: pointer;
+    width: 2em;
+    margin-right: 1em;
+}
 #zoek_input{
     background: none;
     border: none;
@@ -84,6 +97,7 @@ nav{
 #zoek_input:focus{
     outline: none;
 }
+
 #zoek_btn img{
     height: 80%;
     width: 70%;
@@ -148,10 +162,10 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
             <option value="video">Video</option>
             <option value="xr">XR</option>
         </select>
+        <form action="zoeken.php" method="GET" id="zoeken_functie">
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
-
-        <button id="zoek_btn"><img src="images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
-        
+        <input type="submit" value="">
+        </form>
     </div>
 </div>
 
