@@ -163,7 +163,7 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
             <option value="xr">XR</option>
         </select>
         <form action="zoeken.php" method="GET" id="zoeken_functie">
-        <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
+        <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ..." name="zoek_query">
         <input type="submit" value="">
         </form>
     </div>

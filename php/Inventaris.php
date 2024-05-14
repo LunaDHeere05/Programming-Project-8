@@ -149,7 +149,4 @@
     brightness(90%) contrast(89%);
 }</style>
 
-
-
-</style>
 <?php include("footer.php"); ?>
