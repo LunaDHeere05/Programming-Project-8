@@ -250,9 +250,7 @@ opacity: 1;
   <body>
     <?php include "top_nav.php"; ?>
     <div class="infoEnTerug">
-      <?php
-      echo '<a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>';
-      ?>
+      <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
       <h1>Info</h1>
 </div>
       <!-- Hoe leen je iets uit? -->

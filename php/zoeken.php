@@ -3,6 +3,37 @@
 include 'database.php';
 include 'top_nav.php';
 echo "<ul class='apparatenlijst'>";
+?>
+<div class="zoekresultaat_container"> 
+        <h3>Verfijn je resultaat: </h3>
+        <ul class="filters">
+            <li>
+                <select name="Categorie" id="categorie">
+                  <option value="Categorie" disabled selected>Categorie</option>
+                  <?php include 'functies\filter_categorie_inventaris.php' ?>
+                </select>
+            </li>
+            <li>
+                <select name="Merk" id="merk">
+                    <option value="merk" disabled selected>Merk</option>
+                    <?php include 'functies\filter_merk_inventaris.php' ?>
+                </select>
+            </li>
+            <li>
+                <select name="Beschrijving" id="beschrijving">
+                    <option value="beschrijving" disabled selected>Beschrijving</option>
+                    <?php include 'functies\filter_beschrijving_inventaris.php' ?>
+                </select>
+            </li>
+            <li>
+                <select name="Beschikbaarheid" id="beschikbaarheid">
+                    <option value="Beschikbaarheid">Beschikbaarheid</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+<?php
+
 
 //de query om de beschikbaarheid van het item op te halen: 
 $beschikbaarheid = "SELECT UITGELEEND_ITEM.inlever_datum, UITLENING.uitleen_datum
@@ -72,7 +103,9 @@ if(!empty($zoek_query)) {
         echo "Query failed: " . mysqli_error($conn);
     }
 }
+include 'footer.php';
 mysqli_close($conn);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,8 +190,6 @@ mysqli_close($conn);
 }
     </style>
 </head>
-<body>
-</body>
 <script>
     document.querySelectorAll('.favoriet').forEach(function(button) {
     button.addEventListener('click', function(event) {
@@ -184,4 +215,3 @@ mysqli_close($conn);
   });
 </script>
 </html>
-<?php include 'footer.php'; ?>

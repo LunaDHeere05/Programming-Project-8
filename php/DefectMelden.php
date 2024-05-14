@@ -119,7 +119,7 @@
 <body>
     <?php include 'top_nav.php'?>
     <div class="annulerenEnTerug">
-        <a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+        <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Defect melden</h1> 
     </div>
     <p class="bevestig">1. Bekijk de ID-sticker op jouw apparaat. <br>
