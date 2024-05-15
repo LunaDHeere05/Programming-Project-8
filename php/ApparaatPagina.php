@@ -334,29 +334,16 @@
             </li>
         </ul>
         <h2 class="reservatie">Plaats je reservatie</h2>
-        <ul class="reservatie_plaatsen">
-            <li class="datum">
-                <label for="start_date">Start datum:</label>
-                <input type="date" id="start_date" name="start_date">
             </li>
-            <li class="datum">
-                <label for="end_date">Eind datum:</label>
-                <input type="date" id="end_date" name="end_date">
-            </li>
-            <li class="aantal">
-                <label for="aantal">Aantal:</label>
-                <input type="number" id="aantal_apparaten" name="aantal_apparaten" placeholder="0">
-            </li>
-            <li class="reserveer_nu_btn">
-              <?php 
-              echo '<a href="/html/ReservatieBevestigen.html">Reserveer Nu</a>';
-              ?>
-            </li>
-            <li class="winkelmand_toevoegen_btn">
-                <button>Voeg toe</button>
-                <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
-            </li>
-        </ul>
+        <form action="apparaat_pagina_reservatie.php" method="POST"></form>
+          <label for="start_date">Start Date:</label>
+          <input type="date" id="start_date" name="start_date" required>
+          
+          <label for="end_date">End Date:</label>
+          <input type="date" id="end_date" name="end_date" required>
+          
+          <button type="submit">Submit</button>
+        </form>
     </div>
 
     <div class="kits">
