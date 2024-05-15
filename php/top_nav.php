@@ -1,35 +1,43 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-               
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}           
+
 nav{
     display: flex;
     justify-content: space-between;
+    margin:0.2em 0.8em auto 0.8em;
+    align-items: center;
 }
 
-nav ul{
-    list-style: none;
+.linker_navigatie{
+    list-style: none;   
     display: flex;
-    font-size: 17px;
+    font-size: 120%;
+    font-weight: bold;
+    gap:2em;
+    margin:0.2em 0.8em auto 0.8em;
+
+    align-items: center;
 }
 
-nav ul li{
-    height: 100%;
-}
-nav ul li a h1{
-    height: 100%;
-    padding-right: 2em;;
-}
-nav ul li a h1:hover{
-    color: #1BBCB6;
-}
-nav ul li a{
+.linker_navigatie a{
     text-decoration: none;
+    color:black;
+}
+
+.linker_navigatie a:hover{
+    color: #1BBCB6;
 }
 
 .ehb_logo{
     width: auto;
     height: 54px;
-    margin-left: 10px;
 }
 
 .rechter_navigatie{
@@ -37,29 +45,27 @@ nav ul li a{
     width: 10em;
     height: auto;
     justify-content: space-between;
+    align-items: end;
+    gap:1.5em;
 }
 
 .rechter_navigatie img{
     width: 100%;
-    height: 100%;
+    height:100%
 }
 
-.rechter_navigatie a{
-    padding-left: 1em;
-}
 .rechter_navigatie a:hover{
     filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
 }
 
-        /*  zoekbalk */
+    /*  zoekbalk */
 
 .zoekbalk_container{
-    <?php
-        echo 'background: url(images\jpg\jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;';
-    ?>
     height: 6em;
     display: flex;
+    background: url(images/jpg/jj-ying-7JX0-bfiuxQ-unsplash.jpg) no-repeat center center/cover;
 }
+
 .zoekbalk{
     display: flex;
     height: 50%;
@@ -67,6 +73,19 @@ nav ul li a{
     margin: auto;
     background-color: white;
     border-radius: 5em;
+}
+#zoeken_functie{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+#zoeken_functie input[type="submit"]{
+    background: url(images/svg/magnifying-glass-solid.svg) no-repeat center;
+    border: none;
+    background-color: none;
+    cursor: pointer;
+    width: 2em;
+    margin-right: 1em;
 }
 #zoek_input{
     background: none;
@@ -78,6 +97,7 @@ nav ul li a{
 #zoek_input:focus{
     outline: none;
 }
+
 #zoek_btn img{
     height: 80%;
     width: 70%;
@@ -91,17 +111,19 @@ nav ul li a{
     background: none;
     border: none;
     color: #5B5B5B;
-    width: 10%;
-    margin-left: 1em;
-    background: url(/images/svg/sliders-solid.svg) no-repeat center;
-    background-size: 20%;
+    width: 8em;
+    <?php echo 'background: url(images/svg/sliders-solid.svg) no-repeat center;'; ?>;
 }
-.zoekbalk select {
+
+.zoekbalk select{
+    cursor:pointer;
+    background-size: 20%;
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
   }
+
 .zoekbalk select:focus{
     outline: none;
 }
@@ -110,17 +132,17 @@ nav ul li a{
 <?php
 echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>';
 ?>
-    <ul>
+    <div class="linker_navigatie">
         <?php
-        echo '<li><a href="Info.php"><h1>Info</h1></a></li>';
-        echo '<li><a href="Inventaris.php"><h1>Inventaris</h1></a></li>';
-        echo '<li><a href="Kalender.php"><h1>Kalender</h1></a></li>';
-        echo '<li><a href="Reservaties.php"><h1>Reservaties</h1></a></li>';
+        echo '<a href="Info.php"><h1>Info</h1></a>';
+        echo '<a href="Inventaris.php"><h1>Inventaris</h1></a>';
+        echo '<a href="Kalender.php"><h1>Kalender</h1></a>';
+        echo '<a href="Reservaties.php"><h1>Reservaties</h1></a>';
         ?>
-    </ul>
+    </div class="linker_navigatie">
     <div class="rechter_navigatie">
     <?php
-        echo '<a href="#"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>';
+        echo '<a href="Favorietenlijst.php"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>';
         echo '<a href="#"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>';
         echo '<a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>';
         ?>
@@ -130,6 +152,7 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
 <!-- zoekbalk -->
 <div class="zoekbalk_container">
     <div class="zoekbalk">
+        <!--categorieën halen uit databank-->
         <select name="categorie" id="" >
             <option value="alles"></option>
             <option value="audio">Audio</option>
@@ -139,7 +162,10 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
             <option value="video">Video</option>
             <option value="xr">XR</option>
         </select>
-        <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ...">
-        <button id="zoek_btn"><img src="/images/svg/magnifying-glass-solid.svg" alt="magnifying glass"></button>
+        <form action="zoeken.php" method="GET" id="zoeken_functie">
+        <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ..." name="zoek_query">
+        <input type="submit" value="">
+        </form>
     </div>
 </div>
+
