@@ -307,6 +307,7 @@
                     <?php
                     echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">';
                     echo '<li><a href="#" download> Download de gebruikershandleiding</a></li>';
+                   // include 'C:\xampp\htdocs\Programming-Project-8\php\functies\apparaat_pagina_handleiding_functie.php';
                     ?>
                 </ul>
             </li>
