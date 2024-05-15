@@ -15,6 +15,7 @@
   padding-bottom: 2em;
 }
 
+
 .apparaat_info_container {
   list-style: none;
   display: flex;

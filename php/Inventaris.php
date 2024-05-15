@@ -50,6 +50,7 @@
       let favorite_img = this.querySelector('img');
       if (favorite_img.src.endsWith('heart-regular.svg')) {
         favorite_img.src = 'images/svg/heart-solid.svg';
+        <?php include 'toevoegenFavorieten.php'; ?> 
       } else {
         favorite_img.src = 'images/svg/heart-regular.svg';
       }
