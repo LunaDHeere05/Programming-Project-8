@@ -218,8 +218,9 @@
         </div>
 
         <div class="ophalen_lijst_container">
+          <?php include 'functies\reservatie_functie.php'?>
           <div class="ophalen_reservatie_container">
-            <label for="#">
+            <!-- <label for="#">
               <input type="checkbox">
             </label>
             <div class="reservatie_item">
@@ -247,10 +248,10 @@
                   </li>
                 </ul>
               </a>
-            </div>
+            </div>-->
           </div>
           <div class="ophalen_reservatie_container">
-            <label for="#">
+            <!-- <label for="#">
               <input type="checkbox">
             </label>
             <div class="reservatie_item">
@@ -281,6 +282,7 @@
             </div>
           </div>
         </div>
+         -->
         <div class="reservatie-top">
           <h2>Opgehaald</h2>
           <div class="alles_verlengen">
@@ -289,7 +291,7 @@
               <img src="images/svg/calendar-regular.svg" alt="xmark" />
             </a>
           </div>
-        </div>
+        <!-- </div>
         <div class="opgehaald_lijst_container">
           <div class="opgehaald_reservatie_container">
             <label for="#">
@@ -326,10 +328,12 @@
                   </li>
                 </ul>
               </a>
-            </div>
-          </div>
-        </div>
-        <script>
+            </div> -->
+          </div> 
+      </div>
+      <?php include 'footer.php'?>
+  </body>
+  <script>
   var annuleer_buttons = document.querySelectorAll('.reservatieAnnulerenBevestiging');
   annuleer_buttons.forEach(function(button) {
     button.addEventListener('click', function() {
@@ -344,6 +348,4 @@
   });
 
 </script>
-<?php include 'footer.php'?>
-  </body>
 </html>
