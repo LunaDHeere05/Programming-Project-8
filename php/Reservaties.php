@@ -28,7 +28,7 @@
 .alles_annuleren, .alles_verlengen{
   display: flex;
   background-color: #E30613;
-  width: 25%;
+  width: 15%;
   height: 2em;
   border-radius: 1em;
   align-items: center;
@@ -43,17 +43,27 @@
   background-color: #1bbcb6;
 
 }
-.reservatie-top{
-  width: 50%;
-}
 .reservatie-top h2{
   color: #1bbcb6;
   padding: 1em;
   }
 
 .reservatie-top{
+    width: 100%;
     display: flex;
-    align-items: baseline;
+    align-items: center;
+    padding: 1em;
+}
+.reservatie-top label{
+  margin-left: auto;
+  margin-right: 1em;
+}
+.reservatie-top label input[type=submit]{
+  background-color: transparent;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+
 }
 .reservatie-top a img {
     margin: auto;
@@ -215,6 +225,9 @@
               <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
             </a>
           </div>
+          <label for="">
+            <input type="submit" value="Selectie annuleren" style="color: #E30613;">
+          </label>
         </div>
         <div class="ophalen_lijst_container">
         <?php include 'functies\reservatie_ophalen.php'?>
@@ -228,7 +241,10 @@
               <img src="images/svg/calendar-regular.svg" alt="xmark" />
             </a>
           </div>
-          </div>
+          <label for="">
+            <input type="submit" value="Selectie verlengen" style="color: #1bbcb6;">
+          </label>
+        </div>
         <?php include 'functies\reservatie_opgehaald.php'?>
         
         <script>
