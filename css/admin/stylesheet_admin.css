@@ -525,6 +525,66 @@ margin: 0em 1em 0em 1em;
   align-items: center;
   padding: 0em 0em 0em 3em;
 }
+/* kit wijzigen  */
+.kit_wijzig_toe{
+  display: flex;
+  align-items: center;
+  margin: 1em;
+  background-color: #D9D9D9;
+  border-radius: 1.5em;
+  padding: 0em 1em 0em 1em;
+}
+.kit_wijzig_toe p span{
+  background-color: #fff;
+  padding: 0.5em;
+  margin: 1em;
+  border-radius: 0.9em;
+  width: 40em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kit_wijzig_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #D9D9D9;
+  border: #D9D9D9;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 1.5em;
+}
+.kit_wijzig_visueel_img img {
+  background-color: #fff;
+  padding: 1,5em;
+  margin: 1em;
+  height: auto;
+width: 7em;
+padding: 1em;
+}
+.kit_wijzig_verwijder a{
+  background-color: #E30613;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: #E30613;
+  border-radius: 2em;
+  width: 8.5em;
+  height: 1em;
+  text-decoration: none;
+  color: white;
+  padding: 1em;
+  margin: 1em;
+}
+.kit_wijzig_verwijder img{
+  width: 1em;
+  height: auto;
+  margin-left: 1em;
+  filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
+}
+
+
+
 /* Info page  */
 .info_body{
   display: flex;
@@ -655,11 +715,7 @@ padding-bottom: 4em;
 }
 
 /* defect page  */
-.defect_container{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 
 .defect_container{
   background-color: #D9D9D9;
@@ -667,6 +723,9 @@ padding-bottom: 4em;
   border-radius: 1em;
   padding: 1em;
   margin: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .defect_informatie span{
