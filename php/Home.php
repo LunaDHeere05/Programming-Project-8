@@ -142,25 +142,25 @@
   <div class="uitleen_uitleg">
       <h2>Hoe leen je iets uit?</h2>
       <ul>
-          <li><a href="Info.php">
+          <li><a href="Info.html">
               <h3>Stap 1</h3>
               <p>Kies een apparaat</p>
           </a></li>
-          <li><a href="Info.php">
+          <li><a href="Info.html">
               <h3>Stap 2</h3>
               <p>Bepaal je uitleenperiode</p>
           </a></li>
-          <li><a href="Info.php">
+          <li><a href="Info.html">
               <h3>Stap 3</h3>
               <p>Plaats je reservatie</p>
           </a></li>
-          <li><a href="Info.php">
+          <li><a href="Info.html">
               <h3>Stap 4</h3>
               <p>Haal het apparaat op in het medialab</p>
           </a></li>
       </ul>
       <div class="meer_info">
-          <a href="Info.php">
+          <a href="Info.html">
               <h3>Meer info</h3>
           </a>
       </div>
@@ -177,7 +177,6 @@
     }
     }
 ?>
-
     <script>
       document.getElementById('profileBtn').addEventListener('click', function() {
            var currentFile = '<?php echo checkFile(); ?>';
