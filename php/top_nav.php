@@ -132,14 +132,16 @@ nav{
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin: auto;
   border: 1px solid black;
   border-radius: 2em;
   padding: 1em;
   background-color: white;
-  position: absolute;
+  position: fixed;
   border: none;
   z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
 }
 #winkelmand_popup h3{
     margin-bottom: 1em;
@@ -221,7 +223,8 @@ nav{
     font-size: 18px;
 }
 .hidden{
-    left: -99999px;
+    left: -99999px !important;
+    display: none;
 }
 body.blur > :not(#winkelmand_popup) {
         filter: blur(50px);
