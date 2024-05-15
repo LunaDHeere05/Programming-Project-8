@@ -334,16 +334,20 @@
             </li>
         </ul>
         <h2 class="reservatie">Plaats je reservatie</h2>
-            </li>
-        <form action="apparaat_pagina_reservatie.php" method="POST"></form>
+      <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
+        <div class="datum">
           <label for="start_date">Start Date:</label>
           <input type="date" id="start_date" name="start_date" required>
-          
+        </div>
+        <div class="datum">
           <label for="end_date">End Date:</label>
           <input type="date" id="end_date" name="end_date" required>
-          
-          <button type="submit">Submit</button>
-        </form>
+        </div>
+        <div class="reserverenEnTerug">
+          <h1>Reserveren</h1>
+          <button type="submit">Reserveer nu</button>
+        </div>
+      </form>
     </div>
 
     <div class="kits">
