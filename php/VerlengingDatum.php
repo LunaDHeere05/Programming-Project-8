@@ -8,7 +8,7 @@
 <body> 
     <?php include 'top_nav.php' ?>
     <div class="agendaEnTerug">
-        <a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+        <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Verlengen</h1>
     </div> 
     <p>Duid een nieuwe datum aan. De inleverdatum kan je <span>éénmalig met 1 week</span> verlengen.</p> 

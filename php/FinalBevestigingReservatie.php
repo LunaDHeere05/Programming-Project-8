@@ -12,7 +12,7 @@
 <body>
     <?php include 'top_nav.php'?>
 <div class="reserverenEnTerug">
-    <a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+    <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
     <h1>Reserveren</h1>
 </div>
 <p class="bevestig">Deze items werden <b>succesvol</b> gereserveerd. Check je inbox voor een bevestigingsmail.</p>

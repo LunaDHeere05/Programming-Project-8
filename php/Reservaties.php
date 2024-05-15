@@ -204,9 +204,7 @@
   <body>
     <?php include 'top_nav.php'?>
         <div class="reservatiesEnTerug">
-          <?php
-          echo '<a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>';
-          ?>
+          <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Mijn reservaties</h1>
         </div>
         <div class="reservatie-top">

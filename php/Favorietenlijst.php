@@ -64,9 +64,10 @@
 </head>
 <body>
 <div class="favorietenEnTerug">
-        <a href="#"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+<!-- wat ik in de a href heb gestoken is gewoon om terug te gaan naar de vorige pagina -->
+        <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Mijn favorietenlijst</h1>
-    </div>
+</div>
     <div class="favoriet_apparaat_container">
         <div class="favoriet_apparaat">
             <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
