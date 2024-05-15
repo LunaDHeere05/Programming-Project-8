@@ -5,7 +5,7 @@ include 'database.php';
 // Query to fetch recent items from the database
 $query = "SELECT ITEM.naam, ITEM.merk
 FROM RECENT_BEKEKEN
-JOIN ITEM ON RECENT_BEKEKEN.item_id = item.id
+JOIN ITEM ON RECENT_BEKEKEN.recent_id = item_id
 ORDER BY RECENT_BEKEKEN.recent_id DESC
 LIMIT 4";
 $result = mysqli_query($conn, $query);
