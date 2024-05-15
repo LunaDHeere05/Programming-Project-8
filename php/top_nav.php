@@ -132,16 +132,17 @@ nav{
   display: flex;
   flex-direction: column;
   width: 50%;
+  margin: auto;
   border: 1px solid black;
   border-radius: 2em;
   padding: 1em;
   background-color: white;
   position: fixed;
   border: none;
-  z-index: 9999;
+  z-index: 9999; 
   top: 50%;
   left: 50%;
-  transform:translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 #winkelmand_popup h3{
     margin-bottom: 1em;
@@ -226,29 +227,27 @@ nav{
     left: -99999px !important;
     display: none;
 }
-body.blur > :not(#winkelmand_popup) {
+body.blur > *:not(#winkelmand_popup):not(#close_window) {
         filter: blur(50px);
         pointer-events: none;
 }
 </style>
 <nav>
-<?php
-echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>';
-?>
+<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
     <div class="linker_navigatie">
-        <?php
-        echo '<a href="Info.php"><h1>Info</h1></a>';
-        echo '<a href="Inventaris.php"><h1>Inventaris</h1></a>';
-        echo '<a href="Kalender.php"><h1>Kalender</h1></a>';
-        echo '<a href="Reservaties.php"><h1>Reservaties</h1></a>';
-        ?>
+    
+        <a href="Info.php"><h1>Info</h1></a>
+        <a href="Inventaris.php"><h1>Inventaris</h1></a>
+        <a href="Kalender.php"><h1>Kalender</h1></a>
+        <a href="Reservaties.php"><h1>Reservaties</h1></a>
+    
     </div class="linker_navigatie">
     <div class="rechter_navigatie">
-    <?php
-        echo '<a href="Favorietenlijst.php"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>';
-        echo '<a href="#"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>';
-        echo '<a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>';
-        ?>
+
+        <a href="Favorietenlijst.php"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>
+        <a href="#" id="winkelmand"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
+        <a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>
+    
     </div>
 </nav>
 
@@ -271,4 +270,51 @@ echo '<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-l
         </form>
     </div>
 </div>
+<div id="winkelmand_popup" class="hidden">
+    <h3>Winkelmand</h3>
+    <div id="winkelmand_items">
+        <div class="item">
+            <img class="item_foto" src="images\webp\eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
+            <h3>Canon - M50</h3>
+            <div class="datum_aanpassen">
+                <img src="images\svg\pen-to-square-regular.svg" alt="wijzig datum">
+                <p>Van 22/04/2024</p>
+                <p>Tot 27/04/2024</p>
+            </div>
+            <div class="aantal">
+                <label for="aantal">Aantal:</label>
+                <input type="number" placeholder="0">
+            </div>
+        </div>
+        <div class="item">
+            <img class="item_foto" src="images\webp\eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
+            <h3>Canon - M50</h3>
+            <div class="datum_aanpassen">
+                <img src="images\svg\pen-to-square-regular.svg" alt="wijzig datum">
+                <p>Van 22/04/2024</p>
+                <p>Tot 27/04/2024</p>
+            </div>
+            <div class="aantal">
+                <label for="aantal">Aantal:</label>
+                <input type="number" placeholder="0">
+            </div>
+        </div>
+        </div>
+    <img src="images/svg/xmark-solid.svg" alt="sluit venster" id="close_window">
+    <form>
+        <input type="submit" value="Reserveer nu">
+    </form>
+</div>
+<script>
+document.getElementById('winkelmand').addEventListener('click', function(){
+    document.getElementById('winkelmand_popup').classList.remove('hidden');
+    document.body.classList.add('blur');
+    document.getElementById('winkelmand_popup').classList.add('no-blur');
+});
 
+document.getElementById('close_window').addEventListener('click', function(){
+    document.getElementById('winkelmand_popup').classList.add('hidden');
+    document.body.classList.remove('blur');
+    document.getElementById('winkelmand_popup').classList.remove('no-blur');
+});
+</script>
