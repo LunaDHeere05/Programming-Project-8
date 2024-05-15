@@ -2,7 +2,7 @@
 include 'database.php';
 
 $query = "SELECT UI.uitleen_id, uitleen_datum, UI.inlever_datum, UI.isOpgehaald, UI.isVerlengd,
-                        EI.exemplaar_item_id, EI.status AS exemplaar_status, EI.zichtbaarheid, EI.item_id,
+                        EI.exemplaar_item_id,
                         I.naam, I.beschrijving
                 FROM UITGELEEND_ITEM UI
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
