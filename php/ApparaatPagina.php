@@ -81,7 +81,7 @@
   list-style: none;
 }
 .reservatie_plaatsen li {
-  text-decoration: none;
+  list-style: none;
   color: white;
   padding: 1em;
   display: flex;
@@ -335,18 +335,27 @@
         </ul>
         <h2 class="reservatie">Plaats je reservatie</h2>
       <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
-        <div class="datum">
-          <label for="start_date">Start Date:</label>
-          <input type="date" id="start_date" name="start_date" required>
-        </div>
-        <div class="datum">
-          <label for="end_date">End Date:</label>
-          <input type="date" id="end_date" name="end_date" required>
-        </div>
-        <div class="reserverenEnTerug">
-          <h1>Reserveren</h1>
-          <button type="submit">Reserveer nu</button>
-        </div>
+        <ul class="reservatie_plaatsen">
+            <li class="datum">
+                <label for="start_date">Start datum:</label>
+                <input type="date" id="start_date" name="start_date">
+            </li>
+            <li class="datum">
+                <label for="end_date">Eind datum:</label>
+                <input type="date" id="end_date" name="end_date">
+            </li>
+            <li class="aantal">
+                <label for="aantal">Aantal:</label>
+                <input type="number" id="aantal_apparaten" name="aantal_apparaten" placeholder="0">
+            </li>
+            <li class="reserveer_nu_btn">
+                <a href="ReservatieBevestigen.php">Reserveer Nu</a>
+            </li>
+            <li class="winkelmand_toevoegen_btn">
+                <button>Voeg toe</button>
+                <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+            </li>
+        </ul>
       </form>
     </div>
 
