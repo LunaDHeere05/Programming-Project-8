@@ -3,8 +3,13 @@ include 'database.php';
 // Assuming you have already connected to your database
 
 // Query to fetch recent items from the database
-$query = "SELECT naam, merk FROM ITEM ORDER BY recent_id DESC LIMIT 4";
+$query = "SELECT ITEM.naam, ITEM.merk
+FROM RECENT_BEKEKEN
+JOIN ITEM ON RECENT_BEKEKEN.recent_id = item_id
+ORDER BY RECENT_BEKEKEN.recent_id DESC
+LIMIT 4";
 $result = mysqli_query($conn, $query);
+
 
 // Check if query was successful
 if ($result) {
