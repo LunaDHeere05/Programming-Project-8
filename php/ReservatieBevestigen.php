@@ -52,6 +52,17 @@
   font-size: 20px;
   letter-spacing: 1px;
 }
+.reserverenEnTerug{
+    display: flex;
+}
+.reserverenEnTerug img{
+    width: 1.5em;
+    height: auto;
+    margin: 1.5em;
+}
+.reserverenEnTerug h1{
+    margin: 0.6em 0.5em 0em 0.5em;
+}
 
         </style>
 </head>
