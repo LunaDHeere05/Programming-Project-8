@@ -8,7 +8,7 @@ $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
                 JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND U.isOpgehaald = 0
-                WHERE U.emailStudent = 'student2@example.com'";
+                WHERE U.emailStudent = 'student2@example.com'"; 
 
 $result = mysqli_query($conn, $query);
 
