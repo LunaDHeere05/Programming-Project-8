@@ -71,17 +71,37 @@
         <h1>Annuleren</h1> 
     </div>
     <p class="bevestig">Bevestig dat je deze items wilt <b>annuleren</b>.</p>
-    <div class="item_info_container">
+    <?php
+    include 'database.php';
+    $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
+                EI.exemplaar_item_id,
+                I.naam, I.beschrijving
+                FROM UITGELEEND_ITEM UI
+                JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
+                JOIN ITEM I ON EI.item_id = I.item_id
+                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND U.isOpgehaald = 0
+                WHERE U.emailStudent = 'student2@example.com'"; 
+    $result = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+
+        echo'<div class="item_info_container">
         <div class="item_info">
             <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h2>Canon-M50</h2>
-            <p class="data">van 29/12/2024 <br> tot 14/01/2025</p>
+            <h2>'.$row['naam'].'</h2>
+            <p class="data">van '.$row['uitleen_datum'].'<br> tot '.$row['inlever_datum'].'</p>
             <h2>Aantal:</h2>
             <img class="verwijder"  src="images/svg/xmark-solid.svg" alt="klik weg">
         </div>
-    </div>
+    </div> ';
+    }
+    }
+?>
     <div class="bevestig_btn">
-        <button id="bevestig">Bevestig</button>
+        <a href="functies\reservatie_annuleren.php">
+            <button id="bevestig">Bevestig</button>
+        </a>
     </div>
     <?php include 'footer.php'?>
 
