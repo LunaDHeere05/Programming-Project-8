@@ -1,15 +1,17 @@
 <?php
+
 include 'database.php';
 
-// Query to fetch recent items from the database
-$query = "SELECT ITEM.item_id, ITEM.naam AS item_naam, ITEM.merk AS item_merk
-FROM RECENT_BEKEKEN
-JOIN ITEM ON RECENT_BEKEKEN.recent_id = ITEM.item_id
-ORDER BY RECENT_BEKEKEN.recent_id DESC
+
+$query = "SELECT ITEM.item_id,naam,merk
+FROM ITEM
+JOIN RECENT_ITEMS ON RECENT_ITEMS.item_id=ITEM.item_id
+JOIN RECENT_BEKEKEN ON RECENT_ITEMS.recent_id=RECENT_BEKEKEN.recent_id
+WHERE RECENT_BEKEKEN.{$email}='$gebruikersnaam' 
 LIMIT 4";
 $result = mysqli_query($conn, $query);
 
-// Check if query was successful
+
 if ($result) {
     echo '<div class="recent_container">';
     echo '<h2>Recent bekeken</h2>';
@@ -21,7 +23,7 @@ if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<li><a href="ApparaatPagina.php?apparaat_id=' . $row['item_id'] . '">';
         echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
-        echo '<h3>' . $row['item_merk'] . ' - ' . $row['item_naam'] . '</h3>'; // Display the item name
+        echo '<h3>' . $row['merk'] . ' - ' . $row['naam'] . '</h3>'; // Display the item name
         echo '</a></li>';
     }
     
@@ -34,6 +36,5 @@ if ($result) {
     echo "Error: " . mysqli_error($conn);
 }
 
-// Close the connection
 mysqli_close($conn);
 ?>
