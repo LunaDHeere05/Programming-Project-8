@@ -149,7 +149,7 @@ padding-bottom: 4em;
   border: 0.5em solid transparent;
   border-bottom-color: #1bbcb6;
   background-color: transparent;
-  width: 50%;
+  width: 70%;
   height: 2.5em;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -182,7 +182,7 @@ color: #000000;
 
 
 .info-box.active {
-  height: 6em;
+  height: 10em;
 }
 
 .info-box.active p{
@@ -368,6 +368,7 @@ opacity: 1;
   <div class="info-submit"><input type="submit" value="Verstuur"></div>
 </form>
 <?php include("footer.php"); ?>
+
 <script>
 let boxes = document.querySelectorAll(".info-box");
 let removeClassess = () => {
