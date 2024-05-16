@@ -1,6 +1,15 @@
 <?php
 include 'database.php';
 
+// Check if a category is selected
+if(isset($_GET['category'])) {
+    $selected_category = htmlspecialchars($_GET['category']);
+    echo '<div>';
+    echo '<h2>Verfijn je resultaat</h2>';
+    echo '<p>Je hebt de categorie <strong>' . $selected_category . '</strong> geselecteerd.</p>';
+    echo '</div>';
+}
+
 // Query to fetch recent items from the database
 $query = "SELECT DISTINCT categorie FROM ITEM";
 $result = mysqli_query($conn, $query);
@@ -13,7 +22,7 @@ if ($result) {
     
     // Loop through each row of the result
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<li><a href="categorie.php?category=' . urlencode($row['categorie']) . '">' . htmlspecialchars($row['categorie']) . '</a></li>'; // Display the category
+        echo '<li><a href="inventaris.php?category=' . urlencode($row['categorie']) . '">' . htmlspecialchars($row['categorie']) . '</a></li>'; // Redirect to inventaris.php with the category parameter
     }
     echo '</ul>';
     echo '</div>';
