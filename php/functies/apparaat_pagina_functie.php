@@ -3,7 +3,7 @@ include 'database.php';
 
 if(isset($_GET['apparaat_id'])){
     $item_id = $_GET['apparaat_id'];
-    $item_query = "SELECT item_id naam, merk, beschrijving FROM ITEM WHERE item_id = $item_id";
+    $item_query = "SELECT item_id, naam, merk, beschrijving FROM ITEM WHERE item_id = $item_id";
     $item_result = mysqli_query($conn, $item_query);
 
     if($item_result && mysqli_num_rows($item_result) > 0){
