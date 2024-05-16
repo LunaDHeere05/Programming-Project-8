@@ -336,23 +336,24 @@
         </ul>
         <h2 class="reservatie">Plaats je reservatie</h2>
         <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
-    <div class="datum">
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date" required>
-    </div>
-    <div class="datum">
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date" required>
-    </div>
-    <div class="reserverenEnTerug">
-        <h1>Reserveren</h1>
-        <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
-        <div class="aantal">
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" required>
-        </div>
-        <button type="submit">Reserveer nu</button>
-    </div>
+          <ul class="reservatie_plaatsen">
+            <li class="datum">
+              <label for="start_date">Start Date:</label>
+              <input type="date" id="start_date" name="start_date" required>
+            </li>
+            <li class= "datum">
+              <label for="end_date">End Date:</label>
+              <input type="date" id="end_date" name="end_date" required>
+            </li>
+            <li class="reserverenEnTerug">
+              <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
+              <div class="aantal">
+                  <label for="quantity">Quantity:</label>
+                  <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+              </div>
+              <button type="submit">Reserveer nu</button>
+            </li>
+          </ul>
 </form>
 
     </div>
