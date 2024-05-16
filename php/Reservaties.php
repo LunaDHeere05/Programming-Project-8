@@ -54,11 +54,11 @@
     align-items: center;
     padding: 1em;
 }
-.reservatie-top label{
+.reservatie-top form{
   margin-left: auto;
   margin-right: 1em;
 }
-.reservatie-top label input[type=submit]{
+.reservatie-top form input[type=submit]{
   background-color: transparent;
   font-weight: bold;
   border: none;
@@ -220,14 +220,14 @@
         <div class="reservatie-top">
           <h2>Nog op te halen</h2>
           <div class="alles_annuleren">
-            <a href="#">
+            <a href="ReservatieAnnuleren.php">
               <p>Alles annuleren</p>
               <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
             </a>
           </div>
-          <label for="">
+          <form>
             <input type="submit" value="Selectie annuleren" style="color: #E30613;" id="selectie_annuleren">
-          </label>
+          </form>
         </div>
         <div class="ophalen_lijst_container">
         <?php include 'functies\reservatie_ophalen.php'?>
@@ -241,9 +241,9 @@
               <img src="images/svg/calendar-regular.svg" alt="xmark" />
             </a>
           </div>
-          <label for="">
+          <form>
             <input type="submit" value="Selectie verlengen" style="color: #1bbcb6;" id="selectie_verlengen">
-          </label>
+          </form>
         </div>
         <?php include 'functies\reservatie_opgehaald.php'?>
         
