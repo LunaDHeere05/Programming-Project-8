@@ -127,7 +127,7 @@ nav {
 </style>
 <body>
 <nav>
-        <a href="Home.html"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
+        <a href="Dashboard.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
         <div class="rechter_navigatie">
             <a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>
         </div>
