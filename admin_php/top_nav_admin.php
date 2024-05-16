@@ -137,7 +137,7 @@ nav {
     <div class="zoekbalk_container">
     </div>
 <div class="keer_terug">
-        <img src="images/svg/chevron-left-solid.svg" alt="">
+<a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Dashboard</h1>
 </div>
 <div class="inhoud_body">
