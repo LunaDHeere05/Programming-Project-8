@@ -1,3 +1,6 @@
+<?php 
+include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +141,8 @@
     <div class="inhoud_body">
         <?php include 'functies/categorie.php'; ?>
         
-        <?php include 'functies/recent_bekeken.php'; ?>
+        <?php include 'functies/recent_bekeken.php'; 
+        ?>
 
         <!-- Hoe leen je iets uit? -->
         <div class="uitleen_uitleg">
