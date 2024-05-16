@@ -368,3 +368,18 @@ opacity: 1;
   <div class="info-submit"><input type="submit" value="Verstuur"></div>
 </form>
 <?php include("footer.php"); ?>
+<script>
+let boxes = document.querySelectorAll(".info-box");
+let removeClassess = () => {
+    boxes.forEach((box) => {
+        box.classList.remove("active");
+    });
+};
+
+boxes.forEach ((box)=>{
+    box.addEventListener("click",()=>{
+removeClassess();
+box.classList.toggle("active");
+    });
+});
+</script>
