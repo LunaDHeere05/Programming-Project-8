@@ -7,7 +7,7 @@ $query = "SELECT ITEM.item_id,naam,merk
 FROM ITEM
 JOIN RECENT_ITEMS ON RECENT_ITEMS.item_id=ITEM.item_id
 JOIN RECENT_BEKEKEN ON RECENT_ITEMS.recent_id=RECENT_BEKEKEN.recent_id
-WHERE RECENT_BEKEKEN.{$email}='$gebruikersnaam' 
+WHERE RECENT_BEKEKEN.{$userType}='$email' 
 LIMIT 4";
 $result = mysqli_query($conn, $query);
 

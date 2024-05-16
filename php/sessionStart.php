@@ -3,19 +3,19 @@ session_start();
 
 if (isset($_SESSION['gebruikersnaam'])) //controleren of er een foutmelding is;
   {
-    $gebruikersnaam=$_SESSION['gebruikersnaam'];
+    $email=$_SESSION['gebruikersnaam'];
   }
 
   if (isset($_SESSION['user'])) //controleren of er een foutmelding is;
   {
     $user=strtoupper($_SESSION['user']); 
     if($user=="DOCENT"){
-        $email="emailDOCENT";
+        $userType="emailDOCENT";
     }else if($user=="STUDENT"){
-        $email="emailSTUDENT";
+        $userType="emailSTUDENT";
     }
 
-    $_SESSION['email']=$email;
+    $_SESSION['userType']=$userType;
 
     
     //omzetten naar hoofdletter (want tabellen in databank zijn uppercase)
