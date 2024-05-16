@@ -36,9 +36,8 @@ echo "<ul class='apparatenlijst'>";
 
 
 //de query om de beschikbaarheid van het item op te halen: 
-$beschikbaarheid = "SELECT UITGELEEND_ITEM.inlever_datum, UITLENING.uitleen_datum
-                    FROM UITGELEEND_ITEM
-                    LEFT JOIN UITLENING ON UITGELEEND_ITEM.uitleen_id = UITLENING.uitleen_id"; //dit gaat de twee kolommen samenvoegen allee zo naast mekaar zetten
+$beschikbaarheid = "SELECT UITLENING.inlever_datum, UITLENING.uitleen_datum
+                    FROM UITLENING";
 $availability_result = mysqli_query($conn, $beschikbaarheid);
 
 //dit is om de item id mee te geven aan de url als er op geklikt wordt (zo krijgen we de juiste informatie op de apparaatpagina)
