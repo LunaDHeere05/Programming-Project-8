@@ -15,6 +15,7 @@
   padding-bottom: 2em;
 }
 
+
 .apparaat_info_container {
   list-style: none;
   display: flex;
@@ -305,8 +306,8 @@
             <li>
                 <ul class="download_handleiding">
                     <?php
-                    echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">';
-                    echo '<li><a href="#" download> Download de gebruikershandleiding</a></li>';
+                    echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">';;
+                   include 'functies\apparaat_pagina_handleiding_functie.php';
                     ?>
                 </ul>
             </li>

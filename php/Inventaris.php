@@ -50,6 +50,7 @@
       let favorite_img = this.querySelector('img');
       if (favorite_img.src.endsWith('heart-regular.svg')) {
         favorite_img.src = 'images/svg/heart-solid.svg';
+        <?php include 'toevoegenFavorieten.php'; ?> 
       } else {
         favorite_img.src = 'images/svg/heart-regular.svg';
       }
@@ -136,17 +137,27 @@
   border: none;
 }
 
+.beschikbaar{
+  color:#1BBCB6;
+}
+
 .beschikbaarheid_apparaat {
   display: flex;
-  width: 20%;
-  color: #1bbcb6;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  color: #E30613;
   font-weight: bold;
 }
+
+.beschikbaarheid_apparaat p{
+  font-weight:lighter;
+
+}
 .beschikbaarheid_apparaat img {
-  width: 4em;
-  margin: 0em 2em;
-  filter: invert(62%) sepia(49%) saturate(680%) hue-rotate(129deg)
-    brightness(90%) contrast(89%);
+  width: 3em;
+  margin: 0.5em 2em;
+
 }</style>
 
 <?php include("footer.php"); ?>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blacklist</title>
+    <title>Defect toevoegen</title>
     <link rel="stylesheet" href="/css/admin/stylesheet_admin.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -23,7 +23,7 @@
         </div>
     <div class="keer_terug">
             <img src="/images/svg/chevron-left-solid.svg" alt="">
-            <h1>Blacklist</h1>
+            <h1>Defect toevoegen</h1>
     </div>
     <div class="inhoud_body">
         <div class="linker_nav">
@@ -39,31 +39,20 @@
                 <li><h3><a href="/html/Admin/Defect.html">Defect</a></h3></li>
             </ul>
         </div>
-        <div class="rechter_grid">
-            <div class="zoeken_container">
-                <div class="zoeken">
-                    <input type="text" placeholder="Voer een e-mailadres in...">
-                    <button type="submit"><img src="/images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
-                </div>
-            </div>
-            <div class="blacklist_tabel">
-                <table>
-                    <tr>
-                        <th>E-mail</th>
-                        <th>Rede</th>
-                        <th>Dagen op blacklist</th>
-                        <th>Meer info</th>
-                        <th>Verwijder</th>
-                    </tr>
-                    <tr>
-                        <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
-                        <td>2x te laat</td>
-                        <td>5</td>
-                        <td><a href="#"><img class="meer_info" src="/images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
-                        <td><a href="#"><img class="verwijder" src="/images/svg/circle-xmark-solid.svg" alt="verwijder van blacklist"></a></td>
-                    </tr>
-                </table>
-            </div>
-    
-</body>
-</html>
+    <div class="Info_rechter_grid"> 
+        <div class="defect_toe">
+            <h2>Apparaatnaam:</h2>
+            <input type="text">
+            <img src="../../images/svg/eye-solid.svg" alt="eye">
+        </div>
+        <div class="defect_toe">
+            <h2>Apparaat ID:</h2>
+            <input type="text">
+        </div>
+        <div class="defect_toe_textbox"><h2>Beschrijf het defect:</h2>
+        <div class="defect_toe_text"><input type="text"></div>
+    </div>
+    <div class="defect_toe_bevestig">
+            <button type="submit">Bevestig </button>
+        </div>
+    </div>

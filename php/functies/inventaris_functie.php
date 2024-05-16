@@ -1,57 +1,66 @@
 <?php
 include 'database.php';
 
-//de query om de beschikbaarheid van het item op te halen: 
-$beschikbaarheid = "SELECT UITGELEEND_ITEM.inlever_datum, UITLENING.uitleen_datum
-                    FROM UITGELEEND_ITEM
-                    LEFT JOIN UITLENING ON UITGELEEND_ITEM.uitleen_id = UITLENING.uitleen_id"; //dit gaat de twee kolommen samenvoegen allee zo naast mekaar zetten
-$availability_result = mysqli_query($conn, $beschikbaarheid);
-
-//dit is om de item id mee te geven aan de url als er op geklikt wordt (zo krijgen we de juiste informatie op de apparaatpagina)
-$item_id_query = "SELECT item_id FROM ITEM";
-$item_id_result = mysqli_query($conn, $item_id_query);
 // de volgende query is gewoon om de info over het apparaat te halen uit de databank:
-$item_info = "SELECT naam, merk, beschrijving FROM ITEM";
+$item_info = "SELECT item_id, naam, merk, beschrijving FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
-while ($row = mysqli_fetch_assoc($availability_result)) {
-        if ($row['inlever_datum'] != null  ) { //deze conditie moet aangepast worden wnt nu checkt da gewoon of da inleverdatum null is
-            $availability = "Niet beschikbaar tot " . $row['inlever_datum'];
-            $availability_color = '#E30613';
-            $availability_img = 'images/svg/circle-xmark-solid.svg';
-            $availability_filter = 'invert(15%) sepia(88%) saturate(3706%) hue-rotate(347deg) brightness(94%) contrast(115%);';
-        } else {
-            $availability = "Beschikbaar";
-            $availability_color = '#1BBCB6';
-            $availability_img = 'images/svg/circle-check-solid.svg';
-            $availability_filter = 'invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
-            brightness(103%) contrast(79%)';
-        }
-    if ($row_item = mysqli_fetch_assoc($item_id_result)) {
-        echo "<li class='apparaat'>";
-        echo "<a href='ApparaatPagina.php?apparaat_id=".$row_item['item_id']."'>";
+while ($row_item = mysqli_fetch_assoc($item_info_result)) { //loopen over elk item
 
-        echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="" class="apparaat_foto">';
-        echo "<div class='korte_beschrijving'>";
-        
-        if ($item_info_result && $item_info_row = mysqli_fetch_assoc($item_info_result)) {
-            echo "<h3>" . $item_info_row['naam'] . "</h3>";
-            echo "<p>" . $item_info_row['merk'] . "</p>";
-            echo "<p>" . $item_info_row['beschrijving'] . "</p>";
+    echo "<li class='apparaat'>";
+    echo "<a href='ApparaatPagina.php?apparaat_id=" . $row_item['item_id'] . "'>";
+    echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="" class="apparaat_foto">';
+    echo "<div class='korte_beschrijving'>";
+    echo "<h3>" . $row_item['naam'] . "</h3>";
+    echo "<p>" . $row_item['merk'] . "</p>";
+    echo "<p>" . $row_item['beschrijving'] . "</p>";
+    echo "</div>";
+
+    echo "<div class='beschikbaarheid_apparaat'>";
+    //beschikbaarheid halen uit databank
+    $status = "SELECT EXEMPLAAR_ITEM.zichtbaarheid,EXEMPLAAR_ITEM.isUitgeleend,UITLENING.inlever_datum FROM `EXEMPLAAR_ITEM` LEFT JOIN UITGELEEND_ITEM on UITGELEEND_ITEM.exemplaar_item_id=EXEMPLAAR_ITEM.exemplaar_item_id LEFT JOIN UITLENING on UITLENING.uitleen_id=UITGELEEND_ITEM.uitleen_id WHERE ITEM_ID={$row_item['item_id']}";
+    $status_result = mysqli_query($conn, $status);
+
+    while ($status_row = mysqli_fetch_assoc($status_result)) { //item bestaat uit verschillende exemplaren, we gaan hier lopen over de status van elk van die exemplaren 
+        $is_available = false;
+        $inleveren;
+        $beschikbaar = 100000;
+        $vandaag = new dateTime(date("Y-m-d"));
+        if ($status_row['isUitgeleend'] == 0) { //indien er minstens één exemplaar beschikbaar is, komt er "Beschikbaar" te staan
+            echo "<h3 class='beschikbaar'>Beschikbaar</h3>";
+            $is_available = true;
+            $image='images/svg/circle-check-solid.svg';
+            $availability_filter = "invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);";
+            break;
+        } else { //indien alles uitgeleend is, gaan we kijken naar het exemplaar dat het vroegst weer beschikbaar is
+            $inlever_datum = new dateTime($status_row['inlever_datum']);
+            $interval = $vandaag->diff($inlever_datum);
+            $onbeschikbaarTot = $interval->days;
+
+            if ($beschikbaar > $onbeschikbaarTot) {
+                $inleveren = $inlever_datum->format("d-m-Y");
+                $beschikbaar = $onbeschikbaarTot;
+            }
         }
-        
-        echo "</div>";
-        echo "<div class='beschikbaarheid_apparaat'>";
-        echo "<h3 style= 'color: $availability_color;'>$availability</h3>";
-        echo "<img style= 'filter: $availability_filter;' src='$availability_img' alt='Availability Icon'>";
-        echo "</div>";
-        echo "<div class='toevoegen'>";
-        echo "<button class='favoriet'><img src='images/svg/heart-regular.svg' alt='Favorietenlijst'></button>";
-        echo "<button class='winkelmand'><img src='images/svg/shopping-cart-regular.svg' alt='Winkelmandje'></button>";
-        echo "</div>";
-        echo "</a>";
-        echo "</li>";
     }
+    
+    if (!$is_available) {
+        $image='images/svg/circle-xmark-solid.svg';
+        $availability_filter = "invert(15%) sepia(88%) saturate(3706%) hue-rotate(347deg) brightness(94%) contrast(115%);";
+
+        echo "<h3> Onbeschikbaar tot " . $inleveren . "</h3>";
+        echo "<p> Binnen " . $onbeschikbaarTot . " dagen</p>";
+    }
+
+    echo "<img style='filter: $availability_filter;' src=$image alt='Availability Icon'>";
+    echo "</div>";
+
+    echo "<div class='toevoegen'>";
+    echo "<button class='favoriet'><img src='images/svg/heart-regular.svg' alt='Favorietenlijst'></button>";
+    echo "<button class='winkelmand'><img src='images/svg/shopping-cart-regular.svg' alt='Winkelmandje'></button>";
+    echo "</div>";
+    echo "</a>";
+    echo "</li>";
 }
+
 mysqli_close($conn);
-?>

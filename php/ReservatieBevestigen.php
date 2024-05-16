@@ -83,7 +83,7 @@
     </div>
 </div>
 <div class="bevestig_btn">
-    <a href="/html/FinalBevestigingReservatie.html"><button>Bevestig</button></a>
+    <a href="FinalBevestigingReservatie.php"><button>Bevestig</button></a>
 </div>
 <?php include 'footer.php'?>
 </body>

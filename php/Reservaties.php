@@ -28,7 +28,7 @@
 .alles_annuleren, .alles_verlengen{
   display: flex;
   background-color: #E30613;
-  width: 25%;
+  width: 15%;
   height: 2em;
   border-radius: 1em;
   align-items: center;
@@ -43,17 +43,27 @@
   background-color: #1bbcb6;
 
 }
-.reservatie-top{
-  width: 50%;
-}
 .reservatie-top h2{
   color: #1bbcb6;
   padding: 1em;
   }
 
 .reservatie-top{
+    width: 100%;
     display: flex;
-    align-items: baseline;
+    align-items: center;
+    padding: 1em;
+}
+.reservatie-top label{
+  margin-left: auto;
+  margin-right: 1em;
+}
+.reservatie-top label input[type=submit]{
+  background-color: transparent;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+
 }
 .reservatie-top a img {
     margin: auto;
@@ -215,72 +225,14 @@
               <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
             </a>
           </div>
+          <label for="">
+            <input type="submit" value="Selectie annuleren" style="color: #E30613;" id="selectie_annuleren">
+          </label>
+        </div>
+        <div class="ophalen_lijst_container">
+        <?php include 'functies\reservatie_ophalen.php'?>
         </div>
 
-        <div class="ophalen_lijst_container">
-          <div class="ophalen_reservatie_container">
-            <label for="#">
-              <input type="checkbox">
-            </label>
-            <div class="reservatie_item">
-              <a href="#" class="reservatie_item_a">
-                <ul>
-                  <li><img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt=""></li>
-                  <li class="reservatie_info">
-                    <h3>Canon-M50</h3>
-                    <p>van 22/04/2024</p>
-                    <p>tot 27/04/2024</p>
-                    <h3>Aantal: <br><span>1</span></h3>
-                  </li>
-                  <li class="status">
-                    <h3>Status:</h3>
-                    <p><b>Binnen 3 dagen ophalen</b></p>
-                    <h3>Reservatie-ID: <br> <span>04125</span></h2>
-                  </li>
-                  <li>
-                    <div class="annuleer_btn">
-                      <button class= "reservatieAnnulerenBevestiging">
-                        <p>Annuleren</p>
-                        <img src="images/svg/circle-xmark-solid.svg" alt="xmark"/>
-                      </button>
-                    </div>
-                  </li>
-                </ul>
-              </a>
-            </div>
-          </div>
-          <div class="ophalen_reservatie_container">
-            <label for="#">
-              <input type="checkbox">
-            </label>
-            <div class="reservatie_item">
-              <a href="#" class="reservatie_item_a">
-                <ul>
-                  <li><img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt=""></li>
-                  <li class="reservatie_info">
-                    <h3>Canon-M50</h3>
-                    <p>van 22/04/2024</p>
-                    <p>tot 27/04/2024</p>
-                    <h3>Aantal: <br><span>1</span></h3>
-                  </li>
-                  <li class="status">
-                    <h3>Status:</h3>
-                    <p><b>Binnen 3 dagen ophalen</b></p>
-                    <h3>Reservatie-ID: <br> <span>04125</span></h2>
-                  </li>
-                  <li>
-                    <div class="annuleer_btn">
-                    <button class= "reservatieAnnulerenBevestiging">
-                        <p>Annuleren</p>
-                        <img src="images/svg/circle-xmark-solid.svg" alt="xmark"/>
-                      </button>
-                    </div>
-                  </li>
-                </ul>
-              </a>
-            </div>
-          </div>
-        </div>
         <div class="reservatie-top">
           <h2>Opgehaald</h2>
           <div class="alles_verlengen">
@@ -289,46 +241,12 @@
               <img src="images/svg/calendar-regular.svg" alt="xmark" />
             </a>
           </div>
+          <label for="">
+            <input type="submit" value="Selectie verlengen" style="color: #1bbcb6;" id="selectie_verlengen">
+          </label>
         </div>
-        <div class="opgehaald_lijst_container">
-          <div class="opgehaald_reservatie_container">
-            <label for="#">
-              <input type="checkbox">
-            </label>
-            <div class="reservatie_item">
-              <a href="#" class="reservatie_item_a">
-                <ul>
-                  <li><img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt=""></li>
-                  <li class="reservatie_info">
-                    <h3>Canon-M50</h3>
-                    <p>van 22/04/2024</p>
-                    <p>tot 27/04/2024</p>
-                    <h3>Aantal: <br><span>1</span></h3>
-                  </li>
-                  <li class="status">
-                    <h3>Status:</h3>
-                    <p><b>Binnen 3 dagen ophalen</b></p>
-                    <h3>Reservatie-ID: <br> <span>04125</span></h2>
-                  </li>
-                  <li>
-                    <div class="defect_btn">
-                      <button class="defect_button">
-                        <p>Defect melden</p>
-                        <img src="images/svg/screwdriver-wrench-solid.svg" alt="defect"/>
-                      </button>
-                    </div>
-                    <div class="verleng_btn">
-                      <button>
-                        <p>Verleng</p>
-                      <img src="images/svg/calendar-regular.svg" alt="verleng">
-                      </button>
-                    </div>
-                  </li>
-                </ul>
-              </a>
-            </div>
-          </div>
-        </div>
+        <?php include 'functies\reservatie_opgehaald.php'?>
+        
         <script>
   var annuleer_buttons = document.querySelectorAll('.reservatieAnnulerenBevestiging');
   annuleer_buttons.forEach(function(button) {
@@ -343,6 +261,7 @@
     });
   });
 
+  var annuleren = document.getElementById('selectie_annuleren');
 </script>
 <?php include 'footer.php'?>
   </body>
