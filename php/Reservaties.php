@@ -226,7 +226,7 @@
             </a>
           </div>
           <label for="">
-            <input type="submit" value="Selectie annuleren" style="color: #E30613;">
+            <input type="submit" value="Selectie annuleren" style="color: #E30613;" id="selectie_annuleren">
           </label>
         </div>
         <div class="ophalen_lijst_container">
@@ -242,7 +242,7 @@
             </a>
           </div>
           <label for="">
-            <input type="submit" value="Selectie verlengen" style="color: #1bbcb6;">
+            <input type="submit" value="Selectie verlengen" style="color: #1bbcb6;" id="selectie_verlengen">
           </label>
         </div>
         <?php include 'functies\reservatie_opgehaald.php'?>
@@ -261,6 +261,7 @@
     });
   });
 
+  var annuleren = document.getElementById('selectie_annuleren');
 </script>
 <?php include 'footer.php'?>
   </body>
