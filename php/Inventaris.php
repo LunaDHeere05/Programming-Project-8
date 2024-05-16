@@ -14,20 +14,20 @@
         <ul class="filters">
             <li>
                 <select name="Categorie" id="categorie">
-                  <option value="Categorie" disabled selected>Categorie</option>
-                  <?php include 'functies\filter_categorie_inventaris.php' ?>
+                    <option value="Categorie" disabled selected>Categorie</option>
+                    <?php include 'functies\filter_categorie_inventaris.php'; ?> <!-- Include the options dynamically from your database if needed -->
                 </select>
             </li>
             <li>
                 <select name="Merk" id="merk">
                     <option value="merk" disabled selected>Merk</option>
-                    <?php include 'functies\filter_merk_inventaris.php' ?>
+                    <?php include 'functies\filter_merk_inventaris.php'; ?>
                 </select>
             </li>
             <li>
                 <select name="Beschrijving" id="beschrijving">
                     <option value="beschrijving" disabled selected>Beschrijving</option>
-                    <?php include 'functies\filter_beschrijving_inventaris.php' ?>
+                    <?php include 'functies\filter_beschrijving_inventaris.php'; ?>
                 </select>
             </li>
             <li>
@@ -42,6 +42,22 @@
         <ul class="apparatenlijst">
         <?php include 'functies\inventaris_functie.php'; ?>
         </ul>
+
+        <script>
+            // Get the category parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedCategory = urlParams.get('category');
+
+            // Set the selected category in the dropdown box
+            if (selectedCategory) {
+                const categoryDropdown = document.getElementById('categorie');
+                const option = document.createElement('option');
+                option.text = selectedCategory;
+                option.value = selectedCategory;
+                option.selected = true;
+                categoryDropdown.appendChild(option);
+            }
+        </script>
 
         <script>
   document.querySelectorAll('.favoriet').forEach(function(button) {
@@ -68,8 +84,6 @@
     });
   });
 </script>
-
-
 
 </body>
 </html>
