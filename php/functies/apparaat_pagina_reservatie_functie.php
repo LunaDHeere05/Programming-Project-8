@@ -1,4 +1,5 @@
 <?php
+include '../sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
 
 include '../database.php';
 
@@ -18,7 +19,7 @@ if (empty($exemplaar_item_ids)) {
 }
 
 // Insert a new row into UITLENING
-$sql = "INSERT INTO UITLENING (uitleen_datum, inlever_datum, isOpgehaald, isVerlengd) VALUES ('$uitleen_datum', '$inlever_datum', '$isOpgehaald', '$isVerlengd')";
+$sql = "INSERT INTO UITLENING (uitleen_datum, inlever_datum,{$userType}) VALUES ('$uitleen_datum', '$inlever_datum','$email')";
 if (mysqli_query($conn, $sql)) {
     // Get the ID of the newly inserted row
     $uitleen_id = mysqli_insert_id($conn);
