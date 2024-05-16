@@ -33,7 +33,6 @@
   width: 100%;
   width: 2em;
   height: auto;
-  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
   padding-top: 0.5em;
 }
 .apparaat_toevoegen{
@@ -70,6 +69,7 @@
                     <td><a href="#"><img src="images/svg/screwdriver-wrench-solid.svg" alt=""></a></td>
                     <td><a href="#"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>
                 </tr>
+                <?php include 'functies\Inventaris_apparaten.php'?>
             </table>
         </div>
         <div class="apparaat_toevoegen">
