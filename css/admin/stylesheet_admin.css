@@ -290,6 +290,60 @@ nav {
     padding-top: 0.5em;
   }
 /* uitleningen */
+/* uitlening toevoegen */
+.uitlening_specificaties{
+  margin: 2em;
+  align-content: space-between;
+}
+
+.uitlening_specificaties form input{
+background-color: #D9D9D9;
+border-radius: 2em;
+border: 0;
+width: 17em;
+height: 1em;
+padding: 1em;
+}
+.uitlening_specificaties h2{
+  margin: 0em 1em 0em 0em;
+}
+
+.uitlening_toe{
+  display: flex;
+  margin: 2em 2em 2em 1em;
+}
+.datum_kiezen{
+  display: flex;
+  margin: 2em 2em 2em 1em;
+}
+
+.apparaat_uitlening_toevoegen{
+  display: flex;
+  margin: 2em 2em 2em 1em;
+}
+.apparaat_uitlening_toevoegen h3{
+  margin: 0em 0em 0em 1em;
+}
+.apparaat_uitlening_toevoegen img {
+  width: 1.5em;
+  height: auto;
+  cursor: pointer;
+}
+
+.bevestig button{
+  background-color: #1BBCB6;
+  border-radius: 2em;
+  width: 15em;
+  height: 3em;
+  border: 0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bevestig{
+  margin: 0em 0em 0em 7em;
+}
 /* verlengingen */
 .inlever_uitleen span{
   font-weight: normal;
@@ -644,7 +698,56 @@ padding-bottom: 4em;
   padding: 1em;
   color: white;
 }
+/* form  */
+.info-form-h2 {
+  margin: 3em 0em 1em 2em;
+  color: #1bbcb6;
+}
 
+.info-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-text{
+  width: 100%;
+  display: flex;
+}
+.info-text input[type=text]{
+  width: 90%;
+  height: 20em;
+  border-radius: 2em;
+  background-color: rgb(193, 193, 193);
+  border: none;
+  color: #fff;
+  margin: auto;
+  padding: 2em;
+}
+.info-text input[type=text]:focus{
+  outline: none;
+
+}
+.info-submit{
+  width: 100%;
+  height: 5em;
+  display: flex;
+  justify-content: center;
+
+}
+.info-submit input[type=submit]{
+  background-color: #1bbcb6;
+  border-radius: 2em;
+  width: 15%;
+  height: 70%;;
+  margin: auto;
+  border: 0;
+  color: white;
+  font-weight: bold;
+}
+.info-submit input[type=submit]::-ms-value{
+  font-size: 15px;
+}
 /* openings uren  */
 .info-opening-hours h1{
   padding: 0.5em;
