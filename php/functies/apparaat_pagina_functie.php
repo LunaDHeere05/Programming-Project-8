@@ -28,7 +28,6 @@ if(isset($_GET['apparaat_id'])){
         $beschikbaar = 100000;
         $vandaag = new dateTime(date("Y-m-d"));
         if ($status_row['isUitgeleend'] == 0) { //indien er minstens één exemplaar beschikbaar is, komt er "Beschikbaar" te staan
-            echo "<h3 class='beschikbaar'>Beschikbaar</h3>";
             $is_available = true;
             break;
         } else { //indien alles uitgeleend is, gaan we kijken naar het exemplaar dat het vroegst weer beschikbaar is
@@ -42,11 +41,7 @@ if(isset($_GET['apparaat_id'])){
             }
         }
     }
-    
-    if (!$is_available) {
-        echo "<h3> Onbeschikbaar tot " . $inleveren . "</h3>";
-        echo "<p> Binnen " . $onbeschikbaarTot . " dagen</p>";
-    }
+
 
 }else{
     echo "Geen item-id meegegeven in de URL.";

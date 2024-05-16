@@ -88,6 +88,7 @@
   display: flex;
 }
 .aantal{
+  display: flex;
   background-color: white;
   border-radius: 2em;
   margin: auto;
@@ -236,13 +237,13 @@
     padding-top: 1em;
 }
 
-.reserverenEnTerug{
+.hoeveelheid{
     display: flex;
 }
-.reserverenEnTerug h1{
+.hoeveelheid h1{
     margin: 0.8em 0.5em 0em 0.5em;
 }
-.reserverenEnTerug a img{
+.hoeveelheid a img{
     width: 1.5em;
     height: auto;
     margin: 1.5em;
@@ -345,13 +346,21 @@
               <label for="end_date">End Date:</label>
               <input type="date" id="end_date" name="end_date" required>
             </li>
-            <li class="reserverenEnTerug">
+            <li class="hoeveelheid">
               <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
               <div class="aantal">
-                  <label for="quantity">Quantity:</label>
+                  <label for="quantity">Aantal:</label>
                   <input type="number" id="quantity" name="quantity" value="1" min="1" required>
               </div>
+            </li>
+            <li class="reserveer_nu_btn">
               <button type="submit">Reserveer nu</button>
+            </li>
+            <li class="winkelmand_toevoegen_btn">
+                <button>
+                <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+                <p>Voeg toe</p>
+                </button>
             </li>
           </ul>
 </form>

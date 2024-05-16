@@ -49,7 +49,6 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { //loopen over elk it
         $availability_filter = "invert(15%) sepia(88%) saturate(3706%) hue-rotate(347deg) brightness(94%) contrast(115%);";
 
         echo "<h3> Onbeschikbaar tot " . $inleveren . "</h3>";
-        echo "<p> Binnen " . $onbeschikbaarTot . " dagen</p>";
     }
 
     echo "<img style='filter: $availability_filter;' src=$image alt='Availability Icon'>";
