@@ -1,14 +1,14 @@
 <?php
 include 'database.php';
 
-$query = "SELECT UI.uitleen_id, uitleen_datum, UI.inlever_datum, UI.isOpgehaald, UI.isVerlengd,
+$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isOpgehaald, U.isVerlengd,
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving
                 FROM UITGELEEND_ITEM UI
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING ON UI.uitleen_id = UITLENING.uitleen_id
-                WHERE UI.isOpgehaald = 0";
+                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id
+                WHERE UI.isOpgehaald = 0 AND U.emailStudent = 'student2@example.com'";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
