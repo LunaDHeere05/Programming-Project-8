@@ -110,8 +110,10 @@
   border-radius: 2em;
   background-color: rgb(193, 193, 193);
   margin: 1em 0em 0em 2em;
+  display: flex;
 }
 .apparaat a {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   text-decoration: none;
