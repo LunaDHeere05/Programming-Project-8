@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +7,9 @@
 
 </head>
 <body>
-<?php include 'top_nav.php'; ?> 
+<?php include 'top_nav.php'; ?>
  <!--zoekresultaat container  -->
-<div class="zoekresultaat_container"> 
+<div class="zoekresultaat_container">
         <h3>Verfijn je resultaat: </h3>
         <ul class="filters">
             <li>
@@ -67,7 +66,7 @@
       let favorite_img = this.querySelector('img');
       if (favorite_img.src.endsWith('heart-regular.svg')) {
         favorite_img.src = 'images/svg/heart-solid.svg';
-        <?php include 'toevoegenFavorieten.php'; ?> 
+        <?php include 'toevoegenFavorieten.php'; ?>
       } else {
         favorite_img.src = 'images/svg/heart-regular.svg';
       }

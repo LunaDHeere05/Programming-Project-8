@@ -340,7 +340,7 @@ border:2px solid #b1b1b1cf;
               <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
               <div class="aantal">
                   <label for="quantity">Aantal:</label>
-                  <input type="number" id="quantity" name="quantity" placeholder="1" value="1" min="1" required>
+                  <input type="number" id="quantity" name="quantity" value="1" min="1" required>
               </div>
             </div>
               <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>

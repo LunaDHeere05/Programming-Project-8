@@ -16,9 +16,6 @@ if (isset($_SESSION['gebruikersnaam'])) //controleren of er een foutmelding is;
     }
 
     $_SESSION['userType']=$userType;
-
-    
-    //omzetten naar hoofdletter (want tabellen in databank zijn uppercase)
   }
 
 ?>

@@ -30,7 +30,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     width: 20%;
     background-color: #1bbcb6;
     padding: 2em;
-    border-radius: 4em;
+    border-radius: 1em;
     text-transform: uppercase;
     text-align: center;
     text-decoration: none;
