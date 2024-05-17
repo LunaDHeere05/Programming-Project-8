@@ -110,13 +110,16 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
   text-align: center;
   font-size: 14px;
 }
-.reserveer_nu_btn{
-  width: 18%;
-  background-color: white;
-  height: 10%;
+.reserveer_nu_btn button {
+padding:1em;
+font-size:100%;
+background-color: white;
+border:none;
   border-radius: 2em;
   margin: auto;
   align-items: center;
+  cursor: pointer;
+  font-weight: bold;
 }
 .reserveer_nu_btn a{
   color: black;
@@ -342,8 +345,8 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
           <ul class="reservatie_plaatsen">
             <li class="datum">
-              <label for="start_date">Start Date:</label>
-              <input type="date" id="start_date" name="start_date" required>
+              <label for="start_date">Begindatum:</label>
+              <input type="date" id="start_date" name="start_date" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>"  required>
             </li>
             <li class= "datum">
               <label for="end_date">End Date:</label>

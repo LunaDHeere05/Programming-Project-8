@@ -12,35 +12,37 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     /* Your existing styles */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
-    .categorie a h2{
-        margin: 1em;
-        text-decoration: none;
-        display: block;
-        color: black;
-    }
-    .categorie a{
-        text-decoration: none;
-    }
+
+    /*Categorie*/
+    .categorie{
+            margin: 1em 0em 1em 1em;
+        }
+
     .categorie_lijst {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        margin-top: 1em;
-        height: 8em;
-        align-items: center;
+    gap:0.8em;
+    display: flex;
+    margin:1em;
     }
+
     .categorie_lijst a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        letter-spacing: 1px;
-        background-color: #1bbcb6;
-        padding: 3em;
-        border-radius: 2em;
-        margin-right: 3em;
-        width: 5em;
-        text-align: center;
+    font-weight: bold;
+    letter-spacing: 3px;
+    width: 20%;
+    background-color: #1bbcb6;
+    padding: 2em;
+    border-radius: 4em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    color:white;
     }
+
+    .categorie_lijst a:hover {
+    background-color: white;
+    color: #1bbcb6;
+    border: 0.01em solid #1bbcb6;
+    }
+
 
     /* Recent bekeken */
     .recent_lijst_container {
@@ -60,10 +62,11 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     .recent_lijst {
         display: flex;
         margin-top: 1em;
-        width: 80%;
+    gap:7em;
         list-style: none;
-        margin: auto;
+        margin:0;
         justify-content: space-between;
+        align-items: center;
     }
     .recent_lijst a{
         text-decoration: none;
@@ -73,17 +76,21 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         color: black;
     }
     .recent_lijst li {
-        margin: auto;
+        padding: 1em;
         background-color: #edededcf;
-        margin-right: 1em;
-        height: 80%;
-        width: 20%;
+         width:100%;
+        height:100%;
         text-align: center;
         border-radius: 1em;
+        cursor:pointer;
+    }
+
+    .recent_lijst li:hover{
+        background-color: #cfcfcfcf;
     }
     .recent_lijst li img {
-        width: 70%;
-        height: 50%;
+        width: 13em;
+        height: 10em;
         background-color: white;
         margin-top: 1em;
     }

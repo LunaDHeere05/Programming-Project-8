@@ -60,7 +60,7 @@
     }
 
     img {
-      width: 60%;
+      width: 50%;
       margin: auto;
     }
 
@@ -101,19 +101,19 @@
   <img src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png">
   <form id="profiel" action="functies/log-in.php" method="POST">
     <label for="gebruikersnaam"> Gebruikersnaam</label>
-    <input type="email" id="gebruikersnaam" name="gebruikersnaam">
+    <input type="email" id="gebruikersnaam" name="gebruikersnaam" required>
 
     <label for="wachtwoord"> Wachtwoord</label>
-    <input type="password" id="wachtwoord" name="wachtwoord">
+    <input type="password" id="wachtwoord" name="wachtwoord" required>
 
       <fieldset>
     <legend>Ik ben een ...</legend>
  <div class="fieldset">
- <input type="radio" id="student" name="user" checked value="student">
+ <input type="radio" id="student" name="user" checked value="student" >
     <label for="student">student</label>
     </div>  
     <div class="fieldset">
-    <input type="radio" id="docent" name="user" value="docent">
+    <input type="radio" id="docent" name="user" value="docent" >
     <label for="docent">docent</label>   
    
     </div>
@@ -131,28 +131,7 @@ if (isset($_SESSION['error_message'])) //controleren of er een foutmelding is;
   }
    ?>
   <?php include 'footer.php' ?>
-  <script>
-    let form = document.getElementById('profiel');
-    let p = document.createElement('p');
-    p.classList="warning"
-    p.textContent = '';
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      let gebruikersnaam = document.getElementById('gebruikersnaam');
-      let wachtwoord = document.getElementById('wachtwoord');
-  
-      if (gebruikersnaam.value && wachtwoord.value) {
-        this.submit();
-      } else if (!gebruikersnaam.value) {
-        p.textContent = 'Gebruikersnaam is leeg.'
-        gebruikersnaam.after(p)
-      } else if (!wachtwoord.value) {
-        p.textContent = 'Wachtwoord is leeg.'
-        wachtwoord.after(p)
-      }
-    })
-  </script>
 </body>
 
 </html>
