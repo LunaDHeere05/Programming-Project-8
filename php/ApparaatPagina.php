@@ -10,14 +10,13 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <?php include 'top_nav.php'?>
     <style>
 .apparaat_info {
-  background-color: rgb(193, 193, 193);
+  background-color: #edededcf;
   width: 80%;
   margin: auto;
   margin-top: 2em;
-  border-radius: 2em;
-  padding-bottom: 2em;
+  border-radius: 1em;
+  padding: 2em;
 }
-
 
 .apparaat_info_container {
   list-style: none;
@@ -73,7 +72,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 }
 
 .reservatie {
-  margin: 3em 0em 1em 2em;
+  margin: 2em 0em 0.5em 2em;
 }
 .reservatie_plaatsen {
   background-color: #1bbcb6;
@@ -82,74 +81,59 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
   margin: auto;
   border-radius: 2em;
   display: flex;
-  list-style: none;
-}
-.reservatie_plaatsen li {
-  text-decoration: none;
+  align-items: center;
+  gap:0.5em;
   color: white;
   padding: 1em;
-  display: flex;
+}
+
+.reservatie_plaatsen input[type="date"]{
+border-radius: 0.2em;
+border:2px solid #b1b1b1cf;
 }
 .aantal{
   display: flex;
-  background-color: white;
-  border-radius: 2em;
-  margin: auto;
-  width: 13%;
-  height: 10%;
+  background-color: transparent;
+  border-radius: 19em;
+  width: 100%;
+  gap:0.5em;
   align-items: center;
+  color:white;
 }
+
 .aantal label{
-  color: black;
   font-weight: bold;
 }
+
 .aantal input{
-  border: none;
-  width: 100%;
-  height: 2em;
-  text-align: center;
-  font-size: 14px;
+  border-radius: 0.4em;
+  text-align: right;
+  border:2px solid #b1b1b1cf;
 }
-.reserveer_nu_btn button {
-padding:1em;
-font-size:100%;
-background-color: white;
-border:none;
+
+.reservatie_plaatsen button{
+  border:2px solid #b1b1b1cf;
   border-radius: 2em;
-  margin: auto;
-  align-items: center;
   cursor: pointer;
   font-weight: bold;
+  width:100%;
+  font-size:100%;
+  background-color: white;
 }
-.reserveer_nu_btn a{
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
-  margin: 0em auto;
-}
+
 .winkelmand_toevoegen_btn{
-  background-color: white;
-  height: 10%;
-  margin-right: 1em;
-  margin: auto;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 15%;
-  border-radius: 2em;
-}
-.winkelmand_toevoegen_btn button{
-  border: none;
-  background-color: white;
-  font-weight: bold;
-  font-size: 16px;
+  gap:0.5em;
 }
 .winkelmand_toevoegen_btn img{
-  width: 20%;
-  margin: 0em 0em 0em 0.2em
+  width: 15%;
 }
 
 .datum{
   display: flex;
+  font-weight: bold;
   flex-direction: column;
 }
 
@@ -343,32 +327,28 @@ border:none;
         </ul>
         <h2 class="reservatie">Plaats je reservatie</h2>
         <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
-          <ul class="reservatie_plaatsen">
-            <li class="datum">
+          <div class="reservatie_plaatsen">
+            <div class="datum">
               <label for="start_date">Begindatum:</label>
               <input type="date" id="start_date" name="start_date" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>"  required>
-            </li>
-            <li class= "datum">
-              <label for="end_date">End Date:</label>
+            </div>
+            <div class= "datum">
+              <label for="end_date">Einddatum:</label>
               <input type="date" id="end_date" name="end_date" required>
-            </li>
-            <li class="hoeveelheid">
+            </div>
+            <div class="hoeveelheid">
               <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
               <div class="aantal">
                   <label for="quantity">Aantal:</label>
-                  <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                  <input type="number" id="quantity" name="quantity" placeholder="1" value="1" min="1" required>
               </div>
-            </li>
-            <li class="reserveer_nu_btn">
-              <button type="submit">Reserveer nu</button>
-            </li>
-            <li class="winkelmand_toevoegen_btn">
-                <button>
-                <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+            </div>
+              <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>
+                <button class="winkelmand_toevoegen_btn">
                 <p>Voeg toe</p>
+                <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
                 </button>
-            </li>
-          </ul>
+          </div>
 </form>
 
     </div>
