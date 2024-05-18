@@ -55,14 +55,6 @@
                         <th>Meer info</th>
                         <th>Verwijder</th>
                     </tr>
-                    <tr>
-                        <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
-                        <!--hieronder gaat wss verwijdert moeten worden aangezien we dit nergens bijhouden -->
-                        <td>2x te laat</td>
-                        <td>5</td> <!-- geen idee hoe we dit dynamisch maken ngl -->
-                        <td><a href="#"><img class="meer_info" src="images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
-                        <td><a href="#"><img class="verwijder" src="images/svg/circle-xmark-solid.svg" alt="verwijder van blacklist"></a></td>
-                    </tr>
                     <?php include 'functies/blacklist_ophalen.php';?>
                 </table>
             </div>
