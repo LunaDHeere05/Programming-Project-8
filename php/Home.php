@@ -56,7 +56,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     .recent_container {
         display: block;
     }
-    .recent_container h2 {
+    .recent_container h2,  .recent_container p {
         margin: 1em 0em 1em 1em;
     }
     .recent_lijst {

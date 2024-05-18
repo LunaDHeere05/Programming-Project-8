@@ -1,6 +1,11 @@
 <?php
 include 'database.php';
 
+
+if (!isset($userType) || !isset($email)) {
+    echo '<p> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
+}else{
+
 $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving
@@ -52,4 +57,5 @@ if(mysqli_num_rows($result) > 0) {
             </div>';
         }
     }
+}
 ?>

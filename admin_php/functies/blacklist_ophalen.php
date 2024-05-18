@@ -3,8 +3,8 @@ include 'database.php';
 
 // Query to get the required data
 $query = "SELECT s.email, 
-                 GROUP_CONCAT(w.WaarschuwingType SEPARATOR ' , ') AS blacklistReasons, 
-                 DATEDIFF(CURDATE(), MIN(w.waarschuwingDatum)) AS daysOnBlacklist,
+                 GROUP_CONCAT(w.WaarschuwingType SEPARATOR ' - ') AS blacklistReasons, 
+                 DATEDIFF(CURDATE(), MAX(w.waarschuwingDatum)) AS daysOnBlacklist,
                  COUNT(w.waarschuwing_id) AS warningCount
           FROM STUDENT s
           JOIN WAARSCHUWING w ON s.email = w.emailStudent

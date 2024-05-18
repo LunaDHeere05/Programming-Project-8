@@ -6,8 +6,6 @@ include '../database.php';
 // Example data
 $uitleen_datum = $_POST['start_date'];
 $inlever_datum = $_POST['end_date'];
-$isOpgehaald = 0;
-$isVerlengd = 0;
 $item_id = $_POST['item_id']; // Assuming only one item_id is provided
 $quantity = $_POST['quantity']; // Assuming quantity is provided
 
@@ -30,17 +28,14 @@ if (mysqli_query($conn, $sql)) {
         $sql = "INSERT INTO UITGELEEND_ITEM (exemplaar_item_id, uitleen_id) VALUES ('$exemplaar_item_id', '$uitleen_id')";
         if (!mysqli_query($conn, $sql)) {
             echo "Error inserting UITGELEEND_ITEM: " . mysqli_error($conn);
-            // Rollback transaction or handle error accordingly
         }
 
         // Update the isUitgeleend attribute in EXEMPLAAR_ITEM to 1 for the reserved exemplaar_item_id
         $updateSql = "UPDATE EXEMPLAAR_ITEM SET isUitgeleend = 1 WHERE exemplaar_item_id = '$exemplaar_item_id'";
         if (!mysqli_query($conn, $updateSql)) {
             echo "Error updating EXEMPLAAR_ITEM: " . mysqli_error($conn);
-            // Rollback transaction or handle error accordingly
         }
     }
-
     echo "UITLENING row inserted successfully!";
 } else {
     echo "Error inserting UITLENING: " . mysqli_error($conn);
