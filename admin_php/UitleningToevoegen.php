@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defect</title>
+    <title>Uitlening Toevoegen</title>
     <?php include 'top_nav_admin.php'?>
     <style>
         .uitlening_specificaties{
@@ -63,28 +63,31 @@ padding: 1em;
 </head>
 <body>
 <div class="uitlening_specificaties">
-                    <form action="">
+                    <form  method="post">
                         <div class="uitlening_toe">
                         <h2>E-mail:</h2>
-                        <input type="email" placeholder="Vul het e-mailadres in ...">
+                        <input type="email" name="email" placeholder="Vul het e-mailadres in ...">
+             
                     </div>
                     <div class="uitlening_toe">
-                        <h2>Apparaat 1:</h2>
-                        <input type="text" placeholder="Voer het apparaat-id of kit-id in ...">
+                        <h2>Apparaat:</h2>
+                        <input type="text" name="apparaat" placeholder="Voer het apparaat in...">
                     </div>
                         <div class="datum_kiezen">
                             <h2>Uitleentermijn:</h2>
-                            <input type="date" placeholder="Bepaal het uitleentermijn">
+                            <input type="date" name="datum" placeholder="Bepaal het uitleentermijn">
                         </div>
-                    </form>
+                    
             <div class="apparaat_uitlening_toevoegen">
                 <img src="../images/svg/plus-circle.svg" alt="">
                 <h3>Apparaat toevoegen aan uitlening</h3>
             </div>
             <div class="bevestig">
-                <button type="submit">Bevestig</button>
+                <button type="submit" name="bevestig_button">Bevestig</button>
             </div>
         </div>
+        <?php include 'functies/uitlening_toevoegen.php'?>
+        </form>
     </div> 
 </body>
 </html>

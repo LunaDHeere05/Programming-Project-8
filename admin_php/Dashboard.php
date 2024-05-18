@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="uitlening_toevoegen">
-            <h3><a href="">Uitlening toevoegen</a></h3>
+            <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
         </div>
     </div>
 </div>
