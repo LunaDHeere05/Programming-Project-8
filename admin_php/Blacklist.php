@@ -50,7 +50,7 @@
                 <table>
                     <tr>
                         <th>E-mail</th>
-                        <th>Rede</th>
+                        <th>Reden</th>
                         <th>Dagen op blacklist</th>
                         <th>Meer info</th>
                         <th>Verwijder</th>
