@@ -74,6 +74,7 @@
                         <td><a href="#"><img class="meer_info" src="images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
                         <td><a href="#"><img class="verwijder" src="images/svg/circle-xmark-solid.svg" alt="verwijder van blacklist"></a></td>
                     </tr>
+                    <?php include 'functies\uitleningen_ophalen.php'?>
                 </table>
             </div>
             <div class="uitlening_toevoegen">
