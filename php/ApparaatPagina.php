@@ -1,5 +1,8 @@
 <?php
-include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+$_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -364,9 +367,9 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 </div>
   </div>
 
-
+  <?php echo $item_id ?>
   <h2 class="reservatie">Plaats je reservatie</h2>
-  <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
+  <form action="ReservatieBevestigen.php" method="POST">
     <div class="reservatie_plaatsen">
       <div class="datum">
         <label for="start_date">Begindatum:</label>
@@ -390,6 +393,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
       </button>
     </div>
   </form>
+
 
 
   <div class="kits">

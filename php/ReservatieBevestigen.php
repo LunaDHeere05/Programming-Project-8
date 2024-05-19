@@ -1,5 +1,17 @@
 <?php 
-include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+
+if(isset($_SESSION['reservation_data'])) {
+    // Retrieve reservation data from session
+    $reservationData = $_SESSION['reservation_data'];
+    
+    // Access the variables
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $item_id = $_POST['item_id'];
+    $quantity = $_POST['quantity'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,9 +97,17 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <img class="verwijder"  src="images/svg/xmark-solid.svg" alt="klik weg">
     </div>
 </div>
-<div class="bevestig_btn">
-    <a href="FinalBevestigingReservatie.php"><button>Bevestig</button></a>
-</div>
-<?php include 'footer.php'?>
+<form class="bevestig_btn" action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
+        <!-- Include any hidden fields to pass reservation data -->
+        <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+        <input type="hidden" name="end_date" value="<?php echo $end_date; ?>">
+        <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
+        <input type="hidden" name="quantity" value="<?php echo $quantity; ?>">
+        
+        <!-- Button to confirm reservation -->
+        <button type="submit" name="confirm_reservation">bevestig</button>
+    </form>
+<?php include 'footer.php';
+echo $item_id?>
 </body>
 </html>
