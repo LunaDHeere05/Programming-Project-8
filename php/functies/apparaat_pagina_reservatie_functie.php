@@ -3,6 +3,10 @@ include '../sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om
 
 include '../database.php';
 
+// Retrieve userType and email from the session
+$userType = $_SESSION['userType'];
+//$email = $_SESSION['email'];
+
 // Example data
 $uitleen_datum = $_POST['start_date'];
 $inlever_datum = $_POST['end_date'];
@@ -17,7 +21,9 @@ if (empty($exemplaar_item_ids)) {
 }
 
 // Insert a new row into UITLENING
-$sql = "INSERT INTO UITLENING (uitleen_datum, inlever_datum,{$userType}) VALUES ('$uitleen_datum', '$inlever_datum','$email')";
+
+$sql = "INSERT INTO UITLENING (uitleen_datum, inlever_datum) VALUES ('$uitleen_datum', '$inlever_datum')";
+
 if (mysqli_query($conn, $sql)) {
     // Get the ID of the newly inserted row
     $uitleen_id = mysqli_insert_id($conn);
@@ -62,4 +68,7 @@ function fetchExemplaarItemIds($conn, $item_id, $quantity) {
     return $exemplaar_item_ids;
 }
 
+// Redirect to FinalBevestigingReservatie.php
+header("Location: ../FinalBevestigingReservatie.php");
+exit;
 ?>
