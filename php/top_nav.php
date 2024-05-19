@@ -231,6 +231,10 @@ body.blur > *:not(#winkelmand_popup):not(#close_window) {
         filter: blur(50px);
         pointer-events: none;
 }
+
+.login{
+    margin-left:1em;
+}
 </style>
 <nav>
 <a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>

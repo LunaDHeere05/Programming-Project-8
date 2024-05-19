@@ -6,7 +6,7 @@ echo '<div class="recent_container">';
 echo '<h2>Recent bekeken</h2>';
 
 if (!isset($userType) || !isset($email)) {
-    echo '<p> <a href="Profiel.php"> Log in</a> om items die je recent hebt bekeken te kunnen zien.</p>';
+    echo '<p class="login"> <a href="Profiel.php"> Log in</a> om items die je recent hebt bekeken te kunnen zien.</p>';
 } else {
     $query = "SELECT ITEM.item_id, naam, merk
               FROM ITEM

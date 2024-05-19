@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+//dit is de email van de ingelogde user, alsook of het een docent of student is. 
+
 if (isset($_SESSION['gebruikersnaam'])) //controleren of er een foutmelding is;
   {
     $email=$_SESSION['gebruikersnaam'];

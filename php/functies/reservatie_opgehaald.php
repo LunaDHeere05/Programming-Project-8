@@ -2,7 +2,7 @@
 include 'database.php';
 
 if (!isset($userType) || !isset($email)) {
-    echo '<p> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
+    echo '<p class="login"> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
 } else {
 
 $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isOpgehaald, U.isVerlengd,

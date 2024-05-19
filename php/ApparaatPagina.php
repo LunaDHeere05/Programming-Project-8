@@ -1,8 +1,5 @@
 <?php
-include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
-$_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
-
-
+include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +101,7 @@ $_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
     .reservatie_plaatsen {
       background-color: #1bbcb6;
       width: 80%;
-      height: 6em;
+      height: 8em;
       margin: auto;
       border-radius: 2em;
       display: flex;
@@ -170,10 +167,11 @@ $_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
       width: 10%;
     }
 
-    .datum {
+    .uitleentermijn {
       display: flex;
-      font-weight: bold;
       flex-direction: column;
+      gap:0.5em;
+      width:110%;
     }
 
     /* kits */
@@ -367,34 +365,9 @@ $_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
 </div>
   </div>
 
-  <?php echo $item_id ?>
+
   <h2 class="reservatie">Plaats je reservatie</h2>
-  <form action="ReservatieBevestigen.php" method="POST">
-    <div class="reservatie_plaatsen">
-      <div class="datum">
-        <label for="start_date">Begindatum:</label>
-        <input type="date" id="start_date" name="start_date" step=7 required>
-      </div>
-      <div class="datum">
-        <label for="end_date">Einddatum:</label>
-        <input type="date" id="end_date" name="end_date" step=7 required>
-      </div>
-      <div class="hoeveelheid">
-        <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
-        <div class="aantal">
-          <label for="quantity">Aantal:</label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1" required>
-        </div>
-      </div>
-      <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>
-      <button class="winkelmand_toevoegen_btn">
-        <p>Voeg toe</p>
-        <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
-      </button>
-    </div>
-  </form>
-
-
+  <?php include 'functies\reservatie_datum.php' ?>
 
   <div class="kits">
     <h1>Kits</h1>
@@ -481,12 +454,12 @@ $_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
 
     let minDateUitlenenString = datumUitlenen.toISOString().split('T')[0];
 
-    // let maxDateUitlenen=new Date(datumUitlenen);
-    // // maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
+    let maxDateUitlenen=new Date(datumUitlenen);
+    // maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
     // let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
 
     start_date.setAttribute('min', minDateUitlenenString);
-    // start_date.setAttribute('max',maxDateUitlenenString);
+    //start_date.setAttribute('max',maxDateUitlenenString);
 
     //inleveren kan enkel op vrijdag
     let end_date = document.getElementById('end_date');
@@ -530,9 +503,17 @@ $_SESSION['userType'] = 'some_user_type_value'; // Set this to the correct value
     end_date.addEventListener('focus', function() {
       end_date.before(dateMessage);
       dateMessage.textContent = 'Inleveren kan enkel op vrijdag.'
-
     })
+
+    
+    end_date.addEventListener('blur', function() {
+      dateMessage.textContent = ''
+    })
+
+    start_date.addEventListener('blur', function() {
+      dateMessage.textContent = ''
+    })
+
   </script>
 </body>
-
 </html>
