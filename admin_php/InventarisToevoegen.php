@@ -122,19 +122,16 @@
           </div>
           <input type="file" name="image">
           <input type="text" name="link" placeholder="Link naar handleiding">
+          <div class="inventaris_toe_text">
+            <input name="functionaliteit" type="text" placeholder=" Apparaat beschrijving ...">
+          </div>
         </form>
       </div>
       <div class="inventaris_toe_img">
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-          
-          <button type="submit"><img src="../images/svg/images-regular.svg" alt=""></button>
-        </form>
-        <button><a href="your_link_here"><img src="../images/svg/file-pdf-regular.svg" alt=""></a></button>
+        
       </div>
     </div>
-    <div class="inventaris_toe_text">
-      <input type="text" placeholder=" Apparaat beschrijving ...">
-    </div>
+    
   </div>
 </body>
 </html>
