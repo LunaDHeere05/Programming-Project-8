@@ -4,7 +4,7 @@ include 'database.php';
 $query = "SELECT u.uitleen_id, 
                  COALESCE(u.emailSTUDENT, u.emailDOCENT) AS email,
                  u.inlever_datum,
-                 GROUP_CONCAT(CONCAT(i.naam, ' ', i.merk) SEPARATOR '<br>') AS items,
+                 GROUP_CONCAT(CONCAT(i.merk, ' - ', i.naam) SEPARATOR '<br>') AS items,
                  u.isVerlengd
           FROM UITLENING u
           JOIN UITGELEEND_ITEM ui ON u.uitleen_id = ui.uitleen_id
@@ -28,7 +28,7 @@ if (mysqli_num_rows($result) > 0) {
         //als de reservatie is verlengd moet da in een aparte rij komen anders zijn er problemen met de inlever_datum
         if ($row['isVerlengd'] == 1) {
             $extendedQuery = "SELECT COALESCE(u.emailSTUDENT, u.emailDOCENT) AS email, u.inlever_datum,
-                                     CONCAT(i.naam, ' ', i.merk) AS item, ui.isVerlengd
+                                     CONCAT(i.merk, ' - ', i.naam) AS item, ui.isVerlengd
                               FROM UITLENING u
                               JOIN UITGELEEND_ITEM ui ON u.uitleen_id = ui.uitleen_id
                               JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
