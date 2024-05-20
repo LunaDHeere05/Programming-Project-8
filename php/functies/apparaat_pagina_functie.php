@@ -8,8 +8,6 @@ if(isset($_GET['apparaat_id'])){
 
     if($item_result && mysqli_num_rows($item_result) > 0){
         $item_row = mysqli_fetch_assoc($item_result);
-
-        
      
 
         echo '<h1>'.$item_row['merk']. ' - ' .$item_row['naam'].'</h1>';

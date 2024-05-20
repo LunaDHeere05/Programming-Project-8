@@ -42,8 +42,6 @@ if (mysqli_query($conn, $uitlening)) {
 
             $onbeschikbareExemplaren_result = mysqli_query($conn, $onbeschikbareExemplaren);
 
-            echo mysqli_num_rows($onbeschikbareExemplaren_result);
-
             if (mysqli_num_rows($onbeschikbareExemplaren_result) == 0) {
               
                 $uitgeleendItem = "INSERT INTO UITGELEEND_ITEM (exemplaar_item_id, uitleen_id) 

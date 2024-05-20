@@ -42,7 +42,11 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     text-align: center;
     text-decoration: none;
     color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
+
 
     .categorie_lijst a:hover {
     background-color: white;

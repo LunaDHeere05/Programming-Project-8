@@ -1,6 +1,14 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@font-face {
+    font-family: 'neoneon';
+    src: url('Neoneon.otf') format('opentype')
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
@@ -11,7 +19,7 @@
 nav{
     display: flex;
     justify-content: space-between;
-    margin:0.2em 0.8em auto 0.8em;
+    margin:0.1em 0.8em;
     align-items: center;
 }
 
@@ -21,8 +29,6 @@ nav{
     font-size: 120%;
     font-weight: bold;
     gap:2em;
-    margin:0.2em 0.8em auto 0.8em;
-
     align-items: center;
 }
 
@@ -37,7 +43,30 @@ nav{
 
 .ehb_logo{
     width: auto;
-    height: 54px;
+    height: 45px;
+}
+
+#medialabTitle{
+    font-family: 'neoneon';
+    font-size:125%;
+    color:red;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-align: center;
+    padding-left:10px;
+}
+
+#medialab{
+    padding:5px 0;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+#medialab a{
+    text-decoration: none;
 }
 
 .rechter_navigatie{
@@ -112,7 +141,7 @@ nav{
     border: none;
     color: #5B5B5B;
     width: 8em;
-    <?php echo 'background: url(images/svg/sliders-solid.svg) no-repeat center;'; ?>;
+    background: url(images/svg/sliders-solid.svg) no-repeat center;
 }
 
 .zoekbalk select{
@@ -237,7 +266,10 @@ body.blur > *:not(#winkelmand_popup):not(#close_window) {
 }
 </style>
 <nav>
-<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"></a>
+    <div id="medialab">
+<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"> <p id="medialabTitle">medialab</p></a>
+
+</div>
     <div class="linker_navigatie">
     
         <a href="Info.php"><h1>Info</h1></a>

@@ -29,12 +29,12 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
 
         // Beschikbaarheid halen uit databank
         $status_query = "
-            SELECT EXEMPLAAR_ITEM.isUitgeleend, UITLENING.uitleen_datum, UITLENING.inlever_datum 
-            FROM EXEMPLAAR_ITEM 
-            LEFT JOIN UITGELEEND_ITEM ON UITGELEEND_ITEM.exemplaar_item_id = EXEMPLAAR_ITEM.exemplaar_item_id 
-            LEFT JOIN UITLENING ON UITLENING.uitleen_id = UITGELEEND_ITEM.uitleen_id 
-            WHERE EXEMPLAAR_ITEM.item_id = {$row_item['item_id']}
-            ORDER BY EXEMPLAAR_ITEM.isUitgeleend ASC";
+        SELECT ei.exemplaar_item_id, ei.isUitgeleend, u.uitleen_datum, u.inlever_datum 
+        FROM EXEMPLAAR_ITEM ei
+        LEFT JOIN UITGELEEND_ITEM ui ON ui.exemplaar_item_id = ei.exemplaar_item_id 
+        LEFT JOIN UITLENING u ON u.uitleen_id = ui.uitleen_id 
+        WHERE ei.item_id = {$row_item['item_id']}
+        ORDER BY ei.isUitgeleend ASC, u.uitleen_datum ASC";
         
         $status_result = mysqli_query($conn, $status_query);
 
@@ -61,26 +61,61 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
                 break;
             } else {
                 $uitleen_datum = new DateTime($status_row['uitleen_datum']);
-                $uitleen_datumString = $uitleen_datum->format("d-m");
+                $inlever_datum = new DateTime($status_row['inlever_datum']);
+                 $uitleen_datum->format("d-m");
                 $dagenTotUitlening = $vandaag->diff($uitleen_datum)->days;
 
+                $uitleen_datum_str = $uitleen_datum->format('Y-m-d');
+                $inlever_datum_str = $inlever_datum->format('Y-m-d');
+                $inlever_datum_str = $inlever_datum->format('Y-m-d');
+                
+                
+                $onbeschikbareExemplaren = "SELECT ei.exemplaar_item_id
+                    FROM UITGELEEND_ITEM ui
+                    JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
+                    JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
+                    WHERE ei.exemplaar_item_id = ".$status_row['exemplaar_item_id']."
+                    AND (u.uitleen_datum <= '".$vandaag->format('Y-m-d')."' AND u.inlever_datum <= '".$uitleen_datum_str."')";
+
+                $onbeschikbareExemplaren_result = mysqli_query($conn, $onbeschikbareExemplaren);
+
                 //dagen tot uitlening moet meer dan één week zijn, want je kan enkel lenen op maandag
-                if ($dagenTotUitlening >= 7 && $vandaag < $uitleen_datum) {
-                    echo "<h3 class='beschikbaar'>Beschikbaar tot " . $uitleen_datumString . "</h3>";
+               
+                //checken dat er in die week geen uitleningen zijn
+
+                if ( $vandaag < $uitleen_datum && mysqli_num_rows($onbeschikbareExemplaren_result) == 0 ) {
+                    echo "<h3 class='beschikbaar'>Beschikbaar tot " .  $uitleen_datum->modify('-3 days')->format("d-m") . "</h3>";
                     echo "<p class='beschikbaar'> Uitleenbaar voor " . $dagenTotUitlening . " dag(en)</p>";
                     $image = 'images/svg/circle-check-solid.svg';
                     $availability_filter = "invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);";
                     $is_available = true;
-                    break;
-                } else {
+                  break;
+                }else{             
                     $inlever_datum = new dateTime($status_row['inlever_datum']);
+
+                    $inlever_datum_plus_3 = $inlever_datum->modify('+3 days')->format('Y-m-d');
+
+                    $extraControle = "SELECT ei.exemplaar_item_id
+                                     FROM UITGELEEND_ITEM ui
+                                     JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
+                                     JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
+                                     WHERE ei.exemplaar_item_id = {$status_row['exemplaar_item_id']}
+                                     AND u.inlever_datum >= '$inlever_datum_plus_3'";
+    
+                    $extraControle_result = mysqli_query($conn, $extraControle);
+    
+                    if(mysqli_num_rows($extraControle_result) == 0 ){
+                    //checken dat er de daaropvolgende week geen uitlening is
                     $onbeschikbaarTot = $vandaag->diff($inlever_datum)->days;
-        
                     if ($onbeschikbaarTot < $dagenTotInleveren) {
                         $earliestInleverDatum = $inlever_datum;
                         $dagenTotInleveren = $onbeschikbaarTot;
                     }
                 }
+                }
+            
+            
+            
             }
         }
 
