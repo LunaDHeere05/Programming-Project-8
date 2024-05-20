@@ -26,8 +26,6 @@ if (mysqli_query($conn, $uitlening)) {
         $exemplaren_result = mysqli_query($conn, $exemplaren);
 
          while ($exemplaren_row = mysqli_fetch_assoc($exemplaren_result)) {
-         
-
             if ($found) {
                 break;
             }
@@ -46,8 +44,6 @@ if (mysqli_query($conn, $uitlening)) {
               
                 $uitgeleendItem = "INSERT INTO UITGELEEND_ITEM (exemplaar_item_id, uitleen_id) 
                                    VALUES ('" . $exemplaren_row['exemplaar_item_id'] . "', '" . $uitleen_id . "')";
-            
-
 
             //zonder dit werkt het niet - waarom??
              if (!mysqli_query($conn, $uitgeleendItem)) {
@@ -58,25 +54,32 @@ if (mysqli_query($conn, $uitlening)) {
                               SET isUitgeleend = 1 
                               WHERE exemplaar_item_id = '" . $exemplaren_row['exemplaar_item_id'] . "'";
 
-
-
                 //zonder dit werkt het niet - waarom??
                 if (!mysqli_query($conn, $updateSql)) {
                     echo "Error updating EXEMPLAAR_ITEM: " . mysqli_error($conn);
-                } 
-
-            
+                }           
             
                 // Verlaat de while-lus nadat een exemplaar is gevonden dat beschikbaar is voor uitlening
                 $found = true;
                 break;
             }
-            
-
         }
     }
 
-    echo "UITLENING row inserted successfully!";
+
+    $start_dateObject=new DateTime($start_date);
+    $end_dateObject=new DateTime($end_date);
+  
+    
+//informatie in een session steken om die te kunnen gebruiken in volgende page
+$_SESSION['reservering_info'] = [
+    'start_date' => $start_dateObject,
+    'end_date' => $end_dateObject,
+    'itemId' => $itemId,
+    'aantal' => $aantal
+];
+
+    header("Location: ../FinalBevestigingReservatie.php");
 } else {
     echo "Error inserting UITLENING: " . mysqli_error($conn);
 }

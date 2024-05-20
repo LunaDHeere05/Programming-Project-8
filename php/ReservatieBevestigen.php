@@ -50,10 +50,9 @@ include 'database.php';
         }
 
         #formBevestiging .aantal{
-            width:25%;
+            width:55%;
             text-align: center;
         }
-
 
         .bevestig_btn {
             background-color: #1bbcb6;
@@ -101,6 +100,7 @@ include 'database.php';
 
             if ($userType == "emailSTUDENT"){
             $beginDatum = $_POST['start_date'];
+            $beginDatumDate=new DateTime($beginDatum);
             $eindDatum = new DateTime($beginDatum);
             // Uitleentermijn bij studenten max één week dus van maandag tot vrijdag.
             $eindDatum->modify('+4 days');
@@ -137,7 +137,7 @@ include 'database.php';
                 $item_row = mysqli_fetch_assoc($query_result);
                 echo "<h2>" . $item_row['merk'] . ' - ' . $item_row['naam'] . "</h2>";
                 echo '<form action="functies/reserveren.php" method="POST" id="formBevestiging">';
-                echo '<p class="data"> Van ' .$beginDatum  . ' tot ' . $eindDatumStr . ' </p>';
+                echo '<p class="data"> Van ' . $beginDatumDate->format('d-m-Y')  . ' tot ' . $eindDatum->format('d-m-Y') . ' </p>';
                 echo '<input type="hidden" name="itemId" value="' . $itemId . '">';
                 echo '<input type="hidden" name="start_date" value="' . $beginDatum  . '">';
                 echo '<input type="hidden" name="end_date" value="' . $eindDatumStr . '">';

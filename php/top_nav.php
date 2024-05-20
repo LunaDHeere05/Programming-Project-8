@@ -264,6 +264,10 @@ body.blur > *:not(#winkelmand_popup):not(#close_window) {
 .login{
     margin-left:1em;
 }
+
+button{
+    cursor: pointer;
+}
 </style>
 <nav>
     <div id="medialab">
