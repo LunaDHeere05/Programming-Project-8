@@ -73,7 +73,7 @@
             </table>
         </div>
         <div class="apparaat_toevoegen">
-            <h3><a href="">Apparaat toevoegen</a></h3>
+            <h3><a href="InventarisToevoegen.php">Apparaat toevoegen</a></h3>
         </div>
     
 </body>
