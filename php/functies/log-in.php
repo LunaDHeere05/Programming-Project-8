@@ -38,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
 
         echo '<script type="text/javascript">
-        if (window.history.length > 2) {
-            window.history.go(-2);
-        } else {
+        // if (window.history.length >=2) {
+        //     window.history.go(-2);
+        // } else {
             window.location.href = "../Home.php";
-        }
+        
       </script>';
 
     } else {

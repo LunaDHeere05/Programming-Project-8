@@ -12,7 +12,6 @@ if (!isset($userType) || !isset($email)) {
 // Huidige datum
 $vandaag = new DateTime();
 
-
 // uitlenen kan enkel op maandag + reserveren kan max 2 weken vooraf
 $eersteWeekUitlenen = clone $vandaag;
 if ($vandaag->format('N') != 1) { 
@@ -61,9 +60,6 @@ $tweedeWeekInleverenFormatted = $tweedeWeekInleveren->format('Y-m-d');
       WHERE ei.item_id = {$item_id}
       AND (u.uitleen_datum <= '{$eersteWeekUitlenenFormatted}' AND u.inlever_datum >= '{$eersteWeekInleverenFormatted}');";
 
-     
-      
-
       $week1_result = mysqli_query($conn, $week1_query);
       $aantalEersteWeek -= mysqli_num_rows($week1_result);
 
@@ -86,7 +82,6 @@ $tweedeWeekInleverenFormatted = $tweedeWeekInleveren->format('Y-m-d');
             <input type="date" id="start_date" name="start_date" min="'.$eersteWeekUitlenenFormatted.'" max="'.$tweedeWeekUitlenenFormatted.'" step="7" required>
         </div>';  
     } else if ($aantalEersteWeek > 0) {
-  
         echo '<div class="datum">
             <label for="start_date">Begindatum:</label>
             <input type="date" id="start_date" name="start_date" min="'.$eersteWeekUitlenenFormatted.'" max="'.$eersteWeekUitlenenFormatted.'" value="'.$eersteWeekUitlenenFormatted.'" required>
@@ -99,12 +94,10 @@ $tweedeWeekInleverenFormatted = $tweedeWeekInleveren->format('Y-m-d');
     }
 
     if ($aantalEersteWeek > 0 || $aantalTweedeWeek > 0) {
-
         echo '<input type="hidden" name="aantal1" value="' . $aantalEersteWeek . '">';
         echo '<input type="hidden"  name="aantal2" value="' . $aantalTweedeWeek . '">';
         echo '
             <input type="hidden" id="item_id" name="item_id" value="' . $item_id . '">
-    
         <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>
         <button class="winkelmand_toevoegen_btn">
             <p>Voeg toe</p>

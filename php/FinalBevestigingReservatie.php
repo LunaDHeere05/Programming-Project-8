@@ -78,6 +78,15 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 <div class="item_info_container">
     <div class="item_info">
         <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+        <?php 
+
+       
+
+
+        
+        
+        
+        ?>
     <h2>Canon-M50</h2>
     <p class="data">van 29/12/2024 <br> tot 14/01/2025</p>
     <h2>Aantal:</h2>
