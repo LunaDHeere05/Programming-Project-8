@@ -102,9 +102,9 @@ $tweedeWeekInleverenFormatted = $tweedeWeekInleveren->format('Y-m-d');
 
         echo '<input type="hidden" name="aantal1" value="' . $aantalEersteWeek . '">';
         echo '<input type="hidden"  name="aantal2" value="' . $aantalTweedeWeek . '">';
-        echo '<div class="hoeveelheid">
+        echo '
             <input type="hidden" id="item_id" name="item_id" value="' . $item_id . '">
-        </div>
+    
         <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>
         <button class="winkelmand_toevoegen_btn">
             <p>Voeg toe</p>

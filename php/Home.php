@@ -11,11 +11,18 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <style>
     /* Your existing styles */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+   
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 
 
     /*Categorie*/
-    .categorie{
+
+
+        .categorie h2{
             margin: 1em 0em 1em 1em;
+
+
         }
 
     .categorie_lijst {
@@ -45,6 +52,24 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 
 
     /* Recent bekeken */
+
+    /*AN */
+
+  
+    #recent h3{
+        letter-spacing: 3px;
+        font-size:350%;
+        /* font-family: "Ubuntu Mono", monospace; */
+        text-align: center;
+        padding:0.5em;
+        color:#1bbcb6;
+    }
+
+ 
+
+
+
+
     .recent_lijst_container {
         display: flex;
         justify-content: space-between;
@@ -191,14 +216,54 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     }
     ?>
     <script>
-      document.getElementById('profileBtn').addEventListener('click', function() {
-           var currentFile = '<?php echo checkFile(); ?>';
-           if(currentFile == 'user'){
-               window.location.href = 'admin/Dashboard.php';     
-          }else{
-              window.location.href = 'Home.php';
-          }
-      });
+    //   document.getElementById('profileBtn').addEventListener('click', function() {
+    //        var currentFile = '<?php echo checkFile(); ?>';
+    //        if(currentFile == 'user'){
+    //            window.location.href = 'admin/Dashboard.php';     
+    //       }else{
+    //           window.location.href = 'Home.php';
+    //       }
+    //   });
+
+
+    //code gegenereerd door chatGPT - only for design purposes;
+
+    if(arrayOfItems){
+
+        let container=document.getElementsByClassName("recent_container");
+        console.log(container)
+      
+container[0].setAttribute("id","recent");
+    let currentNameIndex = 0;
+    const typingSpeed = 100; // Milliseconds per character
+    const pauseTime = 1000; // Milliseconds to pause at the end of each name
+    const displayElement = document.createElement('h3');
+    const title = document.createElement('h2');
+    title.textContent='Begin een nieuw project'
+    document.getElementById("recent").appendChild(title);
+    document.getElementById("recent").appendChild(displayElement);
+
+    function typeName(name, index) {
+        if (index < name.length) {
+            displayElement.textContent += name.charAt(index);
+            setTimeout(() => typeName(name, index + 1), typingSpeed);
+        } else {
+            setTimeout(() => deleteName(name), pauseTime);
+        }
+    }
+
+    function deleteName(name) {
+        if (name.length > 0) {
+            displayElement.textContent = name.slice(0, -1);
+            setTimeout(() => deleteName(name.slice(0, -1)), typingSpeed);
+        } else {
+            currentNameIndex = (currentNameIndex + 1) % arrayOfItems.length;
+            setTimeout(() => typeName(arrayOfItems[currentNameIndex], 0), typingSpeed);
+        }
+    }
+
+    typeName(arrayOfItems[currentNameIndex], 0);
+}
     </script>
 </body>
 </html>

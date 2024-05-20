@@ -36,11 +36,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Controleer of er een rij is gevonden
     if ($result->num_rows > 0) {
-        header("Location: ../Home.php");
+
+        echo '<script type="text/javascript">
+        if (window.history.length > 2) {
+            window.history.go(-2);
+        } else {
+            window.location.href = "../Home.php";
+        }
+      </script>';
+
     } else {
         $_SESSION['error_message'] = 'Ongeldig emailadres';
         header("Location: ../Profiel.php");
-        echo 'E-mailadres niet gevonden, foutmelding.';
     }
 
     // Sluit de statement
