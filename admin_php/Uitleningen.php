@@ -80,7 +80,7 @@
 
             <!-- misschien moet btn voor uitlening toevoegen sticky worden wnt anders moet je steeds naar onder scrollen om een uitlening toe te voegen -->
             <div class="uitlening_toevoegen">
-                <h3><a href="/html/Admin/UitleningToevoegen.html">Uitlening toevoegen</a></h3> 
+                <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3> 
             </div>
 </body>
 </html>
