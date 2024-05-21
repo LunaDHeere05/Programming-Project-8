@@ -92,7 +92,7 @@ include 'database.php';
         echo "<h2>" . $item_row['merk'] . ' - ' . $item_row['naam'] . "</h2>";
         echo '<p class="data"> Van ' . $reservering_info['start_date']->format('d-m-Y')  . ' tot ' . $reservering_info['end_date']->format('d-m-Y') . ' </p>';
 
-        echo '<h3>Aantal:'. $reservering_info['aantal'].'</h3>';
+        echo '<h3>Aantal: '. $reservering_info['aantal'].'</h3>';
     }
         
         

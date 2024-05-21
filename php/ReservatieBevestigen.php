@@ -8,7 +8,7 @@ include 'database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservatie bevestiging</title>
-    <link rel="stylesheet" href="/css/stylesheet.css">
+    <link rel="stylesheet" href="../css/stylesheet.css">
     <style>
         .bevestig {
             margin: 0em 4em 2em 4em;
@@ -98,36 +98,17 @@ include 'database.php';
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            if ($userType == "emailSTUDENT"){
-            $beginDatum = $_POST['start_date'];
-            $beginDatumDate=new DateTime($beginDatum);
-            $eindDatum = new DateTime($beginDatum);
-            // Uitleentermijn bij studenten max één week dus van maandag tot vrijdag.
-            $eindDatum->modify('+4 days');
-            $eindDatumStr = $eindDatum->format('Y-m-d');  
-
+          
+            $startDate = $_POST['start_date'];
+            $endDate = $_POST['hiddenEndDate'];
+            $aantal = $_POST['quantity'];
             $itemId = $_POST['item_id'];
 
-            $vandaag = new DateTime();
-            // uitlenen kan enkel op maandag + reserveren kan max 2 weken vooraf
-            $eersteWeekUitlenen = clone $vandaag;
-            if ($vandaag->format('N') != 1) { 
-              $eersteWeekUitlenen->modify('next Monday');
-            }
-            $eersteWeekUitlenenFormatted = $eersteWeekUitlenen->format('Y-m-d');
-            
-            $tweedeWeekUitlenen = clone $eersteWeekUitlenen;
-            $tweedeWeekUitlenen->modify('+1 week');
-            $tweedeWeekUitlenenFormatted = $tweedeWeekUitlenen->format('Y-m-d');
+            $start_dateObject=new DateTime($startDate);
+            $end_dateObject=new DateTime( $endDate );
 
-            // Checken welke maandag de user heeft gekozen, om bijhorend aantal beschikbare items te laten zien.
-            if ($beginDatum == $eersteWeekUitlenenFormatted ) {
-                $aantal = $_POST['aantal1'];
-            } else if ( $beginDatum  == $tweedeWeekUitlenenFormatted) {
-                $aantal = $_POST['aantal2'];
-            } else {
-                $aantal = 0; 
-            }
+
+
 
             $itemId = (int) $itemId;
             $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
@@ -137,30 +118,28 @@ include 'database.php';
                 $item_row = mysqli_fetch_assoc($query_result);
                 echo "<h2>" . $item_row['merk'] . ' - ' . $item_row['naam'] . "</h2>";
                 echo '<form action="functies/reserveren.php" method="POST" id="formBevestiging">';
-                echo '<p class="data"> Van ' . $beginDatumDate->format('d-m-Y')  . ' tot ' . $eindDatum->format('d-m-Y') . ' </p>';
+                echo '<p class="data"> Van ' .  $start_dateObject->format('d-m-Y')  . ' tot ' .  $end_dateObject->format('d-m-Y') . ' </p>';
                 echo '<input type="hidden" name="itemId" value="' . $itemId . '">';
-                echo '<input type="hidden" name="start_date" value="' . $beginDatum  . '">';
-                echo '<input type="hidden" name="end_date" value="' . $eindDatumStr . '">';
+                echo '<input type="hidden" name="start_date" value="' . $startDate  . '">';
+                echo '<input type="hidden" name="end_date" value="' . $endDate . '">';
                 echo '<input type="hidden" name="merk" value="' . $item_row['merk'] . '">';
                 echo '<input type="hidden" name="naam" value="' . $item_row['naam'] . '">';
+                echo '<input type="hidden" name="aantal" value="' . $aantal . '">';
                 echo '<div class="aantal">';
-                echo '<label for="aantal">Aantal:</label>';
-                echo '<input type="number" id="aantal" name="aantal" value="1" min="1" max="' . $aantal . '" required>';
+                echo '<p>Aantal: '.$aantal.'</p>';
                 echo '</div>';
-               
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="bevestig_btn">';
                 echo '<button type="submit">Bevestig</button>';
                 echo '</form>';
                 echo '</div>';
-               
             } else {
                 echo "Fout bij het ophalen van de itemgegevens.";
             }
         }
 
-    }
+    
         ?>
    
 <?php include 'footer.php'?>

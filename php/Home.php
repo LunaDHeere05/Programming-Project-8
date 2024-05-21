@@ -50,8 +50,8 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 
     .categorie_lijst a:hover {
     background-color: white;
-    color: #1bbcb6;
-    border: 0.01em solid #1bbcb6;
+    color: red;
+    border: 0.01em solid red;
     }
 
 
@@ -254,6 +254,15 @@ container[0].setAttribute("id","recent");
         } else {
             setTimeout(() => deleteName(name), pauseTime);
         }
+
+        
+    if(currentNameIndex%2==0){
+        displayElement.style.color="#1BBCB6";
+      
+    }else{
+        displayElement.style.color="red";
+        
+    }
     }
 
     function deleteName(name) {
@@ -267,6 +276,7 @@ container[0].setAttribute("id","recent");
     }
 
     typeName(arrayOfItems[currentNameIndex], 0);
+
 }
     </script>
 </body>

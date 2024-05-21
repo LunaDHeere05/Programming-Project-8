@@ -26,10 +26,7 @@ if (mysqli_query($conn, $uitlening)) {
         $exemplaren_result = mysqli_query($conn, $exemplaren);
 
          while ($exemplaren_row = mysqli_fetch_assoc($exemplaren_result)) {
-            if ($found) {
-                break;
-            }
-
+        
             //extra controle om zeker te zijn dat er niet al een uitlening is
             $onbeschikbareExemplaren = "SELECT ei.exemplaar_item_id
                                          FROM UITGELEEND_ITEM ui
@@ -60,7 +57,6 @@ if (mysqli_query($conn, $uitlening)) {
                 }           
             
                 // Verlaat de while-lus nadat een exemplaar is gevonden dat beschikbaar is voor uitlening
-                $found = true;
                 break;
             }
         }

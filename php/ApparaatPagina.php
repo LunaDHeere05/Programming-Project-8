@@ -1,5 +1,4 @@
-<?php
-include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+<?php include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
       border-radius: 1em;
       padding: 3em;
       display: flex;
-      gap:5em;
+      gap: 5em;
       justify-content: center;
       align-items: center;
     }
@@ -55,9 +54,9 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
       width: 60%;
     }
 
-    .apparaat_beschrijving h2{
-      color:#1bbcb6;
-      margin-top:0.5em;
+    .apparaat_beschrijving h2 {
+      color: #1bbcb6;
+      margin-top: 0.5em;
     }
 
     .beschrijving {
@@ -95,7 +94,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 
     .reservatie {
       margin: 1em 0em 0.5em 2em;
-      padding:10px;
+      padding: 10px;
     }
 
     .reservatie_plaatsen {
@@ -112,7 +111,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
       padding: 1em;
     }
 
-   
+
 
     .reservatie_plaatsen input[type="date"] {
       border-radius: 0.2em;
@@ -124,6 +123,15 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
       color: black;
       text-align: center;
       font-weight: 400;
+    }
+
+    .onbeschikbaarmelding {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    #quantity {
+      display: none;
     }
 
     .aantal {
@@ -170,8 +178,8 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     .uitleentermijn {
       display: flex;
       flex-direction: column;
-      gap:0.5em;
-      width:110%;
+      gap: 0.5em;
+      width: 110%;
     }
 
     /* kits */
@@ -362,12 +370,36 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 
     <div class="apparaat_beschrijving">
       <?php include 'functies\apparaat_pagina_functie.php' ?>
-</div>
+    </div>
   </div>
 
-
   <h2 class="reservatie">Plaats je reservatie</h2>
-  <?php include 'functies\reservatie_datum.php' ?>
+  <form id="form" action="ReservatieBevestigen.php" method="POST">
+    <div class="reservatie_plaatsen">
+      <div class="datum">
+        <label for="start_date">Begindatum:</label>
+        <input type="date" id="start_date" name="start_date" step="7" required>
+      </div>
+      <div class="datum" div="einddatumDiv">
+        <label for="end_date">Einddatum:</label>
+        <input type="date" id="end_date" name="end_date" step="7" required>
+      </div>
+      <div id="hoeveelheid">
+        <input type="hidden" id="item_id" name="item_id">
+        <input type="hidden" id="hiddenEndDate" name="hiddenEndDate">
+        <div class="aantal">
+          <label for="quantity">Aantal:</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+        </div>
+      </div>
+      <p id="onbeschikbaarDiv"></p>
+      <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>
+      <button class="winkelmand_toevoegen_btn">
+        <p>Voeg toe</p>
+        <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
+      </button>
+    </div>
+  </form>
 
   <div class="kits">
     <h1>Kits</h1>
@@ -453,67 +485,149 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     };
 
     let minDateUitlenenString = datumUitlenen.toISOString().split('T')[0];
-
-    let maxDateUitlenen=new Date(datumUitlenen);
-    // maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
-    // let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
-
     start_date.setAttribute('min', minDateUitlenenString);
-    //start_date.setAttribute('max',maxDateUitlenenString);
-
-    //inleveren kan enkel op vrijdag
-    let end_date = document.getElementById('end_date');
-    let datumInleveren = new Date(vandaag);
-
-    switch (dayIndex) {
-      case 0:
-        datumInleveren.setDate(vandaag.getDate() + 5);
-        break;
-      case 1:
-        datumInleveren.setDate(vandaag.getDate() + 4);
-        break;
-      case 2:
-        datumInleveren.setDate(vandaag.getDate() + 3);
-        break;
-      case 3:
-        datumInleveren.setDate(vandaag.getDate() + 2);
-        break;
-      case 4:
-        datumInleveren.setDate(vandaag.getDate() + 1);
-        break;
-      case 5:
-        datumInleveren = vandaag;
-        break;
-      case 6:
-        datumInleveren.setDate(vandaag.getDate() + 6);
-        break;
-    };
-
-
-    let minDateInleverenString = datumInleveren.toISOString().split('T')[0];
-    end_date.setAttribute('min', minDateInleverenString);
 
     let dateMessage = document.createElement('p');
     dateMessage.classList = 'dateMessage';
+    let end_date = document.getElementById('end_date')
+
     start_date.addEventListener('focus', function() {
       start_date.before(dateMessage);
       dateMessage.textContent = 'Uitlenen kan enkel op maandag.'
-    })
-
-    end_date.addEventListener('focus', function() {
-      end_date.before(dateMessage);
-      dateMessage.textContent = 'Inleveren kan enkel op vrijdag.'
-    })
-
-    
-    end_date.addEventListener('blur', function() {
-      dateMessage.textContent = ''
     })
 
     start_date.addEventListener('blur', function() {
       dateMessage.textContent = ''
     })
 
+
+    function aantalUitDatabank(startDate, endDate) {
+      let itemId = <?php echo json_encode($item_id); ?>;
+      // Controle
+      console.log('Item ID:', itemId);
+
+      let formData = new FormData();
+      formData.append('startDate', startDate);
+      formData.append('endDate', endDate);
+      formData.append('itemId', itemId);
+
+      document.getElementById('hiddenEndDate').value=endDate;
+      document.getElementById('item_id').value=itemId;
+      // console.log(start_dateValue); 
+
+      // Startdatum sturen naar de PHP-file
+      fetch('functies/vrijeExemplaren.php', {
+          method: 'POST',
+          body: formData
+        }).then(response => response.text())
+        .then(data => {
+          if (data > 0) {
+            // Reset aantal-value elke keer dat de user een andere datum kiest
+            document.getElementById('quantity').value = '1';
+            document.getElementById('quantity').disabled = false;
+            document.getElementById('onbeschikbaarDiv').style.display = 'none';
+            document.getElementById('quantity').setAttribute('max', data);
+            document.getElementById('quantity').style.display = 'flex';
+          } else if (data == 0) {
+            document.getElementById('onbeschikbaarDiv').style.display = 'flex';
+            document.getElementById('quantity').value = '0';
+            document.getElementById('quantity').disabled = true;
+            document.getElementById('onbeschikbaarDiv').innerHTML = '<p class=\"onbeschikbaarmelding\">Dit artikel is onbeschikbaar. Kies een ander uitleentermijn.</p>';
+          }
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        })
+
+      }
+
+    //vanaf het moment dat de user (student) een begindatum aanduidt, gaat er een query worden uitgevoerd om te kijken hoeveel exemplaren van het item beschikbaar zijn.
+    <?php
+    if ($userType == 'emailSTUDENT') {
+      echo "
+
+    end_date.disabled=true;
+
+    start_date.addEventListener('change', function() {
+            
+            //console.log('startdate: '+start_date.value);          
+
+            //student mag max 1 week reserveren dus van maandag tot vrijdag
+            let new_date = new Date(start_date.value);
+            new_date.setDate(new_date.getDate() + 4); 
+            let endDate = new_date.toISOString().split('T')[0];
+            end_date.disabled=false;
+            //console.log('enddate: '+endDate); 
+
+            aantalUitDatabank(start_date.value,endDate)
+
+            end_date.value=endDate;
+            end_date.setAttribute('min', endDate);
+            end_date.setAttribute('max', endDate);
+
+            //student mag max. 2 weken vooraf reserveren:
+            let maxDateUitlenen = new Date(datumUitlenen);
+            maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
+            let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
+            start_date.setAttribute('max', maxDateUitlenenString);   
+
+          })";
+    } else if ($userType == "emailDOCENT") {
+      echo "
+  let datumInleveren = new Date(vandaag);
+  switch (dayIndex) {
+    case 0:
+      datumInleveren.setDate(vandaag.getDate() + 5);
+      break;
+    case 1:
+      datumInleveren.setDate(vandaag.getDate() + 4);
+      break;
+    case 2:
+      datumInleveren.setDate(vandaag.getDate() + 3);
+      break;
+    case 3:
+      datumInleveren.setDate(vandaag.getDate() + 2);
+      break;
+    case 4:
+      datumInleveren.setDate(vandaag.getDate() + 1);
+      break;
+    case 5:
+      datumInleveren = vandaag;
+      break;
+    case 6:
+      datumInleveren.setDate(vandaag.getDate() + 6);
+      break;
+  };
+
+  let minDateInleverenString = datumInleveren.toISOString().split('T')[0];
+  end_date.setAttribute('min', minDateInleverenString);
+
+  end_date.addEventListener('focus', function() {
+    end_date.before(dateMessage);
+    dateMessage.textContent = 'Inleveren kan enkel op vrijdag.'
+  })
+
+  end_date.addEventListener('blur', function() {
+    dateMessage.textContent = ''
+  })
+
+start_date.addEventListener('change', function() {
+  end_date.addEventListener('change', function(){
+    if(start_date.value<end_date.value){
+    aantalUitDatabank(start_date.value,end_date.value)
+    }else{
+      alert('Startdatum moet kleiner zijn dan einddatum.');
+
+    }
+  })
+})
+
+
+";
+    }
+    ?>
   </script>
 </body>
+
 </html>
