@@ -136,8 +136,11 @@
           </div>
           <button type="button" onclick="addInputField()">Add another field</button>
           <div class="inventaris_toe_buttons">
+            <div class="inventaris_toe_verwijderen">
+              <button>Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
+            </div>
             <div class="inventaris_toe_opslaan">
-              <button name="submit" type="submit">upload</button>
+              <button name="submit" type="submit">Wijzigingen opslaan </button>
             </div>
           </div>
         </form>
