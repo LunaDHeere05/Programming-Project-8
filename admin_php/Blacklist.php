@@ -174,7 +174,7 @@ body.blur > *:not(#verwijder_popup):not(#close_window_verwijder):not(#meer_info_
                         <th>Meer info</th>
                         <th>Verwijder</th>
                     </tr>
-                    
+                    <?php include 'functies\blacklist_ophalen.php'?>
                 </table>
             </div>
 <script>
