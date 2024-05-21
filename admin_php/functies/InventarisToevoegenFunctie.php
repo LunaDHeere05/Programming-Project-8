@@ -39,8 +39,10 @@ if (isset($_POST['submit'])) {
             $exemplaarItemQuery = "INSERT INTO EXEMPLAAR_ITEM (item_id) VALUES ('$item_id')";
             $conn->query($exemplaarItemQuery);
 
-            $functionaliteitQuery = "INSERT INTO FUNCTIONALITEIT (item_id, functionaliteit) VALUES ('$item_id', '$functionaliteit')";
-            $conn->query($functionaliteitQuery);
+            foreach ($functionaliteit as $func) {
+                $functionaliteitQuery = "INSERT INTO FUNCTIONALITEIT (item_id, functionaliteit) VALUES ('$item_id', '$func')";
+                $conn->query($functionaliteitQuery);
+            }
         }
     }
 
