@@ -61,14 +61,6 @@
                     <th>Defect</th>
                     <th>Wijzigen</th>
                 </tr>
-                <tr>
-                    <td>Canon-M50</td>
-                    <td>Video & fotografie</td>
-                    <td>AAA</td>
-                    <td><a href="#"><img src="images/svg/eye-solid.svg" alt=""></a></td>
-                    <td><a href="#"><img src="images/svg/screwdriver-wrench-solid.svg" alt=""></a></td>
-                    <td><a href="#"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>
-                </tr>
                 <?php include 'functies\Inventaris_apparaten.php'?>
             </table>
         </div>
