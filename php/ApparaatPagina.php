@@ -1,410 +1,519 @@
+<?php
+include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apparaat</title>
-    <?php include 'top_nav.php'?>
-    <style>
-.apparaat_info {
-  background-color: rgb(193, 193, 193);
-  width: 80%;
-  margin: auto;
-  margin-top: 2em;
-  border-radius: 2em;
-  padding-bottom: 2em;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apparaat</title>
+  <?php include 'top_nav.php' ?>
+  <style>
+    .apparaat_info {
+      background-color: #edededcf;
+      width: 80%;
+      margin: auto;
+      margin-top: 2em;
+      border-radius: 1em;
+      padding: 3em;
+      display: flex;
+      gap:5em;
+      justify-content: center;
+      align-items: center;
+    }
 
+    .download_handleiding {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-.apparaat_info_container {
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-}
-.download_handleiding {
-  list-style: none;
-}
-.download_handleiding img {
-  background-color: white;
-  border-radius: 2em;
-  width: 70%;
-  margin: 2em 0em 0em 2em;
-}
-.download_handleiding a {
-  background-color: #1bbcb6;
-  text-decoration: none;
-  color: white;
-  padding: 1em;
-  border-radius: 2em;
-}
-.download_handleiding li {
-  margin: 3em 0em 0em 2em;
-}
+    .download_handleiding img {
+      background-color: white;
+      border-radius: 2em;
+      width: 70%;
+      margin: auto 0em 0em 2em;
+    }
 
-.apparaat_beschrijving {
-  margin: 2em 0em 0em 0em;
-  width: 60%;
-}
-.apparaat_beschrijving h2 {
-  margin: 0em 0em 1em 0em;
-}
-.apparaat_beschrijving li {
-  margin: 0.5em 0em;
-}
-.doos_kolom {
-  display: block;
-  justify-content: space-between;
-  margin: 2em 0em 0em 0em;
-  width: 50%;
-}
-.doos_kolom h2 {
-  margin: 0em 0em 1em 0em;
-}
-.doos_kolom li {
-  margin: 0.5em 0em;
-}
+    .download_handleiding a {
+      background-color: #1bbcb6;
+      text-decoration: none;
+      color: white;
+      padding: 1em;
+      border-radius: 2em;
+    }
 
-.doos_kolom .defecten {
-  margin: 2em 0em 0em 0em;
-  color: #e30613;
-}
+    .download_handleiding li {
+      margin: 3em 0em 0em 2em;
+    }
 
-.reservatie {
-  margin: 3em 0em 1em 2em;
-}
-.reservatie_plaatsen {
-  background-color: #1bbcb6;
-  width: 80%;
-  height: 6em;
-  margin: auto;
-  border-radius: 2em;
-  display: flex;
-  list-style: none;
-}
-.reservatie_plaatsen li {
-  text-decoration: none;
-  color: white;
-  padding: 1em;
-  display: flex;
-}
-.aantal{
-  background-color: white;
-  border-radius: 2em;
-  margin: auto;
-  width: 13%;
-  height: 10%;
-  align-items: center;
-}
-.aantal label{
-  color: black;
-  font-weight: bold;
-}
-.aantal input{
-  border: none;
-  width: 100%;
-  height: 2em;
-  text-align: center;
-  font-size: 14px;
-}
-.reserveer_nu_btn{
-  width: 18%;
-  background-color: white;
-  height: 10%;
-  border-radius: 2em;
-  margin: auto;
-  align-items: center;
-}
-.reserveer_nu_btn a{
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
-  margin: 0em auto;
-}
-.winkelmand_toevoegen_btn{
-  background-color: white;
-  height: 10%;
-  margin-right: 1em;
-  margin: auto;
-  align-items: center;
-  width: 15%;
-  border-radius: 2em;
-}
-.winkelmand_toevoegen_btn button{
-  border: none;
-  background-color: white;
-  font-weight: bold;
-  font-size: 16px;
-}
-.winkelmand_toevoegen_btn img{
-  width: 20%;
-  margin: 0em 0em 0em 0.2em
-}
+    .apparaat_beschrijving {
+      margin: 2em 0em 0em 0em;
+      width: 60%;
+    }
 
-.datum{
-  display: flex;
-  flex-direction: column;
-}
+    .apparaat_beschrijving h2{
+      color:#1bbcb6;
+      margin-top:0.5em;
+    }
 
-/* kits */
+    .beschrijving {
+      padding: 0;
+      margin: 0;
+      font-weight: 300;
+      margin-bottom: 1em;
 
-.kits h1 {
-  margin: 2em 0em 0em 2em;
-}
-.kits ul {
-  display: flex;
-  list-style: none;
-  width: 90%;
-  margin: 2em auto;
-  justify-content: space-between;
-}
-#selectie_toevoegen {
-  background-color: #1bbcb6;
-  color: white;
-  padding: 1em;
-  border-radius: 2em;
-  margin: auto 0em;
-  height: 20%;
-  width: 10%;
-  text-align: center;
-}
-.kits ul li {
-  background-color: rgb(193, 193, 193);
-  border-radius: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20%;
-  position: relative;
-  padding: 1em 0em 0.5em 0em;
-}
-.kits ul li img {
-  width: 70%;
-  height: auto;
-  margin: 0em 0em 1em 0em;
-  background-color: white;
-  border-radius: 1em;
-}
-#selectiebol {
-  background: none;
-  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
-    brightness(103%) contrast(79%);
-  position: absolute;
-  width: 2em;
-  right: 0.5em;
-  top: 0.5em;
-}
+    }
 
-/* van dezelfde categorie */
-.dezelfde_categorie{
-    width: 100%;
-}
-.dezelfde_categorie_container{
-    display: flex;
-}
-.dezelfde_categorie h1{
-    margin: 2em 0em 0em 2em;
-}
-.dezelfde_categorie ul {
-  display: flex;
-  list-style: none;
-  width: 90%;
-  margin: 2em auto;
-  justify-content: space-evenly;
-}
-.slider{
-    width: 2em;
-    height: auto;
-    margin: 1em;
-}
-.lijst_apparaten li{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    background-color: rgb(193, 193, 193);
-    padding: 1em 1em 0.5em 1em;
-    border-radius: 2em;
-    margin: 0.7em;
-}
-.lijst_apparaten li img{
-    width: 80%;
-    background-color: white;
-    border-radius: 1em;
-}
-.lijst_apparaten li h3{
-    padding-top: 1em;
-}
+    .apparaat_beschrijving li {
+      margin: 0.25em 0em;
+    }
 
-.reserverenEnTerug{
-    display: flex;
-}
-.reserverenEnTerug h1{
-    margin: 0.8em 0.5em 0em 0.5em;
-}
-.reserverenEnTerug a img{
-    width: 1.5em;
-    height: auto;
-    margin: 1.5em;
-}
-.bevestig{
-    margin: 0em 4em 2em 4em;
-    font-size: 20px;
-}
-.item_info_container{
-    background-color: rgb(193, 193, 193);
-    width: 80%;
-    margin: 1em auto;
-    border-radius: 2em;
-}
-.item_info{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-}
-.item_info img{
-    width: 15%;
-    height: 15%;
-    margin: auto 1em;
-}
-.verwijder{
-    position: absolute;
-    right: 0;
-    top: 0.5em;
-    width: 2em !important;
-}
-.item_info_container img{
-  width: 15%;
-}
-.bevestig_btn{
-    background-color: #1bbcb6;
-    padding: 1em;
-    border-radius: 2em;
-    margin: auto;
-    width: 10em;
-    text-align: center;
-}
-.bevestig_btn button{
-  background: none;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-</style>
+    .doos_kolom {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      margin: 2em 0em 0em 0em;
+      width: 50%;
+    }
+
+    .apparaat_info_container h2 {
+      color: #1bbcb6
+    }
+
+    .doos_kolom li {
+      margin: 0.5em 0em;
+    }
+
+    .doos_kolom .defecten {
+      margin: 2em 0em 0em 0em;
+      color: #e30613;
+    }
+
+    .reservatie {
+      margin: 1em 0em 0.5em 2em;
+      padding:10px;
+    }
+
+    .reservatie_plaatsen {
+      background-color: #1bbcb6;
+      width: 80%;
+      height: 8em;
+      margin: auto;
+      border-radius: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3em;
+      color: white;
+      padding: 1em;
+    }
+
+   
+
+    .reservatie_plaatsen input[type="date"] {
+      border-radius: 0.2em;
+      border: 2px solid #b1b1b1cf;
+    }
+
+    .dateMessage {
+      font-size: 12px;
+      color: black;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .aantal {
+      display: flex;
+      background-color: transparent;
+      border-radius: 19em;
+      width: 100%;
+      gap: 0.5em;
+      align-items: center;
+      color: white;
+    }
+
+    .aantal label {
+      font-weight: bold;
+    }
+
+    .aantal input {
+      border-radius: 0.4em;
+      text-align: right;
+      border: 2px solid #b1b1b1cf;
+    }
+
+    .reservatie_plaatsen button {
+      border: 2px solid #b1b1b1cf;
+      border-radius: 2em;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      font-size: 100%;
+      background-color: white;
+    }
+
+    .winkelmand_toevoegen_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .winkelmand_toevoegen_btn img {
+      width: 10%;
+    }
+
+    .uitleentermijn {
+      display: flex;
+      flex-direction: column;
+      gap:0.5em;
+      width:110%;
+    }
+
+    /* kits */
+
+    .kits h1 {
+      margin: 2em 0em 0em 2em;
+    }
+
+    .kits ul {
+      display: flex;
+      list-style: none;
+      width: 90%;
+      margin: 2em auto;
+      justify-content: space-between;
+    }
+
+    #selectie_toevoegen {
+      background-color: #1bbcb6;
+      color: white;
+      padding: 1em;
+      border-radius: 2em;
+      margin: auto 0em;
+      height: 20%;
+      width: 10%;
+      text-align: center;
+    }
+
+    .kits ul li {
+      background-color: rgb(193, 193, 193);
+      border-radius: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20%;
+      position: relative;
+      padding: 1em 0em 0.5em 0em;
+    }
+
+    .kits ul li img {
+      width: 70%;
+      height: auto;
+      margin: 0em 0em 1em 0em;
+      background-color: white;
+      border-radius: 1em;
+    }
+
+    #selectiebol {
+      background: none;
+      filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+      position: absolute;
+      width: 2em;
+      right: 0.5em;
+      top: 0.5em;
+    }
+
+    /* van dezelfde categorie */
+    .dezelfde_categorie {
+      width: 100%;
+    }
+
+    .dezelfde_categorie_container {
+      display: flex;
+    }
+
+    .dezelfde_categorie h1 {
+      margin: 2em 0em 0em 2em;
+    }
+
+    .dezelfde_categorie ul {
+      display: flex;
+      list-style: none;
+      width: 90%;
+      margin: 2em auto;
+      justify-content: space-evenly;
+    }
+
+    .slider {
+      width: 2em;
+      height: auto;
+      margin: 1em;
+    }
+
+    .lijst_apparaten li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20%;
+      background-color: rgb(193, 193, 193);
+      padding: 1em 1em 0.5em 1em;
+      border-radius: 2em;
+      margin: 0.7em;
+    }
+
+    .lijst_apparaten li img {
+      width: 80%;
+      background-color: white;
+      border-radius: 1em;
+    }
+
+    .lijst_apparaten li h3 {
+      padding-top: 1em;
+    }
+
+    .hoeveelheid {
+      display: flex;
+    }
+
+    .hoeveelheid h1 {
+      margin: 0.8em 0.5em 0em 0.5em;
+    }
+
+    .hoeveelheid a img {
+      width: 1.5em;
+      height: auto;
+      margin: 1.5em;
+    }
+
+    .bevestig {
+      margin: 0em 4em 2em 4em;
+      font-size: 20px;
+    }
+
+    .item_info_container {
+      background-color: rgb(193, 193, 193);
+      width: 80%;
+      margin: 1em auto;
+      border-radius: 2em;
+    }
+
+    .item_info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: relative;
+    }
+
+    .item_info img {
+      width: 15%;
+      height: 15%;
+      margin: auto 1em;
+    }
+
+    .verwijder {
+      position: absolute;
+      right: 0;
+      top: 0.5em;
+      width: 2em !important;
+    }
+
+    .item_info_container img {
+      width: 15%;
+    }
+
+    .bevestig_btn {
+      background-color: #1bbcb6;
+      padding: 1em;
+      border-radius: 2em;
+      margin: auto;
+      width: 10em;
+      text-align: center;
+    }
+
+    .bevestig_btn button {
+      background: none;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+  </style>
 </head>
+
 <body>
   <?php
-  if(isset($_GET['item_id_result'])){
+  if (isset($_GET['item_id_result'])) {
     $item_id = $_GET['device_id_result'];
   }
   ?>
-    <div class="apparaat_info">
-        <ul class="apparaat_info_container">
-            <li>
-                <ul class="download_handleiding">
-                    <?php
-                    echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">';;
-                   include 'functies\apparaat_pagina_handleiding_functie.php';
-                    ?>
-                </ul>
-            </li>
-            <li class="apparaat_beschrijving">
-                <?php include 'functies\apparaat_pagina_functie.php'?>
-                <ul>
-                    <li>24.1 megapixel APS-C CMOS sensor</li>
-                    <li>4K video-opname</li>
-                    <li>kantelbaar touchscreen</li>
-                    <li>ingebouwde Wi-Fi en bluetooth-connectiviteit</li>
-                </ul>
-            </li>
-            <li class="doos_kolom">
-                <h2>In de doos:</h2>
-                <ul>
-                    <li>Het fototoestel</li>
-                    <li>De gebruikershandleiding</li>
-                    <li>Kabel</li>
-                    <li>Extra batterij</li>
-                </ul>
-                <h2 class="defecten"><span>Defecten</span></h2>
-                <ul>
-                    <li>Kras op de lens</li>
-                </ul>
-            </li>
-        </ul>
-        <h2 class="reservatie">Plaats je reservatie</h2>
-        <form action="functies/apparaat_pagina_reservatie_functie.php" method="POST">
-          <ul class="reservatie_plaatsen">
-            <li class="datum">
-              <label for="start_date">Start Date:</label>
-              <input type="date" id="start_date" name="start_date" required>
-            </li>
-            <li class= "datum">
-              <label for="end_date">End Date:</label>
-              <input type="date" id="end_date" name="end_date" required>
-            </li>
-            <li class="reserverenEnTerug">
-              <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
-              <div class="aantal">
-                  <label for="quantity">Quantity:</label>
-                  <input type="number" id="quantity" name="quantity" value="1" min="1" required>
-              </div>
-              <button type="submit">Reserveer nu</button>
-            </li>
-          </ul>
-</form>
 
+  <div class="apparaat_info">
+    <div class="download_handleiding">
+      <?php
+      echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">';;
+      include 'functies\apparaat_pagina_handleiding_functie.php';
+      ?>
     </div>
 
-    <div class="kits">
-      <h1>Kits</h1>
-      <ul>
+    <div class="apparaat_beschrijving">
+      <?php include 'functies\apparaat_pagina_functie.php' ?>
+</div>
+  </div>
+
+
+  <h2 class="reservatie">Plaats je reservatie</h2>
+  <?php include 'functies\reservatie_datum.php' ?>
+
+  <div class="kits">
+    <h1>Kits</h1>
+    <ul>
+      <li>
+        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+        <h3>Canon-M50</h3>
+        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
+      </li>
+      <li>
+        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+        <h3>Canon-M50</h3>
+        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
+      </li>
+      <li>
+        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+        <h3>Canon-M50</h3>
+        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
+      </li>
+      <li id="selectie_toevoegen">
+        <p>Voeg selectie toe aan reservatie</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="dezelfde_categorie">
+    <h1>Van dezelfde categorie</h1>
+    <div class="dezelfde_categorie_container">
+      <img class="slider" src="images/svg/chevron-left-solid.svg" alt="links" class="verander">
+      <ul class="lijst_apparaten">
         <li>
           <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
           <h3>Canon-M50</h3>
-          <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
         </li>
         <li>
           <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
           <h3>Canon-M50</h3>
-          <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
         </li>
         <li>
           <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
           <h3>Canon-M50</h3>
-          <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
         </li>
-        <li id="selectie_toevoegen">
-          <p>Voeg selectie toe aan reservatie</p>
+        <li>
+          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+          <h3>Canon-M50</h3>
         </li>
       </ul>
+      <img class="slider" src="images/svg/chevron-right-solid.svg" alt="rechts">
     </div>
+  </div>
+  <?php include 'footer.php' ?>
 
-    <div class="dezelfde_categorie">
-      <h1>Van dezelfde categorie</h1>
-      <div class="dezelfde_categorie_container">
-        <img class="slider" src="images/svg/chevron-left-solid.svg" alt="links" class="verander">
-        <ul class="lijst_apparaten">
-          <li>
-            <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h3>Canon-M50</h3>
-          </li>
-          <li>
-            <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h3>Canon-M50</h3>
-          </li>
-          <li>
-            <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h3>Canon-M50</h3>
-          </li>
-          <li>
-            <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h3>Canon-M50</h3>
-          </li>
-        </ul>
-        <img class="slider" src="images/svg/chevron-right-solid.svg" alt="rechts">
-      </div>
-    </div>
-<?php include 'footer.php'?>
+  <script>
+    let vandaag = new Date();
+    let dayIndex = vandaag.getDay(); //maandag is index 1, vrijdag index 5
+
+    //uitlenen kan enkel op maandag
+    let start_date = document.getElementById('start_date');
+    let datumUitlenen = new Date(vandaag)
+
+    switch (dayIndex) {
+      case 0:
+        datumUitlenen.setDate(vandaag.getDate() + 1);
+        break;
+      case 1:
+        datumUitlenen = vandaag;
+        break;
+      case 2:
+        datumUitlenen.setDate(vandaag.getDate() + 6);
+        break;
+      case 3:
+        datumUitlenen.setDate(vandaag.getDate() + 5);
+        break;
+      case 4:
+        datumUitlenen.setDate(vandaag.getDate() + 4);
+        break;
+      case 5:
+        datumUitlenen.setDate(vandaag.getDate() + 3);
+        break;
+      case 6:
+        datumUitlenen.setDate(vandaag.getDate() + 2);
+        break;
+    };
+
+    let minDateUitlenenString = datumUitlenen.toISOString().split('T')[0];
+
+    let maxDateUitlenen=new Date(datumUitlenen);
+    // maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
+    // let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
+
+    start_date.setAttribute('min', minDateUitlenenString);
+    //start_date.setAttribute('max',maxDateUitlenenString);
+
+    //inleveren kan enkel op vrijdag
+    let end_date = document.getElementById('end_date');
+    let datumInleveren = new Date(vandaag);
+
+    switch (dayIndex) {
+      case 0:
+        datumInleveren.setDate(vandaag.getDate() + 5);
+        break;
+      case 1:
+        datumInleveren.setDate(vandaag.getDate() + 4);
+        break;
+      case 2:
+        datumInleveren.setDate(vandaag.getDate() + 3);
+        break;
+      case 3:
+        datumInleveren.setDate(vandaag.getDate() + 2);
+        break;
+      case 4:
+        datumInleveren.setDate(vandaag.getDate() + 1);
+        break;
+      case 5:
+        datumInleveren = vandaag;
+        break;
+      case 6:
+        datumInleveren.setDate(vandaag.getDate() + 6);
+        break;
+    };
+
+
+    let minDateInleverenString = datumInleveren.toISOString().split('T')[0];
+    end_date.setAttribute('min', minDateInleverenString);
+
+    let dateMessage = document.createElement('p');
+    dateMessage.classList = 'dateMessage';
+    start_date.addEventListener('focus', function() {
+      start_date.before(dateMessage);
+      dateMessage.textContent = 'Uitlenen kan enkel op maandag.'
+    })
+
+    end_date.addEventListener('focus', function() {
+      end_date.before(dateMessage);
+      dateMessage.textContent = 'Inleveren kan enkel op vrijdag.'
+    })
+
+    
+    end_date.addEventListener('blur', function() {
+      dateMessage.textContent = ''
+    })
+
+    start_date.addEventListener('blur', function() {
+      dateMessage.textContent = ''
+    })
+
+  </script>
+</body>
+</html>

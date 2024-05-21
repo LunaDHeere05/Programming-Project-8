@@ -7,9 +7,9 @@
 
 </head>
 <body>
-<?php include 'top_nav.php'; ?> 
+<?php include 'top_nav.php'; ?>
  <!--zoekresultaat container  -->
-<div class="zoekresultaat_container"> 
+<div class="zoekresultaat_container">
         <h3>Verfijn je resultaat: </h3>
         <ul class="filters">
             <li>
@@ -66,7 +66,7 @@
       let favorite_img = this.querySelector('img');
       if (favorite_img.src.endsWith('heart-regular.svg')) {
         favorite_img.src = 'images/svg/heart-solid.svg';
-        <?php include 'toevoegenFavorieten.php'; ?> 
+        // <?php // include 'toevoegenFavorieten.php'; ?>
       } else {
         favorite_img.src = 'images/svg/heart-regular.svg';
       }
@@ -108,9 +108,8 @@
   border-radius: 1em;
   border: none;
   background-color: rgb(193, 193, 193);
-  padding: 0.5em 2em 0.5em 2em;
-  font-size: 1em;
-  
+  padding: 0em 1em;
+  background-color: #edededcf;
 }
 
 /* apparaat */
@@ -125,10 +124,15 @@
   width: 100%;
   height: 100%;
   border-radius: 2em;
-  background-color: rgb(193, 193, 193);
+  background-color: #edededcf;
   margin: 1em 0em 0em 2em;
   display: flex;
 }
+
+.apparaat:hover{
+  background-color: #b1b1b1cf;
+}
+
 .apparaat a {
   width: 100%;
   display: flex;

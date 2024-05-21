@@ -11,20 +11,21 @@ if(isset($_GET['category'])) {
 }
 
 // Query to fetch recent items from the database
-$query = "SELECT DISTINCT categorie FROM ITEM";
+$query = "SELECT DISTINCT categorie FROM ITEM ORDER BY categorie ASC";
 $result = mysqli_query($conn, $query);
 
 // Check if query was successful
 if ($result) {
     echo '<div class="categorie">';
-    echo '<a href="#"><h2>Categorieën</h2></a>';
-    echo '<ul class="categorie_lijst">';
+    echo '<h2>Categorieën</h2>';
+    echo '<div class="categorie_lijst">';
     
-    // Loop through each row of the result
+    // Loop through each row of the resdivt
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<li><a href="inventaris.php?category=' . urlencode($row['categorie']) . '">' . htmlspecialchars($row['categorie']) . '</a></li>'; // Redirect to inventaris.php with the category parameter
+        echo '<a href="inventaris.php?category=' . urlencode($row['categorie']) . '">' . htmlspecialchars($row['categorie']) . '</a>'; // Redirect to inventaris.php with the category parameter
     }
     echo '</ul>';
+    echo '</div>';
     echo '</div>';
 } else {
     // Handle errors

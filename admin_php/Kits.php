@@ -15,6 +15,7 @@
   border-radius: 1em;
   padding: 1em;
   margin: 1.5em;
+  position: relative;
 }
 
 .kit_visueel_img img {
@@ -83,6 +84,9 @@ padding: 1em;
 .kit_acties{
 text-decoration: none;
 margin: 0em 1em 0em 1em;
+position: absolute;
+top: 20%;
+right: 20%;
 
 }
 
@@ -104,66 +108,7 @@ margin: 0em 1em 0em 1em;
   <body>
     <div class="rechter_grid">
         <!-- container box  -->
-        <div class="kit_container">
-          <div class="kit_informatie">
-            <h3>Naam: <span>Fotografie kit Canon-M50</span></h3>
-            <h3>Kit-ID: <span>0001</span></h3>
-          </div>
-          <div class="kit_visueel_container">
-            <!-- imges  -->
-            <div class="kit_visueel">
-              <div class="kit_visueel_small">
-                <img src="images/svg/chevron-left-solid.svg" alt="" />
-              </div>
-              <div class="kit_visueel_img">
-                <img
-                  src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
-                  alt=""
-                />
-              </div>
-              <div class="kit_visueel_small">
-                <img src="images/svg/plus-solid.svg" alt="" />
-              </div>
-              <div class="kit_visueel_img">
-                <img
-                  src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
-                  alt=""
-                />
-              </div>
-              <div class="kit_visueel_small">
-                <img src="images/svg/plus-solid.svg" alt="" />
-              </div>
-              <div class="kit_visueel_img">
-                <img
-                  src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
-                  alt=""
-                />
-              </div>
-
-              <div class="kit_visueel_small">
-                <img src="images/svg/chevron-right-solid.svg" alt="" />
-              </div>
-              <!-- verwijderen wijzigen  -->
-              <div class="kit_acties">
-                <div class="kit_verwijder_kit">
-                  <a href="#">
-                    Verwijder kit
-                    <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
-                  </a>
-                </div>
-                <div class="kit_wijzig_kit">
-                  <a href="">
-                    Wijzig kit
-                    <img
-                      src="images/svg/pen-to-square-regular.svg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php include 'functies\kits_ophalen.php'?>
         <div class="kit_add">
             <a href="">kit toevoegen</a>
         </div>

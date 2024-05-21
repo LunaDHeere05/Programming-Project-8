@@ -1,3 +1,7 @@
+<?php 
+include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+include 'database.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,16 +71,33 @@
 <body>
     <?php include 'top_nav.php'?>
 <div class="reserverenEnTerug">
-    <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+    <a href="Home.php"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
     <h1>Reserveren</h1>
 </div>
 <p class="bevestig">Deze items werden <b>succesvol</b> gereserveerd. Check je inbox voor een bevestigingsmail.</p>
 <div class="item_info_container">
     <div class="item_info">
         <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-    <h2>Canon-M50</h2>
-    <p class="data">van 29/12/2024 <br> tot 14/01/2025</p>
-    <h2>Aantal:</h2>
+        <?php 
+
+ 
+    $reservering_info = $_SESSION['reservering_info'];
+
+    $query = "SELECT naam, merk FROM ITEM WHERE item_id={$reservering_info['itemId']}";
+
+    $query_result = mysqli_query($conn, $query);
+
+    if ($query_result) {
+        $item_row = mysqli_fetch_assoc($query_result);
+        echo "<h2>" . $item_row['merk'] . ' - ' . $item_row['naam'] . "</h2>";
+        echo '<p class="data"> Van ' . $reservering_info['start_date']->format('d-m-Y')  . ' tot ' . $reservering_info['end_date']->format('d-m-Y') . ' </p>';
+
+        echo '<h3>Aantal:'. $reservering_info['aantal'].'</h3>';
+    }
+        
+        
+        ?>
+ 
     </div>
 </div>
 <?php include 'footer.php'?>

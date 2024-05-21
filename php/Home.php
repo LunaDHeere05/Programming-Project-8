@@ -1,3 +1,6 @@
+<?php 
+include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,38 +11,69 @@
     <style>
     /* Your existing styles */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+   
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-    .categorie a h2{
-        margin: 1em;
-        text-decoration: none;
-        display: block;
-        color: black;
-    }
-    .categorie a{
-        text-decoration: none;
-    }
+
+
+    /*Categorie*/
+
+
+        .categorie h2{
+            margin: 1em 0em 1em 1em;
+
+
+        }
+
     .categorie_lijst {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        margin-top: 1em;
-        height: 8em;
-        align-items: center;
+    gap:0.8em;
+    display: flex;
+    margin:1em;
     }
+
     .categorie_lijst a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        letter-spacing: 1px;
-        background-color: #1bbcb6;
-        padding: 3em;
-        border-radius: 2em;
-        margin-right: 3em;
-        width: 5em;
-        text-align: center;
+    font-weight: bold;
+    letter-spacing: 3px;
+    width: 20%;
+    background-color: #1bbcb6;
+    padding: 2em;
+    border-radius: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
+
+
+    .categorie_lijst a:hover {
+    background-color: white;
+    color: #1bbcb6;
+    border: 0.01em solid #1bbcb6;
+    }
+
 
     /* Recent bekeken */
+
+    /*AN */
+
+  
+    #recent h3{
+        letter-spacing: 3px;
+        font-size:350%;
+        /* font-family: "Ubuntu Mono", monospace; */
+        text-align: center;
+        padding:0.5em;
+        color:#1bbcb6;
+    }
+
+ 
+
+
+
+
     .recent_lijst_container {
         display: flex;
         justify-content: space-between;
@@ -57,10 +91,11 @@
     .recent_lijst {
         display: flex;
         margin-top: 1em;
-        width: 80%;
+    gap:7em;
         list-style: none;
-        margin: auto;
+        margin:0;
         justify-content: space-between;
+        align-items: center;
     }
     .recent_lijst a{
         text-decoration: none;
@@ -70,17 +105,21 @@
         color: black;
     }
     .recent_lijst li {
-        margin: auto;
+        padding: 1em;
         background-color: #edededcf;
-        margin-right: 1em;
-        height: 80%;
-        width: 20%;
+         width:100%;
+        height:100%;
         text-align: center;
         border-radius: 1em;
+        cursor:pointer;
+    }
+
+    .recent_lijst li:hover{
+        background-color: #cfcfcfcf;
     }
     .recent_lijst li img {
-        width: 70%;
-        height: 50%;
+        width: 13em;
+        height: 10em;
         background-color: white;
         margin-top: 1em;
     }
@@ -138,7 +177,8 @@
     <div class="inhoud_body">
         <?php include 'functies/categorie.php'; ?>
         
-        <?php include 'functies/recent_bekeken.php'; ?>
+        <?php include 'functies/recent_bekeken.php'; 
+        ?>
 
         <!-- Hoe leen je iets uit? -->
         <div class="uitleen_uitleg">
@@ -180,14 +220,54 @@
     }
     ?>
     <script>
-      document.getElementById('profileBtn').addEventListener('click', function() {
-           var currentFile = '<?php echo checkFile(); ?>';
-           if(currentFile == 'user'){
-               window.location.href = 'admin/Dashboard.php';     
-          }else{
-              window.location.href = 'Home.php';
-          }
-      });
+    //   document.getElementById('profileBtn').addEventListener('click', function() {
+    //        var currentFile = '<?php echo checkFile(); ?>';
+    //        if(currentFile == 'user'){
+    //            window.location.href = 'admin/Dashboard.php';     
+    //       }else{
+    //           window.location.href = 'Home.php';
+    //       }
+    //   });
+
+
+    //code gegenereerd door chatGPT - only for design purposes;
+
+    if(arrayOfItems){
+
+        let container=document.getElementsByClassName("recent_container");
+        console.log(container)
+      
+container[0].setAttribute("id","recent");
+    let currentNameIndex = 0;
+    const typingSpeed = 100; // Milliseconds per character
+    const pauseTime = 1000; // Milliseconds to pause at the end of each name
+    const displayElement = document.createElement('h3');
+    const title = document.createElement('h2');
+    title.textContent='Begin een nieuw project'
+    document.getElementById("recent").appendChild(title);
+    document.getElementById("recent").appendChild(displayElement);
+
+    function typeName(name, index) {
+        if (index < name.length) {
+            displayElement.textContent += name.charAt(index);
+            setTimeout(() => typeName(name, index + 1), typingSpeed);
+        } else {
+            setTimeout(() => deleteName(name), pauseTime);
+        }
+    }
+
+    function deleteName(name) {
+        if (name.length > 0) {
+            displayElement.textContent = name.slice(0, -1);
+            setTimeout(() => deleteName(name.slice(0, -1)), typingSpeed);
+        } else {
+            currentNameIndex = (currentNameIndex + 1) % arrayOfItems.length;
+            setTimeout(() => typeName(arrayOfItems[currentNameIndex], 0), typingSpeed);
+        }
+    }
+
+    typeName(arrayOfItems[currentNameIndex], 0);
+}
     </script>
 </body>
 </html>

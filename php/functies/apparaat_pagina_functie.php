@@ -8,9 +8,58 @@ if(isset($_GET['apparaat_id'])){
 
     if($item_result && mysqli_num_rows($item_result) > 0){
         $item_row = mysqli_fetch_assoc($item_result);
+     
 
-        echo '<h2>'.$item_row['merk']. ' - ' .$item_row['naam'].'</h2>';
-        echo '<p class="beschrijving">' . $item_row['beschrijving'] . '</p> ';
+        echo '<h1>'.$item_row['merk']. ' - ' .$item_row['naam'].'</h1>';
+        echo '<p class="beschrijving">' . $item_row['beschrijving'] . '</p>';
+
+        //functionaliteiten
+        $functionaliteit_query="SELECT functionaliteit FROM `FUNCTIONALITEIT` WHERE FUNCTIONALITEIT.item_id=$item_id";
+        $functionaliteit_result=mysqli_query($conn, $functionaliteit_query);
+        
+        if(mysqli_num_rows($functionaliteit_result) > 0){
+            echo "<h2>Functionaliteiten</h2> ";
+            while($functionaliteit_row = mysqli_fetch_assoc($functionaliteit_result)){
+                echo "<li>".$functionaliteit_row['functionaliteit']."</li>";
+            }
+         
+        }
+
+        //in doos
+        $inDoos_query="SELECT accessoire FROM `ITEMBUNDEL` WHERE ITEMBUNDEL.item_id=$item_id";
+        $inDoos_result=mysqli_query($conn, $inDoos_query);
+
+      
+        if(mysqli_num_rows($inDoos_result) > 0){
+          
+            echo "<h2>In de doos</h2>
+            <li>".$item_row['naam']."</li>";
+        
+            while($inDoos_row = mysqli_fetch_assoc($inDoos_result)){
+                echo "<li>".$inDoos_row['accessoire']."</li>";
+            }
+            
+        }
+
+  
+       
+        //defecten
+        // $defect_query="SELECT beschrijving FROM `DEFECT` WHERE DEFECT.item_id=$item_id";
+        // $defect_result=mysqli_query($conn, $defect_query);
+
+        // if(mysqli_num_rows($item_result) > 0){
+        //     echo "<h2 class='defecten'><span>Defecten</span></h2>
+        //     <ul>";
+        
+        //     while($defect_row = mysqli_fetch_assoc($defect_result)){
+        //         echo "<li>".$defect_row['functionaliteit']."</li>";
+        //     }
+        //     echo "</ul>";
+        // }
+       
+
+
+     
       
     }
     else{
@@ -28,7 +77,6 @@ if(isset($_GET['apparaat_id'])){
         $beschikbaar = 100000;
         $vandaag = new dateTime(date("Y-m-d"));
         if ($status_row['isUitgeleend'] == 0) { //indien er minstens één exemplaar beschikbaar is, komt er "Beschikbaar" te staan
-            echo "<h3 class='beschikbaar'>Beschikbaar</h3>";
             $is_available = true;
             break;
         } else { //indien alles uitgeleend is, gaan we kijken naar het exemplaar dat het vroegst weer beschikbaar is
@@ -42,11 +90,7 @@ if(isset($_GET['apparaat_id'])){
             }
         }
     }
-    
-    if (!$is_available) {
-        echo "<h3> Onbeschikbaar tot " . $inleveren . "</h3>";
-        echo "<p> Binnen " . $onbeschikbaarTot . " dagen</p>";
-    }
+
 
 }else{
     echo "Geen item-id meegegeven in de URL.";

@@ -33,7 +33,6 @@
   width: 100%;
   width: 2em;
   height: auto;
-  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
   padding-top: 0.5em;
 }
 .apparaat_toevoegen{
@@ -62,18 +61,11 @@
                     <th>Defect</th>
                     <th>Wijzigen</th>
                 </tr>
-                <tr>
-                    <td>Canon-M50</td>
-                    <td>Video & fotografie</td>
-                    <td>AAA</td>
-                    <td><a href="#"><img src="images/svg/eye-solid.svg" alt=""></a></td>
-                    <td><a href="#"><img src="images/svg/screwdriver-wrench-solid.svg" alt=""></a></td>
-                    <td><a href="#"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>
-                </tr>
+                <?php include 'functies\Inventaris_apparaten.php'?>
             </table>
         </div>
         <div class="apparaat_toevoegen">
-            <h3><a href="">Apparaat toevoegen</a></h3>
+            <h3><a href="InventarisToevoegen.php">Apparaat toevoegen</a></h3>
         </div>
     
 </body>

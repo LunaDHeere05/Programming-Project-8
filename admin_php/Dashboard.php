@@ -97,13 +97,20 @@
             <h2>Maart</h2>
             <ul class="datums">
                 <li><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
-                <li><h3>1</h3></li>
-                <li><h3>2</h3></li>
-                <li><h3>3</h3></li>
-                <li class="active"><h3>4</h3></li>
-                <li><h3>5</h3></li>
-                <li><h3>6</h3></li>
-                <li><h3>7</h3></li>
+                <?php
+                    $currentMonth = date('n');
+                    $currentYear = date('Y');
+
+                    // Set Monday as the first day of the week
+                    $firstDayOfWeek = 1; // Monday
+                    $dagenIndeMaand = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
+                    for($day=1; $day <= $dagenIndeMaand; $day++){
+                        $dayOfWeek = date('N', strtotime("$currentYear-$currentMonth-$day"));
+                        if ($dayOfWeek == $firstDayOfWeek || $dayOfWeek == 4 || $dayOfWeek == 5) {
+                            echo "<li><h3>$day</h3></li>";
+                        }
+                    }
+                ?>
                 <li><img src="images/svg/chevron-right-solid.svg" alt=""></li>
             </ul>
         </div>
@@ -123,7 +130,7 @@
             </div>
         </div>
         <div class="uitlening_toevoegen">
-            <h3><a href="">Uitlening toevoegen</a></h3>
+            <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
         </div>
     </div>
 </div>
