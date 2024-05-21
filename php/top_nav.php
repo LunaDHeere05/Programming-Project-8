@@ -274,17 +274,17 @@ button{
 <a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"> <p id="medialabTitle">medialab</p></a>
 
 </div>
-    <div class="linker_navigatie">
+    <div class="linker_navigatie" id='nav'>
     
-        <a href="Info.php"><h1>Info</h1></a>
-        <a href="Inventaris.php"><h1>Inventaris</h1></a>
-        <a href="Kalender.php"><h1>Kalender</h1></a>
-        <a href="Reservaties.php"><h1>Reservaties</h1></a>
+        <a class='link' href="Info.php" ><h1 >Info</h1></a>
+        <a class='link' href="Inventaris.php"><h1 >Inventaris</h1></a>
+        <a class='link' href="Kalender.php"><h1 >Kalender</h1></a>
+        <a class='link' href="Reservaties.php"><h1>Reservaties</h1></a>
     
-    </div class="linker_navigatie">
+    </div>
     <div class="rechter_navigatie">
 
-        <a href="Favorietenlijst.php"><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>
+        <a href="Favorietenlijst.php" class='link'><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>
         <a href="#" id="winkelmand"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
         <a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>
     
@@ -357,4 +357,35 @@ document.getElementById('close_window').addEventListener('click', function(){
     document.body.classList.remove('blur');
     document.getElementById('winkelmand_popup').classList.remove('no-blur');
 });
+
+
+let link=document.getElementsByClassName('link')
+console.log(link)
+
+for(let i=0;i<link.length;i++){
+    console.log(link[i]);
+
+    var image = link[i].querySelector('img');
+
+   
+
+    if(window.location.href==link[i].href){
+        if(image){
+            link[i].style.filter="invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%)";
+        }else{
+        link[i].style.color="#1BBCB6";
+        }
+    }
+
+
+
+}
+
+
+
+console.log(window.location.href)
+
+
+
+
 </script>

@@ -58,6 +58,8 @@ if (mysqli_query($conn, $uitlening)) {
             
                 // Verlaat de while-lus nadat een exemplaar is gevonden dat beschikbaar is voor uitlening
                 break;
+            }else{
+                echo 'Dit item is intussen al uitgeleend, sorry.';
             }
         }
     }

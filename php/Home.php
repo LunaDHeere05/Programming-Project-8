@@ -235,7 +235,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     if(arrayOfItems){
 
         let container=document.getElementsByClassName("recent_container");
-        console.log(container)
+     
       
 container[0].setAttribute("id","recent");
     let currentNameIndex = 0;

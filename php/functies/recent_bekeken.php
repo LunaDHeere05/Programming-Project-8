@@ -50,8 +50,6 @@ if (!isset($userType) || !isset($email)) {
         }
 
         arrayOfItems.push('" . $row['merk'] . " - " . $row['naam'] . "');
-        console.log(arrayOfItems);
-
         </script>";
     }
 
