@@ -12,7 +12,7 @@ while($row = mysqli_fetch_assoc($result)){
     echo '<td>'.$row['item_id'].'</td>';
     echo '<td><a href="#"><img src="images/svg/eye-solid.svg" alt=""></a></td>
     <td><a href="#"><img src="images/svg/screwdriver-wrench-solid.svg" alt=""></a></td>
-    <td><a href="#"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>
+    <td><a href="InventarisW-V.php?item_id='.$row['item_id'].'"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>
     </tr>';
 }
 
