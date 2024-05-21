@@ -100,14 +100,17 @@
 .filters {
   display: flex;
   list-style: none;
-  width: 40%;
+  width: 70%;
+  height: 2em;
   justify-content: space-between;
 }
 .filters select {
   border-radius: 1em;
   border: none;
   background-color: rgb(193, 193, 193);
-  padding: 0em 1em;
+  padding: 0.5em 2em 0.5em 2em;
+  font-size: 1em;
+  
 }
 
 /* apparaat */
