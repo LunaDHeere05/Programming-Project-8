@@ -100,14 +100,16 @@
 .filters {
   display: flex;
   list-style: none;
-  width: 40%;
+  width: 70%;
+  height: 2em;
   justify-content: space-between;
 }
 .filters select {
   border-radius: 1em;
   border: none;
-  background-color: #edededcf;
+  background-color: rgb(193, 193, 193);
   padding: 0em 1em;
+  background-color: #edededcf;
 }
 
 /* apparaat */

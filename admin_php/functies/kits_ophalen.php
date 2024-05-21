@@ -57,7 +57,7 @@ foreach ($kits as $kit_id => $kit) {
     echo '</div>';
     echo '<div class="kit_acties">';
     echo '<div class="kit_verwijder_kit">';
-    echo '<a href="#">Verwijder kit <img src="images/svg/circle-xmark-solid.svg" alt="xmark" /></a>';
+    echo "<a href='kit_verwijderen.php?kit_id=" . $kit['kit_id'] . "'>Verwijder kit<img src='images/svg/circle-xmark-solid.svg' alt='xmark' /></a>";
     echo '</div>';
     echo '<div class="kit_wijzig_kit">';
     echo '<a href="">Wijzig kit <img src="images/svg/pen-to-square-regular.svg" alt="" /></a>';
