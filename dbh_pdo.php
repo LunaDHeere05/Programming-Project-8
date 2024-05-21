@@ -23,6 +23,13 @@ if ($productId === null) {
     echo 'Invalid product ID.';
     exit;
 }
+// Check for SQL injection attempt
+if ($_GET['productId'] !== (string)(int)$_GET['productId']) {
+    echo "Sorry, SQL injections are not allowed!";
+    exit;
+}
+//Als test even neergeschreven wat bewijst dat er geen directe manier is om een SQL-injectieaanval uit te voeren 
+//omdat de input van de gebruiker al wordt gefilterd en gevalideerd voordat deze wordt gebruikt in de query. 
 
 // Using Prepared Statements for Safe Queries: Selecting Data
 try {
