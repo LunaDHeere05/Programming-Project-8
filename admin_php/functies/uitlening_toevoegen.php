@@ -1,83 +1,98 @@
 <?php 
 // include 'php/database.php';
-$servername = "dt5.ehb.be"; // Change this to your database server
-$username = "2324PROGPROJGR8"; // Change this to your database username
-$password = "P!j6WD5KL"; // Change this to your database password
-$database = "2324PROGPROJGR8"; // Change this to your database name
-
-// Create connection
+$servername = "dt5.ehb.be"; 
+$username = "2324PROGPROJGR8"; 
+$password = "P!j6WD5KL"; 
+$database = "2324PROGPROJGR8"; 
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if (isset($_POST['bevestig_button'])) {
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $apparaat = filter_input(INPUT_POST, "apparaat", FILTER_SANITIZE_SPECIAL_CHARS);
+    $inDatum = $_POST['datum'];
+    $uitDatum = date("Y-m-d");
 
-    if (isset($_POST['bevestig_button'])) {
-        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-        $apparaat = filter_input(INPUT_POST, "apparaat", FILTER_SANITIZE_SPECIAL_CHARS);
-        $inDatum = $_POST['datum'];
+    if(empty($email) || empty($apparaat) || empty($inDatum)){
+        echo "Vul alle velden in!";
+    } else {
+        $emailquery = "SELECT email FROM STUDENT WHERE email = ? UNION SELECT email FROM DOCENT WHERE email = ?";
+        $emailstmt = $conn->prepare($emailquery);
+        $emailstmt->bind_param("ss", $email, $email);
+        $emailstmt->execute();
+        $emailResult = $emailstmt->get_result();
 
-        // Query om te checken of de email bestaat in de database
-        $emailquery = "SELECT email FROM STUDENT WHERE email = '$email'
-        UNION 
-        SELECT email FROM DOCENT WHERE email = '$email'";
-        // Query om te checken of het apparaat bestaat in de database
-        $apparaatquery = "SELECT naam, item_id FROM ITEM WHERE naam = '$apparaat'";
-        // variabele voor de huidige datum
-        $uitDatum = date("Y-m-d");
+        if ($emailResult->num_rows > 0) {
+            $apparaatquery = "SELECT item_id FROM ITEM WHERE naam = ?";
+            $apparaatstmt = $conn->prepare($apparaatquery);
+            $apparaatstmt->bind_param("s", $apparaat);
+            $apparaatstmt->execute();
+            $apparaatresult = $apparaatstmt->get_result();
 
-     
-        // check om te kijken of de velden zijn ingevuld
-        if(empty($email||$apparaat||$inDatum)){
-            echo "vul alle velden in!";
-        } else {
-            $emailResult = mysqli_query($conn, $emailquery);
-            if ($emailResult){
-                $apparaatresult = mysqli_query($conn, $apparaatquery);
-                if($apparaatresult){
-                    $email_row = mysqli_fetch_assoc($emailResult);
-                    $apparaat_row = mysqli_fetch_assoc($apparaatresult);
-                    // echo "$email_row[email] <br>";
-                    // echo "$apparaat_row[naam] <br>";    
-                    
+            if ($apparaatresult->num_rows > 0) {
+                $apparaat_row = $apparaatresult->fetch_assoc();
+                $apparaat_id = $apparaat_row['item_id'];
 
-                    // Query om de uitlening toe te voegen aan de database
-                    // eerst wordt er een nieuwe uitlening toegevoegd
-                    
-                    // dan voeg ik een nieuw uitgeleend_item toe aan de uitlening(via uitleen_id)
-                    if(isset($_POST['email_type'])){
-                        $email_type = $_POST['email_type'];
-                        if($email_type == "student"){
-                           $sql_lening = "INSERT INTO `UITLENING` (`uitleen_id`, `uitleen_datum`, `inlever_datum`, `isOpgehaald`, `isVerlengd`, `emailSTUDENT`, `emailDOCENT`) VALUES (NULL, '$uitDatum', '$inDatum', '0', '0', '$email',  NULL)" ;
-                           $stmt = $conn->prepare($sql_lening);
-                            if($stmt->execute()){
-                                echo "Uitlening toegevoegd!";
+                if(isset($_POST['email_type'])){
+                    $email_type = $_POST['email_type'];
+
+                    $sql_lening = ($email_type == "student") ? 
+                    "INSERT INTO `UITLENING` (`uitleen_datum`, `inlever_datum`, `isOpgehaald`, `isVerlengd`, `emailSTUDENT`) VALUES (?, ?, '0', '0', ?)" :
+                    "INSERT INTO `UITLENING` (`uitleen_datum`, `inlever_datum`, `isOpgehaald`, `isVerlengd`, `emailDOCENT`) VALUES (?, ?, '0', '0', ?)";
+
+                    $stmt_lening = $conn->prepare($sql_lening);
+                    $stmt_lening->bind_param("sss", $uitDatum, $inDatum, $email);
+
+                    if($stmt_lening->execute()){
+                        $uitleen_id = $conn->insert_id;  
+
+                        $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE isUitgeleend = '0' AND item_id = ? LIMIT 1";
+                        $exemplaarstmt = $conn->prepare($exemplaarquery);
+                        $exemplaarstmt->bind_param("i", $apparaat_id);
+                        $exemplaarstmt->execute();
+                        $exemplaarresult = $exemplaarstmt->get_result();
+
+                        if ($exemplaarresult->num_rows > 0) {
+                            $exemplaar_row = $exemplaarresult->fetch_assoc();
+                            $exemplaar_id = $exemplaar_row['exemplaar_item_id'];
+
+                            $sql_uitgeleend_item = "INSERT INTO `UITGELEEND_ITEM` (`isVerlengd`, `exemplaar_item_id`, `uitleen_id`) VALUES ('0', ?, ?)";
+                            $stmt_item = $conn->prepare($sql_uitgeleend_item);
+                            $stmt_item->bind_param("ii", $exemplaar_id, $uitleen_id);
+
+                            if($stmt_item->execute()){
+                                // Update de EXEMPLAAR_ITEM isUitgeleend status
+                                $update_query = "UPDATE `EXEMPLAAR_ITEM` SET `isUitgeleend` = '1' WHERE `exemplaar_item_id` = ?";
+                                $update_stmt = $conn->prepare($update_query);
+                                $update_stmt->bind_param("i", $exemplaar_id);
+                                
+                                if($update_stmt->execute()){
+                                    echo "Uitlening toegevoegd!";
+                                } else {
+                                    echo "Uitlening toegevoegd, maar kon exemplaar niet bijwerken.";
+                                }
                             } else {
                                 echo "Uitlening niet toegevoegd!";
                             }
                         } else {
-                           $sql_lening= "INSERT INTO `UITLENING` (`uitleen_id`, `uitleen_datum`, `inlever_datum`, `isOpgehaald`, `isVerlengd`, `emailSTUDENT`, `emailDOCENT`) VALUES (NULL, '$uitDatum', '$inDatum', '0', '0', NULL, '$email')"; 
-                            $stmt = $conn->prepare($sql_lening); 
-                            if($stmt->execute()){
-                                echo "Uitlening toegevoegd!";
-                            } else {
-                                echo "Uitlening niet toegevoegd!";
-                            }
+                            echo "Geen beschikbaar exemplaar gevonden!";
                         }
-                    } 
-            
-                } else {
-                    echo "Apparaat niet gevonden!";
-                }
+                    } else {
+                        echo "Uitlening niet toegevoegd!";
+                    }
+                } 
             } else {
-                echo "Email niet gevonden!";
+                echo "Apparaat niet gevonden!";
             }
-     
+        } else {
+            echo "Email niet gevonden!";
         }
-                
-    } else {
-        // echo "Bevestig button was not clicked! <br>";
     }
     mysqli_close($conn);
+} else {
+    // echo "Bevestig button was not clicked! <br>";
+}
 ?>

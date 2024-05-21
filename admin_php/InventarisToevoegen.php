@@ -45,10 +45,11 @@
     }
 
     .inventaris_toe_text input {
-      height: 15em;
+      height: 2rem;
       width: 100%;
       border: 0;
       border-radius: 2em;
+      margin: 0.5rem;
     }
 
     .inventaris_toe_verwijderen button {
@@ -92,6 +93,21 @@
   </style>
 </head>
 <body>
+
+<script>
+  function addInputField() {
+      // Create a new input element
+      var newInput = document.createElement("input");
+
+      // Set the input's attributes
+      newInput.setAttribute("name", "functionaliteit[]");
+      newInput.setAttribute("type", "text");
+      newInput.setAttribute("placeholder", "Apparaat beschrijving ...");
+
+      // Append the new input to the container
+      document.querySelector(".inventaris_toe_text").appendChild(newInput);
+  }
+</script>
   <div class="inventaris_toe_specificaties">
     <div class="inventaris_toe_block">
       <div class="inventaris_toe_block1"> 
@@ -112,6 +128,13 @@
             <h2>Beschrijving:</h2>
             <input id="beschrijving" name="beschrijving" type="text">
           </div>
+          
+          <input type="file" name="image">
+          <input type="text" name="link" placeholder="Link naar handleiding">
+          <div class="inventaris_toe_text">
+            <input name="functionaliteit[]" type="text" placeholder="Apparaat beschrijving ...">
+          </div>
+          <button type="button" onclick="addInputField()">Add another field</button>
           <div class="inventaris_toe_buttons">
             <div class="inventaris_toe_verwijderen">
               <button>Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
@@ -120,12 +143,8 @@
               <button name="submit" type="submit">Wijzigingen opslaan </button>
             </div>
           </div>
-          <input type="file" name="image">
-          <input type="text" name="link" placeholder="Link naar handleiding">
-          <div class="inventaris_toe_text">
-            <input name="functionaliteit" type="text" placeholder=" Apparaat beschrijving ...">
-          </div>
         </form>
+        
       </div>
       <div class="inventaris_toe_img">
         
