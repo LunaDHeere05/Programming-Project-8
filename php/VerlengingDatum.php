@@ -7,6 +7,56 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verlengen</title>
+    <style>
+    .agendaEnTerug{
+    display: flex;
+}
+.agendaEnTerug img{
+    width: 1.5em;
+    height: auto;
+    margin: 1.5em;
+}
+.agendaEnTerug h1{
+    margin: 0.6em 0.5em 0em 0.5em;
+}
+.apparaat_verlengen_container{
+    background-color: rgb(193, 193, 193);
+    width: 80%;
+    margin: 1em auto;
+    border-radius: 2em;
+}
+.apparaat_verlengen_container img{
+  width: 15%;
+}
+.apparaat_verlengen{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+.apparaat_verlengen img{
+    width: 15%;
+    height: 15%;
+    margin: auto 1em;
+}
+.verlengen_btn{
+    background-color: #1bbcb6;
+    padding: 0.5em;
+    border-radius: 2em;
+    margin: 2em;
+    width: 10em;
+    height: auto;
+    text-align: center;
+}
+.verlengen_btn button{
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+</style>
 </head>
 <body> 
     <?php include 'top_nav.php' ?>
@@ -28,7 +78,9 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
                 <h3>Verlengen tot:</h3>
                 <input type="date" id="verlengen_datum" name="verlengen_datum">
             </div>
+            <div class="verlengen_btn">
             <button id="verlengen_btn">Verlengen</button>
+            </div>
         </div>
     </div>
     <?php include 'footer.php'?>
