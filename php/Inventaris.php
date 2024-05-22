@@ -43,30 +43,26 @@
         <?php include 'functies\inventaris_functie.php'; ?>
         </ul>
 
-        <script>
-            // Get the category parameter from the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const selectedCategory = urlParams.get('category');
+<script>
+// Get the category parameter from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedCategory = urlParams.get('category');
 
             // Set the selected category in the dropdown box
-            if (selectedCategory) {
-                const categoryDropdown = document.getElementById('categorie');
-                const option = document.createElement('option');
-                option.text = selectedCategory;
-                option.value = selectedCategory;
-                option.selected = true;
-                categoryDropdown.appendChild(option);
-            }
-        </script>
-
-        <script>
+  if (selectedCategory) {
+    const categoryDropdown = document.getElementById('categorie');
+    const option = document.createElement('option');
+    option.text = selectedCategory;
+    option.value = selectedCategory;
+    option.selected = true;
+    categoryDropdown.appendChild(option);
+  }
   document.querySelectorAll('.favoriet').forEach(function(button) {
     button.addEventListener('click', function(event) {
       event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het hartje aan te klikken
       let favorite_img = this.querySelector('img');
       if (favorite_img.src.endsWith('heart-regular.svg')) {
         favorite_img.src = 'images/svg/heart-solid.svg';
-        // <?php // include 'toevoegenFavorieten.php'; ?>
       } else {
         favorite_img.src = 'images/svg/heart-regular.svg';
       }
