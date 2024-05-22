@@ -30,7 +30,7 @@ width: 7em;
 padding: 1em;
 }
 
-.defect_hersteld a{
+#defect_hersteld a{
   background-color: #1BBCB6;
   display: flex;
   justify-content: space-between;
@@ -63,7 +63,7 @@ padding: 1em;
   display: flex;
   align-items: center;
 }
-.defect_hersteld a img{
+#defect_hersteld a img{
   width: 1em;
   height: auto;
   margin-left: 1em;
@@ -95,49 +95,104 @@ margin: 0em 1em 0em 1em;
   color: #5B5B5B;
   text-decoration: none;
 }
+#bevestiging_hersteld, #bevestiging_verwijderen{
+  width: 40%;
+  background-color: blue;
+  padding: 4em;
+  text-align: center;
+  border-radius: 2em;
+  position: relative;
+  padding-bottom: 2em;
+}
+.jaNee{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2em 1em 1em 1em;
+  width: 100%;
+}
+.ja{
+  background-color: #1BBCB6;
+  width: 30%;
+  height: 3em;
+  border-radius: 2em;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+.ja p{
+  margin: auto;
+  font-weight: bold;
+  font-size: 1.2em;
+
+}
+.neen{
+  background-color: #E30613;
+  width: 30%;
+  height: 3em;
+  border-radius: 2em;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+.neen p{
+  margin: auto;
+  font-weight: bold;
+  font-size: 1.2em;
+
+}
+#close_hersteld, #close_verwijder{
+  width: 1.5em;
+  height: auto;
+  position: absolute;
+  top: 1em;
+  right: 2em;
+}
+.hidden{
+    left: -99999px !important;
+    display: none;
+}
+body.blur > *:not(#bevestiging_hersteld):not(#close_hersteld):not(#bevestiging_verwijderen):not(#close_verwijder) {
+        filter: blur(50px);
+        pointer-events: none;
+}
 </style>
 </head>
 <body>
-        <!-- container box  -->
-        
-        <div class="defect_container">
-            <div class="defect_visueel_img">
-                <img
-                  src="../images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
-                  alt=""
-                />
-              </div>
-          <div class="defect_informatie">
-            <h3>Naam: <span>Canon-M50</span></h3>
-            <h3>Kit-ID: <span>RZ</span></h3>
-            <h3>Defect: <span>flash werkt niet</span></h3>
-          </div>
-            <!-- imges  -->
-            <div class="defect_visueel">
-              <!-- verwijderen wijzigen  -->
-              <div class="defect_acties">
-                <div class="defect_hersteld">
-                  <a href="#">
-                    Hersteld
-                    <img src="../images/svg/screwdriver-wrench-solid.svg" alt="xmark" />
-                  </a>
-                </div>
-                <div class="defect_verwijder">
-                  <a href="">
-                    Verwijder
-                    <img
-                      src="../images/svg/circle-xmark-solid.svg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-              </div>
-          </div>
-        </div>
+        <?php include 'functies\defect_ophalen.php'?>
         <div class="defect_add">
             <a href="">Defect toevoegen</a>
         </div>
+
+    <div id="bevestiging_hersteld" class="hidden">
+      <h2>Bent u zeker dat u dit apparaat als 'hersteld' wilt aanduiden?</h2>
+      <div class="jaNee">
+      <a href="" class="ja"><p>Ja</p></a>
+      <a href="" class= "neen"><p>Neen</p></a>
       </div>
-    </div>  
+      <img id="close_hersteld" src="images\svg\xmark-solid.svg" alt="">
+    </div>
+    <div id="bevestiging_verwijderen">
+      <h2>Bent u zeker dat u dit apparaat wilt verwijderen?</h2>
+      <div class="jaNee">
+      <a class="ja" href=""><p>Ja</p></a>
+      <a class="neen" href=""><p>Neen</p></a>
+      </div>
+      <img id="close_verwijder" src="images\svg\xmark-solid.svg" alt="">
+    </div>
+
+    <script>
+      document.getElementById('close_hersteld').addEventListener('click', function(){
+        document.getElementById('bevestiging_hersteld').classList.add('hidden');
+        document.body.classList.remove('blur');
+        document.getElementById('bevestiging_hersteld').classList.remove('no-blur');
+      });
+      document.getElementById('defect_hersteld').addEventListener('click', function(){
+        document.getElementById('bevestiging_hersteld').classList.remove('hidden');
+        document.body.classList.add('blur');
+        document.getElementById('bevestiging_hersteld').classList.add('no-blur');
+      });
+    </script>
 </body>
 </html>
