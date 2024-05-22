@@ -100,21 +100,6 @@ include("database.php");
 
 <body>
 
-    <script>
-        function addInputField() {
-            // Create a new input element
-            var newInput = document.createElement("input");
-
-            // Set the input's attributes
-            newInput.setAttribute("name", "functionaliteit[]");
-            newInput.setAttribute("type", "text");
-            newInput.setAttribute("placeholder", "Apparaat beschrijving ...");
-
-            // Append the new input to the container
-            document.querySelector(".inventaris_toe_text").appendChild(newInput);
-        }
-    </script>
-
     <?php
     $item_id = $_GET['item_id'];
 
@@ -138,26 +123,27 @@ include("database.php");
     <div class="inventaris_toe_specificaties">
         <div class="inventaris_toe_block">
             <div class="inventaris_toe_block1">
-                <form id="the_form" action="functies/InventarisW-VFunctie.php" method="post" enctype="multipart/form-data">
+                <form id="the_form" method="POST" enctype="multipart/form-data">
                     <div class="inventaris_toe">
                         <h2>Apparaat naam:</h2>
-                        <input id="apparaat_naam" name="apparaat_naam" type="text" placeholder="<?php echo $naam ?>">
+                        <input id="apparaat_naam" name="apparaat_naam" type="text" value="<?php echo $naam ?>">
                     </div>
                     <div class="inventaris_toe">
                         <h2>Merk:</h2>
-                        <input id="merk" name="merk" type="text" placeholder="<?php echo $merk ?>">
+                        <input id="merk" name="merk" type="text" value="<?php echo $merk ?>">
                     </div>
                     <div class="inventaris_toe">
                         <h2>Categorie:</h2>
-                        <input id="categorie" name="categorie" type="text" placeholder="<?php echo $categorie ?>">
+                        <input id="categorie" name="categorie" type="text" value="<?php echo $categorie ?>">
                     </div>
                     <div class="inventaris_toe">
                         <h2>Beschrijving:</h2>
-                        <input id="beschrijving" name="beschrijving" type="text" placeholder="<?php echo $beschrijving ?>">
+                        <input id="beschrijving" name="beschrijving" type="text" value="<?php echo $beschrijving ?>">
                     </div>
+                    
 
                     <input type="file" name="image">
-                    <input type="text" name="link" placeholder="<?php echo $gebruiksaanwijzing ?>">
+                    <input type="text" name="link" value="<?php echo $gebruiksaanwijzing ?>">
                     <input type="hidden" name="item_id" value="<?php echo $item_id ?>">
                     
 
@@ -166,7 +152,7 @@ include("database.php");
                         <?php
                         // Displaying each functionaliteit data
                         foreach ($functionaliteitData as $functionaliteit) {
-                            echo "<input type='text' name ='functionaliteit[]' placeholder='{$functionaliteit[0]}'><br>";
+                            echo "<input type='text' name ='functionaliteit[]' value='{$functionaliteit[0]}'><br>";
                         }
                         ?>
                     </div>
@@ -176,10 +162,10 @@ include("database.php");
                     <button type="button" onclick="addInputField()">Add another field</button>
                     <div class="inventaris_toe_buttons">
                         <div class="inventaris_toe_verwijderen">
-                            <button>Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
+                            <button  type="submit" onclick="submitForm('functies/InventarisVFunctie.php')">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
                         </div>
                         <div class="inventaris_toe_opslaan">
-                            <button name="submit" type="submit">Wijzigingen opslaan </button>
+                            <button  type="submit" onclick="submitForm('functies/InventarisWFunctie.php')">Wijzigingen opslaan </button>
                         </div>
                     </div>
                 </form>
@@ -193,6 +179,26 @@ include("database.php");
     </div>
 </body>
 <script>
+
+    function submitForm(action) {
+        var form = document.getElementById('the_form');
+        form.action = action;
+        form.submit();
+    }
+
+    function addInputField() {
+            // Create a new input element
+            var newInput = document.createElement("input");
+
+            // Set the input's attributes
+            newInput.setAttribute("name", "functionaliteit[]");
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("placeholder", "Apparaat beschrijving ...");
+
+            // Append the new input to the container
+            document.querySelector(".inventaris_toe_text").appendChild(newInput);
+    }
+
     document.getElementById('myForm').addEventListener('submit', function(e) {
         var inputs = document.querySelectorAll('input[name="functionaliteit[]"]');
         for (var i = 0; i < inputs.length; i++) {
@@ -203,5 +209,7 @@ include("database.php");
             }
         }
     });
+
+    
 </script>
 </html>
