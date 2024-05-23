@@ -6,7 +6,6 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 <head>
 
 
-$exemplareen_row['naam']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn favorietenlijst</title>
