@@ -4,7 +4,7 @@ include("../database.php");
 
 print_r($_POST);
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["submitForm"])) {
 
     echo 'checkpoint 1';
 
