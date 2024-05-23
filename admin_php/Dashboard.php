@@ -92,7 +92,7 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+     <script>
     $(document).ready(function(){
         function fetchReservations(date) {
             $.ajax({
@@ -157,17 +157,16 @@
 
         $('.iconen').on('click', '.check', function() {
             var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
-            var email = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID h3:first').text();
             $.ajax({
                 url: 'functies/verwijder_reservatie.php',
                 type: 'POST',
                 data: {reservatieID: reservatieID},
                 success: function(response) {
                     alert('Reservatie verwijderd.');
-                    // Hier zou je code kunnen toevoegen om de reservatie uit de database te halen als het item wordt teruggebracht.
+                    fetchReservations(new Date().toISOString().split('T')[0]); // Reload reservations after deletion
                 }
             });
-            // Hier code toevoegen om reservatie te markeren als "opgehaald" bij de gebruiker in de database.
+            // Here code could be added to mark the reservation as "picked up" by the user in the database.
         });
     });
     </script>
