@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Defect</title>
+  <title>Apparaat toevoegen</title>
   <?php include 'top_nav_admin.php'?>
   <style>
     .inventaris_toe_specificaties {
