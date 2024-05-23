@@ -2,7 +2,11 @@
 
 include("../database.php");
 
+print_r($_POST);
+
 if (isset($_POST["submit"])) {
+
+    echo 'checkpoint 1';
 
     $item_id = $_POST['item_id'];
     $apparaat = $_POST['apparaat_naam'];
@@ -12,6 +16,8 @@ if (isset($_POST["submit"])) {
     $image = $_FILES['image']['name'];
     $link = $_POST['link'];
     $functionaliteit = $_POST['functionaliteit'];
+
+    echo 'checkpoint 2';
 
     // Update ITEM table
     $valueUpdateQuery = "UPDATE ITEM SET ";
