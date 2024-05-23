@@ -110,12 +110,6 @@
 
 <body>
   <div class="rechter_grid">
-    <div class="overlay" id="meerInfoPopup">
-      <div class="popupContent">
-        <span class="closePopup" id="closeMeerInfo">&times;</span>
-        <div id="meerInfoData"></div>
-      </div>
-    </div>
     <div class="overlay" id="verwijderPopup">
       <div class="popupContent">
         <span class="closePopup" id="closeVerwijder">&times;</span>
@@ -131,7 +125,6 @@
           <th>E-mail</th>
           <th>Reden</th>
           <th>Dagen op blacklist</th>
-          <th>Meer info</th>
           <th>Verwijder</th>
         </tr>
         <?php include 'functies\blacklist_ophalen.php' ?>
@@ -140,35 +133,13 @@
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const meerInfoLinks = document.querySelectorAll(".meer_info_link");
       const verwijderLinks = document.querySelectorAll(".verwijder_link");
-
-      const meerInfoPopup = document.getElementById("meerInfoPopup");
       const verwijderPopup = document.getElementById("verwijderPopup");
-
-      const closeMeerInfo = document.getElementById("closeMeerInfo");
       const closeVerwijder = document.getElementById("closeVerwijder");
-
-      const meerInfoData = document.getElementById("meerInfoData");
       const verwijderData = document.getElementById("verwijderData");
-
       const confirmVerwijder = document.getElementById("confirmVerwijder");
 
-      meerInfoLinks.forEach(function (link) {
-        link.addEventListener("click", function (event) {
-          event.preventDefault(); // Voorkom de standaardactie van het volgen van de link
-
-          // Haal gegevens op en toon de popupinhoud
-          const email = link.closest("tr").querySelector("td:first-child").textContent;
-          const meerInfoContentHTML = `<p><strong>Email</strong>: ${email}</p>
-            <p><strong>Reden(en)</strong>: ${link.closest("tr").querySelector("td:nth-child(2)").textContent}</p>
-            <p><strong>Dagen op blacklist</strong>: ${link.closest("tr").querySelector("td:nth-child(3)").textContent}</p>`;
-          meerInfoData.innerHTML = meerInfoContentHTML;
-
-          // Toon de popup overlay
-          meerInfoPopup.style.display = "block";
-        });
-      });
+   
 
       verwijderLinks.forEach(function (link) {
         link.addEventListener("click", function (event) {
@@ -186,9 +157,6 @@
       });
 
       // Sluit de popup wanneer de sluitknop wordt geklikt
-      closeMeerInfo.addEventListener("click", function () {
-        meerInfoPopup.style.display = "none";
-      });
       closeVerwijder.addEventListener("click", function () {
         verwijderPopup.style.display = "none";
       });
@@ -206,7 +174,6 @@
       // Verwerk het klikken op de bevestigingsknop
       confirmVerwijder.addEventListener("click", function () {
         // Voeg hier je logica toe voor wat er moet gebeuren wanneer de bevestigingsknop wordt geklikt
-        // Bijvoorbeeld, je kunt een formulier verzenden, een AJAX-verzoek maken, etc.
         console.log("Bevestigingsknop geklikt");
         // Sluit de popup
         verwijderPopup.style.display = "none";
