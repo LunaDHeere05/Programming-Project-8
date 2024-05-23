@@ -105,45 +105,54 @@
             });
         }
 
-        // Fetch reservations for today's date on page load
-        fetchReservations(new Date().toISOString().split('T')[0]);
+        function updateDatesAndMonth(startDate) {
+            var date = new Date(startDate);
+            var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
+            var startOfWeek = new Date(date.setDate(date.getDate() - date.getDay() + 1)); // Monday of the current week
+            $('.datums').empty();
+            $('.datums').append('<li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>');
 
-        $('.datums li').click(function() {
+            for (let i = 0; i < 7; i++) {
+                var currentDay = new Date(startOfWeek);
+                currentDay.setDate(startOfWeek.getDate() + i);
+                var displayDate = currentDay.getDate();
+                var fullDate = currentDay.toISOString().split('T')[0];
+                var activeClass = fullDate === new Date().toISOString().split('T')[0] ? 'class="active"' : '';
+                $('.datums').append(`<li data-date='${fullDate}' ${activeClass}><h3>${displayDate}</h3></li>`);
+            }
+
+            $('.datums').append('<li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>');
+            $('#monday-date').val(startOfWeek.toISOString().split('T')[0]);
+            $('.agenda_container h2').text(monthNames[startOfWeek.getMonth()]);
+        }
+
+        // Fetch reservations for today's date on page load
+        var currentDate = new Date();
+        updateDatesAndMonth(currentDate);
+        fetchReservations(currentDate.toISOString().split('T')[0]);
+
+        $('.datums').on('click', 'li', function() {
             let selectedDate = $(this).data('date');
             $('.datums li').removeClass('active');
             $(this).addClass('active');
             fetchReservations(selectedDate);
         });
 
-        $('#prev-week').click(function() {
+        $('.datums').on('click', '#prev-week', function() {
             let currentMonday = new Date($('#monday-date').val());
             currentMonday.setDate(currentMonday.getDate() - 7);
-            $('#monday-date').val(formatDate(currentMonday));
-            fetchReservations(formatDate(currentMonday));
+            updateDatesAndMonth(currentMonday);
+            fetchReservations($('#monday-date').val());
         });
 
-        $('#next-week').click(function() {
+        $('.datums').on('click', '#next-week', function() {
             let currentMonday = new Date($('#monday-date').val());
             currentMonday.setDate(currentMonday.getDate() + 7);
-            $('#monday-date').val(formatDate(currentMonday));
-            fetchReservations(formatDate(currentMonday));
+            updateDatesAndMonth(currentMonday);
+            fetchReservations($('#monday-date').val());
         });
 
-        function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-
-            if (month.length < 2) 
-                month = '0' + month;
-            if (day.length < 2) 
-                day = '0' + day;
-
-            return [year, month, day].join('-');
-        }
-
-        $('.iconen').on('click', '.schroevendraaier', function() {
+        $(document).on('click', '.iconen .schroevendraaier', function() {
             var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
             $.ajax({
                 url: 'functies/markeer_als_defect.php',
@@ -155,15 +164,15 @@
             });
         });
 
-        $('.iconen').on('click', '.check', function() {
-            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+        $(document).on('click', '.iconen .check', function() {
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_ID span').text();
             $.ajax({
                 url: 'functies/verwijder_reservatie.php',
                 type: 'POST',
                 data: {reservatieID: reservatieID},
                 success: function(response) {
                     alert('Reservatie verwijderd.');
-                    fetchReservations(new Date().toISOString().split('T')[0]); // Reload reservations after deletion
+                    fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
                 }
             });
             // Here code could be added to mark the reservation as "picked up" by the user in the database.
@@ -174,33 +183,11 @@
 <body>
     <div class="rechter_grid">
         <div class="agenda_container">
-            <?php
-                setlocale(LC_TIME, 'nl_NL.UTF-8');
-                echo '<h2>' . strftime('%B') . '</h2>';
-            ?>
+            <h2>Mei</h2> <!-- De maand wordt hier geüpdatet door JavaScript -->
             <ul class="datums">
-                <li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
-                <?php
-                    $currentDayOfWeek = date('N');
-                    $currentDay = date('j');
-                    $currentMonth = date('n');
-                    $currentYear = date('Y');
-
-                    // Calculate the date of Monday of the current week
-                    $mondayDate = strtotime('monday this week');
-                    
-                    // Generate the dates for the current week
-                    for ($i = 0; $i< 7; $i++) {
-                        $date = date('Y-m-d', strtotime("+$i days", $mondayDate));
-                        $displayDate = date('j', strtotime($date));
-                        $isToday = (date('Y-m-d') == $date);
-                        $activeClass = $isToday ? 'class="active"' : '';
-                        echo "<li data-date='$date' $activeClass><h3>$displayDate</h3></li>";
-                    }
-                ?>
-                <li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>
+                <!-- Datumknoppen worden hier dynamisch gegenereerd -->
             </ul>
-            <input type="hidden" id="monday-date" value="<?= date('Y-m-d', $mondayDate) ?>">
+            <input type="hidden" id="monday-date" value="">
         </div>
         <div class="uitleningen_dashboard_container">
             <!-- Content will be loaded here via AJAX -->
