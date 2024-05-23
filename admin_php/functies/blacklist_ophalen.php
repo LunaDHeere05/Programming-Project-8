@@ -20,8 +20,8 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
         echo "<td>" . htmlspecialchars($row['blacklistReasons']) . "</td>";
         echo "<td>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
-        echo "<td><a href='#'><img class='meer_info' src='images/svg/circle-info-solid.svg' alt='meer informatie'></a></td>
-              <td><a href='#'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
+        echo "<td><a href='#' class='meer_info_link'><img class='meer_info' src='images/svg/circle-info-solid.svg' alt='meer informatie'></a></td>
+              <td><a href='#' class='verwijder_link'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
     }
 } else {
