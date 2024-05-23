@@ -74,39 +74,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         <h1>Mijn favorietenlijst</h1>
 </div>
     <div class="favoriet_apparaat_container">
-   e'''
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
-        <div class="favoriet_apparaat">
-            <img class="mijnFavorieteApparaat_foto" src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="apparaat foto">
-            <div class="text_apparaat">
-                <h3>Canon M50</h3>
-                <img src="images/svg/circle-check-solid.svg" alt="beschikbaar">
-            </div>
-            <img class="verwijder_btn" src="images/svg/xmark-solid.svg" alt="verwijder">
-        </div>
+    <?php include 'functies/favorietenLijst.php'?> 
     </div>
 </body>
 </html>
