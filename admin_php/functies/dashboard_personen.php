@@ -1,7 +1,9 @@
 <?php
-include 'database.php';
+include '../database.php';
 
-$query = "SELECT uitleen_id, uitleen_datum, inlever_datum, isOpgehaald, emailSTUDENT, emailDOCENT FROM UITLENING";
+$date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
+
+$query = "SELECT uitleen_id, uitleen_datum, inlever_datum, isOpgehaald, emailSTUDENT, emailDOCENT FROM UITLENING WHERE uitleen_datum = '$date'";
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -24,9 +26,9 @@ while ($row = mysqli_fetch_assoc($result)) {
             <h3>Apparaat: $apparaat</h3>
             <p>Ophalen: $isOpgehaald</p>
             <div class='iconen'>
-                <img src='images/svg/screwdriver-wrench-solid.svg' alt=''>
-                <img class='check' src='images/svg/circle-check-solid.svg' alt=''>
-                <img class='verwijder_btn' src='images/svg/circle-xmark-solid.svg' alt=''>
+            <img src='images/svg/screwdriver-wrench-solid.svg' alt=''>
+            <img class='check' src='images/svg/circle-check-solid.svg' alt=''>
+            <img class='verwijder_btn' src='images/svg/circle-xmark-solid.svg' alt=''>
             </div>
           </div>";
 }

@@ -27,6 +27,7 @@
             border-radius: 50%;
             text-align: center;
             display: flex;
+            cursor: pointer;
         }
         .datums li h3 {
             margin: auto;
@@ -88,16 +89,68 @@
             color: white;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function fetchReservations(date) {
+                $.ajax({
+                    url: 'functies/dashboard_personen.php',
+                    type: 'POST',
+                    data: {date: date},
+                    success: function(response) {
+                        $('.uitleningen_dashboard_container').html(response);
+                    }
+                });
+            }
+
+            // Fetch reservations for today's date on page load
+            fetchReservations(new Date().toISOString().split('T')[0]);
+
+            $('.datums li').click(function() {
+                let selectedDate = $(this).data('date');
+                $('.datums li').removeClass('active');
+                $(this).addClass('active');
+                fetchReservations(selectedDate);
+            });
+
+            $('#prev-week').click(function() {
+                let currentMonday = new Date($('#monday-date').val());
+                currentMonday.setDate(currentMonday.getDate() - 7);
+                loadWeek(currentMonday);
+            });
+
+            $('#next-week').click(function() {
+                let currentMonday = new Date($('#monday-date').val());
+                currentMonday.setDate(currentMonday.getDate() + 7);
+                loadWeek(currentMonday);
+            });
+
+            function loadWeek(mondayDate) {
+                let datesHtml = '';
+                for (let i = 0; i < 7; i++) {
+                    let date = new Date(mondayDate);
+                    date.setDate(date.getDate() + i);
+                    let dateString = date.toISOString().split('T')[0];
+                    let isToday = (new Date().toDateString() === date.toDateString());
+                    let activeClass = isToday ? 'class="active"' : '';
+                    datesHtml += `<li data-date="${dateString}" ${activeClass}><h3>${date.getDate()}</h3></li>`;
+                }
+                $('#monday-date').val(mondayDate.toISOString().split('T')[0]);
+                $('.datums').html(`<li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>${datesHtml}<li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>`);
+                fetchReservations(new Date().toISOString().split('T')[0]);
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="rechter_grid">
         <div class="agenda_container">
             <?php
                 setlocale(LC_TIME, 'nl_NL.UTF-8');
-                echo '<h2>' . date('%B') . '</h2>';
+                echo '<h2>' . strftime('%B') . '</h2>';
             ?>
             <ul class="datums">
-                <li><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
+                <li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
                 <?php
                     $currentDayOfWeek = date('N');
                     $currentDay = date('j');
@@ -109,17 +162,19 @@
                     
                     // Generate the dates for the current week
                     for ($i = 0; $i < 7; $i++) {
-                        $date = date('j', strtotime("+$i days", $mondayDate));
-                        $isToday = (date('Y-m-d') == date('Y-m-d', strtotime("+$i days", $mondayDate)));
+                        $date = date('Y-m-d', strtotime("+$i days", $mondayDate));
+                        $displayDate = date('j', strtotime($date));
+                        $isToday = (date('Y-m-d') == $date);
                         $activeClass = $isToday ? 'class="active"' : '';
-                        echo "<li $activeClass><h3>$date</h3></li>";
+                        echo "<li data-date='$date' $activeClass><h3>$displayDate</h3></li>";
                     }
                 ?>
-                <li><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>
+                <li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>
             </ul>
+            <input type="hidden" id="monday-date" value="<?= date('Y-m-d', $mondayDate) ?>">
         </div>
         <div class="uitleningen_dashboard_container">
-            <?php include 'functies/dashboard_personen.php'; ?>
+            <!-- Content will be loaded here via AJAX -->
         </div>
         <div class="uitlening_toevoegen">
             <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
