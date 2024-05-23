@@ -21,7 +21,7 @@ if (mysqli_query($conn, $uitlening)) {
     for ($i=1; $i<=$aantal; $i++) {
         $exemplaren = "SELECT exemplaar_item_id 
                        FROM EXEMPLAAR_ITEM ei 
-                       WHERE ei.item_id = {$itemId}";
+                       WHERE ei.item_id = {$itemId}"; //maybe use NOT EXISTS met onbeschikbare exemplaren?
 
         $exemplaren_result = mysqli_query($conn, $exemplaren);
 

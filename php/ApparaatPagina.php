@@ -393,8 +393,8 @@
         </div>
       </div>
       <p id="onbeschikbaarDiv"></p>
-      <button type="submit" class="reserveer_nu_btn">Reserveer nu</button>
-      <button class="winkelmand_toevoegen_btn">
+      <button type="submit" class="reserveer_nu_btn" id="submit">Reserveer nu</button>
+      <button class="winkelmand_toevoegen_btn" id="submitWinkelmand">
         <p>Voeg toe</p>
         <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
       </button>
@@ -453,6 +453,16 @@
   <?php include 'footer.php' ?>
 
   <script>
+
+    //apparaat steken in recent bekeken 
+    const url = new URL(window.location.href);
+    const apparaatId = new URLSearchParams(url.search).get('apparaat_id');
+    console.log('Apparaat ID:', apparaatId);
+
+    recentBekekenArray.push(apparaatId);
+    console.log(recentBekekenArray)
+
+    
     let vandaag = new Date();
     let dayIndex = vandaag.getDay(); //maandag is index 1, vrijdag index 5
 
@@ -500,7 +510,13 @@
       dateMessage.textContent = ''
     })
 
+    //zolang geen datum is aangeduid, zijn de reserveer- en winkelmandbutton disabled
 
+    if(!start_date.value || !end_date.value){
+      document.getElementById('submit').disabled=true;
+      document.getElementById('submitWinkelmand').disabled=true;
+    }
+    
     function aantalUitDatabank(startDate, endDate) {
       let itemId = <?php echo json_encode($item_id); ?>;
       // Controle
@@ -525,14 +541,20 @@
             // Reset aantal-value elke keer dat de user een andere datum kiest
             document.getElementById('quantity').value = '1';
             document.getElementById('quantity').disabled = false;
+            document.getElementById('submit').disabled=false;
+            document.getElementById('submitWinkelmand').disabled=false;
             document.getElementById('onbeschikbaarDiv').style.display = 'none';
             document.getElementById('quantity').setAttribute('max', data);
             document.getElementById('quantity').style.display = 'flex';
+          
           } else if (data == 0) {
             document.getElementById('onbeschikbaarDiv').style.display = 'flex';
             document.getElementById('quantity').value = '0';
             document.getElementById('quantity').disabled = true;
             document.getElementById('onbeschikbaarDiv').innerHTML = '<p class=\"onbeschikbaarmelding\">Dit artikel is onbeschikbaar. Kies een ander uitleentermijn.</p>';
+            console.log(document.getElementById('submit'))
+            document.getElementById('submit').disabled=true;
+            document.getElementById('submitWinkelmand').disabled=true;
           }
           console.log(data);
         })
@@ -621,10 +643,9 @@ start_date.addEventListener('change', function() {
 
     }
   })
-})
-
-
-";
+})";
+    }else if((!isset($userType) || !isset($email))){
+      echo '<p class="login"> <a href="Profiel.php"> Log in</a> om een reservatie te kunnen plaarsen.</p>';
     }
     ?>
   </script>

@@ -4,89 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris</title>
-
-</head>
-<body>
-<?php include 'top_nav.php'; ?>
- <!--zoekresultaat container  -->
-<div class="zoekresultaat_container">
-        <h3>Verfijn je resultaat: </h3>
-        <ul class="filters">
-            <li>
-                <select name="Categorie" id="categorie">
-                    <option value="Categorie" disabled selected>Categorie</option>
-                    <?php include 'functies\filter_categorie_inventaris.php'; ?> <!-- Include the options dynamically from your database if needed -->
-                </select>
-            </li>
-            <li>
-                <select name="Merk" id="merk">
-                    <option value="merk" disabled selected>Merk</option>
-                    <?php include 'functies\filter_merk_inventaris.php'; ?>
-                </select>
-            </li>
-            <li>
-                <select name="Beschrijving" id="beschrijving">
-                    <option value="beschrijving" disabled selected>Beschrijving</option>
-                    <?php include 'functies\filter_beschrijving_inventaris.php'; ?>
-                </select>
-            </li>
-            <li>
-                <select name="Beschikbaarheid" id="beschikbaarheid">
-                    <option value="Beschikbaarheid">Beschikbaarheid</option>
-                </select>
-            </li>
-        </ul>
-    </div>
-
-    <!-- apparatenlijst -->
-        <ul class="apparatenlijst">
-        <?php include 'functies\inventaris_functie.php'; ?>
-        </ul>
-
-<script>
-// Get the category parameter from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const selectedCategory = urlParams.get('category');
-
-            // Set the selected category in the dropdown box
-  if (selectedCategory) {
-    const categoryDropdown = document.getElementById('categorie');
-    const option = document.createElement('option');
-    option.text = selectedCategory;
-    option.value = selectedCategory;
-    option.selected = true;
-    categoryDropdown.appendChild(option);
-  }
-  document.querySelectorAll('.favoriet').forEach(function(button) {
-    button.addEventListener('click', function(event) {
-      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het hartje aan te klikken
-      let favorite_img = this.querySelector('img');
-      if (favorite_img.src.endsWith('heart-regular.svg')) {
-        favorite_img.src = 'images/svg/heart-solid.svg';
-      } else {
-        favorite_img.src = 'images/svg/heart-regular.svg';
-      }
-    });
-  });
-  document.querySelectorAll('.winkelmand').forEach(function(button) {
-    button.addEventListener('click', function(event) {
-      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het winkelmandje aan te klikken
-      let cart_img = this.querySelector('img');
-      if (cart_img.src.endsWith('cart-shopping-solid.svg')) {
-        cart_img.src = 'images/svg/shopping-cart-regular.svg';
-      } else {
-        cart_img.src = 'images/svg/cart-shopping-solid.svg';
-      }
-    });
-  });
-</script>
-
-</body>
-</html>
-
-<style>
-
-.zoekresultaat_container {
+    <style>.zoekresultaat_container {
   margin-top: 1em;
   display: flex;
 }
@@ -179,4 +97,89 @@
 
 }</style>
 
-<?php include("footer.php"); ?>
+</head>
+<body>
+<?php include 'top_nav.php'; ?>
+ <!--zoekresultaat container  -->
+<div class="zoekresultaat_container">
+        <h3>Verfijn je resultaat: </h3>
+        <ul class="filters">
+            <li>
+                <select name="Categorie" id="categorie">
+                    <option value="Categorie" disabled selected>Categorie</option>
+                    <?php include 'functies\filter_categorie_inventaris.php'; ?> <!-- Include the options dynamically from your database if needed -->
+                </select>
+            </li>
+            <li>
+                <select name="Merk" id="merk">
+                    <option value="merk" disabled selected>Merk</option>
+                    <?php include 'functies\filter_merk_inventaris.php'; ?>
+                </select>
+            </li>
+            <li>
+                <select name="Beschrijving" id="beschrijving">
+                    <option value="beschrijving" disabled selected>Beschrijving</option>
+                    <?php include 'functies\filter_beschrijving_inventaris.php'; ?>
+                </select>
+            </li>
+            <li>
+                <select name="Beschikbaarheid" id="beschikbaarheid">
+                    <option value="Beschikbaarheid">Beschikbaarheid</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+
+    <!-- apparatenlijst -->
+        <ul class="apparatenlijst">
+        <?php include 'functies\inventaris_functie.php'; ?>
+        </ul>
+
+
+        <?php include("footer.php"); ?>
+
+
+<script>
+// Get the category parameter from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedCategory = urlParams.get('category');
+
+// Set the selected category in the dropdown box
+  if (selectedCategory) {
+    const categoryDropdown = document.getElementById('categorie');
+    const option = document.createElement('option');
+    option.text = selectedCategory;
+    option.value = selectedCategory;
+    option.selected = true;
+    categoryDropdown.appendChild(option);
+  }
+  document.querySelectorAll('.favoriet').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het hartje aan te klikken
+      let favorite_img = this.querySelector('img');
+      if (favorite_img.src.endsWith('heart-regular.svg')) {
+        favorite_img.src = 'images/svg/heart-solid.svg';
+      } else {
+        favorite_img.src = 'images/svg/heart-regular.svg';
+      }
+    });
+  });
+  document.querySelectorAll('.winkelmand').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het winkelmandje aan te klikken
+      let cart_img = this.querySelector('img');
+      if (cart_img.src.endsWith('cart-shopping-solid.svg')) {
+        cart_img.src = 'images/svg/shopping-cart-regular.svg';
+      } else {
+        cart_img.src = 'images/svg/cart-shopping-solid.svg';
+      }
+    });
+  });
+
+</script>
+
+</body>
+</html>
+
+
+
