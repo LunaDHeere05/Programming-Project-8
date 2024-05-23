@@ -162,7 +162,7 @@ body.blur > *:not(#bevestiging_hersteld):not(#close_hersteld):not(#bevestiging_v
 <body>
         <?php include 'functies\defect_ophalen.php'?>
         <div class="defect_add">
-            <a href="">Defect toevoegen</a>
+            <a href="DefectToevoegen.php">Defect toevoegen</a>
         </div>
 
     <div id="bevestiging_hersteld" class="hidden">
