@@ -1,5 +1,7 @@
 <?php
 include("database.php");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -95,6 +97,43 @@ include("database.php");
             margin: 0em 0em 0em 0.5em;
             filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
         }
+
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        }
     </style>
 </head>
 
@@ -123,7 +162,7 @@ include("database.php");
     <div class="inventaris_toe_specificaties">
         <div class="inventaris_toe_block">
             <div class="inventaris_toe_block1">
-                <form id="the_form" method="POST" enctype="multipart/form-data">
+                <form id="form" method="POST" enctype="multipart/form-data">
                     <div class="inventaris_toe">
                         <h2>Apparaat naam:</h2>
                         <input id="apparaat_naam" name="apparaat_naam" type="text" value="<?php echo $naam ?>">
@@ -162,12 +201,14 @@ include("database.php");
                     <button type="button" onclick="addInputField()">Add another field</button>
                     <div class="inventaris_toe_buttons">
                     <div class="inventaris_toe_verwijderen">
-                        <button name="submit" type="submit" onclick="submitForm('functies/InventarisVFunctie.php')">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
-                        <input type="hidden" name="submit" value="Apparaat verwijderen">
+                        <button id="delete-btn" name="submitForm" type="button" onclick="openDeleteModal()">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
+                        <input type="hidden" id="delete-input" name="submitForm" value="delete">
+                        <input type="hidden" value="Apparaat verwijderen">
                     </div>
                     <div class="inventaris_toe_opslaan">
-                        <button name="submit" type="submit" onclick="submitForm('functies/InventarisWFunctie.php')">Wijzigingen opslaan </button>
-                        <input type="hidden" name="submit" value="Wijzigingen opslaan">
+                        <button id="save-changes-btn" name="submitForm" type="button" onclick="openSaveChangesModal()">Wijzigingen opslaan </button>
+                        <input type="hidden" id="save-input" name="submitForm" value="save">
+                        <input type="hidden" value="Wijzigingen opslaan">                   
                     </div>
                     </div>
                 </form>
@@ -177,15 +218,78 @@ include("database.php");
 
             </div>
         </div>
+        <!-- The Modal for Delete -->
+        <div id="deleteModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Are you sure you want to delete this item?</p>
+                <button id="confirm-delete-btn">Yes</button>
+                <button id="cancel-delete-btn">No</button>
+            </div>
+        </div>
 
+        <!-- The Modal for Save Changes -->
+        <div id="saveChangesModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Are you sure you want to save changes?</p>
+                <button id="confirm-save-changes-btn">Yes</button>
+                <button id="cancel-save-changes-btn">No</button>
+            </div>
+        </div>
     </div>
 </body>
 <script>
 
-    function submitForm(action) {
-        var form = document.getElementById('the_form');
-        form.action = action;
-        form.submit();
+    var deleteModal = document.getElementById("deleteModal");
+    var saveChangesModal = document.getElementById("saveChangesModal");
+
+    // Get the buttons that open the modals
+    var deleteBtn = document.getElementById("delete-btn");
+    var saveChangesBtn = document.getElementById("save-changes-btn");
+
+    // Get the <span> elements that close the modals
+    var spans = document.getElementsByClassName("close");
+
+    // When the user clicks the button, open the modal 
+    function openDeleteModal() {
+    deleteModal.style.display = "block";
+    }
+
+    function openSaveChangesModal() {
+    saveChangesModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    for (var i = 0; i < spans.length; i++) {
+    spans[i].onclick = function() {
+        deleteModal.style.display = "none";
+        saveChangesModal.style.display = "none";
+    }
+    }
+
+    // When the user clicks on Yes, submit the form
+document.getElementById("confirm-save-changes-btn").onclick = function() {
+    document.getElementById('form').action = "functies/InventarisWFunctie.php";
+    document.getElementById('save-input').value = 'save'; // Set the value of the hidden input field
+    document.getElementById('form').submit();
+}
+
+document.getElementById("confirm-delete-btn").onclick = function() {
+    document.getElementById('form').action = "functies/InventarisVFunctie.php";
+    document.getElementById('delete-input').value = 'delete'; // Set the value of the hidden input field
+    document.getElementById('form').submit();
+}
+
+    // When the user clicks on No, close the modal
+    document.getElementById("cancel-delete-btn").onclick = function() {
+    deleteModal.style.display = "none";
+    }
+
+    document.getElementById("cancel-save-changes-btn").onclick = function() {
+    saveChangesModal.style.display = "none";
     }
 
     function addInputField() {
