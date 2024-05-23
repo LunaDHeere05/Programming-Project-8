@@ -1,201 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blacklist</title>
-    <?php include 'top_nav_admin.php'?>
-    <style>
-.blacklist_tabel{
-  width: 90%;
-  text-align: center;
-  margin: auto;
-  margin-top: 2em;
-}
-.blacklist_tabel table{
-  border-collapse: collapse;
-  margin: auto;
-  width: 100%;
-}
-.blacklist_tabel th, td{
-  width: 30%;
-  border-collapse: collapse;
-  border-bottom: 2px solid rgb(193,193,193);
-  border-left: 2px solid rgb(193,193,193);
-}
-.blacklist_tabel tr:last-child td{
-  border-bottom: none;
-}
-.blacklist_tabel th:first-child, td:first-child{
-  border-left: none;
-}
-.blacklist_tabel .meer_info{
-  width: 2em;
-  height: auto;
-  padding-top: 0.5em;
-  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
-}
-.verwijder{
-    filter: invert(13%) sepia(91%) saturate(6506%) hue-rotate(353deg) brightness(88%) contrast(103%);
-    width: 2em;
-    height: auto;
-    padding-top: 0.5em;
-  }
-#verwijder_popup, #meer_info_popup{
-  width: 50%;
-  height: auto;
-  cursor: pointer;
-  background-color: white;
-  border-radius: 2em;
-  margin: auto;
-  position: relative;
-  padding: 0.5em 0em;
-}
-#verwijder_popup #user, #meer_info_popup #user{
-  width: 2em;
-  height: auto;
-  margin-right: 1em;
-}
-.user{
-  display: flex;
-  margin: 1em 0em 0em 1em;
-}
-#verwijder_popup h2{
-  text-align: center;
-  margin: 3em 0em;
-}
-#close_window_verwijder, #close_window_meerInfo{
-  position: absolute;
-  width: 2em;
-  height: 2em;
-  top: 0.5em;
-  right: 1em;
-}
-.bevestig_btn{
-  width: 100%;
-  display: flex;
-}
-.bevestig_btn form{
-  margin: auto;
-}
-.bevestig_btn form input{
-  background-color: #1BBCB6;
-  color: white;
-  font-weight: bold;
-  border: none;
-  width: 10em;
-  height: 3em;
-  border-radius: 2em;
-}
-.extra_info{
-  margin: 2em 1em;
-}
-.contacteer{
-  width: 25%;
-  margin-left: 30%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.contacteer a{
-  display: flex;
-  width: 100%;
-  height: 2em;
-  background-color: #1BBCB6;;
-  border-radius: 2em;
-  margin: auto;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-.contacteer a p{
-  margin: auto;
-}
-.hidden{
-    left: -99999px !important;
-    display: none;
-}
-body.blur > *:not(#verwijder_popup):not(#close_window_verwijder):not(#meer_info_popup):not(#close_window_meerInfo) {
-        filter: blur(50px);
-        pointer-events: none;
-}
-        </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blacklist</title>
+  <?php include 'top_nav_admin.php' ?>
+  <style>
+    .blacklist_tabel {
+      width: 90%;
+      text-align: center;
+      margin: auto;
+      margin-top: 2em;
+    }
+
+    .blacklist_tabel table {
+      border-collapse: collapse;
+      margin: auto;
+      width: 100%;
+    }
+
+    .blacklist_tabel th,
+    td {
+      width: 30%;
+      border-collapse: collapse;
+      border-bottom: 2px solid rgb(193, 193, 193);
+      border-left: 2px solid rgb(193, 193, 193);
+    }
+
+    .blacklist_tabel tr:last-child td {
+      border-bottom: none;
+    }
+
+    .blacklist_tabel th:first-child,
+    td:first-child {
+      border-left: none;
+    }
+
+    .blacklist_tabel .meer_info {
+      width: 2em;
+      height: auto;
+      padding-top: 0.5em;
+      filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
+    }
+
+    .verwijder {
+      filter: invert(13%) sepia(91%) saturate(6506%) hue-rotate(353deg) brightness(88%) contrast(103%);
+      width: 2em;
+      height: auto;
+      padding-top: 0.5em;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .popupContent {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 40%;
+      height: auto;
+      border-radius: 1rem;
+      position: relative;
+    }
+
+    .closePopup {
+      color: #aaa;
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .closePopup:hover,
+    .closePopup:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .confirmButton {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 15%;
+      background-color: #1BBCB6;
+      border-radius: 0.5rem;
+      width: 15%;
+      color: antiquewhite;
+    }
+
+    .confirmButton:hover {
+      cursor: pointer;
+      color: black;
+    }
+  </style>
 </head>
+
 <body>
-        <div class="rechter_grid">
-        <div id="verwijder_popup" class="hidden">
-          <div class="user">
-            <img id="user" src="images\svg\user-solid.svg" alt="user icoon">
-            <div class="user_info">
-            <h3>Luna D'Heere</h3>
-            <p>Student</p>
-            </div>
-          </div>
-            <h2>Bevestig dat je deze persoon wilt <b>verwijderen</b> uit de blacklist.</h2>
-            <div class="bevestig_btn">
-              <form>
-              <input type="submit" value = "Bevestig">
-              </form>
-            </div>
-            <img id="close_window_verwijder" src="images\svg\xmark-solid.svg" alt="sluit venster">
-          </div>
+  <div class="rechter_grid">
+    <div class="overlay" id="meerInfoPopup">
+      <div class="popupContent">
+        <span class="closePopup" id="closeMeerInfo">&times;</span>
+        <div id="meerInfoData"></div>
+      </div>
+    </div>
+    <div class="overlay" id="verwijderPopup">
+      <div class="popupContent">
+        <span class="closePopup" id="closeVerwijder">&times;</span>
+        <div id="verwijderData"></div>
+        <button class="confirmButton" id="confirmVerwijder">Bevestigen</button>
+      </div>
+    </div>
 
-          <!-- meer info -->
+    <!-- blacklist tabel -->
+    <div class="blacklist_tabel">
+      <table>
+        <tr>
+          <th>E-mail</th>
+          <th>Reden</th>
+          <th>Dagen op blacklist</th>
+          <th>Meer info</th>
+          <th>Verwijder</th>
+        </tr>
+        <?php include 'functies\blacklist_ophalen.php' ?>
+      </table>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const meerInfoLinks = document.querySelectorAll(".meer_info_link");
+      const verwijderLinks = document.querySelectorAll(".verwijder_link");
 
-          <div id="meer_info_popup" class="hidden">
-            <div class="user">
-              <img id="user" src="images\svg\user-solid.svg" alt="user icoon">
-              <div class="user_info">
-                <h3>Luna D'Heere</h3>
-                <p>Student</p>
-              </div>
-              <div class="contacteer">
-                  <a href="#">
-                    <p>Contacteer</p></a> 
-                  <!-- de href hier gaat een mailto: moeten zijn naar de persoon hun emailadres -->
-                </div>
-            </div>
-            <div class="extra_info">
-              <h2>Reden: </h2>
-              <h2>Dagen Blacklist: </h2>
-              <h2>Momenteel uitgeleend? </h2>
-              <h2>Dagen tot inleverdatum: </h2>
-            </div>
-            <img id="close_window_meerInfo" src="images\svg\xmark-solid.svg" alt="sluit venster">
-          </div>
+      const meerInfoPopup = document.getElementById("meerInfoPopup");
+      const verwijderPopup = document.getElementById("verwijderPopup");
 
-          <!-- blacklist tabel -->
-            <div class="blacklist_tabel">
-                <table>
-                    <tr>
-                        <th>E-mail</th>
-                        <th>Reden</th>
-                        <th>Dagen op blacklist</th>
-                        <th>Meer info</th>
-                        <th>Verwijder</th>
-                    </tr>
-                    <?php include 'functies\blacklist_ophalen.php'?>
-                </table>
-            </div>
-<script>
-  // document.getElementById('verwijder_popup').addEventListener('click', function(){
-  //   document.getElementById('verwijder_popup').classList.remove('hidden');
-  //   document.body.classList.add('blur'); //mag enkel werken als er op de verwijder knop wordt geklikt
-  //   //momenteel werkt dit dus nog niet
-  // })
-  document.getElementById('close_window_verwijder').addEventListener('click', function(){
-    document.getElementById('verwijder_popup').classList.add('hidden');
-    document.body.classList.remove('blur');
-  })
-  // document.getElementById('meer_info_popup').addEventListener('click', function(){
-  //   document.getElementById('meer_info_popup').classList.remove('hidden');
-  //   document.body.classList.add('blur'); //mag enkel werken als er op de meer info knop wordt geklikt
-  //   //momenteel werkt dit dus nog niet
-  // })
-  document.getElementById('close_window_meerInfo').addEventListener('click', function(){
-    document.getElementById('meer_info_popup').classList.add('hidden');
-    document.body.classList.remove('blur');
-  })
-</script>
+      const closeMeerInfo = document.getElementById("closeMeerInfo");
+      const closeVerwijder = document.getElementById("closeVerwijder");
+
+      const meerInfoData = document.getElementById("meerInfoData");
+      const verwijderData = document.getElementById("verwijderData");
+
+      const confirmVerwijder = document.getElementById("confirmVerwijder");
+
+      meerInfoLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault(); // Voorkom de standaardactie van het volgen van de link
+
+          // Haal gegevens op en toon de popupinhoud
+          const email = link.closest("tr").querySelector("td:first-child").textContent;
+          const meerInfoContentHTML = `<p><strong>Email</strong>: ${email}</p>
+            <p><strong>Reden</strong>: ${link.closest("tr").querySelector("td:nth-child(2)").textContent}</p>
+            <p><strong>Dagen op blacklist</strong>: ${link.closest("tr").querySelector("td:nth-child(3)").textContent}</p>`;
+          meerInfoData.innerHTML = meerInfoContentHTML;
+
+          // Toon de popup overlay
+          meerInfoPopup.style.display = "block";
+        });
+      });
+
+      verwijderLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault(); // Voorkom de standaardactie van het volgen van de link
+
+          // Haal gegevens op en toon de popupinhoud
+          const email = link.closest("tr").querySelector("td:first-child").textContent;
+          const verwijderContentHTML = `<p><strong>Email</strong>: ${email}</p>
+            <p>Klik op <strong>Bevestigen</strong> om de persoon uit de Blacklist te verwijderen</p><br>`;
+          verwijderData.innerHTML = verwijderContentHTML;
+
+          // Toon de popup overlay
+          verwijderPopup.style.display = "block";
+        });
+      });
+
+      // Sluit de popup wanneer de sluitknop wordt geklikt
+      closeMeerInfo.addEventListener("click", function () {
+        meerInfoPopup.style.display = "none";
+      });
+      closeVerwijder.addEventListener("click", function () {
+        verwijderPopup.style.display = "none";
+      });
+
+      // Sluit de popup wanneer er buiten de popupinhoud wordt geklikt
+      window.addEventListener("click", function (event) {
+        if (event.target === meerInfoPopup) {
+          meerInfoPopup.style.display = "none";
+        }
+        if (event.target === verwijderPopup) {
+          verwijderPopup.style.display = "none";
+        }
+      });
+
+      // Verwerk het klikken op de bevestigingsknop
+      confirmVerwijder.addEventListener("click", function () {
+        // Voeg hier je logica toe voor wat er moet gebeuren wanneer de bevestigingsknop wordt geklikt
+        // Bijvoorbeeld, je kunt een formulier verzenden, een AJAX-verzoek maken, etc.
+        console.log("Bevestigingsknop geklikt");
+        // Sluit de popup
+        verwijderPopup.style.display = "none";
+      });
+    });
+  </script>
 </body>
+
 </html>
