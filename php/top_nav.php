@@ -362,13 +362,11 @@ document.getElementById('close_window').addEventListener('click', function(){
 let link=document.getElementsByClassName('link')
 console.log(link)
 
+//nav wordt blauw op page die open is 
+
 for(let i=0;i<link.length;i++){
     console.log(link[i]);
-
     var image = link[i].querySelector('img');
-
-   
-
     if(window.location.href==link[i].href){
         if(image){
             link[i].style.filter="invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%)";
@@ -376,15 +374,12 @@ for(let i=0;i<link.length;i++){
         link[i].style.color="#1BBCB6";
         }
     }
-
-
-
 }
 
 
+//recent bekeken array - ik maak het hier aan zodat het vanaf elke page bruikbaar is (aangezien nav overal gebruikt wordt)
 
-console.log(window.location.href)
-
+let recentBekekenArray=[];
 
 
 

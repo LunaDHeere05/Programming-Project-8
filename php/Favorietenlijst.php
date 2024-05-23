@@ -4,6 +4,9 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+$exemplareen_row['naam']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn favorietenlijst</title>
@@ -72,7 +75,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         <h1>Mijn favorietenlijst</h1>
 </div>
     <div class="favoriet_apparaat_container">
-        <?php include 'functies/favorietenLijst.php'?> 
+    <?php include 'functies/favorietenLijst.php'?> 
     </div>
 </body>
 </html>

@@ -8,7 +8,7 @@ include("database.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defect</title>
+    <title>Wijzigen of Verwijderen</title>
     <?php include 'top_nav_admin.php'?>
     <style>
         .inventaris_toe_specificaties {
@@ -161,12 +161,14 @@ include("database.php");
                     </div>
                     <button type="button" onclick="addInputField()">Add another field</button>
                     <div class="inventaris_toe_buttons">
-                        <div class="inventaris_toe_verwijderen">
-                            <button  type="submit" onclick="submitForm('functies/InventarisVFunctie.php')">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
-                        </div>
-                        <div class="inventaris_toe_opslaan">
-                            <button  type="submit" onclick="submitForm('functies/InventarisWFunctie.php')">Wijzigingen opslaan </button>
-                        </div>
+                    <div class="inventaris_toe_verwijderen">
+                        <button name="submit" type="submit" onclick="submitForm('functies/InventarisVFunctie.php')">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
+                        <input type="hidden" name="submit" value="Apparaat verwijderen">
+                    </div>
+                    <div class="inventaris_toe_opslaan">
+                        <button name="submit" type="submit" onclick="submitForm('functies/InventarisWFunctie.php')">Wijzigingen opslaan </button>
+                        <input type="hidden" name="submit" value="Wijzigingen opslaan">
+                    </div>
                     </div>
                 </form>
 

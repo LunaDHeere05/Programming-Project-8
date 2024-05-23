@@ -27,6 +27,7 @@
             border-radius: 50%;
             text-align: center;
             display: flex;
+            cursor: pointer;
         }
         .datums li h3 {
             margin: auto;
@@ -71,9 +72,11 @@
         }
         .check {
             filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+            cursor: pointer;
         }
         .verwijder_btn {
             filter: invert(13%) sepia(91%) saturate(6506%) hue-rotate(353deg) brightness(88%) contrast(103%);
+            cursor: pointer;
         }
         .uitlening_toevoegen {
             background-color: #1BBCB6;
@@ -88,15 +91,96 @@
             color: white;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script>
+    $(document).ready(function(){
+        function fetchReservations(date) {
+            $.ajax({
+                url: 'functies/dashboard_personen.php',
+                type: 'POST',
+                data: {date: date},
+                success: function(response) {
+                    $('.uitleningen_dashboard_container').html(response);
+                }
+            });
+        }
+
+        // Fetch reservations for today's date on page load
+        fetchReservations(new Date().toISOString().split('T')[0]);
+
+        $('.datums li').click(function() {
+            let selectedDate = $(this).data('date');
+            $('.datums li').removeClass('active');
+            $(this).addClass('active');
+            fetchReservations(selectedDate);
+        });
+
+        $('#prev-week').click(function() {
+            let currentMonday = new Date($('#monday-date').val());
+            currentMonday.setDate(currentMonday.getDate() - 7);
+            $('#monday-date').val(formatDate(currentMonday));
+            fetchReservations(formatDate(currentMonday));
+        });
+
+        $('#next-week').click(function() {
+            let currentMonday = new Date($('#monday-date').val());
+            currentMonday.setDate(currentMonday.getDate() + 7);
+            $('#monday-date').val(formatDate(currentMonday));
+            fetchReservations(formatDate(currentMonday));
+        });
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        $('.iconen').on('click', '.schroevendraaier', function() {
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            $.ajax({
+                url: 'functies/markeer_als_defect.php',
+                type: 'POST',
+                data: {reservatieID: reservatieID},
+                success: function(response) {
+                    alert('Reservatie gemarkeerd als defect.');
+                }
+            });
+        });
+
+        $('.iconen').on('click', '.check', function() {
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            $.ajax({
+                url: 'functies/verwijder_reservatie.php',
+                type: 'POST',
+                data: {reservatieID: reservatieID},
+                success: function(response) {
+                    alert('Reservatie verwijderd.');
+                    fetchReservations(new Date().toISOString().split('T')[0]); // Reload reservations after deletion
+                }
+            });
+            // Here code could be added to mark the reservation as "picked up" by the user in the database.
+        });
+    });
+    </script>
 </head>
 <body>
     <div class="rechter_grid">
         <div class="agenda_container">
-            <h2><?php echo strftime('%B', time()); ?></h2>
+            <?php
+                setlocale(LC_TIME, 'nl_NL.UTF-8');
+                echo '<h2>' . strftime('%B') . '</h2>';
+            ?>
             <ul class="datums">
-                <li><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
+                <li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
                 <?php
-                    setlocale(LC_TIME, 'nl_NL.UTF-8');
                     $currentDayOfWeek = date('N');
                     $currentDay = date('j');
                     $currentMonth = date('n');
@@ -106,30 +190,20 @@
                     $mondayDate = strtotime('monday this week');
                     
                     // Generate the dates for the current week
-                    for ($i = 0; $i < 7; $i++) {
-                        $date = date('j', strtotime("+$i days", $mondayDate));
-                        $isToday = (date('Y-m-d') == date('Y-m-d', strtotime("+$i days", $mondayDate)));
+                    for ($i = 0; $i< 7; $i++) {
+                        $date = date('Y-m-d', strtotime("+$i days", $mondayDate));
+                        $displayDate = date('j', strtotime($date));
+                        $isToday = (date('Y-m-d') == $date);
                         $activeClass = $isToday ? 'class="active"' : '';
-                        echo "<li $activeClass><h3>$date</h3></li>";
+                        echo "<li data-date='$date' $activeClass><h3>$displayDate</h3></li>";
                     }
                 ?>
-                <li><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>
+                <li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>
             </ul>
+            <input type="hidden" id="monday-date" value="<?= date('Y-m-d', $mondayDate) ?>">
         </div>
         <div class="uitleningen_dashboard_container">
-            <div class="uitleningen_dashboard_details">
-                <div class="naam_reservatieID">
-                    <h3>Luna D'Heere</h3>
-                    <h3>Reservatie-ID: <span>04536</span></h3>
-                </div>
-                <h3>Apparaat: USB-C</h3>
-                <p>Ophalen</p>
-                <div class="iconen">
-                    <img src="images/svg/screwdriver-wrench-solid.svg" alt="">
-                    <img class="check" src="images/svg/circle-check-solid.svg" alt="">
-                    <img class="verwijder_btn" src="images/svg/circle-xmark-solid.svg" alt="">
-                </div>
-            </div>
+            <!-- Content will be loaded here via AJAX -->
         </div>
         <div class="uitlening_toevoegen">
             <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>

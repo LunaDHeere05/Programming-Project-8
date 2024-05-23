@@ -118,7 +118,6 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
 
         echo "<div class='toevoegen'>";
         echo "<button class='favoriet'><img src='images/svg/heart-regular.svg' alt='Favorietenlijst'></button>";
-        echo "<button class='winkelmand'><img src='images/svg/shopping-cart-regular.svg' alt='Winkelmandje'></button>";
         echo "</div>";
         echo "</a>";
         echo "</li>";

@@ -6,7 +6,7 @@
     <title>Blacklist</title>
     <?php include 'top_nav_admin.php'?>
     <style>
-        .blacklist_tabel{
+.blacklist_tabel{
   width: 90%;
   text-align: center;
   margin: auto;
