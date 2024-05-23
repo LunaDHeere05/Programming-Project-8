@@ -175,7 +175,6 @@
                     fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
                 }
             });
-            // Here code could be added to mark the reservation as "picked up" by the user in the database.
         });
     });
     </script>
@@ -198,3 +197,5 @@
     </div>
 </body>
 </html>
+
+
