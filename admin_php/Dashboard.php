@@ -92,7 +92,7 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script>
+    <script>
     $(document).ready(function(){
         function fetchReservations(date) {
             $.ajax({
@@ -165,7 +165,7 @@
         });
 
         $(document).on('click', '.iconen .check', function() {
-            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_ID span').text();
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
             $.ajax({
                 url: 'functies/verwijder_reservatie.php',
                 type: 'POST',
@@ -197,5 +197,3 @@
     </div>
 </body>
 </html>
-
-
