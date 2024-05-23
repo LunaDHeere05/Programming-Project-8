@@ -92,7 +92,7 @@
 <body>
     <div class="rechter_grid">
         <div class="agenda_container">
-            <h2><?php echo strftime('%B', time()); ?></h2>
+            <h2><?php echo date('F', time()); ?></h2>
             <ul class="datums">
                 <li><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
                 <?php

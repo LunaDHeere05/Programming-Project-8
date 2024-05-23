@@ -23,7 +23,7 @@
   margin: 1em;
   cursor: pointer;
 }
-.defect_toe input{
+.defect_toe input, .exemplaar_id input{
   margin: 1.5em;
   border-radius: 2em;
   border: 0;
@@ -74,8 +74,15 @@
             <h2>Apparaat ID:</h2>
             <input type="text">
         </div>
-        <div class="defect_toe_textbox"><h2>Beschrijf het defect:</h2>
-        <div class="defect_toe_text"><input type="text"></div>
+        <div class="exemplaar_id">
+            <h2>Exemplaar ID:</h2>
+            <input type="text">
+        </div>
+        <div class="defect_toe_textbox">
+          <h2>Beschrijf het defect:</h2>
+          <div class="defect_toe_text">
+            <input type="text">
+          </div>
     </div>
     <div class="defect_toe_bevestig">
             <button type="submit">Bevestig </button>
