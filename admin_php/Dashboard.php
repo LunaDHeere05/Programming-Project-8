@@ -92,11 +92,13 @@
 <body>
     <div class="rechter_grid">
         <div class="agenda_container">
-            <h2><?php echo date('F', time()); ?></h2>
+            <?php
+                setlocale(LC_TIME, 'nl_NL.UTF-8');
+                echo '<h2>' . date('%B') . '</h2>';
+            ?>
             <ul class="datums">
                 <li><img src="images/svg/chevron-left-solid.svg" alt="links"></li>
                 <?php
-                    setlocale(LC_TIME, 'nl_NL.UTF-8');
                     $currentDayOfWeek = date('N');
                     $currentDay = date('j');
                     $currentMonth = date('n');
@@ -117,19 +119,7 @@
             </ul>
         </div>
         <div class="uitleningen_dashboard_container">
-            <div class="uitleningen_dashboard_details">
-                <div class="naam_reservatieID">
-                    <h3>Luna D'Heere</h3>
-                    <h3>Reservatie-ID: <span>04536</span></h3>
-                </div>
-                <h3>Apparaat: USB-C</h3>
-                <p>Ophalen</p>
-                <div class="iconen">
-                    <img src="images/svg/screwdriver-wrench-solid.svg" alt="">
-                    <img class="check" src="images/svg/circle-check-solid.svg" alt="">
-                    <img class="verwijder_btn" src="images/svg/circle-xmark-solid.svg" alt="">
-                </div>
-            </div>
+            <?php include 'functies/dashboard_personen.php'; ?>
         </div>
         <div class="uitlening_toevoegen">
             <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
