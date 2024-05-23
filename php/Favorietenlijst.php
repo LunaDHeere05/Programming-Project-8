@@ -76,6 +76,18 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <div class="favoriet_apparaat_container">
     <?php include 'functies/favorietenLijst.php'?> 
     </div>
+
+    <script>    
+    console.log( document.querySelectorAll(".verwijder_btn"))
+    for(let i = 0; i<document.querySelectorAll(".favoriet_apparaat").length; i++){
+    document.querySelectorAll(".verwijder_btn").[i].addEventListener("click", function() {
+      console.log("test");
+      <?php
+        $delete_items_query = "DELETE FROM FAVORIETE_ITEMS WHERE item_id = ".$exemplaren_row['item_id']."";
+        $delete_items_result = mysqli_query($conn, $delete_items_query);   
+?>
+})
+}</script>
 </body>
 </html>
 
