@@ -160,7 +160,9 @@
 
           // Haal gegevens op en toon de popupinhoud
           const email = link.closest("tr").querySelector("td:first-child").textContent;
-          const meerInfoContentHTML = `<p><strong>Email</strong>: ${email}</p>`;
+          const meerInfoContentHTML = `<p><strong>Email</strong>: ${email}</p>
+            <p><strong>Reden</strong>: ${link.closest("tr").querySelector("td:nth-child(2)").textContent}</p>
+            <p><strong>Dagen op blacklist</strong>: ${link.closest("tr").querySelector("td:nth-child(3)").textContent}</p>`;
           meerInfoData.innerHTML = meerInfoContentHTML;
 
           // Toon de popup overlay
