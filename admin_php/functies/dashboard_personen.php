@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <h3>Apparaat: $apparaat</h3>
             <p>Ophalen: $isOpgehaald</p>
             <div class='iconen'>
-            <img src='images/svg/screwdriver-wrench-solid.svg' alt=''>
+            <img class='schroevendraaier' src='images/svg/screwdriver-wrench-solid.svg' alt=''>
             <img class='check' src='images/svg/circle-check-solid.svg' alt=''>
             <img class='verwijder_btn' src='images/svg/circle-xmark-solid.svg' alt=''>
             </div>
