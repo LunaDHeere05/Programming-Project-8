@@ -26,4 +26,21 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo "Er staan momenteel geen studenten op de blacklist. ";
 }
+
+if(isset($_POST['confirmButton'])){
+    // $email = $_POST['email'];
+
+    // $verwijderquery = "DELETE FROM WAARSCHUWING WHERE emailStudent = :email";
+    // $stmt = $conn->prepare($verwijderquery);
+    // $stmt->execute(['email' => $email]);
+
+    // if($stmt->rowCount() > 0){
+    //     echo "Student verwijderd van de blacklist!";
+    // } else {
+    //     echo "Student kon niet worden verwijderd van de blacklist.";
+    // }
+    echo "console.log(`Student verwijderd van de blacklist!`)";
+}
+
+
 ?>

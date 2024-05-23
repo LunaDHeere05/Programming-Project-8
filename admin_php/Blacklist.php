@@ -163,9 +163,6 @@
 
       // Sluit de popup wanneer er buiten de popupinhoud wordt geklikt
       window.addEventListener("click", function (event) {
-        if (event.target === meerInfoPopup) {
-          meerInfoPopup.style.display = "none";
-        }
         if (event.target === verwijderPopup) {
           verwijderPopup.style.display = "none";
         }
@@ -174,6 +171,7 @@
       // Verwerk het klikken op de bevestigingsknop
       confirmVerwijder.addEventListener("click", function () {
         // Voeg hier je logica toe voor wat er moet gebeuren wanneer de bevestigingsknop wordt geklikt
+
         console.log("Bevestigingsknop geklikt");
         // Sluit de popup
         verwijderPopup.style.display = "none";
