@@ -17,6 +17,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $isOpgehaald = $row['isOpgehaald'] ? "Ja" : "Nee";
     $email = $row['emailSTUDENT'] ?: $row['emailDOCENT'];
     $apparaat = "Placeholder Apparaat"; // Replace this with the actual device name if available from another table
+    $status = displayStatus($isOpgehaald);
     
     echo "<div class='uitleningen_dashboard_details'>
             <div class='naam_reservatieID'>
@@ -24,12 +25,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <h3>Reservatie-ID: <span>$uitleen_id</span></h3>
             </div>
             <h3>Apparaat: $apparaat</h3>
-            <p>Ophalen: $isOpgehaald</p>
+            <p>$status</p>
             <div class='iconen'>
-            <img src='images/svg/screwdriver-wrench-solid.svg' alt=''>
+            <img class='schroevendraaier' src='images/svg/screwdriver-wrench-solid.svg' alt=''>
             <img class='check' src='images/svg/circle-check-solid.svg' alt=''>
             <img class='verwijder_btn' src='images/svg/circle-xmark-solid.svg' alt=''>
             </div>
           </div>";
+}
+?>
+<?php
+function displayStatus($status) {
+    return $status === 'Nee' ? 'Inleveren' : 'Ophalen';
 }
 ?>

@@ -7,6 +7,7 @@ include 'database.php';
 // Ontvang de reservatie-ID van de AJAX-verzoek
 $reservatieID = $_POST['reservatieID'];
 
+
 // Query om de reservatie uit de database te verwijderen
 $query = "DELETE FROM UITLENING WHERE uitleen_id = '$reservatieID'";
 

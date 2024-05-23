@@ -106,10 +106,6 @@ include 'database.php';
 
             $start_dateObject=new DateTime($startDate);
             $end_dateObject=new DateTime( $endDate );
-
-
-
-
             $itemId = (int) $itemId;
             $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
             $query_result = mysqli_query($conn, $query);
@@ -138,10 +134,8 @@ include 'database.php';
                 echo "Fout bij het ophalen van de itemgegevens.";
             }
         }
-
-    
         ?>
    
-<?php include 'footer.php'?>
+<?php include("footer.php"); ?>
 </body>
 </html>

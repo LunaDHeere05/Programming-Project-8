@@ -1,10 +1,8 @@
 <?php
-// markeer_als_defect.php
-
 // Inclusie van databaseverbinding
 include 'database.php';
 
-// Ontvang de reservatie-ID van de AJAX-verzoek
+// Ontvang de reservatie-ID van het AJAX-verzoek
 $reservatieID = $_POST['reservatieID'];
 
 // Query om de reservatie als defect te markeren in de database
