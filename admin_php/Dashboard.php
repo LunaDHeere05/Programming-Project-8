@@ -72,9 +72,11 @@
         }
         .check {
             filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+            cursor: pointer;
         }
         .verwijder_btn {
             filter: invert(13%) sepia(91%) saturate(6506%) hue-rotate(353deg) brightness(88%) contrast(103%);
+            cursor: pointer;
         }
         .uitlening_toevoegen {
             background-color: #1BBCB6;
@@ -91,55 +93,83 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function(){
-            function fetchReservations(date) {
-                $.ajax({
-                    url: 'functies/dashboard_personen.php',
-                    type: 'POST',
-                    data: {date: date},
-                    success: function(response) {
-                        $('.uitleningen_dashboard_container').html(response);
-                    }
-                });
-            }
-
-            // Fetch reservations for today's date on page load
-            fetchReservations(new Date().toISOString().split('T')[0]);
-
-            $('.datums li').click(function() {
-                let selectedDate = $(this).data('date');
-                $('.datums li').removeClass('active');
-                $(this).addClass('active');
-                fetchReservations(selectedDate);
-            });
-
-            $('#prev-week').click(function() {
-                let currentMonday = new Date($('#monday-date').val());
-                currentMonday.setDate(currentMonday.getDate() - 7);
-                loadWeek(currentMonday);
-            });
-
-            $('#next-week').click(function() {
-                let currentMonday = new Date($('#monday-date').val());
-                currentMonday.setDate(currentMonday.getDate() + 7);
-                loadWeek(currentMonday);
-            });
-
-            function loadWeek(mondayDate) {
-                let datesHtml = '';
-                for (let i = 0; i < 7; i++) {
-                    let date = new Date(mondayDate);
-                    date.setDate(date.getDate() + i);
-                    let dateString = date.toISOString().split('T')[0];
-                    let isToday = (new Date().toDateString() === date.toDateString());
-                    let activeClass = isToday ? 'class="active"' : '';
-                    datesHtml += `<li data-date="${dateString}" ${activeClass}><h3>${date.getDate()}</h3></li>`;
+    $(document).ready(function(){
+        function fetchReservations(date) {
+            $.ajax({
+                url: 'functies/dashboard_personen.php',
+                type: 'POST',
+                data: {date: date},
+                success: function(response) {
+                    $('.uitleningen_dashboard_container').html(response);
                 }
-                $('#monday-date').val(mondayDate.toISOString().split('T')[0]);
-                $('.datums').html(`<li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>${datesHtml}<li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>`);
-                fetchReservations(new Date().toISOString().split('T')[0]);
-            }
+            });
+        }
+
+        // Fetch reservations for today's date on page load
+        fetchReservations(new Date().toISOString().split('T')[0]);
+
+        $('.datums li').click(function() {
+            let selectedDate = $(this).data('date');
+            $('.datums li').removeClass('active');
+            $(this).addClass('active');
+            fetchReservations(selectedDate);
         });
+
+        $('#prev-week').click(function() {
+            let currentMonday = new Date($('#monday-date').val());
+            currentMonday.setDate(currentMonday.getDate() - 7);
+            $('#monday-date').val(formatDate(currentMonday));
+            fetchReservations(formatDate(currentMonday));
+        });
+
+        $('#next-week').click(function() {
+            let currentMonday = new Date($('#monday-date').val());
+            currentMonday.setDate(currentMonday.getDate() + 7);
+            $('#monday-date').val(formatDate(currentMonday));
+            fetchReservations(formatDate(currentMonday));
+        });
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        $('.iconen').on('click', '.schroevendraaier', function() {
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            $.ajax({
+                url: 'functies/markeer_als_defect.php',
+                type: 'POST',
+                data: {reservatieID: reservatieID},
+                success: function(response) {
+                    alert('Reservatie gemarkeerd als defect.');
+                }
+            });
+        });
+
+        $('.iconen').on('click', '.check', function() {
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            var email = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID h3:first').text();
+            $.ajax({
+                url: 'functies/verwijder_reservatie.php',
+                type: 'POST',
+                data: {reservatieID: reservatieID},
+                success: function(response) {
+                    alert('Reservatie verwijderd.');
+                    // Hier zou je code kunnen toevoegen om de reservatie uit de database te halen als het item wordt teruggebracht.
+                }
+            });
+            // Hier code toevoegen om reservatie te markeren als "opgehaald" bij de gebruiker in de database.
+        });
+    });
     </script>
 </head>
 <body>
@@ -161,7 +191,7 @@
                     $mondayDate = strtotime('monday this week');
                     
                     // Generate the dates for the current week
-                    for ($i = 0; $i < 7; $i++) {
+                    for ($i = 0; $i< 7; $i++) {
                         $date = date('Y-m-d', strtotime("+$i days", $mondayDate));
                         $displayDate = date('j', strtotime($date));
                         $isToday = (date('Y-m-d') == $date);
