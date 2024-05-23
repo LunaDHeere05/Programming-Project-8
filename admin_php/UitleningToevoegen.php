@@ -88,8 +88,8 @@
         <input type="email" name="email" placeholder="Vul het e-mailadres in ...">
       </div>
       <div class="uitlening_toe">
-        <h2>Apparaat:</h2>
-        <input type="text" name="apparaat" placeholder="Voer het apparaat in...">
+        <h2>Apparaat of kit:</h2>
+        <input type="text" name="apparaat" placeholder="Voer een apparaat of kit in...">
       </div>
       <div class="datum_kiezen">
         <h2>Uitleentermijn:</h2>
