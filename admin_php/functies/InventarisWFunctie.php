@@ -16,6 +16,7 @@ if (isset($_POST["submitForm"])) {
     $image = $_FILES['image']['name'];
     $link = $_POST['link'];
     $functionaliteit = $_POST['functionaliteit'];
+    $in_doos = $_POST['in_doos'];
 
     echo 'checkpoint 2';
 
@@ -53,6 +54,31 @@ if (isset($_POST["submitForm"])) {
         // Insert new row
             $functionaliteitQuery = "INSERT INTO FUNCTIONALITEIT (item_id, functionaliteit) VALUES ('$item_id', '$func')";
             $conn->query($functionaliteitQuery);
+        }
+    }
+
+    // Get doos_ids for this item_id
+    $doosIdsQuery = "SELECT bundel_id FROM ITEMBUNDEL WHERE item_id='$item_id'";
+    $result = $conn->query($doosIdsQuery);
+    $doos_ids = array();
+    while ($row = $result->fetch_assoc()) {
+        $doos_ids[] = $row['bundel_id'];
+    }
+
+    // Update each in_doos
+    foreach ($in_doos as $index => $doos) {
+        if (isset($doos_ids[$index])) {
+            // Update existing row
+            $doos_id = $doos_ids[$index];
+            if (!empty($doos)) {
+                // Only update if new value is not empty
+                $doosQuery = "UPDATE ITEMBUNDEL SET accessoire='$doos' WHERE bundel_id='$doos_id'";
+                $conn->query($doosQuery);
+            }
+        } else if (!empty($doos)) {
+            // Insert new row
+            $doosQuery = "INSERT INTO ITEMBUNDEL (item_id, accessoire) VALUES ('$item_id', '$doos')";
+            $conn->query($doosQuery);
         }
     }
 

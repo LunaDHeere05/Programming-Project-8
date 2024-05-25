@@ -157,6 +157,9 @@ include("database.php");
     $functionaliteitResult = mysqli_query($conn, $functionaliteitQuery);
     $functionaliteitData = mysqli_fetch_all($functionaliteitResult);
 
+    $inDoosQuery = "SELECT accessoire FROM ITEMBUNDEL WHERE item_id ='$item_id'";
+    $inDoosResult = mysqli_query($conn, $inDoosQuery);
+    $inDoosData = mysqli_fetch_all($inDoosResult);
     ?>
 
     <div class="inventaris_toe_specificaties">
@@ -196,9 +199,24 @@ include("database.php");
                         ?>
                     </div>
                     <div class="inventaris_toe_text">
-                        <input name="functionaliteit[]" type="text" placeholder="Apparaat beschrijving ...">
+                        <input name="functionaliteit[]" type="text" placeholder="Apparaat functionaliteit ...">
+                        <button type="button" onclick="addInputFieldFunct()">Add another field</button>
                     </div>
-                    <button type="button" onclick="addInputField()">Add another field</button>
+
+                    <div class="inventaris_toe_text">
+                        <h2>Accessoires in de doos:</h2>
+                        <?php
+                        // Displaying each inDoos data
+                        foreach ($inDoosData as $inDoos) {
+                            echo "<input type='text' name ='in_doos[]' value='{$inDoos[0]}'><br>";
+                        }
+                        ?>
+
+                    <div class="inventaris_toe_text">
+                        <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">
+                        <button type="button" onclick="addInputFieldDoos()">Add another field</button>
+                    </div>
+                    
                     <div class="inventaris_toe_buttons">
                     <div class="inventaris_toe_verwijderen">
                         <button id="delete-btn" name="submitForm" type="button" onclick="openDeleteModal()">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
@@ -292,17 +310,30 @@ document.getElementById("confirm-delete-btn").onclick = function() {
     saveChangesModal.style.display = "none";
     }
 
-    function addInputField() {
+    function addInputFieldFunct() {
             // Create a new input element
             var newInput = document.createElement("input");
 
             // Set the input's attributes
             newInput.setAttribute("name", "functionaliteit[]");
             newInput.setAttribute("type", "text");
-            newInput.setAttribute("placeholder", "Apparaat beschrijving ...");
+            newInput.setAttribute("placeholder", "Functionaliteit ...");
 
             // Append the new input to the container
             document.querySelector(".inventaris_toe_text").appendChild(newInput);
+    }
+
+    function addInputFieldDoos() {
+            // Create a new input element
+            var newInput = document.createElement("input");
+
+            // Set the input's attributes
+            newInput.setAttribute("name", "in_doos[]");
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("placeholder", "Cabels, oplader, SD-kaart, etc...");
+
+            // Append the new input to the container
+            document.querySelector(".in_doos_input").appendChild(newInput);
     }
 
     document.getElementById('myForm').addEventListener('submit', function(e) {
