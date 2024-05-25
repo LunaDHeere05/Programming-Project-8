@@ -360,12 +360,8 @@ document.getElementById('close_window').addEventListener('click', function(){
 
 
 let link=document.getElementsByClassName('link')
-console.log(link)
-
 //nav wordt blauw op page die open is 
-
 for(let i=0;i<link.length;i++){
-    console.log(link[i]);
     var image = link[i].querySelector('img');
     if(window.location.href==link[i].href){
         if(image){
@@ -375,11 +371,6 @@ for(let i=0;i<link.length;i++){
         }
     }
 }
-
-
-//recent bekeken array - ik maak het hier aan zodat het vanaf elke page bruikbaar is (aangezien nav overal gebruikt wordt)
-
-let recentBekekenArray=[];
 
 
 

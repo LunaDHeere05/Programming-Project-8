@@ -1,4 +1,5 @@
 <?php include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -356,7 +357,7 @@
 <body>
   <?php
   if (isset($_GET['item_id_result'])) {
-    $item_id = $_GET['device_id_result'];
+    $item_id = intval($_GET['device_id_result']);
   }
   ?>
 
@@ -376,28 +377,10 @@
   <h2 class="reservatie">Plaats je reservatie</h2>
   <form id="form" action="ReservatieBevestigen.php" method="POST">
     <div class="reservatie_plaatsen">
-      <div class="datum">
-        <label for="start_date">Begindatum:</label>
-        <input type="date" id="start_date" name="start_date" step="7" required>
-      </div>
-      <div class="datum" div="einddatumDiv">
-        <label for="end_date">Einddatum:</label>
-        <input type="date" id="end_date" name="end_date" step="7" required>
-      </div>
-      <div id="hoeveelheid">
-        <input type="hidden" id="item_id" name="item_id">
-        <input type="hidden" id="hiddenEndDate" name="hiddenEndDate">
-        <div class="aantal">
-          <label for="quantity">Aantal:</label>
-          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
-        </div>
-      </div>
-      <p id="onbeschikbaarDiv"></p>
-      <button type="submit" class="reserveer_nu_btn" id="submit">Reserveer nu</button>
-      <button class="winkelmand_toevoegen_btn" id="submitWinkelmand">
-        <p>Voeg toe</p>
-        <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
-      </button>
+
+    <?php include 'functies\reservatiePlaatsen.php' ?>
+
+      
     </div>
   </form>
 
@@ -453,122 +436,116 @@
   <?php include 'footer.php' ?>
 
   <script>
-
-    //apparaat steken in recent bekeken 
-    const url = new URL(window.location.href);
-    const apparaatId = new URLSearchParams(url.search).get('apparaat_id');
-    console.log('Apparaat ID:', apparaatId);
-
-    recentBekekenArray.push(apparaatId);
-    console.log(recentBekekenArray)
-
-    
-    let vandaag = new Date();
-    let dayIndex = vandaag.getDay(); //maandag is index 1, vrijdag index 5
-
-    //uitlenen kan enkel op maandag
-    let start_date = document.getElementById('start_date');
-    let datumUitlenen = new Date(vandaag)
-
-    switch (dayIndex) {
-      case 0:
-        datumUitlenen.setDate(vandaag.getDate() + 1);
-        break;
-      case 1:
-        datumUitlenen = vandaag;
-        break;
-      case 2:
-        datumUitlenen.setDate(vandaag.getDate() + 6);
-        break;
-      case 3:
-        datumUitlenen.setDate(vandaag.getDate() + 5);
-        break;
-      case 4:
-        datumUitlenen.setDate(vandaag.getDate() + 4);
-        break;
-      case 5:
-        datumUitlenen.setDate(vandaag.getDate() + 3);
-        break;
-      case 6:
-        datumUitlenen.setDate(vandaag.getDate() + 2);
-        break;
-    };
-
-    let minDateUitlenenString = datumUitlenen.toISOString().split('T')[0];
-    start_date.setAttribute('min', minDateUitlenenString);
-
-    let dateMessage = document.createElement('p');
-    dateMessage.classList = 'dateMessage';
-    let end_date = document.getElementById('end_date')
-
-    start_date.addEventListener('focus', function() {
-      start_date.before(dateMessage);
-      dateMessage.textContent = 'Uitlenen kan enkel op maandag.'
-    })
-
-    start_date.addEventListener('blur', function() {
-      dateMessage.textContent = ''
-    })
-
-    //zolang geen datum is aangeduid, zijn de reserveer- en winkelmandbutton disabled
-
-    if(!start_date.value || !end_date.value){
-      document.getElementById('submit').disabled=true;
-      document.getElementById('submitWinkelmand').disabled=true;
-    }
-    
-    function aantalUitDatabank(startDate, endDate) {
-      let itemId = <?php echo json_encode($item_id); ?>;
-      // Controle
-      console.log('Item ID:', itemId);
-
-      let formData = new FormData();
-      formData.append('startDate', startDate);
-      formData.append('endDate', endDate);
-      formData.append('itemId', itemId);
-
-      document.getElementById('hiddenEndDate').value=endDate;
-      document.getElementById('item_id').value=itemId;
-      // console.log(start_dateValue); 
-
-      // Startdatum sturen naar de PHP-file
-      fetch('functies/vrijeExemplaren.php', {
-          method: 'POST',
-          body: formData
-        }).then(response => response.text())
-        .then(data => {
-          if (data > 0) {
-            // Reset aantal-value elke keer dat de user een andere datum kiest
-            document.getElementById('quantity').value = '1';
-            document.getElementById('quantity').disabled = false;
-            document.getElementById('submit').disabled=false;
-            document.getElementById('submitWinkelmand').disabled=false;
-            document.getElementById('onbeschikbaarDiv').style.display = 'none';
-            document.getElementById('quantity').setAttribute('max', data);
-            document.getElementById('quantity').style.display = 'flex';
-          
-          } else if (data == 0) {
-            document.getElementById('onbeschikbaarDiv').style.display = 'flex';
-            document.getElementById('quantity').value = '0';
-            document.getElementById('quantity').disabled = true;
-            document.getElementById('onbeschikbaarDiv').innerHTML = '<p class=\"onbeschikbaarmelding\">Dit artikel is onbeschikbaar. Kies een ander uitleentermijn.</p>';
-            console.log(document.getElementById('submit'))
-            document.getElementById('submit').disabled=true;
-            document.getElementById('submitWinkelmand').disabled=true;
-          }
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        })
-
-      }
-
-    //vanaf het moment dat de user (student) een begindatum aanduidt, gaat er een query worden uitgevoerd om te kijken hoeveel exemplaren van het item beschikbaar zijn.
+       
     <?php
-    if ($userType == 'emailSTUDENT') {
-      echo "
 
+include 'functies/recentItemsToevoegen.php';
+
+
+    echo "let vandaag = new Date();
+  let dayIndex = vandaag.getDay(); //maandag is index 1, vrijdag index 5
+
+  //uitlenen kan enkel op maandag
+  let start_date = document.getElementById('start_date');
+  let datumUitlenen = new Date(vandaag)
+
+  switch (dayIndex) {
+    case 0:
+      datumUitlenen.setDate(vandaag.getDate() + 1);
+      break;
+    case 1:
+      datumUitlenen = vandaag;
+      break;
+    case 2:
+      datumUitlenen.setDate(vandaag.getDate() + 6);
+      break;
+    case 3:
+      datumUitlenen.setDate(vandaag.getDate() + 5);
+      break;
+    case 4:
+      datumUitlenen.setDate(vandaag.getDate() + 4);
+      break;
+    case 5:
+      datumUitlenen.setDate(vandaag.getDate() + 3);
+      break;
+    case 6:
+      datumUitlenen.setDate(vandaag.getDate() + 2);
+      break;
+  };
+
+  let minDateUitlenenString = datumUitlenen.toISOString().split('T')[0];
+  start_date.setAttribute('min', minDateUitlenenString);
+
+  let dateMessage = document.createElement('p');
+  dateMessage.classList = 'dateMessage';
+  let end_date = document.getElementById('end_date')
+
+  start_date.addEventListener('focus', function() {
+    start_date.before(dateMessage);
+    dateMessage.textContent = 'Uitlenen kan enkel op maandag.'
+  })
+
+  start_date.addEventListener('blur', function() {
+    dateMessage.textContent = ''
+  })
+
+  //zolang geen datum is aangeduid, zijn de reserveer- en winkelmandbutton disabled
+  if(!start_date.value || !end_date.value){
+    document.getElementById('submit').disabled=true;
+    document.getElementById('submitWinkelmand').disabled=true;
+  }
+
+  //vanaf het moment dat de user (student) een begindatum aanduidt, gaat er een query worden uitgevoerd om te kijken hoeveel exemplaren van het item beschikbaar zijn.
+  
+  function aantalUitDatabank(startDate, endDate) {
+    let itemId = " . json_encode($item_id) . ";
+    // Controle
+    console.log('Item ID:', itemId);
+
+    let formData = new FormData();
+    formData.append('startDate', startDate);
+    formData.append('endDate', endDate);
+    formData.append('itemId', itemId);
+
+    document.getElementById('hiddenEndDate').value=endDate;
+    document.getElementById('item_id').value=itemId;
+    // console.log(start_dateValue); 
+
+    // Startdatum sturen naar de PHP-file
+    fetch('functies/vrijeExemplaren.php', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.text())
+      .then(data => {
+        if (data > 0) {
+          // Reset aantal-value elke keer dat de user een andere datum kiest
+          document.getElementById('quantity').value = '1';
+          document.getElementById('quantity').disabled = false;
+          document.getElementById('submit').disabled=false;
+          document.getElementById('submitWinkelmand').disabled=false;
+          document.getElementById('onbeschikbaarDiv').style.display = 'none';
+          document.getElementById('quantity').setAttribute('max', data);
+          document.getElementById('quantity').style.display = 'flex';
+        
+        } else if (data == 0) {
+          document.getElementById('onbeschikbaarDiv').style.display = 'flex';
+          document.getElementById('quantity').value = '0';
+          document.getElementById('quantity').disabled = true;
+          document.getElementById('onbeschikbaarDiv').innerHTML = '<p class=\"onbeschikbaarmelding\">Dit artikel is onbeschikbaar. Kies een ander uitleentermijn.</p>';
+          console.log(document.getElementById('submit'))
+          document.getElementById('submit').disabled=true;
+          document.getElementById('submitWinkelmand').disabled=true;
+        }
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      })
+
+    }";
+
+      if ($userType == 'emailSTUDENT') {
+        echo "
     end_date.disabled=true;
 
     start_date.addEventListener('change', function() {
@@ -595,8 +572,8 @@
             start_date.setAttribute('max', maxDateUitlenenString);   
 
           })";
-    } else if ($userType == "emailDOCENT") {
-      echo "
+      } else if ($userType == "emailDOCENT") {
+        echo "
   let datumInleveren = new Date(vandaag);
   switch (dayIndex) {
     case 0:
@@ -644,9 +621,8 @@ start_date.addEventListener('change', function() {
     }
   })
 })";
-    }else if((!isset($userType) || !isset($email))){
-      echo '<p class="login"> <a href="Profiel.php"> Log in</a> om een reservatie te kunnen plaarsen.</p>';
-    }
+      }
+   
     ?>
   </script>
 </body>

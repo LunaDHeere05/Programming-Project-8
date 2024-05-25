@@ -1,5 +1,6 @@
 <?php 
-include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+include 'database.php' 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +61,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     /*AN */
 
   
-    #recent h3{
+    .typingText{
         letter-spacing: 3px;
         font-size:350%;
         /* font-family: "Ubuntu Mono", monospace; */
@@ -69,34 +70,25 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         color:#1bbcb6;
     }
 
- 
 
 
-
-
-    .recent_lijst_container {
-        display: flex;
-        justify-content: space-between;
-    }
-    .recent_lijst_container img {
-        width: 2em;
-        margin: 1em;
-    }
     .recent_container {
         display: block;
     }
+
     .recent_container h2 {
         margin: 1em 0em 1em 1em;
     }
     .recent_lijst {
         display: flex;
-        margin-top: 1em;
-    gap:7em;
+        gap:3em;
         list-style: none;
-        margin:0;
+        margin:1em;
+        padding:0;
         justify-content: space-between;
         align-items: center;
     }
+
     .recent_lijst a{
         text-decoration: none;
     }
@@ -105,10 +97,12 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         color: black;
     }
     .recent_lijst li {
-        padding: 1em;
+        display:flex;
+        justify-content: center;
+        align-items: start;
         background-color: #edededcf;
-         width:100%;
-        height:100%;
+        width:20em;
+        height:15em;
         text-align: center;
         border-radius: 1em;
         cursor:pointer;
@@ -175,10 +169,12 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 <body>
     <?php include 'top_nav.php'; ?>
     <div class="inhoud_body">
-        <?php include 'functies/categorie.php'; ?>
-        
-        <?php include 'functies/recent_bekeken.php'; 
-        ?>
+       <?php include 'functies/categorie.php'; ?>
+
+    <div class="recent_container" id="recentBekeken">
+       <?php include 'functies/recent_bekeken.php'; ?>
+
+    </div>
 
         <!-- Hoe leen je iets uit? -->
         <div class="uitleen_uitleg">
@@ -230,54 +226,60 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     //   });
 
 
-    //code gegenereerd door chatGPT - only for design purposes;
 
-    if(arrayOfItems){
+    //indien recent bekeken leeg is of indien de user niet is ingelogd; 
+    let container=document.getElementById("recentBekeken");
+    let title = document.createElement('h2');   
+    container.appendChild(title);
 
-        let container=document.getElementsByClassName("recent_container");
-     
-      
-container[0].setAttribute("id","recent");
-    let currentNameIndex = 0;
-    const typingSpeed = 100; // Milliseconds per character
-    const pauseTime = 1000; // Milliseconds to pause at the end of each name
-    const displayElement = document.createElement('h3');
-    const title = document.createElement('h2');
-    title.textContent='Begin een nieuw project'
-    document.getElementById("recent").appendChild(title);
-    document.getElementById("recent").appendChild(displayElement);
 
-    function typeName(name, index) {
-        if (index < name.length) {
-            displayElement.textContent += name.charAt(index);
-            setTimeout(() => typeName(name, index + 1), typingSpeed);
-        } else {
-            setTimeout(() => deleteName(name), pauseTime);
+    console.log(arrayOfItems);
+
+        if(arrayOfItems){
+        //code gegenereerd door chatGPT - only for design purposes;
+    
+        let currentNameIndex = 0;
+        const typingSpeed = 100; // Milliseconds per character
+        const pauseTime = 1000; // Milliseconds to pause at the end of each name
+        const displayElement = document.createElement('h3');
+        displayElement.classList="typingText"
+        title.textContent='Begin  een nieuw project'
+        container.appendChild(displayElement);
+    
+        function typeName(name, index) {
+            if (index < name.length) {
+                displayElement.textContent += name.charAt(index);
+                setTimeout(() => typeName(name, index + 1), typingSpeed);
+            } else {
+                setTimeout(() => deleteName(name), pauseTime);
+            }
+    
+            if(currentNameIndex%2==0){
+                displayElement.style.color='#1BBCB6';   
+            }else{
+            displayElement.style.color='red';  
+            }
         }
-
-        
-    if(currentNameIndex%2==0){
-        displayElement.style.color="#1BBCB6";
-      
-    }else{
-        displayElement.style.color="red";
-        
-    }
-    }
-
-    function deleteName(name) {
-        if (name.length > 0) {
-            displayElement.textContent = name.slice(0, -1);
-            setTimeout(() => deleteName(name.slice(0, -1)), typingSpeed);
-        } else {
-            currentNameIndex = (currentNameIndex + 1) % arrayOfItems.length;
-            setTimeout(() => typeName(arrayOfItems[currentNameIndex], 0), typingSpeed);
+    
+        function deleteName(name) {
+            if (name.length > 0) {
+                displayElement.textContent = name.slice(0, -1);
+                setTimeout(() => deleteName(name.slice(0, -1)), typingSpeed);
+            } else {
+                currentNameIndex = (currentNameIndex + 1) % arrayOfItems.length;
+                setTimeout(() => typeName(arrayOfItems[currentNameIndex], 0), typingSpeed);
+            }
         }
+    
+        typeName(arrayOfItems[currentNameIndex], 0);
     }
+    
 
-    typeName(arrayOfItems[currentNameIndex], 0);
 
-}
+
+
+
+
     </script>
 </body>
 </html>

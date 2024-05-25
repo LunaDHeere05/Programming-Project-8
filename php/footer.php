@@ -3,10 +3,10 @@
       <div class="ehb-info">
         <ul>
           <?php
-          echo '<li><a href="mailto: medialab.ehb@ehb.be"><img src="../images/svg/envelope-solid.svg" alt="envelope">medialab.ehb@ehb.be</a></li>';
-          echo '<li><a href="#"><img src="../images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>';
-          echo '<li><a href="https://www.erasmushogeschool.be/nl"><img src="../images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a></li>';
-          echo '<li><a href="#"> <img src="../images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170, 1070 Anderlecht</a></li>';
+          echo '<li><a href="mailto: medialab.ehb@ehb.be"><img src="images/svg/envelope-solid.svg" alt="envelope">medialab.ehb@ehb.be</a></li>';
+          echo '<li><a href="#"><img src="images/svg/phone-solid.svg" alt="phone"> +32 84 42 63 78</a></li>';
+          echo '<li><a href="https://www.erasmushogeschool.be/nl"><img src="images/svg/desktop-solid.svg" alt="desktop"> www.erasmushogeschool.be</a></li>';
+          echo '<li><a href="#"> <img src="images/svg/location-dot-solid.svg" alt="location"> Nijverheidskaai 170, 1070 Anderlecht</a></li>';
           ?>
         </ul>
       </div>
@@ -47,7 +47,6 @@
     </footer>
 
 <style>
-  
 footer{ 
  background-color: #303030;
  color: white;
@@ -118,3 +117,4 @@ footer .einde {
  font-size: large;
 }
 </style>
+
