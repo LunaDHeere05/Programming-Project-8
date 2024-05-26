@@ -57,8 +57,6 @@
                     <th>Apparaat</th>
                     <th>Categorie</th>
                     <th>Apparaat-ID</th>
-                    <th>Verbergen</th>
-                    <th>Defect</th>
                     <th>Wijzigen</th>
                 </tr>
                 <?php include 'functies\Inventaris_apparaten.php'?>
