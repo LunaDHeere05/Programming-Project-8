@@ -27,18 +27,22 @@ if(mysqli_num_rows($result) > 0) {
         if($dagen_tot_inleveren < 0){
             $status = "TE LAAT";
             $kleur = "rgba(227,6,19, 0.5)";
+            $annuleren = "0%";
+            $allesanuleren = "0%";
         }else if($dagen_tot_inleveren == 0){
             $status = "Vandaag op te halen";
             $kleur = "rgb(193, 193, 193)";
+            $annuleren = "100%";
         }
         else{
             $status = "Binnen " .$dagen_tot_inleveren ." dagen op te halen";
             $kleur = "rgb(193, 193, 193)";
+            $annuleren = "100%";
         }
             echo '
             <div class="opgehaald_lijst_container">
                 <div class="opgehaald_reservatie_container">
-                    <label for="#">
+                    <label style="opacity: '.$annuleren.';" for="#">
                         <input type="checkbox">
                     </label>
                     <div class="reservatie_item">
@@ -56,7 +60,7 @@ if(mysqli_num_rows($result) > 0) {
                                     <p><b style = "color: #E30613;">'.$status.'</b></p>
                                     <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].'</span></h3>
                                 </li>
-                                <li class="annuleer_btn">
+                                <li style="opacity: '.$annuleren.';" class="annuleer_btn" >
                                 <button>
                                     <p>Annuleren</p>
                                     <img src="images/svg/circle-xmark-solid.svg" alt="xmark"/>
