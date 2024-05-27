@@ -24,10 +24,11 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 }
 .favoriet_apparaat_container{
   width: 90%;
-  height: 15em;
+  height: auto;
   margin: auto;
   display: flex;
   flex-wrap: wrap;   /*hierdoor is er probleem wnt komt over*/
+  overflow: auto;
 }
 .favoriet_apparaat{
   display: flex;
@@ -74,9 +75,8 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         <h1>Mijn favorietenlijst</h1>
 </div>
     <div class="favoriet_apparaat_container">
-    <?php include 'functies/favorietenLijst.php'?> 
+    <?php include 'functies/favorietenLijst_functie.php'?> 
     </div>
-
     <script>    
     console.log( document.querySelectorAll(".verwijder_btn"))
     for(let i = 0; i<document.querySelectorAll(".favoriet_apparaat").length; i++){
@@ -88,8 +88,6 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 ?>
 })
 }</script>
+<?php include("footer.php") ?>
 </body>
 </html>
-
-
-<?php include("footer.php") ?>
