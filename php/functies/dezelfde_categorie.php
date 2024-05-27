@@ -13,7 +13,7 @@ if(isset($_GET['apparaat_id'])) {
         $categorie = $row['categorie'];
 
         // Select other items from the same category, excluding the current item
-        $item_query = "SELECT naam, merk, item_id
+        $item_query = "SELECT naam, merk, item_id, images
                         FROM ITEM
                         WHERE categorie = '$categorie' AND item_id != $apparaat_id";
 
@@ -23,7 +23,7 @@ if(isset($_GET['apparaat_id'])) {
             echo '<ul class="lijst_apparaten">';
             while($item_row = mysqli_fetch_assoc($item_result)){
                 echo '<li>';
-                echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">';
+                echo '<img src="' . $item_row['images'] . '" alt="foto apparaat">';
                 echo '<h3>'.$item_row['merk']. '-' .$item_row['naam'].'</h3>';
                 echo '</li>';
             }

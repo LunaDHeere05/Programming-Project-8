@@ -29,6 +29,4 @@ if(!isset($userType) || !isset($email)){
     <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
   </button>';
   }
-
-
 ?>

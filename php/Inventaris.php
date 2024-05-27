@@ -30,7 +30,6 @@
 .apparatenlijst {
   display: inline-block;
   width: 97%;
-  height: 12em;
   list-style: none;
   margin: auto;
 }
@@ -55,10 +54,12 @@
   color: #000000;
   align-items: center;
 }
+
 .apparaat_foto {
   height: 10em;
-  margin: 1em;
-  width: auto;
+  width: 10em;
+  padding:1em;
+margin:1em;
   background: white;
   border-radius: 2em;
 }
@@ -134,8 +135,6 @@
         <ul class="apparatenlijst">
         <?php include 'functies\inventaris_functie.php'; ?>
         </ul>
-
-
         <?php include("footer.php"); ?>
 
 
