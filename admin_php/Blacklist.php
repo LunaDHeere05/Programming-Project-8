@@ -105,11 +105,16 @@
       cursor: pointer;
       color: black;
     }
+    
   </style>
 </head>
 
 <body>
   <div class="rechter_grid">
+
+  <!-- <div class="zoeken_container">
+  </div> -->
+
     <div class="overlay" id="verwijderPopup">
       <div class="popupContent">
         <span class="closePopup" id="closeVerwijder">&times;</span>
@@ -120,9 +125,10 @@
         </form>
       </div>
     </div>
-
+    
+    <?php include 'functies/blacklist_zoeken.php' ?>
     <!-- blacklist tabel -->
-    <div class="blacklist_tabel">
+    <div class="blacklist_tabel" id="blacklist_tabel">
       <table>
         <tr>
           <th>E-mail</th>
@@ -141,9 +147,8 @@
       const closeVerwijder = document.getElementById("closeVerwijder");
       const verwijderData = document.getElementById("verwijderData");
       const confirmVerwijder = document.getElementById("confirmVerwijder");
-
-   
-
+      
+      // popups
       verwijderLinks.forEach(function (link) {
         link.addEventListener("click", function (event) {
           event.preventDefault(); 
@@ -153,7 +158,6 @@
           document.getElementById("studentEmail").value = email;
 
           // const email = link.closest("tr").querySelector("td:first-child").textContent;
-          
           const verwijderContentHTML = `<p><strong>Email</strong>: ${email}</p>
             <p>Klik op <strong>Bevestigen</strong> om de persoon uit de Blacklist te verwijderen</p><br>`;
           verwijderData.innerHTML = verwijderContentHTML;
