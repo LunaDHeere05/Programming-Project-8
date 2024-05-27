@@ -13,7 +13,7 @@ if(mysqli_num_rows($result) > 0){
         echo '<div class="defect_container">
         <div class="defect_visueel_img">
             <img
-              src="../images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
+              src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
               alt=""
             />
           </div>
@@ -27,17 +27,17 @@ if(mysqli_num_rows($result) > 0){
         <div class="defect_visueel">
           <!-- verwijderen wijzigen  -->
           <div class="defect_acties">
-            <div id="defect_hersteld">
+            <div class="defect_hersteld">
               <a href="#">
                 Hersteld
-                <img src="../images/svg/screwdriver-wrench-solid.svg" alt="xmark" />
+                <img src="images/svg/screwdriver-wrench-solid.svg" alt="xmark" />
               </a>
             </div>
             <div class="defect_verwijder">
               <a href="">
                 Verwijder
                 <img
-                  src="../images/svg/circle-xmark-solid.svg"
+                  src="images/svg/circle-xmark-solid.svg"
                   alt=""
                 />
               </a>
