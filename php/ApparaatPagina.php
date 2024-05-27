@@ -387,24 +387,7 @@
   <div class="kits">
     <h1>Kits</h1>
     <ul>
-      <li>
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-        <h3>Canon-M50</h3>
-        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-      </li>
-      <li>
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-        <h3>Canon-M50</h3>
-        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-      </li>
-      <li>
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-        <h3>Canon-M50</h3>
-        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-      </li>
-      <li id="selectie_toevoegen">
-        <p>Voeg selectie toe aan reservatie</p>
-      </li>
+      <?php include 'functies\kit_apparaat_pagina.php'?>
     </ul>
   </div>
 
@@ -413,22 +396,7 @@
     <div class="dezelfde_categorie_container">
       <img class="slider" src="images/svg/chevron-left-solid.svg" alt="links" class="verander">
       <ul class="lijst_apparaten">
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
+        <?php include 'functies\dezelfde_categorie.php'?>
       </ul>
       <img class="slider" src="images/svg/chevron-right-solid.svg" alt="rechts">
     </div>
