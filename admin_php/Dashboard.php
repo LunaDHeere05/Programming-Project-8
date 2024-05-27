@@ -177,7 +177,10 @@ include 'database.php';
             $.ajax({
                 url: 'functies/verwijder_reservatie.php',
                 type: 'POST',
-                data: {reservatieID: reservatieID},
+                data: {
+                    reservatieID: reservatieID,
+                    statusText: statusText.trim() // Voeg statusText toe aan de data
+                },
                 success: function(response) {
                     console.log(response);
                     if (statusText.trim() === "Ophalen") {
