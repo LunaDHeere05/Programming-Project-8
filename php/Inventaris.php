@@ -30,7 +30,6 @@
 .apparatenlijst {
   display: inline-block;
   width: 97%;
-  height: 12em;
   list-style: none;
   margin: auto;
 }
@@ -55,10 +54,12 @@
   color: #000000;
   align-items: center;
 }
+
 .apparaat_foto {
   height: 10em;
-  margin: 1em;
-  width: auto;
+  width: 10em;
+  padding:1em;
+margin:1em;
   background: white;
   border-radius: 2em;
 }
@@ -134,8 +135,6 @@
         <ul class="apparatenlijst">
         <?php include 'functies\inventaris_functie.php'; ?>
         </ul>
-
-
         <?php include("footer.php"); ?>
 
 
@@ -164,18 +163,6 @@
       }
     });
   });
-  document.querySelectorAll('.winkelmand').forEach(function(button) {
-    button.addEventListener('click', function(event) {
-      event.preventDefault(); //gaat ervoor zorgen dat er ni naar de volgende pagina wordt gegaan in plaats van het winkelmandje aan te klikken
-      let cart_img = this.querySelector('img');
-      if (cart_img.src.endsWith('cart-shopping-solid.svg')) {
-        cart_img.src = 'images/svg/shopping-cart-regular.svg';
-      } else {
-        cart_img.src = 'images/svg/cart-shopping-solid.svg';
-      }
-    });
-  });
-
 </script>
 
 </body>

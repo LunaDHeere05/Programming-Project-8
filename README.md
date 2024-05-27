@@ -41,3 +41,7 @@
       <li>https://www.php.net/manual/en/function.setlocale.php</li>
     </ul>
 </ol>
+<h3>Anissa Sahli</h3>
+<h3>Amina Iqbal</h3>
+<h3>Danial Mubeasher</h3>
+<h3>Edson De Smet</h3>

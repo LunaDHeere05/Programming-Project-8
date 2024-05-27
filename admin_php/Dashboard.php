@@ -1,3 +1,6 @@
+<?php
+include 'database.php';
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -104,7 +107,7 @@
                 }
             });
         }
-
+        //functie voor maanden en dagen
         function updateDatesAndMonth(startDate) {
             var date = new Date(startDate);
             var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
@@ -152,6 +155,8 @@
             fetchReservations($('#monday-date').val());
         });
 
+        //CLick functies voor de iconen
+        //DEFECT:
         $(document).on('click', '.iconen .schroevendraaier', function() {
             var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
             $.ajax({
@@ -163,15 +168,47 @@
                 }
             });
         });
-
+        //CHECK:
         $(document).on('click', '.iconen .check', function() {
+            var $details = $(this).closest('.uitleningen_dashboard_details');
             var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            var statusText = $details.find('p').text();
+
             $.ajax({
                 url: 'functies/verwijder_reservatie.php',
                 type: 'POST',
+                data: {
+                    reservatieID: reservatieID,
+                    statusText: statusText.trim() // Voeg statusText toe aan de data
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (statusText.trim() === "Ophalen") {
+                        alert('Reservatie opgehaald.');
+                    } else {
+                        alert('Reservatie ingeleverd.');
+                    }
+                    fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
+                }
+            });
+        });
+        //VERWIJDER:
+        $(document).on('click', '.iconen .verwijder_btn', function() {
+            var $details = $(this).closest('.uitleningen_dashboard_details');
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            var statusText = $details.find('p').text();
+
+            $.ajax({
+                url: 'functies/waarschuwing_dashboard.php',
+                type: 'POST',
                 data: {reservatieID: reservatieID},
                 success: function(response) {
-                    alert('Reservatie verwijderd.');
+                    console.log(response);
+                    if (statusText.trim() === "Ophalen") {
+                        alert('Ophaling verwijderd.');
+                    } else {
+                        alert('Inlevering verwijderd.');
+                    }
                     fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
                 }
             });

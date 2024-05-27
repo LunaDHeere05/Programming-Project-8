@@ -1,3 +1,7 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/Programming-Project-8/admin_php/database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,19 +51,37 @@
   text-decoration: none;
   color: white;
 }
-        </style>
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#zoekbalk').on('input', function() {
+      var zoekbalkValue = $(this).val();
+      console.log('zoekbalkValue:', zoekbalkValue); // Add this line
+      $.post('functies/Inventaris_apparaten.php', {zoekbalkValue: zoekbalkValue}, function(data) {
+          $('#tableContainer tbody').html(data);
+      });
+  });
+});
+</script>
 </head>
 <body>
     <div class="rechter_grid">
         <div class="inventaris_tabel">
-            <table>
+            <table id="tableContainer">    
+              <thead>
                 <tr>
-                    <th>Apparaat</th>
-                    <th>Categorie</th>
-                    <th>Apparaat-ID</th>
-                    <th>Wijzigen</th>
+                  <th>Apparaat</th>
+                  <th>Categorie</th>
+                  <th>Apparaat-ID</th>
+                  <th>Wijzigen</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php include 'functies\Inventaris_apparaten.php'?>
+              </tbody>
+              
+                
             </table>
         </div>
         <div class="apparaat_toevoegen">
@@ -67,4 +89,7 @@
         </div>
     
 </body>
+<script>
+  
+</script>
 </html>

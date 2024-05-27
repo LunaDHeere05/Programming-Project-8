@@ -232,7 +232,6 @@ include 'database.php'
     let title = document.createElement('h2');   
     container.appendChild(title);
 
-
     console.log(arrayOfItems);
 
         if(arrayOfItems){
@@ -273,13 +272,6 @@ include 'database.php'
     
         typeName(arrayOfItems[currentNameIndex], 0);
     }
-    
-
-
-
-
-
-
     </script>
 </body>
 </html>

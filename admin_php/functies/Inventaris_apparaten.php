@@ -1,9 +1,16 @@
 <?php
-include 'database.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/Programming-Project-8/admin_php/database.php';
 
-$query = "SELECT item_id, categorie, merk, naam
-        FROM ITEM";
+$zoekbalkValue = isset($_POST['zoekbalkValue']) ? $_POST['zoekbalkValue'] : '';
+
+
+$query = "SELECT ITEM.item_id, ITEM.categorie, ITEM.merk, ITEM.naam
+        FROM ITEM
+        JOIN EXEMPLAAR_ITEM ON ITEM.item_id = EXEMPLAAR_ITEM.item_id
+        WHERE ITEM.naam LIKE '%$zoekbalkValue%'
+        GROUP BY ITEM.item_id";
 $result = mysqli_query($conn, $query);
+
 
 while($row = mysqli_fetch_assoc($result)){
     $item_id = $row['item_id'];
@@ -25,6 +32,7 @@ while($row = mysqli_fetch_assoc($result)){
     echo '<td><a href="#"><img src="images/svg/screwdriver-wrench-solid.svg" alt=""></a></td>';*/
     echo '<td><a href="InventarisW-V.php?item_id='.$row['item_id'].'"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>';
     echo '</tr>';
+
 }
 
 mysqli_close($conn);

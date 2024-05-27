@@ -95,7 +95,38 @@ include 'database.php';
         echo '<h3>Aantal: '. $reservering_info['aantal'].'</h3>';
     }
         
+    $reservationDetails = '';
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        foreach ($_POST['items'] as $item) {
+            $itemId = $item['item_id'];
+            $startDate = $item['start_date'];
+            $endDate = $item['end_date'];
+            $aantal = $item['quantity'];
+
+            $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
+            $query_result = mysqli_query($conn, $query);
+
+            if ($query_result) {
+                $item_row = mysqli_fetch_assoc($query_result);
+                
+                $reservationDetails .= "Item: " . $item_row['merk'] . ' - ' . $item_row['naam'] . "\n";
+                $reservationDetails .= "Aantal: $aantal\n";
+                $reservationDetails .= "Startdatum: " . date('d-m-Y', strtotime($startDate)) . "\n";
+                $reservationDetails .= "Einddatum: " . date('d-m-Y', strtotime($endDate)) . "\n\n";
+            } else {
+                echo "Fout bij het ophalen van de itemgegevens.";
+            }
+        }
+    }
+    if (!empty($reservationDetails)) {
+        $email = $_SESSION['email'];
+        $to = $email;
+        $subject = "Bevestiging reservatie";
+        $message = "Beste,\n\nUw reservering is succesvol geplaatst.\n\nDetails van uw reservering:\n\n$reservationDetails\nBedankt voor uw reservering.";
+        $headers = "From: no-reply@yourdomain.com";
         
+        mail($to, $subject, $message, $headers);
+    }
         ?>
  
     </div>

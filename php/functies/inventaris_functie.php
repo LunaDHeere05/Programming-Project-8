@@ -2,7 +2,7 @@
 include 'database.php';
 
 // De volgende query is gewoon om de info over het apparaat te halen uit de databank
-$item_info = "SELECT item_id, naam, merk, beschrijving FROM ITEM";
+$item_info = "SELECT * FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
 if (!$item_info_result) {
@@ -17,7 +17,7 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
     if ($zichtbaarheid_result && $zichtbaarheid_result->num_rows > 0) {
         echo "<li class='apparaat'>";
         echo "<a href='ApparaatPagina.php?apparaat_id=" . $row_item['item_id'] . "'>";
-        echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="" class="apparaat_foto">';
+        echo '<img src="' . $row_item['images'] . '" alt="" class="apparaat_foto">';
         echo "<div class='korte_beschrijving'>";
         echo "<h3>" . $row_item['naam'] . "</h3>";
         echo "<p>" . $row_item['merk'] . "</p>";
@@ -117,7 +117,7 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
         echo "</div>";
 
         echo "<div class='toevoegen'>";
-        echo "<button class='favoriet'><img src='images/svg/heart-regular.svg' alt='Favorietenlijst'></button>";
+        echo '<form action="/Favorietenlijst.php"method="post"> <input type="hidden" name=" " id=" " value=""> <button class="favoriet"><img src="images/svg/heart-regular.svg" alt="Favorietenlijst"></button></form>';
         echo "</div>";
         echo "</a>";
         echo "</li>";

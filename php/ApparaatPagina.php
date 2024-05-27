@@ -12,7 +12,7 @@
   <style>
     .apparaat_info {
       background-color: #edededcf;
-      width: 80%;
+      width: 85%;
       margin: auto;
       margin-top: 2em;
       border-radius: 1em;
@@ -26,6 +26,7 @@
     .download_handleiding {
       list-style: none;
       display: flex;
+      width:50%;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -362,49 +363,20 @@
   ?>
 
   <div class="apparaat_info">
-    <div class="download_handleiding">
-      <?php
-      echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="Foto apparaat">';;
-      include 'functies\apparaat_pagina_handleiding_functie.php';
-      ?>
-    </div>
-
-    <div class="apparaat_beschrijving">
       <?php include 'functies\apparaat_pagina_functie.php' ?>
-    </div>
   </div>
 
   <h2 class="reservatie">Plaats je reservatie</h2>
   <form id="form" action="ReservatieBevestigen.php" method="POST">
     <div class="reservatie_plaatsen">
-
     <?php include 'functies\reservatiePlaatsen.php' ?>
-
-      
     </div>
   </form>
 
   <div class="kits">
     <h1>Kits</h1>
     <ul>
-      <li>
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-        <h3>Canon-M50</h3>
-        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-      </li>
-      <li>
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-        <h3>Canon-M50</h3>
-        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-      </li>
-      <li>
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-        <h3>Canon-M50</h3>
-        <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-      </li>
-      <li id="selectie_toevoegen">
-        <p>Voeg selectie toe aan reservatie</p>
-      </li>
+      <?php include 'functies\kit_apparaat_pagina.php'?>
     </ul>
   </div>
 
@@ -413,22 +385,7 @@
     <div class="dezelfde_categorie_container">
       <img class="slider" src="images/svg/chevron-left-solid.svg" alt="links" class="verander">
       <ul class="lijst_apparaten">
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
-        <li>
-          <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-          <h3>Canon-M50</h3>
-        </li>
+        <?php include 'functies\dezelfde_categorie.php'?>
       </ul>
       <img class="slider" src="images/svg/chevron-right-solid.svg" alt="rechts">
     </div>
@@ -437,12 +394,10 @@
 
   <script>
        
-    <?php
-
-include 'functies/recentItemsToevoegen.php';
+       <?php include 'functies/recentItemsToevoegen.php' ?>
 
 
-    echo "let vandaag = new Date();
+  let vandaag = new Date();
   let dayIndex = vandaag.getDay(); //maandag is index 1, vrijdag index 5
 
   //uitlenen kan enkel op maandag
@@ -498,7 +453,7 @@ include 'functies/recentItemsToevoegen.php';
   //vanaf het moment dat de user (student) een begindatum aanduidt, gaat er een query worden uitgevoerd om te kijken hoeveel exemplaren van het item beschikbaar zijn.
   
   function aantalUitDatabank(startDate, endDate) {
-    let itemId = " . json_encode($item_id) . ";
+  let itemId = <?php echo json_encode($item_id)?>;
     // Controle
     console.log('Item ID:', itemId);
 
@@ -511,7 +466,7 @@ include 'functies/recentItemsToevoegen.php';
     document.getElementById('item_id').value=itemId;
     // console.log(start_dateValue); 
 
-    // Startdatum sturen naar de PHP-file
+    // Startdatum sturen naar de PHP-file om 'aantal' te laten zien
     fetch('functies/vrijeExemplaren.php', {
         method: 'POST',
         body: formData
@@ -542,13 +497,15 @@ include 'functies/recentItemsToevoegen.php';
         console.error('Error:', error);
       })
 
-    }";
+    }
 
+    <?php
+  
       if ($userType == 'emailSTUDENT') {
         echo "
-    end_date.disabled=true;
+        end_date.disabled=true;
 
-    start_date.addEventListener('change', function() {
+        start_date.addEventListener('change', function() {
             
             //console.log('startdate: '+start_date.value);          
 
@@ -622,8 +579,12 @@ start_date.addEventListener('change', function() {
   })
 })";
       }
-   
     ?>
+  
+  document.getElementById('submitWinkelmand').addEventListener('click',function(e){
+    e.preventDefault();
+  })
+   
   </script>
 </body>
 
