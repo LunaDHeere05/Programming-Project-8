@@ -157,7 +157,7 @@ nav {
     <div class="rechter_grid">
         <div class="zoeken_container">
             <div class="zoeken">
-                <input type="text" placeholder="Voer een naam of ID in...">
+                <input id="zoekbalk" type="text" placeholder="Voer een naam of ID in...">
                 <button type="submit"><img src="images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
             </div>
         </div>

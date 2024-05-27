@@ -3,7 +3,7 @@
 include 'database.php';
 
 if (isset($userType) && isset($email)) {
-    $query = "SELECT ITEM.item_id, naam, merk
+    $query = "SELECT ITEM.item_id, naam, merk,images
               FROM ITEM
               JOIN RECENT_ITEMS ON RECENT_ITEMS.item_id = ITEM.item_id
               JOIN RECENT_BEKEKEN ON RECENT_ITEMS.recent_id = RECENT_BEKEKEN.recent_id
@@ -19,7 +19,7 @@ if (isset($userType) && isset($email)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<li><a href="ApparaatPagina.php?apparaat_id=' . $row['item_id'] . '">';
-            echo '<img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">';
+            echo '<img src="' . $row['images'] . '" alt="">';
             echo '<h3>' . $row['merk'] . ' - ' . $row['naam'] . '</h3>';
             echo '</a></li>';
         }

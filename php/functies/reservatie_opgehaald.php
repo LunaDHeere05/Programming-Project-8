@@ -7,7 +7,7 @@ if (!isset($userType) || !isset($email)) {
 
 $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isOpgehaald, U.isVerlengd,
                 EI.exemplaar_item_id,
-                I.naam, I.beschrijving
+                I.naam, I.beschrijving,I.images
         FROM UITGELEEND_ITEM UI
         JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
@@ -41,7 +41,7 @@ if(mysqli_num_rows($result) > 0) {
                     <div class="reservatie_item">
                         <a href="#" class="reservatie_item_a">
                             <ul style="background-color:'.$kleur.';">
-                                <li><img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt=""></li>
+                                <li><img src="' . $row['images'] . '" alt=""></li>
                                 <li class="reservatie_info">
                                     <h3>' . $row['naam'] . '</h3>
                                     <p>van ' . $row['uitleen_datum'] . '</p>

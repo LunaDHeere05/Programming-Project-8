@@ -105,7 +105,7 @@ include 'database.php';
             $itemId = $_POST['item_id'];
 
             $start_dateObject=new DateTime($startDate);
-            $end_dateObject=new DateTime( $endDate );
+            $end_dateObject=new DateTime($endDate);
             $itemId = (int) $itemId;
             $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
             $query_result = mysqli_query($conn, $query);
