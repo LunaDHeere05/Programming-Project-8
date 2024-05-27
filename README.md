@@ -23,7 +23,7 @@
     <li>https://popupsmart.com/blog/php-popup</li>
     <li>Lijnen: 258-357 in php/top_nav.php , 125-197 in admin_php/Blacklist.php</li>
   </ul>
-  <li>Voor het ophalen van alle uitleningen in de admin kant:<li>
+  <li>Voor het ophalen van alle uitleningen in de admin kant:</li>
     <ul>
       <li>https://chatgpt.com/share/5065f64a-ddd3-4192-bcff-b43592bfaf66</li>
       <li>Lijnen: 1-54 in admin_php/functies/uitleningen_ophalen.php</li>
