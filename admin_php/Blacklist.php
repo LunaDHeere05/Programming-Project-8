@@ -114,7 +114,10 @@
       <div class="popupContent">
         <span class="closePopup" id="closeVerwijder">&times;</span>
         <div id="verwijderData"></div>
-        <button class="confirmButton" id="confirmVerwijder">Bevestigen</button>
+        <form id="verwijderform" method="POST">
+        <input type="hidden" id="studentEmail" name="email">
+        <button  type="submit" class="confirmButton" id="confirmVerwijder" name="verwijderButton">Bevestigen</button>
+        </form>
       </div>
     </div>
 
@@ -143,10 +146,14 @@
 
       verwijderLinks.forEach(function (link) {
         link.addEventListener("click", function (event) {
-          event.preventDefault(); // Voorkom de standaardactie van het volgen van de link
+          event.preventDefault(); 
 
-          // Haal gegevens op en toon de popupinhoud
-          const email = link.closest("tr").querySelector("td:first-child").textContent;
+
+          const email = link.getAttribute("data-email");
+          document.getElementById("studentEmail").value = email;
+
+          // const email = link.closest("tr").querySelector("td:first-child").textContent;
+          
           const verwijderContentHTML = `<p><strong>Email</strong>: ${email}</p>
             <p>Klik op <strong>Bevestigen</strong> om de persoon uit de Blacklist te verwijderen</p><br>`;
           verwijderData.innerHTML = verwijderContentHTML;
@@ -170,7 +177,9 @@
 
       // Verwerk het klikken op de bevestigingsknop
       confirmVerwijder.addEventListener("click", function () {
-        // Voeg hier je logica toe voor wat er moet gebeuren wanneer de bevestigingsknop wordt geklikt
+
+        const email = verwijderData.querySelector("#studentEmail").textContent;
+        document.getElementById("studentEmail").value = email;
 
         console.log("Bevestigingsknop geklikt");
         // Sluit de popup
