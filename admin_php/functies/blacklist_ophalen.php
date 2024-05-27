@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         $stmt->close();
 
-        echo "Student met email $email is verwijderd van de blacklist.";
+        echo "$email is verwijderd van de blacklist.";
     }
 }
 
