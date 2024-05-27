@@ -61,13 +61,6 @@
     <div class="rechter_grid">
         <div class="inventaris_tabel">
             <table>
-                <tr>
-                    <th>Exemplaar-ID</th>
-                    <th>Uitgeleend</th>
-                    <th>Zichtbaarheid</th>
-                    <th>Defect</th>
-                    <th>Verwijderen</th>
-                </tr>
                 <?php include 'functies\Inventaris_exemplaaren.php'?>
             </table>
         </div>
