@@ -100,30 +100,31 @@ nav {
 
 .zoeken_container{
   width: 100%;
-  height: 3em;
+  height: 3rem;
   margin: auto;
 }
-.zoeken{
+.zoeken form{
   display: flex;
-  width: 80%;
+  width: 100%;
   margin: auto;
   height: 100%;
   border-radius: 2em;
   border: 2px solid rgb(193,193,193);
 }
-.zoeken input{
+.zoeken form input {
   width: 90%;
   height: 100%;
   border: none;
   margin: auto;
 }
-.zoeken button{
+.zoeken form button{
   width: 2em;
   height: auto;
   background: none;
   border: none;
   margin-right: 1.5em;
 }
+
 </style>
 <body>
 <nav>
@@ -157,8 +158,10 @@ nav {
     <div class="rechter_grid">
         <div class="zoeken_container">
             <div class="zoeken">
-                <input type="text" placeholder="Voer een naam of ID in...">
-                <button type="submit"><img src="images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
+              <form method="GET" id="zoekform">
+                <input type="text" id="zoekbalk" name="zoekquery" placeholder="Voer een naam of ID in...">
+                <button type="submit" name="zoekButton"><img src="images/svg/magnifying-glass-solid.svg" alt="zoek icoon"></button>
+                </form>
             </div>
         </div>
 
