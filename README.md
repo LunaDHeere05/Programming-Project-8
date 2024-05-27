@@ -29,3 +29,15 @@
       <li>Lijnen: 1-54 in admin_php/functies/uitleningen_ophalen.php</li>
     </ul>
 </ol>
+<h3>Lars Paridaens</h3>
+<ol>
+  <li>Voor de basis SQL-injections te voorkomen in de zoekbalk:</li>
+  <ul>
+    <li>https://www.php.net/manual/en/security.database.sql-injection.php</li>
+    <li>https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection</li>
+  </ul>
+  <li>Voor het ophalen van local time:</li>
+    <ul>
+      <li>https://www.php.net/manual/en/function.setlocale.php</li>
+    </ul>
+</ol>
