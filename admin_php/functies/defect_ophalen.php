@@ -4,8 +4,7 @@ include 'database.php';
 $query = "SELECT defect_id, DEFECT.beschrijving, DEFECT.datum, bruikbaarheid, DEFECT.exemplaar_item_id, ITEM.naam, ITEM.item_id
           FROM DEFECT
           JOIN EXEMPLAAR_ITEM ON DEFECT.exemplaar_item_id = EXEMPLAAR_ITEM.exemplaar_item_id
-          JOIN ITEM ON EXEMPLAAR_ITEM.item_id = ITEM.item_id
-          ORDER BY defect_id";
+          JOIN ITEM ON EXEMPLAAR_ITEM.item_id = ITEM.item_id";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0){
@@ -28,13 +27,13 @@ if(mysqli_num_rows($result) > 0){
           <!-- verwijderen wijzigen  -->
           <div class="defect_acties">
             <div class="defect_hersteld">
-              <a href="#">
+            <a href="#" defect_id="' . $row['defect_id'] . '">
                 Hersteld
                 <img src="images/svg/screwdriver-wrench-solid.svg" alt="xmark" />
               </a>
             </div>
             <div class="defect_verwijder">
-              <a href="">
+            <a href="#" defect_id="' . $row['defect_id'] . '">
                 Verwijder
                 <img
                   src="images/svg/circle-xmark-solid.svg"
