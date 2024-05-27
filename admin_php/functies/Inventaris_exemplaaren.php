@@ -20,10 +20,17 @@ if ($result) {
     
     // Table header
     
-    
+    echo "<tr>
+        <th>Exemplaar-ID</th>
+        <th>Uitgeleend</th>
+        <th>Zichtbaarheid</th>
+        <th>Defect</th>
+        <th>Verwijderen</th>
+        </tr>";
     // Fetch and display the data
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
+        
         echo "<td>" . $row['exemplaar_item_id'] . "</td>";
         echo "<td class='isUitgeleend'>" . $row['isUitgeleend'] . "</td>";
         echo "<td class='zichtbaarheid'>". $row["zichtbaarheid"] . "</td>";
