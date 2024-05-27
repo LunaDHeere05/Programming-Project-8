@@ -20,27 +20,32 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
         echo "<td>" . htmlspecialchars($row['blacklistReasons']) . "</td>";
         echo "<td>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
-        echo "<td><a href='#' class='verwijder_link'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
+        echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
     }
 } else {
     echo "Er staan momenteel geen studenten op de blacklist. ";
 }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['verwijderButton'])) {
+        $email = $_POST['email'];
 
-if(isset($_POST['confirmButton'])){
-    // $email = $_POST['email'];
+        $verwijderquery = "DELETE FROM WAARSCHUWING WHERE emailStudent = ?";
+        $stmt = $conn->prepare($verwijderquery);
+        $stmt->bind_param("s", $email);
 
-    // $verwijderquery = "DELETE FROM WAARSCHUWING WHERE emailStudent = :email";
-    // $stmt = $conn->prepare($verwijderquery);
-    // $stmt->execute(['email' => $email]);
+        if ($stmt->execute()) {
+            echo "Student is verwijderd van de blacklist";
+        } else {
+            echo "Er is iets fout gegaan: " . $stmt->error;
+        }
+        $stmt->close();
 
-    // if($stmt->rowCount() > 0){
-    //     echo "Student verwijderd van de blacklist!";
-    // } else {
-    //     echo "Student kon niet worden verwijderd van de blacklist.";
-    // }
-    echo "console.log(`Student verwijderd van de blacklist!`)";
+        echo "Student met email $email is verwijderd van de blacklist.";
+    }
 }
 
 
+// Close the database connection
+$conn->close();
 ?>
