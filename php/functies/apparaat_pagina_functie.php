@@ -10,13 +10,13 @@ if(isset($_GET['apparaat_id'])){
         $item_row = mysqli_fetch_assoc($item_result);
 
         echo '<div class="download_handleiding">';
-        echo "<img src='" . $item_row['images'] . "' >";
+        echo "<img id='imageSrc' src='" . $item_row['images'] . "' >";
         echo "<li><a href='" . $item_row['gebruiksaanwijzing'] . "' target='_blank'>Bekijk de gebruikershandleiding</a></li>";
         echo '</div>';
     
         echo '<div class="apparaat_beschrijving">';
 
-        echo '<h1>'.$item_row['merk']. ' - ' .$item_row['naam'].'</h1>';
+        echo '<h1 id="naamEnMerk">'.$item_row['merk']. ' - ' .$item_row['naam'].'</h1>';
         echo '<p class="beschrijving">' . $item_row['beschrijving'] . '</p>';
 
         //functionaliteiten

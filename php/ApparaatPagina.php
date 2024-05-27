@@ -35,7 +35,8 @@
     .download_handleiding img {
       background-color: white;
       border-radius: 2em;
-      width: 70%;
+      width:20em;
+      height:20em;
       margin: auto 0em 0em 2em;
     }
 
@@ -580,10 +581,45 @@ start_date.addEventListener('change', function() {
 })";
       }
     ?>
+
+
+
+//WINKELMAND
+
+    //test
+    //localStorage.removeItem('winkelmand')
+
+    //constructor voor items in winkelmand
+    function winkelmandItem(itemId,start,end,aantal,imageSrc, naam){
+      this.itemId=parseInt(itemId);
+      this.start=start;
+      this.end=end;
+      this.aantal=parseInt(aantal);
+      this.imageSrc=document.getElementById('imageSrc').src;
+      this.naam=document.getElementById('naamEnMerk').textContent;
+    }
+
+    //functie om items te pushen naar localStorage
+    function toevoegenWinkelmand(winkelmand){
+      let item=new winkelmandItem (item_id.value, start_date.value, end_date.value, quantity.value);
+      winkelmand.push(item);
+      localStorage.setItem('winkelmand', JSON.stringify(winkelmand));
+    }
   
-  document.getElementById('submitWinkelmand').addEventListener('click',function(e){
-    e.preventDefault();
-  })
+    document.getElementById('submitWinkelmand').addEventListener('click',function(e){
+      e.preventDefault();
+      var winkelmand = JSON.parse(localStorage.getItem('winkelmand')) || [];
+      toevoegenWinkelmand(winkelmand)
+
+      //controle
+      console.log(winkelmand)
+
+
+      //items laten zien in winkelmand
+      
+    })
+
+
    
   </script>
 </body>

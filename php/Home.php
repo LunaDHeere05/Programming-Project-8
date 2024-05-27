@@ -22,8 +22,6 @@ include 'database.php'
 
         .categorie h2{
             margin: 1em 0em 1em 1em;
-
-
         }
 
     .categorie_lijst {
@@ -52,7 +50,7 @@ include 'database.php'
     .categorie_lijst a:hover {
     background-color: white;
     color: red;
-    border: 0.01em solid red;
+    border: 2px solid red;
     }
 
 

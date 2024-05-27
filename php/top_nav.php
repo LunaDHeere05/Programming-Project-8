@@ -160,11 +160,14 @@ nav{
 #winkelmand_popup {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin: auto;
+  height:27em;
+width: 39em;
+gap:2em;
+ align-items: center;
   border: 1px solid black;
   border-radius: 2em;
   padding: 1em;
+  padding-top:0;
   background-color: white;
   position: fixed;
   border: none;
@@ -172,57 +175,81 @@ nav{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  overflow: auto;
 }
-#winkelmand_popup h3{
-    margin-bottom: 1em;
+
+/* hide scrollbar */
+#winkelmand_popup::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
-#close_window{
+
+#winkelmand_popup {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.title {
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 2px solid #b1b1b1cf;
+    z-index: 1;
+    margin: 0;
+    background-color: white;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.title h1 {
+    flex-grow: 1; 
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0; 
+}
+
+.title #close_window, .item_kruis {
     width: 2em;
     height: 2em;
     cursor: pointer;
-    position: absolute;
-    top: 1em;
-    right: 2em;
 }
+
+
 #winkelmand_items{
-    display: block;
-}
-.item{
-    background-color: rgb(193, 193, 193);
-    padding: 1.5em;
-    border-radius: 2em;
-    display: flex;
-    margin-bottom: 2em;
-    justify-content: space-between;
-    align-items: center;
-}
-.datum_aanpassen {
-    display: flex;
+    display: flex;   
     flex-direction: column;
+    gap:2em;
+    justify-content: space-between;
 }
-.datum_aanpassen img{
-    width: 2em;
-    height: auto;
-    margin: auto;
-    margin-bottom: 0.5em;
+
+.item{
+    background-color: #edededcf;
+    padding: 1em 0.5em;
+    border-radius: 1em; 
+    display: flex;
+    justify-content: space-between;
+    gap:0.5em;
+    align-items: center;
+
 }
-.datum_aanpassen input:focus{
-    outline: none;
+
+.item .item_kruis{
+    margin:0px 2px auto auto
 }
-.aantal{
-    background-color: white;
-    font-weight: bold;
-    border-radius: 2em;
-    padding-left: 0.5em;
-}
-.aantal input{
-    width: 2em;
-    height: 2em;
+
+#winkelmand_popup table{
     text-align: center;
-    font-weight: bold;
-    border: none;
-    margin-right: 1em;
+  }
+
+#winkelmand_popup table th{
+    color:#b1b1b1cf;
+    font-size: 120%;
 }
+
+
 #winkelmand_popup .item_foto{
     width: 20%;
     height: auto;
@@ -241,8 +268,8 @@ nav{
     background-color: #1BBCB6;
     border-radius: 2em;
     padding: 0.5em;
-    margin-top: 1em;
 }
+
 #winkelmand_popup form input{
     background-color: transparent;
     border: none;
@@ -252,6 +279,7 @@ nav{
     color: white;
     font-size: 18px;
 }
+
 .hidden{
     left: -99999px !important;
     display: none;
@@ -331,37 +359,13 @@ button{
         </form>
     </div>
 </div>
+
 <div id="winkelmand_popup" class="hidden">
-    <h3>Winkelmand</h3>
-    <div id="winkelmand_items">
-        <div class="item">
-            <img class="item_foto" src="images\webp\eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-            <h3>Canon - M50</h3>
-            <div class="datum_aanpassen">
-                <img src="images\svg\pen-to-square-regular.svg" alt="wijzig datum">
-                <p>Van 22/04/2024</p>
-                <p>Tot 27/04/2024</p>
-            </div>
-            <div class="aantal">
-                <label for="aantal">Aantal:</label>
-                <input type="number" placeholder="0">
-            </div>
-        </div>
-        <div class="item">
-            <img class="item_foto" src="images\webp\eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-            <h3>Canon - M50</h3>
-            <div class="datum_aanpassen">
-                <img src="images\svg\pen-to-square-regular.svg" alt="wijzig datum">
-                <p>Van 22/04/2024</p>
-                <p>Tot 27/04/2024</p>
-            </div>
-            <div class="aantal">
-                <label for="aantal">Aantal:</label>
-                <input type="number" placeholder="0">
-            </div>
-        </div>
-        </div>
+    <div class='title'>
+    <h1>Winkelmand</h1>
     <img src="images/svg/xmark-solid.svg" alt="sluit venster" id="close_window">
+    </div>
+    <div id="winkelmand_items"></div>
     <form>
         <input type="submit" value="Reserveer nu">
     </form>
@@ -398,6 +402,78 @@ for(let i=0;i<link.length;i++){
         }
     }
 }
+
+
+let winkelmand = JSON.parse(localStorage.getItem('winkelmand')) || [];
+let mandje= document.getElementById('winkelmand_items');
+
+document.getElementById('winkelmand').addEventListener('click',function(){
+for (item of winkelmand) {
+    let itemDiv = document.createElement('div');
+    itemDiv.classList = 'item';
+    itemDiv.classList.add(item[item.naam]);
+    mandje.append(itemDiv);
+
+    let itemImg = document.createElement('img');
+    itemImg.classList = 'item_foto';
+    itemImg.src = item.imageSrc;
+    itemDiv.append(itemImg);
+
+    let table = document.createElement('table');
+
+    // Header row
+    let headerRow = document.createElement('tr');
+    let naamHeader = document.createElement('th');
+    naamHeader.textContent = 'Naam';
+    headerRow.appendChild(naamHeader);
+
+    let datumHeader = document.createElement('th');
+    datumHeader.textContent = 'Datum';
+    headerRow.appendChild(datumHeader);
+
+    let aantalHeader = document.createElement('th');
+    aantalHeader.textContent = 'Aantal';
+    headerRow.appendChild(aantalHeader);
+
+    table.appendChild(headerRow);
+
+    // Data rows
+    let dataRow = document.createElement('tr');
+    let naamData = document.createElement('td');
+    naamData.textContent = item.naam;
+    dataRow.appendChild(naamData);
+
+    let datumData = document.createElement('td');
+    datumData.textContent = 'Van ' + item.start + ' tot ' + item.end;
+    dataRow.appendChild(datumData);
+
+    let aantalData = document.createElement('td');
+    aantalData.textContent = item.aantal;
+    dataRow.appendChild(aantalData);
+
+    table.appendChild(dataRow);
+
+    itemDiv.appendChild(table);
+
+    let itemKruis = document.createElement('img');
+    itemKruis.classList = 'item_kruis';
+    itemKruis.src = "images/svg/xmark-solid.svg" ;
+    itemDiv.append(itemKruis);
+}
+})
+
+
+//item verwijderen uit WM
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('item_kruis')) {
+        console.log('kruis');
+        console.log(e.target.parentElement); 
+    }
+});
+
+
+
+
 
 
 

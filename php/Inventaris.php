@@ -58,8 +58,7 @@
 .apparaat_foto {
   height: 10em;
   width: 10em;
-  padding:1em;
-margin:1em;
+  margin:1em;
   background: white;
   border-radius: 2em;
 }

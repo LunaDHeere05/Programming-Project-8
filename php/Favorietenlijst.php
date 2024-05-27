@@ -22,30 +22,48 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 .favorietenEnTerug h1{
   margin: 0.6em 0.5em 0em 0.5em;
 }
+
 .favoriet_apparaat_container{
-  width: 90%;
-  height: auto;
-  margin: auto;
   display: flex;
-  flex-wrap: wrap;   /*hierdoor is er probleem wnt komt over*/
-  overflow: auto;
+  flex-wrap: wrap;
+        gap:3em;
+        list-style: none;
+        margin:1em;
+        padding:0;
+        justify-content: center;
+        align-items: center;
 }
+
 .favoriet_apparaat{
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background-color: rgb(193, 193, 193);
-  border-radius: 2em;
-  width: 20%;
-  margin: 1em;
+  display:flex;
+    padding:0.5em 0;
+    flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #edededcf;
+        width:20em;
+        height:15em;
+        text-align: center;
+        border-radius: 1em;
+        cursor:pointer;
+        position: relative;
 }
-.favoriet_apparaat .mijnFavorieteApparaat_foto{
-  width: 60%;
-  height: auto;
-  margin: 0.5em auto;
-  background-color: white;
-  border-radius: 1em;
-}
+
+.favoriet_apparaat:hover{
+        background-color: #cfcfcfcf;
+    }
+
+    .favoriet_apparaat .mijnFavorieteApparaat_foto {
+        width: 13em;
+        height: 10em;
+        background-color: white;
+        margin-top: 1em;
+    }
+
+
+
+
+
 .text_apparaat{
   text-align: center;
   font-weight: bold;
@@ -75,19 +93,22 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         <h1>Mijn favorietenlijst</h1>
 </div>
     <div class="favoriet_apparaat_container">
-    <?php include 'functies/favorietenLijst_functie.php'?> 
+    <?php include 'functies/favorietenLijst_functie.php'?>
     </div>
+    <?php include("footer.php") ?> 
     <script>    
-    console.log( document.querySelectorAll(".verwijder_btn"))
+      <?php     echo '
+    console.log( document.querySelectorAll(".verwijder_btn"));
+
     for(let i = 0; i<document.querySelectorAll(".favoriet_apparaat").length; i++){
-    document.querySelectorAll(".verwijder_btn").[i].addEventListener("click", function() {
-      console.log("test");
-      <?php
+    document.querySelectorAll(".verwijder_btn")[i].addEventListener("click", function() {';
+    
         $delete_items_query = "DELETE FROM FAVORIETE_ITEMS WHERE item_id = ".$exemplaren_row['item_id']."";
-        $delete_items_result = mysqli_query($conn, $delete_items_query);   
-?>
-})
-}</script>
-<?php include("footer.php") ?>
+        $delete_items_result = mysqli_query($conn, $delete_items_query);  
+        
+    echo '})'
+      ?>
+</script>
+
 </body>
 </html>

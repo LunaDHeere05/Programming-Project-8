@@ -6,7 +6,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reservatie</title>
+    <title>Reservaties</title>
     <style>
 
 .reservatiesEnTerug{

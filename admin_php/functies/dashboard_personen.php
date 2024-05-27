@@ -8,7 +8,7 @@ $query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, ui.isOpgehaa
           FROM UITLENING ui
           INNER JOIN UITGELEEND_ITEM uit ON ui.uitleen_id = uit.uitleen_id
           INNER JOIN ITEM it ON it.item_id = it.item_id
-          WHERE ui.uitleen_datum = '$date'
+          WHERE ui.uitleen_datum = '$date' OR ui.inlever_datum = '$date'
           ORDER BY ui.emailSTUDENT";
 $result = mysqli_query($conn, $query);
 
@@ -23,11 +23,19 @@ while ($row = mysqli_fetch_assoc($result)) {
     $isOpgehaald = $row['isOpgehaald'] ? "Ja" : "Nee";
     $email = $row['emailSTUDENT'] ?: $row['emailDOCENT'];
     $naam = $row['naam']; // Fetching the naam from the ITEM table
-    $status = displayStatus($isOpgehaald);
+    $status;
+    
+    if($row['isOpgehaald']==1){
+        $status ='In te leveren';
+    }else{
+        $status='Op te halen';
+    }
 
+    echo $row['isOpgehaald'];
     echo "<div class='uitleningen_dashboard_details'>
             <div class='naam_reservatieID'>
                 <h3>$email</h3>
+                
                 <h3>Reservatie-ID: <span>$uitleen_id</span></h3>
             </div>
             <h3>Apparaat: $naam</h3>
@@ -42,7 +50,5 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 mysqli_close($conn);
 
-function displayStatus($status) {
-    return $status === 'Nee' ? 'Inleveren' : 'Ophalen';
-}
+
 ?>
