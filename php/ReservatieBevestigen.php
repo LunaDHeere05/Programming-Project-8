@@ -127,7 +127,8 @@ include 'database.php';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="bevestig_btn">';
-                echo '<button type="submit">Bevestig</button>';
+                echo '<form action="FinalBevestigingReservatie.php method="POST"> 
+                    <button type="submit">Bevestig</button>';
                 echo '</form>';
                 echo '</div>';
             } else {
