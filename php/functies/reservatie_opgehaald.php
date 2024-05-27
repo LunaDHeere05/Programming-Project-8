@@ -40,7 +40,7 @@ if(mysqli_num_rows($result) > 0) {
                                 <li class="status">
                                     <h3>Status:</h3>
                                     <p><b>Binnen ' .$dagen_tot_inleveren .' dagen inleveren</b></p>
-                                    <h3>Reservatie-ID: <br> <span>04125</span></h3>
+                                    <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].'</span></h3>
                                 </li>
                                 <li>
                                     <div class="defect_btn">

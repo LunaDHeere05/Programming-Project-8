@@ -111,7 +111,6 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
 .reservatie_item ul{
   display: flex;
   list-style: none;
-  background-color: rgb(193, 193, 193);
   border-radius: 2em;
   justify-content: space-between;
 }
