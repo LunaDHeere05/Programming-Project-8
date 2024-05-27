@@ -46,7 +46,7 @@ foreach ($kits as $kit_id => $kit) {
     echo '</div>';
     echo '<div class="kit_visueel_img_container" id="kit_' . $kit_id . '">';
     foreach ($kit['items'] as $index => $item) {
-        echo '<div class="kit_visueel_img" style="display: ' . ($index < 3 ? 'flex' : 'row') . ';">';
+        echo '<div class="kit_visueel_img" style="display:' . ($index < 3 ? 'flex' : '') . ';">';
         echo '<img src="images\webp\eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="' . $item['item_naam'] . '" />';
         echo '</div>';
     }

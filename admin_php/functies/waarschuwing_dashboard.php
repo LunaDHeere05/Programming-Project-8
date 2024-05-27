@@ -11,21 +11,15 @@ echo "checkpoint 1";
 mysqli_begin_transaction($conn);
 
 try {
-    // Update isUitgeleend in EXEMPLAAR_ITEM to 0
-    $updateQuery = "UPDATE EXEMPLAAR_ITEM SET isUitgeleend = 0 WHERE uitleen_id = '$reservatieID'";
-    if (!mysqli_query($conn, $updateQuery)) {
-        throw new Exception("Error updating isUitgeleend in EXEMPLAAR_ITEM: " . mysqli_error($conn));
-    }
-
     // Delete related records from UITGELEEND_ITEM first
-    $deleteQuery1 = "DELETE FROM UITGELEEND_ITEM WHERE uitleen_id = '$reservatieID'";
-    if (!mysqli_query($conn, $deleteQuery1)) {
+    $query1 = "DELETE FROM UITGELEEND_ITEM WHERE uitleen_id = '$reservatieID'";
+    if (!mysqli_query($conn, $query1)) {
         throw new Exception("Error deleting from UITGELEEND_ITEM: " . mysqli_error($conn));
     }
 
     // Delete the record from UITLENING
-    $deleteQuery2 = "DELETE FROM UITLENING WHERE uitleen_id = '$reservatieID'";
-    if (!mysqli_query($conn, $deleteQuery2)) {
+    $query2 = "DELETE FROM UITLENING WHERE uitleen_id = '$reservatieID'";
+    if (!mysqli_query($conn, $query2)) {
         throw new Exception("Error deleting from UITLENING: " . mysqli_error($conn));
     }
 

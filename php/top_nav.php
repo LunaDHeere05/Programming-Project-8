@@ -268,6 +268,27 @@ body.blur > *:not(#winkelmand_popup):not(#close_window) {
 button{
     cursor: pointer;
 }
+#uitloggen{
+    background-color: black;
+    width: 10%;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 4em;
+    right: 0;
+}
+#uitloggen a{
+    margin: auto;
+}
+#uitloggen a button{
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+}
 </style>
 <nav>
     <div id="medialab">
@@ -286,7 +307,7 @@ button{
 
         <a href="Favorietenlijst.php" class='link'><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>
         <a href="#" id="winkelmand"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
-        <a href="#"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>
+        <a href="#" id="uitlog_icoon"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>
     
     </div>
 </nav>
@@ -345,6 +366,10 @@ button{
         <input type="submit" value="Reserveer nu">
     </form>
 </div>
+
+<div id="uitloggen" class="hidden">
+    <a href="functies\uitlog.php"><button><p>Log out</p></button></a>
+</div>
 <script>
 document.getElementById('winkelmand').addEventListener('click', function(){
     document.getElementById('winkelmand_popup').classList.remove('hidden');
@@ -358,7 +383,9 @@ document.getElementById('close_window').addEventListener('click', function(){
     document.getElementById('winkelmand_popup').classList.remove('no-blur');
 });
 
-
+document.getElementById('uitlog_icoon').addEventListener('click', function(){
+    document.getElementById('uitloggen').classList.toggle('hidden');
+});
 let link=document.getElementsByClassName('link')
 //nav wordt blauw op page die open is 
 for(let i=0;i<link.length;i++){
