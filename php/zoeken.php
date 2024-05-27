@@ -68,9 +68,10 @@ if(!empty($zoek_query)) {
     //voor injecties te voorkomen
     $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
     
-    $zoek_resultaat = "SELECT * FROM ITEM WHERE naam LIKE '%$zoek_query%'
-                        OR merk LIKE '%$zoek_query%'
-                        OR beschrijving LIKE '%$zoek_query%'";
+    $zoek_resultaat = "SELECT * FROM ITEM 
+                      WHERE LOWER(naam) LIKE LOWER('%$zoek_query%')
+                      OR LOWER(merk) LIKE LOWER('%$zoek_query%')
+                      OR LOWER(beschrijving) LIKE LOWER('%$zoek_query%')";
     $zoek_uitvoering_resultaat = mysqli_query($conn, $zoek_resultaat);
 
     if($zoek_uitvoering_resultaat) {
