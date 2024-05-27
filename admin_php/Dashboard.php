@@ -189,6 +189,27 @@ include 'database.php';
                 }
             });
         });
+        //VERWIJDER:
+        $(document).on('click', '.iconen .verwijder_btn', function() {
+            var $details = $(this).closest('.uitleningen_dashboard_details');
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            var statusText = $details.find('p').text();
+
+            $.ajax({
+                url: 'functies/waarschuwing_dashboard.php',
+                type: 'POST',
+                data: {reservatieID: reservatieID},
+                success: function(response) {
+                    console.log(response);
+                    if (statusText.trim() === "Ophalen") {
+                        alert('Ophaling verwijderd.');
+                    } else {
+                        alert('Inlevering verwijderd.');
+                    }
+                    fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
+                }
+            });
+        });
     });
     </script>
 </head>
