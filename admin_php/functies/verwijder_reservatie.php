@@ -23,12 +23,6 @@ try {
         throw new Exception("Error deleting from UITGELEEND_ITEM: " . mysqli_error($conn));
     }
 
-    // Delete the record from UITLENING
-    $deleteQuery2 = "DELETE FROM UITLENING WHERE uitleen_id = '$reservatieID'";
-    if (!mysqli_query($conn, $deleteQuery2)) {
-        throw new Exception("Error deleting from UITLENING: " . mysqli_error($conn));
-    }
-
     // Commit the transaction
     mysqli_commit($conn);
 

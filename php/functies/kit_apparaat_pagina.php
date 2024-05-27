@@ -14,7 +14,7 @@ if(isset($_GET['apparaat_id'])) {
 if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
     while($kit_row = mysqli_fetch_assoc($kit_result)) {
         $kit_id = $kit_row['kit_id'];
-        $item_query = "SELECT ITEM.naam, ITEM.merk, ITEM.beschrijving FROM ITEM 
+        $item_query = "SELECT ITEM.naam, ITEM.merk, ITEM.beschrijving, ITEM.images FROM ITEM 
                         INNER JOIN ITEM_KIT ON ITEM.item_id = ITEM_KIT.item_id 
                         WHERE ITEM_KIT.kit_id = $kit_id";
         $item_result = mysqli_query($conn, $item_query);
@@ -23,7 +23,7 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
             echo "<ul>";
             while($item_row = mysqli_fetch_assoc($item_result)) {
                 echo '<li>
-                <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+                <img src="' . $item_row['images'] . '" alt="foto apparaat">
                 <h3>' . $item_row['merk'] . '-'.$item_row['naam']. '</h3>
                 <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
                 </li>';
