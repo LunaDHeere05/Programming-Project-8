@@ -7,6 +7,7 @@ function getExemplaarItemIDs($item_id) {
 
     $query = "SELECT exemplaar_item_id 
             FROM EXEMPLAAR_ITEM 
+            JOIN UITLENINGEN U ON EXEMPLAAR_ITEM.exemplaar_item_id = U.exemplaar_item_id
             WHERE item_id = '$item_id' AND U.{$userType} = '$email'";
     $result = mysqli_query($conn, $query);
 
