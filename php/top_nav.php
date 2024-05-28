@@ -1,3 +1,6 @@
+<?php include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+?>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -324,7 +327,6 @@ button{
 
 </div>
     <div class="linker_navigatie" id='nav'>
-    
         <a class='link' href="Info.php" ><h1 >Info</h1></a>
         <a class='link' href="Inventaris.php"><h1 >Inventaris</h1></a>
         <a class='link' href="Kalender.php"><h1 >Kalender</h1></a>
@@ -359,6 +361,17 @@ button{
 </div>
 
 <div id="winkelmand_popup" class="hidden">
+<?php
+    if (isset($_SESSION['gebruikersnaam'])) {
+        $email = $_SESSION['gebruikersnaam'];
+        // Winkelmand initialiseren
+        echo "<script>
+            localStorage.setItem('winkelmand', JSON.stringify([]));
+        </script>";
+    }
+    ?>
+
+
     <div class='title'>
     <h1>Winkelmand</h1>
     <img src="images/svg/xmark-solid.svg" alt="sluit venster" id="close_window">

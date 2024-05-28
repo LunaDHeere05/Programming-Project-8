@@ -229,10 +229,8 @@ include 'database.php'
     let container=document.getElementById("recentBekeken");
     let title = document.createElement('h2');   
     container.appendChild(title);
-
-    console.log(arrayOfItems);
-
         if(arrayOfItems){
+            console.log(arrayOfItems);
         //code gegenereerd door chatGPT - only for design purposes;
     
         let currentNameIndex = 0;

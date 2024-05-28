@@ -1,9 +1,5 @@
-<?php include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
- 
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -574,21 +570,19 @@
 
 start_date.addEventListener('change', function() {
   //student mag max 1 week reserveren dus van maandag tot vrijdag
+  quantity.disabled=true;
   let new_date = new Date(start_date.value);
   new_date.setDate(new_date.getDate() + 4); 
   let endDate = new_date.toISOString().split('T')[0];
-  end_date.disabled=false;
-  console.log('enddate: '+endDate); 
-
-  end_date.value=endDate;
+  end_date.value='';
   end_date.setAttribute('min', endDate);
-
+ 
   end_date.addEventListener('change', function(){
+    quantity.disabled=false;
     if(start_date.value<end_date.value){
     aantalUitDatabank(start_date.value,end_date.value)
     }else{
       alert('Startdatum moet kleiner zijn dan einddatum.');
-
     }
   })
 })";
