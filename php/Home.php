@@ -1,6 +1,6 @@
 <?php 
+include 'database.php' ;
 include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
-include 'database.php' 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +51,7 @@ include 'database.php'
     background-color: white;
     color: red;
     border: 2px solid red;
+    transition-duration: 0.5s;
     }
 
 
@@ -229,10 +230,8 @@ include 'database.php'
     let container=document.getElementById("recentBekeken");
     let title = document.createElement('h2');   
     container.appendChild(title);
-
-    console.log(arrayOfItems);
-
         if(arrayOfItems){
+            console.log(arrayOfItems);
         //code gegenereerd door chatGPT - only for design purposes;
     
         let currentNameIndex = 0;
