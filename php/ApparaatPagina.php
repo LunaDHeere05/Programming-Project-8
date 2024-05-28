@@ -186,46 +186,63 @@
 
     /* kits */
 
+    .kits_inhoud_container {
+      display: flex;
+      flex-direction: row;
+    }
+
     .kits h1 {
       margin: 2em 0em 0em 2em;
     }
 
-    .kits ul {
+    .kits_inhoud_container ul {
       display: flex;
+      flex-direction: column;
       list-style: none;
-      width: 90%;
-      margin: 2em auto;
+      margin: 0.5em auto;
       justify-content: space-between;
+ 
     }
 
     #selectie_toevoegen {
       background-color: #1bbcb6;
       color: white;
-      padding: 1em;
+      padding: 1em 1em 2.5em 1em;
       border-radius: 2em;
-      margin: auto 0em;
-      height: 20%;
-      width: 10%;
+      height: 3em;
+      width: 20em;
       text-align: center;
+      margin:0em 0em 0em 6em;
     }
 
-    .kits ul li {
+    .kits_inhoud {
       background-color: rgb(193, 193, 193);
       border-radius: 2em;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      width: 20%;
+      width: 30em;
+      height: 15em;
       position: relative;
-      padding: 1em 0em 0.5em 0em;
+      padding: 1em 1em 0.5em 1em;
+      list-style: none;
+      margin: 1em; 
+    }
+    .kits_inhoud li{
+      padding: 0.5em;
+      text-align: center;
     }
 
-    .kits ul li img {
-      width: 70%;
-      height: auto;
-      margin: 0em 0em 1em 0em;
+    .kits_inhoud img {
+      width: 6em;
+      height: 6em;
+      margin: 1em;
       background-color: white;
       border-radius: 1em;
+      display: flex;
+      align-items: baseline;
+      text-align: center;
+      margin: 0em 1.5em 1em 0em;
     }
 
     #selectiebol {
@@ -235,6 +252,7 @@
       width: 2em;
       right: 0.5em;
       top: 0.5em;
+      margin: 0em 0em 0em 1em;
     }
 
     /* van dezelfde categorie */
@@ -375,9 +393,9 @@
 
   <div class="kits">
     <h1>Kits</h1>
-    <ul>
+    <div class="kits_inhoud_container">
       <?php include 'functies\kit_apparaat_pagina.php'?>
-    </ul>
+</div>
   </div>
 
   <div class="dezelfde_categorie">

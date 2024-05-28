@@ -25,7 +25,7 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
 
         if(mysqli_num_rows($item_result) > 0) {
             echo '<ul>';
-            echo '<h1>' . $kit_row['naam'] . '</h1>';
+            echo '<div class = "kits_naam"><h1>' . $kit_row['naam'] . '</h1> </div><div class = "kits_inhoud">';
 
             while($item_row = mysqli_fetch_assoc($item_result)) {
                 echo '<li>
@@ -34,10 +34,10 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
                 <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
                 </li>';
             }
-            echo "<li id='selectie_toevoegen'>";
+            echo "</div><li id='selectie_toevoegen'>";
             echo "<p>Voeg selectie toe aan reservatie</p>";
             echo "</li>";
-            echo "</ul>";
+            echo "</ul>" ;
         
          
         } else {
