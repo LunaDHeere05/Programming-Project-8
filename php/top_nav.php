@@ -332,11 +332,9 @@ button{
     
     </div>
     <div class="rechter_navigatie">
-
         <a href="Favorietenlijst.php" class='link'><img src="images/svg/heart-solid.svg" alt="favorietenlijst"></a>
         <a href="#" id="winkelmand"><img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje"></a>
         <a href="#" id="uitlog_icoon"><img src="images/svg/user-solid.svg" alt="profiel - logout"></a>
-    
     </div>
 </nav>
 
@@ -403,8 +401,6 @@ for(let i=0;i<link.length;i++){
     }
 }
 
-
-let winkelmand = JSON.parse(localStorage.getItem('winkelmand')) || [];
 let mandje= document.getElementById('winkelmand_items');
 
 document.getElementById('winkelmand').addEventListener('click',function(){

@@ -500,34 +500,37 @@
 
     }
 
+   
+
     <?php
   
       if ($userType == 'emailSTUDENT') {
         echo "
+
+        //student mag max. 2 weken vooraf reserveren:
+        let maxDateUitlenen = new Date(datumUitlenen);
+        maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
+        let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
+        start_date.setAttribute('max', maxDateUitlenenString);   
+
         end_date.disabled=true;
 
         start_date.addEventListener('change', function() {
             
-            //console.log('startdate: '+start_date.value);          
+            console.log('startdate: '+start_date.value);          
 
             //student mag max 1 week reserveren dus van maandag tot vrijdag
             let new_date = new Date(start_date.value);
             new_date.setDate(new_date.getDate() + 4); 
             let endDate = new_date.toISOString().split('T')[0];
             end_date.disabled=false;
-            //console.log('enddate: '+endDate); 
+            console.log('enddate: '+endDate); 
 
             aantalUitDatabank(start_date.value,endDate)
 
             end_date.value=endDate;
             end_date.setAttribute('min', endDate);
             end_date.setAttribute('max', endDate);
-
-            //student mag max. 2 weken vooraf reserveren:
-            let maxDateUitlenen = new Date(datumUitlenen);
-            maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
-            let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
-            start_date.setAttribute('max', maxDateUitlenenString);   
 
           })";
       } else if ($userType == "emailDOCENT") {
@@ -570,6 +573,16 @@
   })
 
 start_date.addEventListener('change', function() {
+  //student mag max 1 week reserveren dus van maandag tot vrijdag
+  let new_date = new Date(start_date.value);
+  new_date.setDate(new_date.getDate() + 4); 
+  let endDate = new_date.toISOString().split('T')[0];
+  end_date.disabled=false;
+  console.log('enddate: '+endDate); 
+
+  end_date.value=endDate;
+  end_date.setAttribute('min', endDate);
+
   end_date.addEventListener('change', function(){
     if(start_date.value<end_date.value){
     aantalUitDatabank(start_date.value,end_date.value)
