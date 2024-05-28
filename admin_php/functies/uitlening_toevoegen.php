@@ -56,7 +56,7 @@ try {
 
                                 // Insert the loaned item record   
                                 //voeg isOpgehaald toe
-                                $sql_uitgeleend_item = "INSERT INTO `UITGELEEND_ITEM` (`isVerlengd`, `exemplaar_item_id`, `uitleen_id`) VALUES ('0', :exemplaar_id, :uitleen_id)";
+                                $sql_uitgeleend_item = "INSERT INTO `UITGELEEND_ITEM` (`isVerlengd`, `exemplaar_item_id`, `uitleen_id`, `isOpgehaald`) VALUES ('0', :exemplaar_id, :uitleen_id, '0')";
                                 $stmt_item = $conn->prepare($sql_uitgeleend_item);
 
                                 if($stmt_item->execute(['exemplaar_id' => $exemplaar_id, 'uitleen_id' => $uitleen_id])){
