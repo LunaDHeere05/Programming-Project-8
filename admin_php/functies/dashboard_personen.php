@@ -4,14 +4,13 @@ include '../database.php';
 $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
 
 // Updated query to join UITLENING, UITGELEEND_ITEM, and ITEM tables
-$query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, ui.isOpgehaald, ui.emailSTUDENT, ui.emailDOCENT, it.naam
+$query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, uit.isOpgehaald, ui.emailSTUDENT, ui.emailDOCENT, it.naam
           FROM UITLENING ui
           INNER JOIN UITGELEEND_ITEM uit ON ui.uitleen_id = uit.uitleen_id
           INNER JOIN ITEM it ON it.item_id = it.item_id
           WHERE ui.uitleen_datum = '$date' OR ui.inlever_datum = '$date'
           ORDER BY ui.emailSTUDENT";
 $result = mysqli_query($conn, $query);
-
 if (!$result) {
     die("Query failed: " . mysqli_error($conn));
 }
