@@ -1,13 +1,15 @@
 <?php
-include '..\database.php';
-include '..\sessionStart.php';
+include '../database.php';
 
 function getExemplaarItemIDs($item_id) {
-    global $conn;
-
-    $query = "SELECT exemplaar_item_id 
-            FROM EXEMPLAAR_ITEM 
-            WHERE item_id = '$item_id' AND U.{$userType} = '$email'";
+    include '../database.php';
+include '../sessionStart.php';
+ 
+    $query = "SELECT ei.exemplaar_item_id 
+    FROM EXEMPLAAR_ITEM ei 
+    JOIN UITGELEEND_ITEM ui ON ui.exemplaar_item_id = ei.exemplaar_item_id 
+    JOIN UITLENING u ON u.uitleen_id = ui.uitleen_id 
+            WHERE item_id = '$item_id' AND u.{$userType} = '$email'";
     $result = mysqli_query($conn, $query);
 
     $exemplaar_item_ids = array();

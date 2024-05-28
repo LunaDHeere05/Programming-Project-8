@@ -1,3 +1,5 @@
+<?php include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
