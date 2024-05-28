@@ -14,13 +14,19 @@ if(isset($_GET['apparaat_id'])) {
 if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
     while($kit_row = mysqli_fetch_assoc($kit_result)) {
         $kit_id = $kit_row['kit_id'];
-        $item_query = "SELECT ITEM.naam, ITEM.merk, ITEM.beschrijving, ITEM.images FROM ITEM 
+        
+        // Hier is de overbodige query voor kitgegevens verwijderd
+
+        $item_query = "SELECT ITEM.naam, ITEM.merk, ITEM.beschrijving, ITEM.images, KIT.naam as kitNaam FROM ITEM 
                         INNER JOIN ITEM_KIT ON ITEM.item_id = ITEM_KIT.item_id 
+                        INNER JOIN KIT ON KIT.kit_id = ITEM_KIT.kit_id 
                         WHERE ITEM_KIT.kit_id = $kit_id";
         $item_result = mysqli_query($conn, $item_query);
 
         if(mysqli_num_rows($item_result) > 0) {
-            echo "<ul>";
+            echo '<ul>';
+            echo '<div class = "kits_naam"><h1>' . $kit_row['naam'] . '</h1> </div><div class = "kits_inhoud">';
+
             while($item_row = mysqli_fetch_assoc($item_result)) {
                 echo '<li>
                 <img src="' . $item_row['images'] . '" alt="foto apparaat">
@@ -28,16 +34,18 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
                 <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
                 </li>';
             }
-            echo "</ul>";
+            echo "</div><li id='selectie_toevoegen'>";
+            echo "<p>Voeg selectie toe aan reservatie</p>";
+            echo "</li>";
+            echo "</ul>" ;
+        
+         
         } else {
             echo "<p>Er zijn geen apparaten in deze kit.</p>";
         }
     }
-    echo "<li id='selectie_toevoegen'>";
-    echo "<p>Voeg selectie toe aan reservatie</p>";
-    echo "</li>";
-    echo "</ul>";
-}else{
+} 
+else{
     echo '<p>Geen kits gevonden voor dit apparaat.</p>';
 }
 

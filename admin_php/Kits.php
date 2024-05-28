@@ -17,7 +17,9 @@
   margin: 1.5em;
   position: relative;
 }
-
+.kit_visueel_img{
+  display: flex;
+}
 .kit_visueel_img img {
   background-color: #fff;
   padding: 1,5em;
@@ -106,6 +108,7 @@ right: 20%;
     </style>
   </head>
   <body>
+    <?php include 'functies\kits_zoeken.php'?>
     <div class="rechter_grid">
         <!-- container box  -->
         <?php include 'functies\kits_ophalen.php'?>

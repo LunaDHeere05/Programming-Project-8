@@ -324,7 +324,6 @@ button{
 
 </div>
     <div class="linker_navigatie" id='nav'>
-    
         <a class='link' href="Info.php" ><h1 >Info</h1></a>
         <a class='link' href="Inventaris.php"><h1 >Inventaris</h1></a>
         <a class='link' href="Kalender.php"><h1 >Kalender</h1></a>
@@ -359,6 +358,17 @@ button{
 </div>
 
 <div id="winkelmand_popup" class="hidden">
+<?php
+    if (isset($_SESSION['gebruikersnaam'])) {
+        $email = $_SESSION['gebruikersnaam'];
+        // Winkelmand initialiseren
+        echo "<script>
+            localStorage.setItem('winkelmand', JSON.stringify([]));
+        </script>";
+    }
+    ?>
+
+
     <div class='title'>
     <h1>Winkelmand</h1>
     <img src="images/svg/xmark-solid.svg" alt="sluit venster" id="close_window">

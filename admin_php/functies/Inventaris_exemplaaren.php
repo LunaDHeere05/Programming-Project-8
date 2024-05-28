@@ -28,7 +28,7 @@ if ($result) {
         echo "<td>" . $row['exemplaar_item_id'] . "</td>";
         echo "<td class='isUitgeleend'>" . $row['isUitgeleend'] . "</td>";
         echo "<td class='zichtbaarheid'>". $row["zichtbaarheid"] . "</td>";
-        echo "<td><img src='images/svg/screwdriver-wrench-solid.svg' alt='apparaat wijzigen'></td>";
+        echo "<td><a href='DefectToevoegen.php'><img src='images/svg/screwdriver-wrench-solid.svg' alt='apparaat wijzigen'></a></td>";
         echo "<td><a href='functies/InventarisVEFunctie.php?item_id=".$row['item_id']."&exemplaar_item_id=".$row['exemplaar_item_id']."'><img src='images/svg/xmark-solid.svg' alt='apparaat verwijderen'></a></td>";
         echo "</tr>";
     }
