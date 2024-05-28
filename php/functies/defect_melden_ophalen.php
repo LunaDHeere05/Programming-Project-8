@@ -1,6 +1,5 @@
 <?php
     include 'database.php';
-    include 'defect_copies_ophalen.php';
     if (isset($_POST['item_id'])) {
         $item_id = $_POST['item_id']; // Retrieve item_id from the form submission
         $exemplaar_item_ids = getExemplaarItemIDs($item_id); // Call the function to get all exemplaar_item_id values

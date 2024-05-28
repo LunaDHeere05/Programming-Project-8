@@ -54,15 +54,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/Programming-Project-8/admin_php/database.p
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#zoekbalk').on('input', function() {
-      var zoekbalkValue = $(this).val();
-      console.log('zoekbalkValue:', zoekbalkValue); // Add this line
-      $.post('functies/Inventaris_apparaten.php', {zoekbalkValue: zoekbalkValue}, function(data) {
-          $('#tableContainer tbody').html(data);
-      });
+  $(document).ready(function() {
+      $('#zoekbalk').on('input', function() {
+        var zoekbalkValue = $(this).val();
+        console.log('zoekbalkValue:', zoekbalkValue); // Add this line
+        $.post('functies/Inventaris_apparaten.php', {zoekbalkValue: zoekbalkValue}, function(data) {
+            $('#tableContainer tbody').html(data);
+        });
+    });
   });
-});
 </script>
 </head>
 <body>
