@@ -1,6 +1,7 @@
 <?php
 
 include '../database.php';
+include '../ftp_server.php';
 
 // Check if the form is submitted
 if (isset($_POST['submitForm'])) {
@@ -9,7 +10,7 @@ if (isset($_POST['submitForm'])) {
     $categorie = $_POST['categorie'];
     $beschrijving = $_POST['beschrijving'];
     $image = $_FILES['image']['name'];
-    $link = $_POST['link'];
+    $usermanual = $_FILES['handleiding'];
     $functionaliteit = $_POST['functionaliteit'];
 
     // Check if there is already a row with the same apparaat_naam
@@ -24,12 +25,25 @@ if (isset($_POST['submitForm'])) {
         $exemplaarItemQuery = "INSERT INTO EXEMPLAAR_ITEM (item_id) VALUES ('$item_id')";
         $conn->query($exemplaarItemQuery);
     } else {
-        // If no row exists, make a new row in ITEM and a new row in EXEMPLAAR_ITEM
-        $imagequery = "INSERT INTO Images (image) VALUES ('$image')";
-        $conn->query($imagequery);
-        $image_id = $conn->insert_id;
+            //Upload the image to the server
+            $file = $_FILES['image'];
+            $ftpDirectory = '/www/images/';
+            ftp_pasv($ftpConnection, true);
 
-        $itemQuery = "INSERT INTO ITEM (naam, merk, categorie, beschrijving, gebruiksaanwijzing, image_id) VALUES ('$apparaat','$merk','$categorie','$beschrijving', '$link', '$image_id')";
+            if (ftp_put($ftpConnection, $ftpDirectory . $file['name'], $file['tmp_name'], FTP_BINARY)) {
+                $fileUrl = 'http://www.ppgroep8.be/images/' . $file['name'];
+            }
+
+            //Upload the usermanual to the server
+            $file = $_FILES['handleiding'];
+            $ftpDirectory = '/www/handleidingen/';
+            ftp_pasv($ftpConnection, true);
+            
+            if (ftp_put($ftpConnection, $ftpDirectory . $file['name'], $file['tmp_name'], FTP_BINARY)) {
+                $manualLink = 'http://www.ppgroep8.be/handleidingen/' . $file['name'];
+            }
+
+        $itemQuery = "INSERT INTO ITEM (naam, merk, categorie, beschrijving, gebruiksaanwijzing, images) VALUES ('$apparaat','$merk','$categorie','$beschrijving', '$manualLink', '$fileUrl')";
         if ($conn->query($itemQuery) === TRUE) {
             $item_id = $conn->insert_id;
 
