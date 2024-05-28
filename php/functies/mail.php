@@ -1,4 +1,7 @@
 <?php
+include '../sessionStart.php';
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -19,7 +22,7 @@ try {
 
     // Ontvanger(s)
     $zender= 'admin@example.com';
-    $ontvanger = 'student2@student.ehb.be';
+    $ontvanger = $email;
 
     $mail->setFrom($zender, 'Admin');
     $mail->addAddress($ontvanger);           // Voeg een ontvanger toe
