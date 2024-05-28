@@ -1,5 +1,4 @@
-<?php 
-include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in te loggen
+<?php  //AN: om te weten welke mail er gebruikt wordt om in te loggen
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,23 +127,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <p class="bevestig">1. Bekijk de ID-sticker op jouw apparaat. <br>
         2. Duid het apparaat (max. 1) aan waarvan je een defect wilt melden. </p>
 
-    <div class="item_info_en_selectiebol">
-      <div id="selectie_bol">
-          <img src="images/svg/circle-regular.svg" alt="check">
-        </div>
-        <div class="item_info_container">
-            <div class="item_info">
-                <img  src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h2>Canon-M50</h2>
-            <div class="apparaat_id">
-                <h3>Apparaat ID:</h3>
-                <p>123456</p>
-            </div>
-            <img class="verwijder" src="images/svg/xmark-solid.svg" alt="klik weg">
-            </div>
-        </div>
-      </div>
-        </div>
+    <?php include 'functies/defect_copies_ophalen.php'; ?>
     <div class="bevestig_btn">
         <button id="bevestig">Bevestig</button>
     </div>
