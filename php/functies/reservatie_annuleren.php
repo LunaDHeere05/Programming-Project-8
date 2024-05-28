@@ -1,5 +1,6 @@
 <?php
 include '..\database.php';
+include '..\sessionStart.php';
 $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving

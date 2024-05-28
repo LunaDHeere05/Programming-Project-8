@@ -65,7 +65,7 @@ if($row = mysqli_fetch_assoc($availability_result)){
 $zoek_query = isset($_GET['zoek_query']) ? $_GET['zoek_query'] : '';
 
 if(!empty($zoek_query)) {
-    //voor injecties te voorkomen
+    //voor injecties te voorkomen:
     $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
     
     $zoek_resultaat = "SELECT * FROM ITEM 
