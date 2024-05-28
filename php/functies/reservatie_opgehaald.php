@@ -55,10 +55,10 @@ if(mysqli_num_rows($result) > 0) {
                                 </li>
                                 <li>
                                     <div class="defect_btn">
-                                        <a><button class="defect_button">
+                                    <button class="defect_button">
                                             <p>Defect melden</p>
                                             <img src="images/svg/screwdriver-wrench-solid.svg" alt="defect"/>
-                                        </button></a>
+                                        </button>
                                     </div>
                                     <div class="verleng_btn">
                                         <button>
