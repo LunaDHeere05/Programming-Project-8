@@ -2,7 +2,7 @@
 include 'database.php';
 
 // Fetch kits and their items from the database
-$query = "SELECT KIT.kit_id, KIT.naam AS kit_naam, I.naam AS item_naam, I.item_id, I.image
+$query = "SELECT KIT.kit_id, KIT.naam AS kit_naam, I.naam AS item_naam, I.item_id, I.images
           FROM KIT
           JOIN ITEM_KIT KI ON KI.kit_id = KIT.kit_id
           JOIN ITEM I ON I.item_id = KI.item_id
@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) > 0) {
         $kits[$row['kit_id']]['items'][] = [
             'item_naam' => $row['item_naam'],
             'item_id' => $row['item_id'],
-            'image_path' => $row['image']
+            'image_path' => $row['images']
         ];
     }
 } else {
@@ -46,7 +46,7 @@ foreach ($kits as $kit_id => $kit) {
     echo '<div class="kit_visueel_img_container" id="kit_' . $kit_id . '">';
     foreach ($kit['items'] as $index => $item) {
         echo '<div class="kit_visueel_img" style="display:' . ($index < 3 ? 'flex' : '') . ';">';
-        echo '<img src="images\webp\eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="' . $item['item_naam'] . '" />';
+        echo '<img src="'.$item['image_path'].'" alt="' . $item['item_naam'] . '" />';
         echo '</div>';
     }
     echo '</div>';
