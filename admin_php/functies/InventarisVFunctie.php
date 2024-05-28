@@ -38,12 +38,6 @@ if(isset($_POST['submitForm'])){
         echo "Error deleting record: " . $conn->error;
     }
 
-    // Get image_id from ITEM table
-    $imageIdQuery = "SELECT image_id FROM ITEM WHERE item_id='$item_id'";
-    $result = $conn->query($imageIdQuery);
-    $row = $result->fetch_assoc();
-    $image_id = $row['image_id'];
-
     // Delete ITEM row
     $deleteItemQuery = "DELETE FROM ITEM WHERE item_id='$item_id'";
     if ($conn->query($deleteItemQuery) === TRUE) {
@@ -52,13 +46,13 @@ if(isset($_POST['submitForm'])){
         echo "Error deleting record: " . $conn->error;
     }
 
-    // Delete IMAGE row
+    /* Delete IMAGE row
     $deleteImageQuery = "DELETE FROM Images WHERE image_id='$image_id'";
     if ($conn->query($deleteImageQuery) === TRUE) {
         echo "Record deleted successfully";
     } else {
         echo "Error deleting record: " . $conn->error;
-    }
+    }*/
     $conn->close();
     header('Location: ../Inventaris.php');
 
