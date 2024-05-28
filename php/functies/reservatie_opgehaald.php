@@ -5,14 +5,14 @@ if (!isset($userType) || !isset($email)) {
     echo '<p class="login"> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
 } else {
 
-$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isOpgehaald, U.isVerlengd,
+$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isOpgehaald, U.isVerlengd,
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving,I.images
         FROM UITGELEEND_ITEM UI
         JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
         JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id
-        WHERE U.isOpgehaald = 1 AND U.{$userType} = '$email'";
+        WHERE UI.isOpgehaald = 1 AND U.{$userType} = '$email'";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
@@ -55,10 +55,10 @@ if(mysqli_num_rows($result) > 0) {
                                 </li>
                                 <li>
                                     <div class="defect_btn">
-                                        <button class="defect_button">
+                                        <a><button class="defect_button">
                                             <p>Defect melden</p>
                                             <img src="images/svg/screwdriver-wrench-solid.svg" alt="defect"/>
-                                        </button>
+                                        </button></a>
                                     </div>
                                     <div class="verleng_btn">
                                         <button>

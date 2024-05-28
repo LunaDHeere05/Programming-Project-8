@@ -76,14 +76,14 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
     <p class="bevestig">Bevestig dat je deze items wilt <b>annuleren</b>.</p>
     <?php
     include 'database.php';
-    $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
+    $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isVerlengd,
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving
                 FROM UITGELEEND_ITEM UI
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND U.isOpgehaald = 0
-                WHERE U.emailStudent = 'student2@example.com'"; 
+                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND UI.isOpgehaald = 0
+                WHERE U.{$userType} = '$email'"; 
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) > 0) {
