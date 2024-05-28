@@ -7,7 +7,7 @@ if (!isset($userType) || !isset($email)) {
 
 $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isOpgehaald, U.isVerlengd,
                 EI.exemplaar_item_id,
-                I.naam, I.beschrijving,I.images
+                I.naam, I.beschrijving,I.images, I.item_id
         FROM UITGELEEND_ITEM UI
         JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
@@ -55,6 +55,8 @@ if(mysqli_num_rows($result) > 0) {
                                 </li>
                                 <li>
                                     <div class="defect_btn">
+                                    <form action="functies\defect_copies_ophalen.php" method="POST">
+                                    <input type = "hidden" name="item_id" value="'.$row['item_id'].'">
                                     <button class="defect_button">
                                             <p>Defect melden</p>
                                             <img src="images/svg/screwdriver-wrench-solid.svg" alt="defect"/>

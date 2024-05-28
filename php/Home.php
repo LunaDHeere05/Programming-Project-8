@@ -1,6 +1,6 @@
 <?php 
+include 'database.php' ;
 include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
-include 'database.php' 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +51,7 @@ include 'database.php'
     background-color: white;
     color: red;
     border: 2px solid red;
+    transition-duration: 0.5s;
     }
 
 
