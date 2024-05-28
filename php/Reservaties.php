@@ -195,12 +195,12 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
   border-radius: 2em;
   align-items: center;
 }
-.defect_btn a button p, .verleng_btn button p{
+.defect_btn button p, .verleng_btn button p{
   margin-left: 1em;
   font-weight: bold;
   font-size: 16px;
 }
-.defect_btn a button img, .verleng_btn button img{
+.defect_btn button img, .verleng_btn button img{
   width: 1.5em;
   height: auto;
   margin: 1em;
@@ -221,12 +221,7 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
         </div>
         <div class="reservatie-top">
           <h2>Nog op te halen</h2>
-          <div class="alles_annuleren">
-            <a href="ReservatieAnnuleren.php">
-              <p>Alles annuleren</p>
-              <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
-            </a>
-          </div>
+          <?php include 'functies\reservatie_allesannuleren.php'?>
           <form>
             <input type="submit" value="Selectie annuleren" style="color: #E30613;" id="selectie_annuleren">
           </form>

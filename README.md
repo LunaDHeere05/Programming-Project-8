@@ -42,6 +42,17 @@
     </ul>
 </ol>
 <h3>Anissa Sahli</h3>
+<ol>
+  <li>Winkelmand (css,html & js)</li>
+  <ul>
+    <li>https://chatgpt.com/share/22011ec3-b37b-4d96-8e65-bdcef16080c2</li>
+    <li>https://chatgpt.com/share/868483e0-2edd-4970-a717-5de9501dc2bb</li>
+  </ul>
+  <!-- <li>Voor het ophalen van local time:</li>
+    <ul>
+      <li>https://www.php.net/manual/en/function.setlocale.php</li>
+    </ul> -->
+</ol>
 <h3>Amina Iqbal</h3>
 <h3>Danial Mubeasher</h3>
 <h3>Edson De Smet</h3>

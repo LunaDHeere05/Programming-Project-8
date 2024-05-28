@@ -20,4 +20,6 @@ if (isset($_SESSION['gebruikersnaam'])) //controleren of er een foutmelding is;
     $_SESSION['userType']=$userType;
   }
 
+  
+
 ?>
