@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   margin: 1em;
+  margin-left: 2em;
 }
 .defect_toe img{
   width: 2em;
@@ -65,28 +66,23 @@
     </style>
 </head>
 <body>
-<div class="defect_toe">
-            <h2>Apparaatnaam:</h2>
-            <input type="text">
-            <img src="../images/svg/eye-solid.svg" alt="eye">
-        </div>
+  <form action="functies\defect_toevoegen.php" method="POST">
         <div class="defect_toe">
-            <h2>Apparaat ID:</h2>
-            <input type="text">
-        </div>
-        <div class="exemplaar_id">
             <h2>Exemplaar ID:</h2>
-            <input type="text">
+            <input type="text" name="exemplaar_id">
+            <img src="images\svg\eye-solid.svg" alt="eye">
+            <input type="hidden" name="eye_state" value="solid">
         </div>
         <div class="defect_toe_textbox">
           <h2>Beschrijf het defect:</h2>
           <div class="defect_toe_text">
-            <input type="text">
+            <input type="text" name="beschrijving">
           </div>
     </div>
     <div class="defect_toe_bevestig">
-            <button type="submit">Bevestig </button>
+            <button type="submit">Bevestig</button>
         </div>
     </div>  
+  </form>
 </body>
 </html>
