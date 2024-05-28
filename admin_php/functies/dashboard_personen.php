@@ -40,7 +40,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <h3>Apparaat: $naam</h3>
             <p>$status</p>
             <div class='iconen'>
-                <img class='schroevendraaier' src='images/svg/screwdriver-wrench-solid.svg' alt=''>
+                <a href='DefectToevoegen.php'><img class='schroevendraaier' src='images/svg/screwdriver-wrench-solid.svg' alt=''></a>
                 <img class='check' src='images/svg/circle-check-solid.svg' alt=''>
                 <img class='verwijder_btn' src='images/svg/circle-xmark-solid.svg' alt=''>
             </div>
