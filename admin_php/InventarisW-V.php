@@ -150,8 +150,6 @@ include("database.php");
     $merk = $row1["merk"];
     $categorie = $row1["categorie"];
     $beschrijving = $row1["beschrijving"];
-    $gebruiksaanwijzing = $row1["gebruiksaanwijzing"];
-    $image_id = $row1["image_id"];
 
     $functionaliteitQuery = "SELECT functionaliteit FROM FUNCTIONALITEIT WHERE item_id ='$item_id'";
     $functionaliteitResult = mysqli_query($conn, $functionaliteitQuery);
@@ -185,7 +183,7 @@ include("database.php");
                     
 
                     <input type="file" name="image">
-                    <input type="text" name="link" value="<?php echo $gebruiksaanwijzing ?>">
+                    <input type="file" name="usermanual" value="<?php echo $gebruiksaanwijzing ?>">
                     <input type="hidden" name="item_id" value="<?php echo $item_id ?>">
                     
 
