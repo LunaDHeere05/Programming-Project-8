@@ -183,7 +183,7 @@ include 'database.php';
                 },
                 success: function(response) {
                     console.log(response);
-                    if (statusText.trim() === "Ophalen") {
+                    if (statusText.trim() === "Op te halen") {
                         alert('Reservatie opgehaald.');
                     } else {
                         alert('Reservatie ingeleverd.');
@@ -204,7 +204,7 @@ include 'database.php';
                 data: {reservatieID: reservatieID},
                 success: function(response) {
                     console.log(response);
-                    if (statusText.trim() === "Ophalen") {
+                    if (statusText.trim() === "Op te halen") {
                         alert('Ophaling verwijderd.');
                     } else {
                         alert('Inlevering verwijderd.');
