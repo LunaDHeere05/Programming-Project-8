@@ -13,13 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = '';
     $hashed_password = ''; // Initialize hashed password variable
     
-    if ($user == "docent") {
-        $query = 'SELECT * FROM DOCENT WHERE email=? LIMIT 1';
-        $_SESSION['user'] = $user;
-    } else if ($user == "student") {
-        $query = 'SELECT * FROM STUDENT WHERE email=? LIMIT 1';
-        $_SESSION['user'] = $user;
-    }
+    $query = 'SELECT * FROM PERSOON WHERE email=? AND rol=? LIMIT 1';
+    $_SESSION['user'] = $user;
 
     $stmt = $conn->prepare($query);
 
@@ -27,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die('An error occurred:' . $conn->error);
     }
 
-    // Bind parameter to statement
-    $stmt->bind_param('s', $gebruikersnaam);
+    // Bind parameters to statement
+    $stmt->bind_param('ss', $gebruikersnaam, $user);
 
     // Execute statement
     $stmt->execute();
