@@ -1,4 +1,8 @@
-<!-- <?php
+<?php
+//Nieuwe wachtwoorden voor nieuwe gebruikers instellen? 
+//Gebruik deze code in log-in.php tijdelijk en set wachtwoord.
+?>
+<?php
 include '../database.php'; // Include database connection
 include '../sessionStart.php'; 
 session_start();
@@ -62,4 +66,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
- -->
