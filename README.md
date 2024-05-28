@@ -57,8 +57,8 @@
 <h3>Danial Mubeasher</h3>
 <h3>Edson De Smet</h3>
 <ol>
-  <li>Blacklist Admin</li>
+  <li>Blacklist Admin:</li>
   <ul>https://chatgpt.com/share/ee59939e-c72f-47ed-8aa5-8b509a72d277</ul>
-  <li>Mail Integratie</li>
+  <li>Mail Integratie:</li>
   <ul>https://chatgpt.com/share/ebcff9ff-c46a-436a-bb3a-d6877a0f7993</ul>
 </ol>
