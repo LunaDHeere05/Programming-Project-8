@@ -195,12 +195,12 @@ include 'sessionStart.php' //AN: om te weten welke mail er gebruikt wordt om in 
   border-radius: 2em;
   align-items: center;
 }
-.defect_btn button p, .verleng_btn button p{
+.defect_btn a button p, .verleng_btn button p{
   margin-left: 1em;
   font-weight: bold;
   font-size: 16px;
 }
-.defect_btn button img, .verleng_btn button img{
+.defect_btn a button img, .verleng_btn button img{
   width: 1.5em;
   height: auto;
   margin: 1em;

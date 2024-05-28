@@ -11,7 +11,7 @@ $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
                 FROM UITGELEEND_ITEM UI
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND U.isOpgehaald = 0
+                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND UI.isOpgehaald = 0
                 WHERE U.{$userType} = '$email'"; 
 
 $result = mysqli_query($conn, $query);
