@@ -50,6 +50,7 @@
 
 .favoriet_apparaat:hover{
         background-color: #cfcfcfcf;
+        transition-duration: 0.5s;
     }
 
     .favoriet_apparaat .mijnFavorieteApparaat_foto {

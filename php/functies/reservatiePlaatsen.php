@@ -2,7 +2,7 @@
 
 
 //indien geen user is ingelogd;
-if(!isset($userType) || !isset($email)){
+if(!isset($gebruikersnaam)){
   echo '<h2 class="login"> <a href="Profiel.php"> Log in</a> om een reservatie te plaatsen.</h2>';
 }else{
     //html

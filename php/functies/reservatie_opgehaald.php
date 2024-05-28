@@ -1,7 +1,7 @@
 <?php
 include 'database.php';
 
-if (!isset($userType) || !isset($email)) {
+if (!isset($gebruikersnaam)) {
     echo '<p class="login"> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
 } else {
 
@@ -12,7 +12,7 @@ $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isOpgehaald,
         JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
         JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id
-        WHERE UI.isOpgehaald = 1 AND U.{$userType} = '$email'";
+        WHERE UI.isOpgehaald = 1 AND U.email = '$gebruikersnaam'";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {

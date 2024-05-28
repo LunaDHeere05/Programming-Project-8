@@ -1,9 +1,9 @@
 <?php
 include 'database.php';
 
-if (isset($userType) && isset($email)) {
+if (isset($gebruikersnaam)) {
     if (isset($item_id)) {
-        $queryRecentId = "SELECT recent_id FROM `RECENT_BEKEKEN` WHERE $userType='$email'";
+        $queryRecentId = "SELECT recent_id FROM `RECENT_BEKEKEN` WHERE email='$gebruikersnaam'";
         $resultRecentId = mysqli_query($conn, $queryRecentId);
         $result_rowRecentId = mysqli_fetch_assoc($resultRecentId);
 

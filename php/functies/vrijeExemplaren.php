@@ -18,12 +18,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aantalExemplaren = $result_row['count'];
  
     //dan gaan we checken hoeveel uitleningen van het item er deze week zijn en die aftrekken van $aantalExemplaren;
-    $uitgeleendeExemplaren_query = "SELECT ei.exemplaar_item_id,u.uitleen_datum,u.inlever_datum
-    FROM UITGELEEND_ITEM ui
-    LEFT JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-    LEFT JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
-    WHERE ei.item_id = {$itemId}
-    AND (u.uitleen_datum <= '{$startDate}' AND u.inlever_datum >= '{$endDate}') OR((u.uitleen_datum > '{$startDate}' AND u.uitleen_datum <'{$endDate}') AND u.inlever_datum >= '{$endDate}')";
+    $uitgeleendeExemplaren_query = "SELECT 
+    ei.exemplaar_item_id, 
+    u.uitleen_datum, 
+    u.inlever_datum
+FROM 
+    UITGELEEND_ITEM ui
+LEFT JOIN 
+    UITLENING u ON ui.uitleen_id = u.uitleen_id
+LEFT JOIN 
+    EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
+WHERE 
+    ei.item_id = {$itemId}
+    AND (
+        (u.uitleen_datum <= '{$startDate}' AND u.inlever_datum >= '{$endDate}')
+        OR (u.uitleen_datum >= '{$startDate}' AND u.uitleen_datum < '{$endDate}')
+        OR (u.uitleen_datum <= '{$startDate}' AND u.inlever_datum < '{$endDate}' AND u.inlever_datum > '{$startDate}')
+    )
+";
+
+//eerste datum-conditie: controleert of een uitlening start op of vóór de beginperiode  en eindigt op of na de eindperiode
+//tweede datum-conditie:  controleert of een uitlening begint binnen de periode, dus na de startdatum maar vóór de einddatum.
+//derde datum-conditie: controleert of een uitlening begint op of vóór de startdatum en eindigt binnen de periode, dus na de startdatum maar vóór de einddatum
 
     $uitgeleendeExemplaren_result = mysqli_query($conn, $uitgeleendeExemplaren_query);
     $aantalExemplaren -= mysqli_num_rows($uitgeleendeExemplaren_result);

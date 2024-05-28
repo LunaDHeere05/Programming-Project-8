@@ -39,6 +39,7 @@ nav{
 
 .linker_navigatie a:hover{
     color: #1BBCB6;
+    transition-duration: 0.5s;
 }
 
 .ehb_logo{
@@ -85,6 +86,7 @@ nav{
 
 .rechter_navigatie a:hover{
     filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+    transition-duration: 0.5s;
 }
 
     /*  zoekbalk */
@@ -350,7 +352,7 @@ button{
             <option value="video">Video</option>
             <option value="xr">XR</option>
         </select>
-        <form action="zoeken.php" method="GET" id="zoeken_functie">
+        <form action="Inventaris.php" method="GET" id="zoeken_functie">
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ..." name="zoek_query">
         <input type="submit" value="">
         </form>
@@ -398,6 +400,7 @@ document.getElementById('close_window').addEventListener('click', function(){
 document.getElementById('uitlog_icoon').addEventListener('click', function(){
     document.getElementById('uitloggen').classList.toggle('hidden');
 });
+
 let link=document.getElementsByClassName('link')
 //nav wordt blauw op page die open is 
 for(let i=0;i<link.length;i++){
@@ -411,71 +414,71 @@ for(let i=0;i<link.length;i++){
     }
 }
 
-let mandje= document.getElementById('winkelmand_items');
+// let mandje= document.getElementById('winkelmand_items');
 
-document.getElementById('winkelmand').addEventListener('click',function(){
-for (item of winkelmand) {
-    let itemDiv = document.createElement('div');
-    itemDiv.classList = 'item';
-    itemDiv.classList.add(item[item.naam]);
-    mandje.append(itemDiv);
+// document.getElementById('winkelmand').addEventListener('click',function(){
+// for (item of winkelmand) {
+//     let itemDiv = document.createElement('div');
+//     itemDiv.classList = 'item';
+//     itemDiv.classList.add(item[item.naam]);
+//     mandje.append(itemDiv);
 
-    let itemImg = document.createElement('img');
-    itemImg.classList = 'item_foto';
-    itemImg.src = item.imageSrc;
-    itemDiv.append(itemImg);
+//     let itemImg = document.createElement('img');
+//     itemImg.classList = 'item_foto';
+//     itemImg.src = item.imageSrc;
+//     itemDiv.append(itemImg);
 
-    let table = document.createElement('table');
+//     let table = document.createElement('table');
 
-    // Header row
-    let headerRow = document.createElement('tr');
-    let naamHeader = document.createElement('th');
-    naamHeader.textContent = 'Naam';
-    headerRow.appendChild(naamHeader);
+//     // Header row
+//     let headerRow = document.createElement('tr');
+//     let naamHeader = document.createElement('th');
+//     naamHeader.textContent = 'Naam';
+//     headerRow.appendChild(naamHeader);
 
-    let datumHeader = document.createElement('th');
-    datumHeader.textContent = 'Datum';
-    headerRow.appendChild(datumHeader);
+//     let datumHeader = document.createElement('th');
+//     datumHeader.textContent = 'Datum';
+//     headerRow.appendChild(datumHeader);
 
-    let aantalHeader = document.createElement('th');
-    aantalHeader.textContent = 'Aantal';
-    headerRow.appendChild(aantalHeader);
+//     let aantalHeader = document.createElement('th');
+//     aantalHeader.textContent = 'Aantal';
+//     headerRow.appendChild(aantalHeader);
 
-    table.appendChild(headerRow);
+//     table.appendChild(headerRow);
 
-    // Data rows
-    let dataRow = document.createElement('tr');
-    let naamData = document.createElement('td');
-    naamData.textContent = item.naam;
-    dataRow.appendChild(naamData);
+//     // Data rows
+//     let dataRow = document.createElement('tr');
+//     let naamData = document.createElement('td');
+//     naamData.textContent = item.naam;
+//     dataRow.appendChild(naamData);
 
-    let datumData = document.createElement('td');
-    datumData.textContent = 'Van ' + item.start + ' tot ' + item.end;
-    dataRow.appendChild(datumData);
+//     let datumData = document.createElement('td');
+//     datumData.textContent = 'Van ' + item.start + ' tot ' + item.end;
+//     dataRow.appendChild(datumData);
 
-    let aantalData = document.createElement('td');
-    aantalData.textContent = item.aantal;
-    dataRow.appendChild(aantalData);
+//     let aantalData = document.createElement('td');
+//     aantalData.textContent = item.aantal;
+//     dataRow.appendChild(aantalData);
 
-    table.appendChild(dataRow);
+//     table.appendChild(dataRow);
 
-    itemDiv.appendChild(table);
+//     itemDiv.appendChild(table);
 
-    let itemKruis = document.createElement('img');
-    itemKruis.classList = 'item_kruis';
-    itemKruis.src = "images/svg/xmark-solid.svg" ;
-    itemDiv.append(itemKruis);
-}
-})
+//     let itemKruis = document.createElement('img');
+//     itemKruis.classList = 'item_kruis';
+//     itemKruis.src = "images/svg/xmark-solid.svg" ;
+//     itemDiv.append(itemKruis);
+// }
+// })
 
 
-//item verwijderen uit WM
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('item_kruis')) {
-        console.log('kruis');
-        console.log(e.target.parentElement); 
-    }
-});
+// //item verwijderen uit WM
+// document.addEventListener('click', function(e) {
+//     if (e.target.classList.contains('item_kruis')) {
+//         console.log('kruis');
+//         console.log(e.target.parentElement); 
+//     }
+// });
 
 
 

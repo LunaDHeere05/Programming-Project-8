@@ -3,7 +3,7 @@ include 'database.php';
 
 $email='student1@example.com';
 
-$sql="INSERT INTO `FAVORIETENLIJST` (`Fav_id`, `emailStudent`, `emailDocent`) VALUES (NULL, $email, NULL)";
+$sql="INSERT INTO `FAVORIETENLIJST` (`Fav_id`, `email`) VALUES (NULL, $gebruikersnaam)";
 
 $stmt = $conn->prepare($sql);
 

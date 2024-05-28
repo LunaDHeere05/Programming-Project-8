@@ -1,12 +1,27 @@
 <?php
 include 'database.php';
 
+$zoek_query = isset($_GET['zoek_query']) ? $_GET['zoek_query'] : '';
+
+if (!empty($zoek_query)) {
+
+    //sql-injecties voorkomen
+    $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
+    
+    $zoek_resultaat = "SELECT * FROM ITEM 
+                      WHERE LOWER(naam) LIKE LOWER('%$zoek_query%')
+                      OR LOWER(merk) LIKE LOWER('%$zoek_query%')
+                      OR LOWER(beschrijving) LIKE LOWER('%$zoek_query%')";
+
+    $item_info_result = mysqli_query($conn, $zoek_resultaat);
+}else{
 // De volgende query is gewoon om de info over het apparaat te halen uit de databank
 $item_info = "SELECT * FROM ITEM";
 $item_info_result = mysqli_query($conn, $item_info);
 
 if (!$item_info_result) {
     die('Query failed: ' . mysqli_error($conn));
+}
 }
 
 while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk item
