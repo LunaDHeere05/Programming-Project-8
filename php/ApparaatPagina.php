@@ -482,12 +482,11 @@
           document.getElementById('quantity').setAttribute('max', data);
           document.getElementById('quantity').style.display = 'flex';
         
-        } else if (data == 0) {
+        } else if (data <=0) {
           document.getElementById('onbeschikbaarDiv').style.display = 'flex';
           document.getElementById('quantity').value = '0';
           document.getElementById('quantity').disabled = true;
           document.getElementById('onbeschikbaarDiv').innerHTML = '<p class=\"onbeschikbaarmelding\">Dit artikel is onbeschikbaar. Kies een ander uitleentermijn.</p>';
-          console.log(document.getElementById('submit'))
           document.getElementById('submit').disabled=true;
           document.getElementById('submitWinkelmand').disabled=true;
         }

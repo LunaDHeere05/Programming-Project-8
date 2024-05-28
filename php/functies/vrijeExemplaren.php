@@ -33,14 +33,13 @@ WHERE
     AND (
         (u.uitleen_datum <= '{$startDate}' AND u.inlever_datum >= '{$endDate}')
         OR (u.uitleen_datum >= '{$startDate}' AND u.uitleen_datum < '{$endDate}')
-        OR (u.uitleen_datum <= '{$startDate}' AND u.inlever_datum < '{$endDate}' AND u.inlever_datum > '{$startDate}')
+        OR (u.inlever_datum <= '{$endDate}' AND u.inlever_datum > '{$startDate}')
     )
 ";
 
 //eerste datum-conditie: controleert of een uitlening start op of vóór de beginperiode  en eindigt op of na de eindperiode
 //tweede datum-conditie:  controleert of een uitlening begint binnen de periode, dus na de startdatum maar vóór de einddatum.
-//derde datum-conditie: controleert of een uitlening begint op of vóór de startdatum en eindigt binnen de periode, dus na de startdatum maar vóór de einddatum
-
+//derde datum-conditie: controleert of een uitlening eindigt op of vóór de eindatum en eindigt binnen de periode, dus na de startdatum
     $uitgeleendeExemplaren_result = mysqli_query($conn, $uitgeleendeExemplaren_query);
     $aantalExemplaren -= mysqli_num_rows($uitgeleendeExemplaren_result);
 
