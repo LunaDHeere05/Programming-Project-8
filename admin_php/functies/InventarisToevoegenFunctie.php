@@ -12,6 +12,7 @@ if (isset($_POST['submitForm'])) {
     $image = $_FILES['image']['name'];
     $usermanual = $_FILES['handleiding'];
     $functionaliteit = $_POST['functionaliteit'];
+    $in_doos = $_POST['in_doos'];
 
     // Check if there is already a row with the same apparaat_naam
     $checkQuery = "SELECT * FROM ITEM WHERE naam = '$apparaat' AND merk = '$merk'";
@@ -54,6 +55,11 @@ if (isset($_POST['submitForm'])) {
             foreach ($functionaliteit as $func) {
                 $functionaliteitQuery = "INSERT INTO FUNCTIONALITEIT (item_id, functionaliteit) VALUES ('$item_id', '$func')";
                 $conn->query($functionaliteitQuery);
+            }
+
+            foreach ($in_doos as $doos) {
+                $inDoosQuery = "INSERT INTO ITEMBUNDEL (item_id, accessoire) VALUES ('$item_id', '$doos')";
+                $conn->query($inDoosQuery);
             }
         }
     }

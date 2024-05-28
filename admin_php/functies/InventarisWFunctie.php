@@ -1,6 +1,7 @@
 <?php
 
 include("../database.php");
+include("../ftp_server.php");
 
 print_r($_POST);
 
@@ -14,7 +15,7 @@ if (isset($_POST["submitForm"])) {
     $categorie = $_POST['categorie'];
     $beschrijving = $_POST['beschrijving'];
     $image = $_FILES['image']['name'];
-    $link = $_POST['link'];
+    $usermanual = $_FILES['usermanual'];
     $functionaliteit = $_POST['functionaliteit'];
     $in_doos = $_POST['in_doos'];
 
@@ -38,6 +39,22 @@ if (isset($_POST["submitForm"])) {
     $func_ids = array();
     while ($row = $result->fetch_assoc()) {
         $func_ids[] = $row['functionaliteit_id'];
+    }
+
+    //Uploading image
+    $file = $_FILES['image'];
+    $ftpDirectory = '/www/images/';
+    ftp_pasv($ftpConnection, true);
+    if (ftp_put($ftpConnection, $ftpDirectory . $file["name"], $file["tmp_name"], FTP_BINARY)) {        
+        $fileUrl = 'http://www.ppgroep8.be/images/' . $_FILES["image"]["name"];
+    }
+
+    //Upload the usermanual to the server
+    $file = $_FILES['usermanual'];
+    $ftpDirectory = '/www/handleidingen/';
+    ftp_pasv($ftpConnection, true);
+    if (ftp_put($ftpConnection, $ftpDirectory . $file["name"], $file["tmp_name"], FTP_BINARY)) {
+        $manualLink = 'http://www.ppgroep8.be/handleidingen/' . $_FILES["handleiding"]["name"];
     }
 
     // Update each functionaliteit
