@@ -1,25 +1,22 @@
 <?php 
 session_start();
 
-//dit is de email van de ingelogde user, alsook of het een docent of student is. 
+// Dit is de email van de ingelogde gebruiker, evenals of het een docent of student is. 
+if (isset($_SESSION['gebruikersnaam'])) {
+    $email = $_SESSION['gebruikersnaam'];
+}
 
-if (isset($_SESSION['gebruikersnaam'])) //controleren of er een foutmelding is;
-  {
-    $email=$_SESSION['gebruikersnaam'];
-  }
-
-  if (isset($_SESSION['user'])) //controleren of er een foutmelding is;
-  {
-    $user=strtoupper($_SESSION['user']); 
-    if($user=="DOCENT"){
-        $userType="emailDOCENT";
-    }else if($user=="STUDENT"){
-        $userType="emailSTUDENT";
+if (isset($_SESSION['user'])) {
+    $user = strtoupper($_SESSION['user']); 
+    if ($user == "DOCENT") {
+        $userType = "emailDOCENT";
+    } elseif ($user == "STUDENT") {
+        $userType = "emailSTUDENT";
+    } else {
+        // Handle unexpected user type
+        $userType = ""; // Set a default value or handle it based on your logic
     }
 
-    $_SESSION['userType']=$userType;
-  }
-
-  
-
+    $_SESSION['userType'] = $userType;
+}
 ?>
