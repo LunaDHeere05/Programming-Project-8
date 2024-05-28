@@ -25,13 +25,17 @@ try {
     $ontvanger = $email;
 
     $mail->setFrom($zender, 'Admin');
-    $mail->addAddress($ontvanger);           // Voeg een ontvanger toe
+    $mail->addAddress($ontvanger);           
 
     // Content
+    $mail_onderwerp ='test-email';
+    $mail_body ='Dit is de test-email';
+    $mail_altbody ='This is the body in plain text for non-HTML mail clients';
+
     $mail->isHTML(true);                                        // Stel e-mail format in op HTML
-    $mail->Subject = 'test-email';
-    $mail->Body    = 'Dit is de test-email ';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = $mail_onderwerp;
+    $mail->Body    = $mail_body;
+    $mail->AltBody = $mail_altbody;
 
     $mail->send();
     echo 'Message has been sent';

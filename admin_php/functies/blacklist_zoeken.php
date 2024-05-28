@@ -5,7 +5,7 @@ if (isset($_GET['zoekButton'])) {
     $zoek_query = $_GET['zoekquery'];
     if (!empty($zoek_query)) { // Controleer of de zoekopdracht niet leeg is
         $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
-        $zoek_resultaat = "SELECT * FROM WAARSCHUWING WHERE emailSTUDENT = '$zoek_query'";
+        $zoek_resultaat = "SELECT * FROM WAARSCHUWING WHERE email = '$zoek_query'";
         $zoek_uitvoering_resultaat = mysqli_query($conn, $zoek_resultaat);
 
         if ($zoek_uitvoering_resultaat) {
@@ -18,10 +18,10 @@ if (isset($_GET['zoekButton'])) {
                 echo " <th>Dagen op blacklist</th>";
                 echo " <th>Verwijder</th>";
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($result['emailSTUDENT']) . "</td>";
+                echo "<td>" . htmlspecialchars($result['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($result['waarschuwingType']) . "</td>";
                 echo "<td>" . htmlspecialchars($result['waarschuwingDatum']) . "</td>";
-                echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($result['emailSTUDENT']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
+                echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($result['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
                 echo "</tr>";
                 echo "</table>";
                 echo "</div>";
