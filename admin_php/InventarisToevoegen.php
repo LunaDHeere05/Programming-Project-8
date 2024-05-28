@@ -137,7 +137,7 @@
             <input id="beschrijving" name="beschrijving" type="text">
           </div>
           <input type="file" name="image">
-          <input type="text" name="link" placeholder="Link naar handleiding">
+          <input type="file" name="handleiding" placeholder="pdf van de handleiding">
           <div class="inventaris_toe_text">
             <input name="functionaliteit[]" type="text" placeholder="Apparaat beschrijving ...">
           </div>
