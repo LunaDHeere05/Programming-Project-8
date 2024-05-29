@@ -1,7 +1,9 @@
 <?php
 include 'database.php';
 
-$query = "SELECT u.uitleen_id, email, u.inlever_datum,
+$query = "SELECT u.uitleen_id, 
+                 email,
+                 u.inlever_datum,
                  GROUP_CONCAT(CONCAT(i.merk, ' - ', i.naam) SEPARATOR '<br>') AS items,
                  u.isVerlengd
           FROM UITLENING u

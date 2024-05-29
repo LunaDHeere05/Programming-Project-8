@@ -3,7 +3,7 @@ include 'database.php';
 
 // Query to get the required data
 $query = "SELECT s.email, 
-                 GROUP_CONCAT(w.WaarschuwingType SEPARATOR ' - ') AS blacklistReasons, 
+                 GROUP_CONCAT(w.waarschuwingsType SEPARATOR ' - ') AS blacklistReasons, 
                  DATEDIFF(CURDATE(), MAX(w.waarschuwingDatum)) AS daysOnBlacklist,
                  COUNT(w.waarschuwing_id) AS warningCount
           FROM PERSOON s
@@ -15,6 +15,12 @@ $query = "SELECT s.email,
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
+    echo "    <tr>
+    <th>E-mail</th>
+    <th>Reden</th>
+    <th>Dagen op blacklist</th>
+    <th>Verwijder</th>
+  </tr>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";

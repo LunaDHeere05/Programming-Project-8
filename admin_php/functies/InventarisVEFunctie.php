@@ -28,12 +28,77 @@ if (isset($_GET['exemplaar_item_id']))
             echo "Error deleting record: " . $conn->error;
         }
 
+        // Delete ITEMBUNDEL rows
+        $deleteItembundelQuery = "DELETE FROM ITEMBUNDEL WHERE item_id='$item_id'";
+        if ($conn->query($deleteItembundelQuery) !== TRUE) {
+            die("Error deleting record from ITEMBUNDEL: " . $conn->error);
+        }
+
         // Delete Recent item row
         $deleteRecentItemQuery = "DELETE FROM RECENT_ITEMS WHERE item_id='$item_id'";
         if ($conn->query($deleteRecentItemQuery) === TRUE) {
             echo "Record deleted successfully";
         } else {
             echo "Error deleting record: " . $conn->error;
+        }
+
+        // Delete image from FTP server
+
+        // Get the file link from the database
+        $fileLinkQuery = "SELECT images FROM ITEM WHERE item_id='$item_id'";
+        $result = $conn->query($fileLinkQuery);
+
+        if ($result->num_rows > 0) {
+            
+            // Fetch the result
+            $row = $result->fetch_assoc();
+
+            // Define the file link
+            $fileLink = $row['images'];
+
+            // Parse the URL
+            $parsedUrl = parse_url($fileLink);
+
+            // Get the path
+            $filePath = $parsedUrl['path'];
+
+            // Prepend the directory to the file path
+            $filePath = '/www' . $filePath;
+
+            // Delete file in file server
+            if (ftp_delete($ftpConnection, $filePath)) {
+                echo "$filePath has been deleted";
+            } else {
+                echo "could not delete $filePath";
+            }
+        }
+
+        //Delete usermanual from FTP server
+        $usermanualLinkQuery = "SELECT gebruiksaanwijzing FROM ITEM WHERE item_id='$item_id'";
+        $result = $conn->query($usermanualLinkQuery);
+        if ($result->num_rows > 0) {
+
+            // Fetch the result
+            $row = $result->fetch_assoc();
+
+            // Define the file link
+            $usermanualLink = $row['gebruiksaanwijzing'];
+
+            // Parse the URL
+            $parsedUrl = parse_url($usermanualLink);
+
+            // Get the path
+            $filePath = $parsedUrl['path'];
+
+            // Prepend the directory to the file path
+            $filePath = '/www' . $filePath;
+
+            // Deleta file in file server
+            if (ftp_delete($ftpConnection, $filePath)) {
+                echo "$filePath has been deleted";
+            } else {
+                echo "could not delete $filePath";
+            }
         }
 
         // Delete ITEM row
