@@ -285,40 +285,48 @@ gap:2em;
 .hidden{
     left: -99999px !important;
     display: none;
+    visibility: hidden;
 }
 body.blur > *:not(#winkelmand_popup):not(#close_window) {
         filter: blur(50px);
         pointer-events: none;
 }
 
-.login{
+/* .login{
     margin-left:1em;
-}
+} */
 
 button{
     cursor: pointer;
 }
 #uitloggen{
     background-color: black;
-    width: 10%;
-    height: 5em;
+    flex: 0 1 auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     position: absolute;
     top: 4em;
     right: 0;
-}
-#uitloggen a{
-    margin: auto;
-}
-#uitloggen a button{
-    width: 100%;
-    background-color: transparent;
     color: white;
+    padding:1em 20px;
+}
+
+#uitloggen a button{
+    background-color: transparent;
     font-weight: bold;
+    padding-top:10px;
     font-size: 20px;
+    color: white;
     border: none;
 }
+
+#uitloggen .gebruikersnaam{
+    border-bottom:1px solid white;
+    padding-bottom:1em;
+}
+
 </style>
 <nav>
     <div id="medialab">
@@ -360,16 +368,6 @@ button{
 </div>
 
 <div id="winkelmand_popup" class="hidden">
-<?php
-    if (isset($_SESSION['gebruikersnaam'])) {
-        $email = $_SESSION['gebruikersnaam'];
-        // Winkelmand initialiseren
-        echo "<script>
-            localStorage.setItem('winkelmand', JSON.stringify([]));
-        </script>";
-    }
-    ?>
-
 
     <div class='title'>
     <h1>Winkelmand</h1>
@@ -382,7 +380,7 @@ button{
 </div>
 
 <div id="uitloggen" class="hidden">
-    <a href="functies\uitlog.php"><button><p>Log out</p></button></a>
+    <a id='log-functie'><button><p id='log-message'></p></button></a>   
 </div>
 <script>
 document.getElementById('winkelmand').addEventListener('click', function(){
@@ -413,6 +411,27 @@ for(let i=0;i<link.length;i++){
         }
     }
 }
+
+
+//log-in en log-out functies
+<?php 
+if(isset($gebruikersnaam)){
+    echo "
+    let gebruikersnaam = document.createElement('p');
+    gebruikersnaam.classList='gebruikersnaam';
+    gebruikersnaam.textContent= '".$gebruikersnaam."';
+    document.getElementById('log-functie').before(gebruikersnaam)
+
+    document.getElementById('log-message').textContent = 'Log uit';
+    document.getElementById('log-functie').href = 'functies/uitlog.php';
+    ";
+} else {
+    echo "
+    document.getElementById('log-message').textContent = 'Log in';
+    document.getElementById('log-functie').href = 'Profiel.php';
+    ";
+}
+?>
 
 // let mandje= document.getElementById('winkelmand_items');
 

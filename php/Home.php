@@ -168,7 +168,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 </head>
 <body>
     <?php include 'top_nav.php';
-    echo $gebruikersnaam ?>
+ ?>
     <div class="inhoud_body">
        <?php include 'functies/categorie.php'; ?>
 
