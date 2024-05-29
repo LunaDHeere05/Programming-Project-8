@@ -8,6 +8,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservatie bevestiging</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
     <style>
         .bevestig {
             margin: 0em 4em 2em 4em;
@@ -39,7 +40,6 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         .item_info_container img {
             width: 15%;
         }
-
         #formBevestiging{
             display: flex;
             flex-direction: column;
@@ -47,12 +47,10 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             justify-content: center;
             align-items: center;
         }
-
         #formBevestiging .aantal{
             width:55%;
             text-align: center;
         }
-
         .bevestig_btn {
             background-color: #1bbcb6;
             padding: 1em;
@@ -91,16 +89,14 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 <p class="bevestig">Bevestig dat je deze item(s) wilt <b>reserveren</b>.</p>
 <div class="item_info_container">
     <div class="item_info">
-        
+
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          
+
             $startDate = $_POST['start_date'];
             $endDate = $_POST['hiddenEndDate'];
-            $aantal = $_POST['quantity'];
-            $itemId = $_POST['item_id'];
-
+	
             $start_dateObject=new DateTime($startDate);
             $end_dateObject=new DateTime($endDate);
             $itemId = (int) $itemId;
