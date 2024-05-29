@@ -1,5 +1,5 @@
 <?php
-include '../sessionStart.php';
+// include '../sessionStart.php';
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -8,6 +8,11 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 $mail = new PHPMailer(true);
+
+// Mail Info
+$zender= 'no-reply-medialab@example.com';
+$ontvanger = $gebruikersnaam;
+$mail_body = "Beste,\n\nUw reservering is succesvol geplaatst.\n\nDetails van uw reservering:\n\nBedankt voor uw reservering.";
 
 try {
     // Server settings
@@ -20,25 +25,19 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Activeer TLS encryptie
     $mail->Port       = 587;                                    // TCP poort voor TLS
 
-    // Ontvanger(s)
-    $zender= 'admin@example.com';
-    $ontvanger = $email;
-
+    // Ontvanger
     $mail->setFrom($zender, 'Admin');
     $mail->addAddress($ontvanger);           
 
     // Content
-    $mail_onderwerp ='test-email';
-    $mail_body ='Dit is de test-email';
-    $mail_altbody ='This is the body in plain text for non-HTML mail clients';
-
     $mail->isHTML(true);                                        // Stel e-mail format in op HTML
     $mail->Subject = $mail_onderwerp;
     $mail->Body    = $mail_body;
-    $mail->AltBody = $mail_altbody;
+    // $mail->AltBody = $mail_altbody;
 
     $mail->send();
-    echo 'Message has been sent';
+    // echo 'Message has been sent';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+?>

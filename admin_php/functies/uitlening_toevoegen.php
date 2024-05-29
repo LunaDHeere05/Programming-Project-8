@@ -6,7 +6,7 @@ $password = "P!j6WD5KL";
 $database = "2324PROGPROJGR8";
 
 try {
-    // Establish a connection with the database
+   
     $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -19,7 +19,7 @@ try {
         if(empty($email) || empty($apparaat)){
             echo "Vul alle velden in!";
         } else {
-            // Check if the email exists in the PERSOON table and retrieve the date
+            // check om te zien of de email bestaat
             $emailquery = "SELECT email FROM PERSOON WHERE email = :email";
             $emailstmt = $conn->prepare($emailquery);
             $emailstmt->execute(['email' => $email]);
@@ -28,7 +28,7 @@ try {
             if ($emailResult) {
                 $inDatum = $_POST['datum'];
 
-                // Check if the item or kit exists
+                // Check of het apparaat een item of kit is en haal het id op
                 $itemquery = "SELECT 'item' AS type, item_id AS id FROM ITEM WHERE naam = :apparaat UNION SELECT 'kit' AS type, kit_id AS id FROM KIT WHERE naam = :apparaat";
                 $itemstmt = $conn->prepare($itemquery);
                 $itemstmt->execute(['apparaat' => $apparaat]);
@@ -45,7 +45,7 @@ try {
                         $uitleen_id = $conn->lastInsertId();
 
                         if ($apparaat_type == 'item') {
-                            // Check if an item exemplar is available
+                            // Check of een item exemplaar beschikbaar is
                             $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE isUitgeleend = '0' AND item_id = :apparaat_id LIMIT 1";
                             $exemplaarstmt = $conn->prepare($exemplaarquery);
                             $exemplaarstmt->execute(['apparaat_id' => $apparaat_id]);
@@ -76,7 +76,7 @@ try {
                                 echo "Geen beschikbaar exemplaar gevonden!";
                             }
                         } else if ($apparaat_type == 'kit') {
-                            // Retrieve all items in the kit
+                            // haal alle items in the kit op
                             $kititemsquery = "SELECT item_id FROM ITEM_KIT WHERE kit_id = :kit_id";
                             $kititemsstmt = $conn->prepare($kititemsquery);
                             $kititemsstmt->execute(['kit_id' => $apparaat_id]);
@@ -86,7 +86,7 @@ try {
                             foreach ($kititems as $kititem) {
                                 $item_id = $kititem['item_id'];
 
-                                // Check if an item exemplar is available for each item in the kit
+                                // Check of een item exemplaar beschikbaar is voor elk item in de kit
                                 $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE isUitgeleend = '0' AND item_id = :item_id LIMIT 1";
                                 $exemplaarstmt = $conn->prepare($exemplaarquery);
                                 $exemplaarstmt->execute(['item_id' => $item_id]);
