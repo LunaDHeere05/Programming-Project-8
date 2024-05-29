@@ -1,4 +1,5 @@
 <?php include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in te loggen
+ //AN: om de database connectie te maken
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,21 +78,26 @@ padding-bottom: 4em;
 .info-opening-hours table {
   margin: auto;
   width: 80%;
+  height: 40em;
   border-collapse: collapse;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   }
   
 .info-opening-hours h1 {
     padding: 0em 0em 0.5em 0em;
     text-align: left;
     margin: 0em 0em 1em 2em;
+
   }
 
 .info-opening-hours table,th,td {
     text-align: center;
-    padding: 1.5em;
+    padding: 1em;
 }
 .info-opening-hours table th {
-    text-align: start;
+    text-align: center;
     border: none;
     border-bottom: 2px solid rgb(193, 193, 193);
   }
@@ -282,39 +288,23 @@ opacity: 1;
     <!-- openings hours  -->
     <div class="info-opening-hours">
       <h1>Openingsuren</h1>
-      <table>
-        <tr>
-          <th>Maandag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
-        </tr>
-        <tr>
-          <th>Dinsdag</th>
-          <td>/</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <th>Woensdag</th>
-          <td>/</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <th>Donderdag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
-        </tr>
-        <tr>
-          <th>Vrijdag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
-        </tr>
-        <tr>
-          <th>Weekend</th>
-          <td>/</td>
-          <td>/</td>
-        </tr>
-      </table>
-    </div>
+      <?php
+        include 'database.php';
+        $query = "SELECT * FROM OPENINGSTIJDEN ORDER BY FIELD(dagen, 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag')";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            echo "<table>";
+            echo "<tr><th>Dag</th><th>Openingsuur</th><th>Sluitingsuur</th></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr><td>" . $row["dagen"] . "</td><td>" . $row["begin_uren"] . "</td><td>" . $row["eind_uren"] . "</td></tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+        ?>
+</div>
   </body>
 <!-- sancties/defect  -->
 <div class="info-sancties"><h2>Sancties</h2>
