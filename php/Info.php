@@ -12,6 +12,7 @@
 
 .infoEnTerug{
     display: flex;
+    cursor: pointer;
 }
 .infoEnTerug img{
     width: 1.5em;
@@ -252,7 +253,7 @@ opacity: 1;
   <body>
     <?php include "top_nav.php"; ?>
     <div class="infoEnTerug">
-      <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
+      <a onclick="window.history.back();"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
       <h1>Info</h1>
 </div>
       <!-- Hoe leen je iets uit? -->

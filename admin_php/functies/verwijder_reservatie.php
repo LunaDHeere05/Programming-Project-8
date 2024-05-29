@@ -11,23 +11,19 @@ $statusText = $_POST['statusText'];
 mysqli_begin_transaction($conn);
 
 try {
-    if ($statusText === "Op te halen") {
-        // Update isOpgehaald in UITGELEEND_ITEM to 1
+    if ($statusText === "Ophalen" || $statusText === "Opgehaald") {
+        // Update isUitgeleend in EXEMPLAAR_ITEM to 1
         $updateQuery = "UPDATE UITGELEEND_ITEM SET isOpgehaald = 1 WHERE uitleen_id = '$reservatieID'";
         if (!mysqli_query($conn, $updateQuery)) {
-            throw new Exception("Error updating isOpgehaald in UITGELEEND_ITEM: " . mysqli_error($conn));
+            throw new Exception("Error updating isUitgeleend in EXEMPLAAR_ITEM: " . mysqli_error($conn));
         }
-        echo "Reservatie is opgehaald.";
+        $statusText = "Opgehaald";
         
-    } elseif ($statusText === "In te leveren") {
-        // Update isOpgehaald in UITGELEEND_ITEM and isUitgeleend in EXEMPLAAR_ITEM to 0
-        $updateQuery1 = "UPDATE UITGELEEND_ITEM SET isOpgehaald = 0 WHERE uitleen_id = '$reservatieID'";
-        if (!mysqli_query($conn, $updateQuery1)) {
-            throw new Exception("Error updating isOpgehaald in UITGELEEND_ITEM: " . mysqli_error($conn));
-        }
-        
-        // Get exemplaar_item_id from UITGELEEND_ITEM
-        $selectQuery = "SELECT exemplaar_item_id FROM UITGELEEND_ITEM WHERE uitleen_id = '$reservatieID'";
+    } else {
+        // Insert records into WAARSCHUWING before deleting
+        $selectQuery = "SELECT uit.exemplaar_item_id, uit.uitleen_id
+                        FROM UITGELEEND_ITEM uit
+                        WHERE uit.uitleen_id = '$reservatieID'";
         $result = mysqli_query($conn, $selectQuery);
         if (!$result) {
             throw new Exception("Error selecting exemplaar_item_id from UITGELEEND_ITEM: " . mysqli_error($conn));
@@ -56,4 +52,3 @@ try {
 
 // Sluit de databaseverbinding
 mysqli_close($conn);
-?>

@@ -28,9 +28,9 @@ if (isset($gebruikersnaam)) {
     }
 }
 
-//indien user niet is ingelogd, of geen recent bekeken items heeft (bv. bezoekt de site voor de eerste keer)
+//indien user niet is ingelogd, of geen recent bekeken items heeft (bv. bezoekt de site voor de eerste keer) wordt dit getoond ipv recent bekeken
 
-if(!isset($userType) || !isset($email) || mysqli_num_rows($result)==0){
+
 
     $typingText="SELECT naam, merk FROM ITEM LIMIT 10;";
     $typingText_result=mysqli_query($conn,$typingText);
@@ -43,7 +43,7 @@ if(!isset($userType) || !isset($email) || mysqli_num_rows($result)==0){
         echo 'arrayOfItems.push("'.$typingText_row['merk'].' - '.$typingText_row['naam'].'");';
     }
     echo "</script>"; 
-}
+
 
 
  mysqli_close($conn);

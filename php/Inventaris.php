@@ -99,6 +99,7 @@
 .beschikbaarheid_apparaat img {
   width: 3em;
   margin: 0.5em 2em;
+  padding:10px;
 
 }</style>
 
