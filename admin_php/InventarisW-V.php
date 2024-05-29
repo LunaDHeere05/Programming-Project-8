@@ -181,8 +181,9 @@ include("database.php");
                         <input id="beschrijving" name="beschrijving" type="text" value="<?php echo $beschrijving ?>">
                     </div>
                     
-
+                    <h3>Images</h3>
                     <input type="file" name="image">
+                    <h3>User Manual</h3>
                     <input type="file" name="usermanual" value="<?php echo $gebruiksaanwijzing ?>">
                     <input type="hidden" name="item_id" value="<?php echo $item_id ?>">
                     
