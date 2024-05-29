@@ -40,6 +40,10 @@
 </head>
 <body>
     <div class="rechter_grid">
+        <!-- <div class="zoeken_container">
+  </div> --> 
+    <?php include 'functies/teLaat_zoeken.php' ?>
+    <!-- te laat tabel -->
         <div class="te_laat_tabel">
             <table>
                 <tr>
