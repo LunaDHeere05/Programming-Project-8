@@ -22,7 +22,7 @@ $stmt_update->bind_param('ss', $default_password_admin1, $default_password_admin
 $stmt_update->execute();
 $stmt_update->close();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $gebruikersnaam = $_POST['gebruikersnaam'];
     $wachtwoord = $_POST['wachtwoord']; // Get password from user input
 
@@ -72,6 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Close statement
     $stmt->close();
+} else {
+    // Handle the case when the script is not accessed via POST
+    echo "This page should be accessed via a POST request.";
 }
 
 $conn->close();
