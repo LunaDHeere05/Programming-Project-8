@@ -98,9 +98,12 @@ if (isset($_POST["submitForm"])) {
             $conn->query($doosQuery);
         }
     }
-
+    // Close the database connection
     mysqli_close($conn);
 
+    // Close the FTP connection
+    ftp_close($ftpConnection);
+    
     header("Location: ../inventaris.php");
     exit();
 }
