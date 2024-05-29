@@ -235,6 +235,7 @@ gap:2em;
     justify-content: space-between;
     gap:0.5em;
     align-items: center;
+    transition: transform 0.5s ease; 
 
 }
 
@@ -244,13 +245,25 @@ gap:2em;
 
 #winkelmand_popup table{
     text-align: center;
+    border-collapse: collapse;
   }
 
 #winkelmand_popup table th{
     color:#b1b1b1cf;
-    font-size: 120%;
+    font-size: 120%;}
+
+#winkelmand_popup table th, #winkelmand_popup table td{
+    border-right:3px solid #b1b1b1cf;
+   
 }
 
+#winkelmand_popup table th:last-child, #winkelmand_popup table td:last-child{
+    border:none;
+}
+
+#winkelmand_popup table th{
+    padding: 5px;
+}
 
 #winkelmand_popup .item_foto{
     width: 10em;
@@ -258,8 +271,6 @@ gap:2em;
     cursor: pointer;
     background-color: white;
     border-radius: 0.5em;
-    margin: none;
-
 }
 #winkelmand_popup form{
     display: flex;
@@ -270,6 +281,7 @@ gap:2em;
     background-color: #1BBCB6;
     border-radius: 2em;
     padding: 0.5em;
+    cursor: pointer;
 }
 
 #winkelmand_popup form input{
@@ -280,6 +292,7 @@ gap:2em;
     cursor: pointer;
     color: white;
     font-size: 18px;
+
 }
 
 .hidden{
@@ -442,9 +455,16 @@ document.addEventListener('click',function(e){
         method: 'POST',
         body: formData
       }).then(response => response.text())
-      .then(data => window.location.reload())
+      .then(data => {
+      e.target.parentElement.style.transform='translateX(1000px)'; 
+      setTimeout(() => { 
+        window.location.reload();
+      }, 150)
+})
+
   }
-  });
+})
+  ;
 
 
 

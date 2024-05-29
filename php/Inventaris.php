@@ -42,7 +42,7 @@
   height: 100%;
   border-radius: 2em;
   background-color: #edededcf;
-  margin: 1em 0em 0em 2em;
+  margin: 1em 0em 0em 1em;
   display: flex;
 }
 
@@ -54,8 +54,9 @@
 .apparaat a {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   text-decoration: none;
+  gap:5em;
   color: #000000;
   align-items: center;
 }
@@ -67,14 +68,10 @@
   background: white;
   border-radius: 2em;
 }
-.toevoegen {
-  display: flex;
-  width: 20%;
-  align-items: center;
-}
+
 .toevoegen button {
   width: 4em;
-  margin: auto;
+  margin: 1em 1em 1em auto;
   background-color: transparent;
   border: none;
 }
@@ -92,12 +89,13 @@
   font-weight: bold;
 }
 
-.beschikbaarheid_apparaat p{
-  font-weight:lighter;
+.beschikbaarheid_apparaat h3{
+
+  font-size: 120%;
 
 }
 .beschikbaarheid_apparaat img {
-  width: 3em;
+  width: 4em;
   margin: 0.5em 2em;
   padding:10px;
 

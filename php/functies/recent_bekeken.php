@@ -45,6 +45,4 @@ if (isset($gebruikersnaam)) {
     echo "</script>"; 
 
 
-
- mysqli_close($conn);
 ?> 
