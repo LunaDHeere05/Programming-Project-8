@@ -43,26 +43,31 @@ if (isset($_POST['submitForm'])) {
             if (ftp_put($ftpConnection, $ftpDirectory . $file['name'], $file['tmp_name'], FTP_BINARY)) {
                 $manualLink = 'http://www.ppgroep8.be/handleidingen/' . $file['name'];
             }
+        
+        
 
-        $itemQuery = "INSERT INTO ITEM (naam, merk, categorie, beschrijving, gebruiksaanwijzing, images) VALUES ('$apparaat','$merk','$categorie','$beschrijving', '$manualLink', '$fileUrl')";
-        if ($conn->query($itemQuery) === TRUE) {
-            $item_id = $conn->insert_id;
+            $itemQuery = "INSERT INTO ITEM (naam, merk, categorie, beschrijving, gebruiksaanwijzing, images) VALUES ('$apparaat','$merk','$categorie','$beschrijving', '$manualLink', '$fileUrl')";
+            if ($conn->query($itemQuery) === TRUE) {
+                $item_id = $conn->insert_id;
 
-            // Get the auto-generated item_id from the newly created row
-            $exemplaarItemQuery = "INSERT INTO EXEMPLAAR_ITEM (item_id) VALUES ('$item_id')";
-            $conn->query($exemplaarItemQuery);
+                // Get the auto-generated item_id from the newly created row
+                $exemplaarItemQuery = "INSERT INTO EXEMPLAAR_ITEM (item_id) VALUES ('$item_id')";
+                $conn->query($exemplaarItemQuery);
 
-            foreach ($functionaliteit as $func) {
-                $functionaliteitQuery = "INSERT INTO FUNCTIONALITEIT (item_id, functionaliteit) VALUES ('$item_id', '$func')";
-                $conn->query($functionaliteitQuery);
+                foreach ($functionaliteit as $func) {
+                    $functionaliteitQuery = "INSERT INTO FUNCTIONALITEIT (item_id, functionaliteit) VALUES ('$item_id', '$func')";
+                    $conn->query($functionaliteitQuery);
+                }
+
+                foreach ($in_doos as $doos) {
+                    $inDoosQuery = "INSERT INTO ITEMBUNDEL (item_id, accessoire) VALUES ('$item_id', '$doos')";
+                    $conn->query($inDoosQuery);
+                }
             }
 
-            foreach ($in_doos as $doos) {
-                $inDoosQuery = "INSERT INTO ITEMBUNDEL (item_id, accessoire) VALUES ('$item_id', '$doos')";
-                $conn->query($inDoosQuery);
-            }
+            // Close the FTP connection
+            ftp_close($ftpConnection);
         }
-    }
 
     $conn->close();
     header('Location: ../Inventaris.php');
