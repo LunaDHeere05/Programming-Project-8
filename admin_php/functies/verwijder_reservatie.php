@@ -12,18 +12,14 @@ echo "checkpoint 1";
 mysqli_begin_transaction($conn);
 
 try {
-    if ($statusText === "Ophalen") {
+    if ($statusText === "Ophalen" || $statusText === "Opgehaald") {
         // Update isUitgeleend in EXEMPLAAR_ITEM to 1
-        $updateQuery = "UPDATE EXEMPLAAR_ITEM SET isUitgeleend = 1 WHERE uitleen_id = '$reservatieID'";
+        $updateQuery = "UPDATE UITGELEEND_ITEM SET isOpgehaald = 1 WHERE uitleen_id = '$reservatieID'";
         if (!mysqli_query($conn, $updateQuery)) {
-            throw new Exception("Error updating isUitgeleend in EXEMPLAAR_ITEM: " . mysqli_error($conn));
+            throw new Exception("Error updating isOpgehaald in UITGELEEND_ITEM: " . mysqli_error($conn));
         }
+        $statusText = "Opgehaald";
         
-        // Delete related records from UITGELEEND_ITEM
-        $deleteQuery1 = "DELETE FROM UITGELEEND_ITEM WHERE uitleen_id = '$reservatieID'";
-        if (!mysqli_query($conn, $deleteQuery1)) {
-            throw new Exception("Error deleting from UITGELEEND_ITEM: " . mysqli_error($conn));
-        }
     } else {
         // Insert records into WAARSCHUWING before deleting
         $selectQuery = "SELECT uit.exemplaar_item_id, uit.uitleen_id
