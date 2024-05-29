@@ -35,20 +35,12 @@
       display: flex;
     }
 
-    .inventaris_toe_img button {
-      width: 5em;
-      height: auto;
-      cursor: pointer;
-      margin: 0.5em 1em 0em 8em ;
-      background-color: #D9D9D9;
-      border: 0;
-    }
-
     .inventaris_toe_text input {
       height: 2rem;
       width: 100%;
       border: 0;
       border-radius: 2em;
+      padding: 0.5em 0em 0.5em 1em;
       margin: 0.5rem;
     }
 
@@ -57,22 +49,15 @@
       width: 100%;
       border: 0;
       border-radius: 2em;
+      padding: 0.5em 0em 0.5em 1em;
       margin: 0.5rem;
     }
 
-    .inventaris_toe_verwijderen button {
-      background-color: #E30613;
-      border-radius: 2em;
-      width: 15em;
-      height: 3em;
-      border: 0;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 1em 2em 0em 0em;
-      display: flex;
-      align-items: center;
-      padding: 0em 0em 0em 1em;
+    .device_info {
+      margin: 2em 0em 2em 0em;
+      border: rgb(192,192,192) 3px solid;
+      padding: 0em 2em 0.5em 1em;
+      border-radius: 20px;
     }
 
     .inventaris_toe_opslaan button {
@@ -87,17 +72,74 @@
       margin: 1em 0em 0em 0em;
     }
 
+    .inventaris_toe_opslaan button:hover {
+      background-color: #0A7D7C;
+    }
+
     .inventaris_toe_buttons {
       display: flex;
       justify-content: center;
     }
 
-    .inventaris_toe_verwijderen img {
-      width: 1em;
-      height: auto;
-      margin: 0em 0em 0em 0.5em;
-      filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
-    } 
+    .image_upload {
+      margin: 2em 0em 2em 0em;
+      border: rgb(192,192,192) 3px solid;
+      padding: 0em 2em 0.5em 1em;
+      border-radius: 20px;
+    }
+
+    .manual_upload {
+      margin: 2em 0em 2em 0em;
+      border: rgb(192,192,192) 3px solid;
+      padding: 0em 2em 0.5em 1em;
+      border-radius: 20px;
+    }
+
+    .functionaliteiten {
+      margin: 2em 0em 2em 0em;
+      border: rgb(192,192,192) 3px solid;
+      padding: 0em 2em 0.5em 1em;
+      border-radius: 20px;
+      }
+
+    .functionaliteiten button {
+      background-color: #1BBCB6;
+      border-radius: 2em;
+      width: 15em;
+      height: 3em;
+      border: 0;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 1em 0em 0em 0em;
+    }
+
+    .functionaliteiten button:hover {
+      background-color: #0A7D7C;
+    }
+
+    .doos_content {
+      margin: 2em 0em 2em 0em;
+      border: rgb(192,192,192) 3px solid;
+      padding: 0em 2em 0.5em 1em;
+      border-radius: 20px;
+    }
+
+    .doos_content button {
+      background-color: #1BBCB6;
+      border-radius: 2em;
+      width: 15em;
+      height: 3em;
+      border: 0;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 1em 0em 0em 0em;
+    }
+
+    .doos_content button:hover {
+      background-color: #0A7D7C;
+    }
 
     /* The Modal (background) */
     .modal {
@@ -115,12 +157,33 @@
 
     /* Modal Content/Box */
     .modal-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-color: #fefefe;
       margin: 15% auto; /* 15% from the top and centered */
       padding: 20px;
       border: 1px solid #888;
       width: 80%; /* Could be more or less, depending on screen size */
     }
+
+    #yesBtn, #noBtn {
+      background-color: #1BBCB6;
+      border-radius: 2em;
+      width: 15em;
+      height: 3em;
+      border: 0;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 1em 0em 0em 0em;
+    }
+
+    #yesBtn:hover, #noBtn:hover {
+      background-color: #0A7D7C;
+    }
+    
   </style>
 </head>
 <body>
@@ -128,34 +191,50 @@
     <div class="inventaris_toe_block">
       <div class="inventaris_toe_block1"> 
         <form id="form" action="functies/InventarisToevoegenFunctie.php" method="post" enctype="multipart/form-data">
-          <div class="inventaris_toe">
-            <h2>Apparaat naam:</h2>
-            <input id="apparaat_naam" name="apparaat_naam" type="text">
+          <div class="device_info">
+            <div class="inventaris_toe">
+              <h2>Apparaat naam:</h2>
+              <input id="apparaat_naam" name="apparaat_naam" type="text">
+            </div>
+            <div class="inventaris_toe">
+              <h2>Merk:</h2>
+              <input id="merk" name="merk" type="text">
+            </div>
+            <div class="inventaris_toe">
+              <h2>Categorie:</h2>
+              <input id="categorie" name="categorie" type="text">
+            </div>
+            <div class="inventaris_toe">
+              <h2>Beschrijving:</h2>
+              <input id="beschrijving" name="beschrijving" type="text">
+            </div>
           </div>
-          <div class="inventaris_toe">
-            <h2>Merk:</h2>
-            <input id="merk" name="merk" type="text">
+
+          <div class="image_upload">  
+            <h3>Image</h3>
+            <input type="file" name="image">
           </div>
-          <div class="inventaris_toe">
-            <h2>Categorie:</h2>
-            <input id="categorie" name="categorie" type="text">
+
+          <div class="manual_upload">
+            <h3>Handleiding</h3>
+            <input type="file" name="handleiding" placeholder="pdf van de handleiding">
           </div>
-          <div class="inventaris_toe">
-            <h2>Beschrijving:</h2>
-            <input id="beschrijving" name="beschrijving" type="text">
+          
+          <div class="functionaliteiten">
+            <h3>Specificaties</h3>
+            <div class="inventaris_toe_text">
+              <input name="functionaliteit[]" type="text" placeholder="Functionaliteit ...">
+            </div>
+            <button type="button" onclick="addInputFieldFunct()">Nieuw Functionaliteit</button>
           </div>
-          <h3>Image</h3>
-          <input type="file" name="image">
-          <h3>Handleiding</h3>
-          <input type="file" name="handleiding" placeholder="pdf van de handleiding">
-          <div class="inventaris_toe_text">
-            <input name="functionaliteit[]" type="text" placeholder="Apparaat beschrijving ...">
+          
+          <div class="doos_content">
+            <h3>Doos Content</h3>
+            <div class="in_doos_input">
+              <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">
+            </div>
+            <button type="button" onclick="addInputFieldDoos()">Nieuw Randapparatuur</button>
           </div>
-          <button type="button" onclick="addInputFieldFunct()">Add another field</button>
-          <div class="in_doos_input">
-            <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">
-          </div>
-          <button type="button" onclick="addInputFieldDoos()">Add another field</button>
 
           <div class="inventaris_toe_buttons">
             <div class="inventaris_toe_opslaan">
@@ -165,16 +244,16 @@
           </div>
         </form>
       </div>
-      <div class="inventaris_toe_img">
-      </div>
     </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
-        <p>Are you sure you want to submit?</p>
-        <button id="yesBtn">Yes</button>
-        <button id="noBtn">No</button>
+        <p>Weet u zeker dat u wilt indienen?</p>
+        <div>
+          <button id="yesBtn">JA</button>
+          <button id="noBtn">NEE</button>
+        </div>
       </div>
     </div>
   </div>
