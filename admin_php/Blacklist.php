@@ -125,18 +125,14 @@
         </form>
       </div>
     </div>
-    
-    <?php include 'functies/blacklist_zoeken.php' ?>
+
     <!-- blacklist tabel -->
     <div class="blacklist_tabel" id="blacklist_tabel">
       <table>
-        <tr>
-          <th>E-mail</th>
-          <th>Reden</th>
-          <th>Dagen op blacklist</th>
-          <th>Verwijder</th>
-        </tr>
-        <?php include 'functies\blacklist_ophalen.php' ?>
+        <?php if(isset($_GET['zoekButton']))
+          {include 'functies/blacklist_zoeken.php';
+          }else {include 'functies/blacklist_ophalen.php';
+          } ?>
       </table>
     </div>
   </div>

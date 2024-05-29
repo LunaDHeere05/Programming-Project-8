@@ -50,6 +50,7 @@ if (isset($_GET['zoekButton'])) {
       mysqli_close($conn);
 
     }else{
+      //indien de admin op de loop drukt, worden alle resultaten opgehaald
       include 'functies/teLaat_ophalen.php';
 
     }
