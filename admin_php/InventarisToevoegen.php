@@ -52,6 +52,14 @@
       margin: 0.5rem;
     }
 
+    .in_doos_input input {
+      height: 2rem;
+      width: 100%;
+      border: 0;
+      border-radius: 2em;
+      margin: 0.5rem;
+    }
+
     .inventaris_toe_verwijderen button {
       background-color: #E30613;
       border-radius: 2em;
@@ -141,7 +149,12 @@
           <div class="inventaris_toe_text">
             <input name="functionaliteit[]" type="text" placeholder="Apparaat beschrijving ...">
           </div>
-          <button type="button" onclick="addInputField()">Add another field</button>
+          <button type="button" onclick="addInputFieldFunct()">Add another field</button>
+          <div class="in_doos_input">
+            <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">
+          </div>
+          <button type="button" onclick="addInputFieldDoos()">Add another field</button>
+
           <div class="inventaris_toe_buttons">
             <div class="inventaris_toe_opslaan">
               <button name="submitForm" type="button">Bevestigen</button>
@@ -200,16 +213,29 @@
     }
   }
 
-  function addInputField() {
-    // Create a new input element
-    var newInput = document.createElement("input");
+  function addInputFieldFunct() {
+            // Create a new input element
+            var newInput = document.createElement("input");
 
-    // Set the input's attributes
-    newInput.setAttribute("name", "functionaliteit[]");
-    newInput.setAttribute("type", "text");
-    newInput.setAttribute("placeholder", "Apparaat beschrijving ...");
+            // Set the input's attributes
+            newInput.setAttribute("name", "functionaliteit[]");
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("placeholder", "Functionaliteit ...");
 
-    // Append the new input to the container
-    document.querySelector(".inventaris_toe_text").appendChild(newInput);
-  }
+            // Append the new input to the container
+            document.querySelector(".inventaris_toe_text").appendChild(newInput);
+    }
+
+    function addInputFieldDoos() {
+            // Create a new input element
+            var newInput = document.createElement("input");
+
+            // Set the input's attributes
+            newInput.setAttribute("name", "in_doos[]");
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("placeholder", "Cabels, oplader, SD-kaart, etc...");
+
+            // Append the new input to the container
+            document.querySelector(".in_doos_input").appendChild(newInput);
+    }
 </script>

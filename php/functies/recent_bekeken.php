@@ -2,12 +2,12 @@
 
 include 'database.php';
 
-if (isset($userType) && isset($email)) {
+if (isset($gebruikersnaam)) {
     $query = "SELECT ITEM.item_id, naam, merk,images
               FROM ITEM
               JOIN RECENT_ITEMS ON RECENT_ITEMS.item_id = ITEM.item_id
               JOIN RECENT_BEKEKEN ON RECENT_ITEMS.recent_id = RECENT_BEKEKEN.recent_id
-              WHERE RECENT_BEKEKEN.{$userType} = '$email' 
+              WHERE RECENT_BEKEKEN.email = '$gebruikersnaam' 
               ORDER BY `wanneerBekeken` ASC 
               ";
 

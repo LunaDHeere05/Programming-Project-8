@@ -109,6 +109,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 
     .recent_lijst li:hover{
         background-color: #cfcfcfcf;
+        transition-duration: 0.5s;
     }
     .recent_lijst li img {
         width: 13em;
@@ -166,7 +167,8 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     </style>
 </head>
 <body>
-    <?php include 'top_nav.php'; ?>
+    <?php include 'top_nav.php';
+ ?>
     <div class="inhoud_body">
        <?php include 'functies/categorie.php'; ?>
 

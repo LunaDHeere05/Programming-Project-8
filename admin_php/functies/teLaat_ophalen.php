@@ -6,10 +6,11 @@ $query = "SELECT s.email,
                  GROUP_CONCAT(w.WaarschuwingType SEPARATOR ' - ') AS blacklistReasons, 
                  DATEDIFF(CURDATE(), MAX(w.waarschuwingDatum)) AS daysOnBlacklist,
                  COUNT(w.waarschuwing_id) AS warningCount
-          FROM PERSOON s
-          JOIN WAARSCHUWING w ON s.email = w.email
+          FROM STUDENT s
+          JOIN WAARSCHUWING w ON s.email = w.emailStudent
           GROUP BY s.email
-          HAVING warningCount > 1 AND daysOnBlacklist <= 90
+          HAVING warningCount < 2 AND daysOnBlacklist <= 90
+          WHERE waarschuwingsType = 'Te laat'.
           ORDER BY daysOnBlacklist DESC";
 
 $result = mysqli_query($conn, $query);
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['verwijderButton'])) {
         $email = $_POST['email'];
 
-        $verwijderquery = "DELETE FROM WAARSCHUWING WHERE email = ?";
+        $verwijderquery = "DELETE FROM WAARSCHUWING WHERE emailStudent = ?";
         $stmt = $conn->prepare($verwijderquery);
         $stmt->bind_param("s", $email);
 

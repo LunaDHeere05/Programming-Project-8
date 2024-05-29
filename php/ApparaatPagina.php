@@ -186,63 +186,46 @@
 
     /* kits */
 
-    .kits_inhoud_container {
-      display: flex;
-      flex-direction: row;
-    }
-
     .kits h1 {
       margin: 2em 0em 0em 2em;
     }
 
-    .kits_inhoud_container ul {
+    .kits ul {
       display: flex;
-      flex-direction: column;
       list-style: none;
-      margin: 0.5em auto;
+      width: 90%;
+      margin: 2em auto;
       justify-content: space-between;
- 
     }
 
     #selectie_toevoegen {
       background-color: #1bbcb6;
       color: white;
-      padding: 1em 1em 2.5em 1em;
+      padding: 1em;
       border-radius: 2em;
-      height: 3em;
-      width: 20em;
+      margin: auto 0em;
+      height: 20%;
+      width: 10%;
       text-align: center;
-      margin:0em 0em 0em 6em;
     }
 
-    .kits_inhoud {
+    .kits ul li {
       background-color: rgb(193, 193, 193);
       border-radius: 2em;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      width: 30em;
-      height: 15em;
+      width: 20%;
       position: relative;
-      padding: 1em 1em 0.5em 1em;
-      list-style: none;
-      margin: 1em; 
-    }
-    .kits_inhoud li{
-      padding: 0.5em;
-      text-align: center;
+      padding: 1em 0em 0.5em 0em;
     }
 
-    .kits_inhoud img {
-      width: 6em;
-      height: 6em;
-      margin: 1em;
+    .kits ul li img {
+      width: 70%;
+      height: auto;
+      margin: 0em 0em 1em 0em;
       background-color: white;
       border-radius: 1em;
-      display: flex;
-      align-items: baseline;
-      text-align: center;
-      margin: 0em 1.5em 1em 0em;
     }
 
     #selectiebol {
@@ -252,7 +235,6 @@
       width: 2em;
       right: 0.5em;
       top: 0.5em;
-      margin: 0em 0em 0em 1em;
     }
 
     /* van dezelfde categorie */
@@ -393,9 +375,9 @@
 
   <div class="kits">
     <h1>Kits</h1>
-    <div class="kits_inhoud_container">
+    <ul>
       <?php include 'functies\kit_apparaat_pagina.php'?>
-</div>
+    </ul>
   </div>
 
   <div class="dezelfde_categorie">
@@ -500,12 +482,11 @@
           document.getElementById('quantity').setAttribute('max', data);
           document.getElementById('quantity').style.display = 'flex';
         
-        } else if (data == 0) {
+        } else if (data <=0) {
           document.getElementById('onbeschikbaarDiv').style.display = 'flex';
           document.getElementById('quantity').value = '0';
           document.getElementById('quantity').disabled = true;
           document.getElementById('onbeschikbaarDiv').innerHTML = '<p class=\"onbeschikbaarmelding\">Dit artikel is onbeschikbaar. Kies een ander uitleentermijn.</p>';
-          console.log(document.getElementById('submit'))
           document.getElementById('submit').disabled=true;
           document.getElementById('submitWinkelmand').disabled=true;
         }
@@ -521,7 +502,7 @@
 
     <?php
   
-      if ($userType == 'emailSTUDENT') {
+      if ($userType == 'student') {
         echo "
 
         //student mag max. 2 weken vooraf reserveren:
@@ -550,7 +531,7 @@
             end_date.setAttribute('max', endDate);
 
           })";
-      } else if ($userType == "emailDOCENT") {
+      } else if ($userType == "docent") {
         echo "
   let datumInleveren = new Date(vandaag);
   switch (dayIndex) {

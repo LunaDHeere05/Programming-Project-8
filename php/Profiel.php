@@ -106,22 +106,11 @@ include 'database.php';
       <label for="wachtwoord">Wachtwoord</label>
       <input type="password" id="wachtwoord" name="wachtwoord" required>
 
-      <fieldset>
-        <legend>Ik ben een ...</legend>
-        <div class="fieldset">
-          <input type="radio" id="student" name="user" checked value="student">
-          <label for="student">student</label>
-        </div>
-        <div class="fieldset">
-          <input type="radio" id="docent" name="user" value="docent">
-          <label for="docent">docent</label>
-        </div>
-      </fieldset>
-
       <input type="submit" value="Log in">
     </form>
   </div>
   <?php
+  
   session_start();
   if (isset($_SESSION['error_message'])) // controleren of er een foutmelding is;
   {

@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris</title>
-    <style>.zoekresultaat_container {
+    <style>
+    
+.zoekresultaat_container {
   margin-top: 1em;
   display: flex;
 }
@@ -46,6 +48,7 @@
 
 .apparaat:hover{
   background-color: #b1b1b1cf;
+  transition-duration: 0.5s;
 }
 
 .apparaat a {

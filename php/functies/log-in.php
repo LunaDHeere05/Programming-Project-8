@@ -6,21 +6,13 @@ session_start(); // Start session
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gebruikersnaam = $_POST['gebruikersnaam'];
     $wachtwoord = $_POST['wachtwoord']; // Get password from user input
-    $user = $_POST['user'];
-    $_SESSION['gebruikersnaam'] = $gebruikersnaam;
+   
     
     // Check if the user exists in the database
     $query = '';
     $hashed_password = ''; // Initialize hashed password variable
-    
-    if ($user == "docent") {
-        $query = 'SELECT * FROM DOCENT WHERE email=? LIMIT 1';
-        $_SESSION['user'] = $user;
-    } else if ($user == "student") {
-        $query = 'SELECT * FROM STUDENT WHERE email=? LIMIT 1';
-        $_SESSION['user'] = $user;
-    }
 
+    $query = 'SELECT * FROM PERSOON WHERE email=? LIMIT 1';
     $stmt = $conn->prepare($query);
 
     if (!$stmt) {
@@ -42,18 +34,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = $row['wachtwoord']; // Get hashed password from database
         // Verify if entered password matches hashed password
         if (password_verify($wachtwoord, $hashed_password)) {
+            $_SESSION['gebruikersnaam'] = $gebruikersnaam; 
+            $_SESSION['userType'] = $row['rol'];
             // Redirect user to Home.php if login is successful
             header("Location: ../Home.php");
-            exit;
         } else {
             $_SESSION['error_message'] = 'Ongeldig wachtwoord';
             header("Location: ../Profiel.php");
-            exit;
         }
     } else {
         $_SESSION['error_message'] = 'Ongeldig emailadres';
         header("Location: ../Profiel.php");
-        exit;
     }
 
     // Close statement

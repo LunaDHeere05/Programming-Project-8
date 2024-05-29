@@ -77,10 +77,10 @@
     <form method="post">
     <div class="radio-group">
             <label>
-                <input  id="studentButton" type="radio" name="email_type" value="student" required>Student
+                <!-- <input  id="studentButton" type="radio" name="email_type" value="student" required>Student -->
             </label>
             <label>
-                <input id="docentButton" type="radio" name="email_type" value="docent" required>Docent
+                <!-- <input id="docentButton" type="radio" name="email_type" value="docent" required>Docent -->
             </label>
         </div>
       <div class="uitlening_toe">

@@ -213,10 +213,11 @@ include 'database.php';
                 }
             });
         });
-    });
+    });//end script
     </script>
 </head>
 <body>
+<?php include 'functies/Dashboard_zoeken.php' ?>
     <div class="rechter_grid">
         <div class="agenda_container">
             <h2>Mei</h2> <!-- De maand wordt hier geüpdatet door JavaScript -->

@@ -10,7 +10,7 @@ $end_date= $_POST['end_date'];
 $itemId= $_POST['itemId'];
 $aantal= $_POST['aantal'];
 
-$uitlening = "INSERT INTO UITLENING (uitleen_datum, inlever_datum,$userType) VALUES ('$start_date', '$end_date','$email')";
+$uitlening = "INSERT INTO UITLENING (uitleen_datum, inlever_datum, email) VALUES ('$start_date', '$end_date','$gebruikersnaam')";
 
 if (mysqli_query($conn, $uitlening)) {
     // Get the ID of the newly inserted row

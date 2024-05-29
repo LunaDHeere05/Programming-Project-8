@@ -39,6 +39,7 @@ nav{
 
 .linker_navigatie a:hover{
     color: #1BBCB6;
+    transition-duration: 0.5s;
 }
 
 .ehb_logo{
@@ -85,6 +86,7 @@ nav{
 
 .rechter_navigatie a:hover{
     filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+    transition-duration: 0.5s;
 }
 
     /*  zoekbalk */
@@ -283,40 +285,48 @@ gap:2em;
 .hidden{
     left: -99999px !important;
     display: none;
+    visibility: hidden;
 }
 body.blur > *:not(#winkelmand_popup):not(#close_window) {
         filter: blur(50px);
         pointer-events: none;
 }
 
-.login{
+/* .login{
     margin-left:1em;
-}
+} */
 
 button{
     cursor: pointer;
 }
 #uitloggen{
     background-color: black;
-    width: 10%;
-    height: 5em;
+    flex: 0 1 auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     position: absolute;
     top: 4em;
     right: 0;
-}
-#uitloggen a{
-    margin: auto;
-}
-#uitloggen a button{
-    width: 100%;
-    background-color: transparent;
     color: white;
+    padding:1em 20px;
+}
+
+#uitloggen a button{
+    background-color: transparent;
     font-weight: bold;
+    padding-top:10px;
     font-size: 20px;
+    color: white;
     border: none;
 }
+
+#uitloggen .gebruikersnaam{
+    border-bottom:1px solid white;
+    padding-bottom:1em;
+}
+
 </style>
 <nav>
     <div id="medialab">
@@ -350,7 +360,7 @@ button{
             <option value="video">Video</option>
             <option value="xr">XR</option>
         </select>
-        <form action="zoeken.php" method="GET" id="zoeken_functie">
+        <form action="Inventaris.php" method="GET" id="zoeken_functie">
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ..." name="zoek_query">
         <input type="submit" value="">
         </form>
@@ -358,16 +368,6 @@ button{
 </div>
 
 <div id="winkelmand_popup" class="hidden">
-<?php
-    if (isset($_SESSION['gebruikersnaam'])) {
-        $email = $_SESSION['gebruikersnaam'];
-        // Winkelmand initialiseren
-        echo "<script>
-            localStorage.setItem('winkelmand', JSON.stringify([]));
-        </script>";
-    }
-    ?>
-
 
     <div class='title'>
     <h1>Winkelmand</h1>
@@ -380,7 +380,7 @@ button{
 </div>
 
 <div id="uitloggen" class="hidden">
-    <a href="functies\uitlog.php"><button><p>Log out</p></button></a>
+    <a id='log-functie'><button><p id='log-message'></p></button></a>   
 </div>
 <script>
 document.getElementById('winkelmand').addEventListener('click', function(){
@@ -398,6 +398,7 @@ document.getElementById('close_window').addEventListener('click', function(){
 document.getElementById('uitlog_icoon').addEventListener('click', function(){
     document.getElementById('uitloggen').classList.toggle('hidden');
 });
+
 let link=document.getElementsByClassName('link')
 //nav wordt blauw op page die open is 
 for(let i=0;i<link.length;i++){
@@ -411,71 +412,92 @@ for(let i=0;i<link.length;i++){
     }
 }
 
-let mandje= document.getElementById('winkelmand_items');
 
-document.getElementById('winkelmand').addEventListener('click',function(){
-for (item of winkelmand) {
-    let itemDiv = document.createElement('div');
-    itemDiv.classList = 'item';
-    itemDiv.classList.add(item[item.naam]);
-    mandje.append(itemDiv);
+//log-in en log-out functies
+<?php 
+if(isset($gebruikersnaam)){
+    echo "
+    let gebruikersnaam = document.createElement('p');
+    gebruikersnaam.classList='gebruikersnaam';
+    gebruikersnaam.textContent= '".$gebruikersnaam."';
+    document.getElementById('log-functie').before(gebruikersnaam)
 
-    let itemImg = document.createElement('img');
-    itemImg.classList = 'item_foto';
-    itemImg.src = item.imageSrc;
-    itemDiv.append(itemImg);
-
-    let table = document.createElement('table');
-
-    // Header row
-    let headerRow = document.createElement('tr');
-    let naamHeader = document.createElement('th');
-    naamHeader.textContent = 'Naam';
-    headerRow.appendChild(naamHeader);
-
-    let datumHeader = document.createElement('th');
-    datumHeader.textContent = 'Datum';
-    headerRow.appendChild(datumHeader);
-
-    let aantalHeader = document.createElement('th');
-    aantalHeader.textContent = 'Aantal';
-    headerRow.appendChild(aantalHeader);
-
-    table.appendChild(headerRow);
-
-    // Data rows
-    let dataRow = document.createElement('tr');
-    let naamData = document.createElement('td');
-    naamData.textContent = item.naam;
-    dataRow.appendChild(naamData);
-
-    let datumData = document.createElement('td');
-    datumData.textContent = 'Van ' + item.start + ' tot ' + item.end;
-    dataRow.appendChild(datumData);
-
-    let aantalData = document.createElement('td');
-    aantalData.textContent = item.aantal;
-    dataRow.appendChild(aantalData);
-
-    table.appendChild(dataRow);
-
-    itemDiv.appendChild(table);
-
-    let itemKruis = document.createElement('img');
-    itemKruis.classList = 'item_kruis';
-    itemKruis.src = "images/svg/xmark-solid.svg" ;
-    itemDiv.append(itemKruis);
+    document.getElementById('log-message').textContent = 'Log uit';
+    document.getElementById('log-functie').href = 'functies/uitlog.php';
+    ";
+} else {
+    echo "
+    document.getElementById('log-message').textContent = 'Log in';
+    document.getElementById('log-functie').href = 'Profiel.php';
+    ";
 }
-})
+?>
+
+// let mandje= document.getElementById('winkelmand_items');
+
+// document.getElementById('winkelmand').addEventListener('click',function(){
+// for (item of winkelmand) {
+//     let itemDiv = document.createElement('div');
+//     itemDiv.classList = 'item';
+//     itemDiv.classList.add(item[item.naam]);
+//     mandje.append(itemDiv);
+
+//     let itemImg = document.createElement('img');
+//     itemImg.classList = 'item_foto';
+//     itemImg.src = item.imageSrc;
+//     itemDiv.append(itemImg);
+
+//     let table = document.createElement('table');
+
+//     // Header row
+//     let headerRow = document.createElement('tr');
+//     let naamHeader = document.createElement('th');
+//     naamHeader.textContent = 'Naam';
+//     headerRow.appendChild(naamHeader);
+
+//     let datumHeader = document.createElement('th');
+//     datumHeader.textContent = 'Datum';
+//     headerRow.appendChild(datumHeader);
+
+//     let aantalHeader = document.createElement('th');
+//     aantalHeader.textContent = 'Aantal';
+//     headerRow.appendChild(aantalHeader);
+
+//     table.appendChild(headerRow);
+
+//     // Data rows
+//     let dataRow = document.createElement('tr');
+//     let naamData = document.createElement('td');
+//     naamData.textContent = item.naam;
+//     dataRow.appendChild(naamData);
+
+//     let datumData = document.createElement('td');
+//     datumData.textContent = 'Van ' + item.start + ' tot ' + item.end;
+//     dataRow.appendChild(datumData);
+
+//     let aantalData = document.createElement('td');
+//     aantalData.textContent = item.aantal;
+//     dataRow.appendChild(aantalData);
+
+//     table.appendChild(dataRow);
+
+//     itemDiv.appendChild(table);
+
+//     let itemKruis = document.createElement('img');
+//     itemKruis.classList = 'item_kruis';
+//     itemKruis.src = "images/svg/xmark-solid.svg" ;
+//     itemDiv.append(itemKruis);
+// }
+// })
 
 
-//item verwijderen uit WM
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('item_kruis')) {
-        console.log('kruis');
-        console.log(e.target.parentElement); 
-    }
-});
+// //item verwijderen uit WM
+// document.addEventListener('click', function(e) {
+//     if (e.target.classList.contains('item_kruis')) {
+//         console.log('kruis');
+//         console.log(e.target.parentElement); 
+//     }
+// });
 
 
 
