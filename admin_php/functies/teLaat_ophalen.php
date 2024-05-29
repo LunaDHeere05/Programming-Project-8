@@ -2,49 +2,50 @@
 include 'database.php';
 
 // Query to get the required data
-$query = "SELECT s.email, 
-                 GROUP_CONCAT(w.WaarschuwingType SEPARATOR ' - ') AS blacklistReasons, 
-                 DATEDIFF(CURDATE(), MAX(w.waarschuwingDatum)) AS daysOnBlacklist,
-                 COUNT(w.waarschuwing_id) AS warningCount
-          FROM STUDENT s
-          JOIN WAARSCHUWING w ON s.email = w.emailStudent
-          GROUP BY s.email
-          HAVING warningCount < 2 AND daysOnBlacklist <= 90
-          WHERE waarschuwingsType = 'Te laat'.
-          ORDER BY daysOnBlacklist DESC";
+$query = "SELECT p.email, waarschuwingDatum AS datum,
+                 w.exemplaar_item_id
+          FROM PERSOON p
+          JOIN WAARSCHUWING w ON p.email = w.email
+          WHERE w.waarschuwingsType = 'Te laat' AND p.rol='student'
+          ";
 
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+
+        $queryItemNaam="SELECT i.item_id, i.naam, i.merk FROM ITEM i
+        JOIN EXEMPLAAR_ITEM ei on ei.item_id=i.item_id
+        WHERE ei.exemplaar_item_id=".$row['exemplaar_item_id']."
+        ";
+
+        $itemNaam = mysqli_query($conn, $queryItemNaam);
+        $itemNaamRow = mysqli_fetch_assoc($itemNaam);
+
+        if($itemNaamRow){
+
+            $huidigeDatum = new DateTime();
+            $waarschuwingDatum = new DateTime($row['datum']);
+
+            $verschil = $huidigeDatum->diff($waarschuwingDatum)->days;
+
+
+
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['blacklistReasons']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $itemNaamRow['merk'] ." - ". $itemNaamRow['naam']. "</td>";
+        echo "<td>" . $verschil . "</td>";
         echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
+
+        }else{
+         echo "Er zijn momenteel geen studenten te laat met het inleveren van hun uitlening(en). ";
+        }
     }
 } else {
-    echo "Er staan momenteel geen studenten op de blacklist. ";
+    echo "Er zijn momenteel geen studenten te laat met het inleveren van hun uitlening(en). ";
 }
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['verwijderButton'])) {
-        $email = $_POST['email'];
 
-        $verwijderquery = "DELETE FROM WAARSCHUWING WHERE emailStudent = ?";
-        $stmt = $conn->prepare($verwijderquery);
-        $stmt->bind_param("s", $email);
-
-        if ($stmt->execute()) {
-            echo "Student is verwijderd van de blacklist";
-        } else {
-            echo "Er is iets fout gegaan: " . $stmt->error;
-        }
-        $stmt->close();
-
-        echo "$email is verwijderd van de blacklist.";
-    }
-}
 
 
 // Close the database connection

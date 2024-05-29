@@ -52,11 +52,8 @@
                     <th>Dagen te laat</th>
                     <th>Meer info</th>
                 </tr>
-                <tr>
-                    <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
-                    <td>USB-C</td>
-                    <td>5</td>
-                    <td><a href="#"><img src="images/svg/circle-info-solid.svg" alt=""></a></td>
-                </tr>
+          <?php include 'functies/teLaat_ophalen.php' ?>
+
+               
             </table>
         </div>
