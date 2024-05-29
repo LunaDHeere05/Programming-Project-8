@@ -5,12 +5,12 @@ if (isset($_GET['zoekButton'])) {
     $zoek_query = $_GET['zoekquery'];
     if (!empty($zoek_query)) { // Controleer of de zoekopdracht niet leeg is
         $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
-        $zoek_resultaat = "SELECT * FROM WAARSCHUWING WHERE (email = '$zoek_query' OR exemplaar_item_id = '$zoek_query') AND waarschuwingType = 'Te laat.'";
+        $zoek_resultaat = "SELECT * FROM WAARSCHUWING WHERE (email LIKE '$zoek_query%' OR exemplaar_item_id = '$zoek_query') AND waarschuwingsType = 'Te laat'";
         $zoek_uitvoering_resultaat = mysqli_query($conn, $zoek_resultaat);
 
         if ($zoek_uitvoering_resultaat) {
             if (mysqli_num_rows($zoek_uitvoering_resultaat) > 0) {
-                $result = mysqli_fetch_assoc($zoek_uitvoering_resultaat);
+              
                 echo "<div class='result_tabel'>";
                 echo "<table>";
                 echo " <th>E-mail</th>";
@@ -18,9 +18,11 @@ if (isset($_GET['zoekButton'])) {
                 echo " <th>Dagen te laat</th>";
                 echo " <th>Meer info</th>";
                 echo "<tr>";
+                while($result = mysqli_fetch_assoc($zoek_uitvoering_resultaat)){;
                 echo "<td>" . htmlspecialchars($result['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($result['exemplaar_item_id']) . "</td>";
                 echo "<td>" . htmlspecialchars($result['waarschuwingDatum']) . "</td>";
+              }
                 echo "</tr>";
                 echo "</table>";
                 echo "</div>";
@@ -28,6 +30,7 @@ if (isset($_GET['zoekButton'])) {
                 echo ".te_laat_tabel{
                     display: none;}";
                 echo "</style>";
+             
             } else {
                 echo "Geen resultaten gevonden";
             }
