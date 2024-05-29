@@ -113,7 +113,7 @@ right: 20%;
         <!-- container box  -->
         <?php include 'functies\kits_ophalen.php'?>
         <div class="kit_add">
-            <a href="">kit toevoegen</a>
+            <a href="KitToevoegen.php">kit toevoegen</a>
         </div>
       </div>
     </div>

@@ -60,7 +60,7 @@ if (isset($_GET['zoekButton'])) {
                     echo "<a href='functies\kit_verwijderen.php?kit_id=" . $kit_id . "'>Verwijder kit<img src='images/svg/circle-xmark-solid.svg' alt='xmark' /></a>";
                     echo '</div>';
                     echo '<div class="kit_wijzig_kit">';
-                    echo '<a href="">Wijzig kit <img src="images/svg/pen-to-square-regular.svg" alt="" /></a>';
+                    echo '<a href="KitWijzigen.php">Wijzig kit <img src="images/svg/pen-to-square-regular.svg" alt="" /></a>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -135,7 +135,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<a href='functies\kit_verwijderen.php?kit_id=" . $kit_id . "'>Verwijder kit<img src='images/svg/circle-xmark-solid.svg' alt='xmark' /></a>";
     echo '</div>';
     echo '<div class="kit_wijzig_kit">';
-    echo '<a href="">Wijzig kit <img src="images/svg/pen-to-square-regular.svg" alt="" /></a>';
+    echo '<a href="Kitwijzigen.php?kit_id='.$kit_id.'">Wijzig kit <img src="images/svg/pen-to-square-regular.svg" alt="" /></a>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
