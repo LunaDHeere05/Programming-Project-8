@@ -46,11 +46,19 @@
         border-radius: 1em;
         cursor:pointer;
         position: relative;
+    transition: transform 0.5s ease; 
+
+}
+
+.favoriet_apparaat a{
+  text-decoration: none;
+  color:black;
 }
 
 .favoriet_apparaat:hover{
         background-color: #cfcfcfcf;
-        transition-duration: 0.5s;
+        transition: transform 0.5s ease; 
+    
     }
 
     .favoriet_apparaat .mijnFavorieteApparaat_foto {
@@ -59,10 +67,6 @@
         background-color: white;
         margin-top: 1em;
     }
-
-
-
-
 
 .text_apparaat{
   text-align: center;
@@ -77,7 +81,7 @@
   filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg)
     brightness(103%) contrast(79%);
 }
-.verwijder_btn{
+.fav_kruis{
   width: 1.5em;
   position: absolute;
   top: 0.5em;
@@ -97,17 +101,27 @@
     </div>
     <?php include("footer.php") ?> 
     <script>    
-      <?php     echo '
-    console.log( document.querySelectorAll(".verwijder_btn"));
+//verwijderen van items in winkelmand
+document.addEventListener('click',function(e){
 
-    for(let i = 0; i<document.querySelectorAll(".favoriet_apparaat").length; i++){
-    document.querySelectorAll(".verwijder_btn")[i].addEventListener("click", function() {';
-    
-        $delete_items_query = "DELETE FROM FAVORIETE_ITEMS WHERE item_id = ".$exemplaren_row['item_id']."";
-        $delete_items_result = mysqli_query($conn, $delete_items_query);  
-        
-    echo '})'
-      ?>
+if(e.target.classList.contains('fav_kruis')){
+  let formData = new FormData();
+  console.log(e.target.id)
+  formData.append('itemId', e.target.id);
+
+fetch('functies/favorietenlijstVerwijderen.php', {
+      method: 'POST',
+      body: formData
+    }).then(response => response.text())
+    .then(data => {
+    e.target.parentElement.parentElement.style.transform='translateX(1000px)'; 
+    setTimeout(() => { 
+      window.location.reload();
+    }, 200)
+})
+
+}
+})
 </script>
 
 </body>

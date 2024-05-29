@@ -1,6 +1,7 @@
 <?php
 include 'database.php';
 
+
 $zoek_query = isset($_GET['zoek_query']) ? $_GET['zoek_query'] : '';
 
 if (!empty($zoek_query)) {
@@ -79,9 +80,28 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
 
                 echo "<img style='filter: $availability_filter;' src='$image' alt='Availability Icon'>";
                 echo "</div>";
-        
+
+        //checken of het apparaat in de favorietenlijst van de user zit
+
+        $imageFav='images/svg/heart-regular.svg';
+
+        if(isset($gebruikersnaam)){
+        $favorietenQuery="SELECT * FROM FAVORIETE_ITEMS fi
+        JOIN FAVORIETENLIJST f on f.fav_id=fi.fav_id
+        WHERE f.email='$gebruikersnaam' and fi.item_id=" . $row_item['item_id'] . "";
+
+        $favorietenQuery_result=mysqli_query($conn,$favorietenQuery);
+
+        if(mysqli_num_rows($favorietenQuery_result)>0){
+            $imageFav='images/svg/heart-solid.svg';
+        }
+
+        }
                 echo "<div class='toevoegen'>";
-                echo '<form action="/Favorietenlijst.php"method="post"> <input type="hidden" name=" " id=" " value=""> <button class="favoriet"><img src="images/svg/heart-regular.svg" alt="Favorietenlijst"></button></form>';
+                echo '<form action="functies/wijzigenFavorieten.php" method="POST">';
+                echo '<input type="hidden" name="itemId" value='. $row_item['item_id'] .'>';
+                echo "<button class='favoriet' type='submit'><img src='$imageFav' alt='Favorietenlijst'></button>";
+                echo "</form>";
                 echo "</div>";
                 echo "</a>";
                 echo "</li>";

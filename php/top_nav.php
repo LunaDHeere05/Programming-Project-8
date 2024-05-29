@@ -309,7 +309,7 @@ body.blur > *:not(#winkelmand_popup):not(#close_window) {
     color:grey;
     display:flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     flex:1 0 basis;
     gap:1em;
