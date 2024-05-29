@@ -235,6 +235,7 @@ gap:2em;
     justify-content: space-between;
     gap:0.5em;
     align-items: center;
+    transition: transform 0.5s ease; 
 
 }
 
@@ -244,22 +245,32 @@ gap:2em;
 
 #winkelmand_popup table{
     text-align: center;
+    border-collapse: collapse;
   }
 
 #winkelmand_popup table th{
     color:#b1b1b1cf;
-    font-size: 120%;
+    font-size: 120%;}
+
+#winkelmand_popup table th, #winkelmand_popup table td{
+    border-right:3px solid #b1b1b1cf;
+   
 }
 
+#winkelmand_popup table th:last-child, #winkelmand_popup table td:last-child{
+    border:none;
+}
+
+#winkelmand_popup table th{
+    padding: 5px;
+}
 
 #winkelmand_popup .item_foto{
-    width: 20%;
-    height: auto;
+    width: 10em;
+    height: 10em;
     cursor: pointer;
     background-color: white;
-    border-radius: 2em;
-    margin: none;
-
+    border-radius: 0.5em;
 }
 #winkelmand_popup form{
     display: flex;
@@ -270,6 +281,7 @@ gap:2em;
     background-color: #1BBCB6;
     border-radius: 2em;
     padding: 0.5em;
+    cursor: pointer;
 }
 
 #winkelmand_popup form input{
@@ -280,6 +292,7 @@ gap:2em;
     cursor: pointer;
     color: white;
     font-size: 18px;
+
 }
 
 .hidden{
@@ -292,6 +305,23 @@ body.blur > *:not(#winkelmand_popup):not(#close_window) {
         pointer-events: none;
 }
 
+.emptyCart{
+    color:grey;
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    flex:1 0 basis;
+    gap:1em;
+ 
+}
+
+.emptyCart img{
+    height:15em;
+    margin:0;
+    padding:0;
+}
+
 /* .login{
     margin-left:1em;
 } */
@@ -300,7 +330,7 @@ button{
     cursor: pointer;
 }
 #uitloggen{
-    background-color: black;
+    background-color: #b1b1b1cf;
     flex: 0 1 auto;
     display: flex;
     flex-direction: column;
@@ -310,11 +340,12 @@ button{
     top: 4em;
     right: 0;
     color: white;
+    font-weight: bold;
     padding:1em 20px;
 }
 
 #uitloggen a button{
-    background-color: transparent;
+    background-color: #b1b1b1cf;
     font-weight: bold;
     padding-top:10px;
     font-size: 20px;
@@ -323,7 +354,7 @@ button{
 }
 
 #uitloggen .gebruikersnaam{
-    border-bottom:1px solid white;
+    border-bottom:1px solid #edededcf;
     padding-bottom:1em;
 }
 
@@ -373,10 +404,10 @@ button{
     <h1>Winkelmand</h1>
     <img src="images/svg/xmark-solid.svg" alt="sluit venster" id="close_window">
     </div>
-    <div id="winkelmand_items"></div>
-    <form>
-        <input type="submit" value="Reserveer nu">
-    </form>
+    <div id="winkelmand_items">
+        <?php include 'functies/winkelmandItems.php'?>
+    </div>
+  
 </div>
 
 <div id="uitloggen" class="hidden">
@@ -412,6 +443,30 @@ for(let i=0;i<link.length;i++){
     }
 }
 
+//verwijderen van items in winkelmand
+document.addEventListener('click',function(e){
+
+  if(e.target.classList.contains('item_kruis')){
+    let formData = new FormData();
+    console.log(e.target.id)
+    formData.append('itemId', e.target.id);
+
+  fetch('functies/winkelmandVerwijderen.php', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.text())
+      .then(data => {
+      e.target.parentElement.style.transform='translateX(1000px)'; 
+      setTimeout(() => { 
+        window.location.reload();
+      }, 150)
+})
+
+  }
+})
+  ;
+
+
 
 //log-in en log-out functies
 <?php 
@@ -432,77 +487,5 @@ if(isset($gebruikersnaam)){
     ";
 }
 ?>
-
-// let mandje= document.getElementById('winkelmand_items');
-
-// document.getElementById('winkelmand').addEventListener('click',function(){
-// for (item of winkelmand) {
-//     let itemDiv = document.createElement('div');
-//     itemDiv.classList = 'item';
-//     itemDiv.classList.add(item[item.naam]);
-//     mandje.append(itemDiv);
-
-//     let itemImg = document.createElement('img');
-//     itemImg.classList = 'item_foto';
-//     itemImg.src = item.imageSrc;
-//     itemDiv.append(itemImg);
-
-//     let table = document.createElement('table');
-
-//     // Header row
-//     let headerRow = document.createElement('tr');
-//     let naamHeader = document.createElement('th');
-//     naamHeader.textContent = 'Naam';
-//     headerRow.appendChild(naamHeader);
-
-//     let datumHeader = document.createElement('th');
-//     datumHeader.textContent = 'Datum';
-//     headerRow.appendChild(datumHeader);
-
-//     let aantalHeader = document.createElement('th');
-//     aantalHeader.textContent = 'Aantal';
-//     headerRow.appendChild(aantalHeader);
-
-//     table.appendChild(headerRow);
-
-//     // Data rows
-//     let dataRow = document.createElement('tr');
-//     let naamData = document.createElement('td');
-//     naamData.textContent = item.naam;
-//     dataRow.appendChild(naamData);
-
-//     let datumData = document.createElement('td');
-//     datumData.textContent = 'Van ' + item.start + ' tot ' + item.end;
-//     dataRow.appendChild(datumData);
-
-//     let aantalData = document.createElement('td');
-//     aantalData.textContent = item.aantal;
-//     dataRow.appendChild(aantalData);
-
-//     table.appendChild(dataRow);
-
-//     itemDiv.appendChild(table);
-
-//     let itemKruis = document.createElement('img');
-//     itemKruis.classList = 'item_kruis';
-//     itemKruis.src = "images/svg/xmark-solid.svg" ;
-//     itemDiv.append(itemKruis);
-// }
-// })
-
-
-// //item verwijderen uit WM
-// document.addEventListener('click', function(e) {
-//     if (e.target.classList.contains('item_kruis')) {
-//         console.log('kruis');
-//         console.log(e.target.parentElement); 
-//     }
-// });
-
-
-
-
-
-
 
 </script>

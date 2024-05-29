@@ -39,6 +39,6 @@ if (isset($gebruikersnaam)) {
         echo "No item found with item_id $item_id";
     }
 }
-mysqli_close($conn);
+
 
 ?>

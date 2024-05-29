@@ -76,6 +76,5 @@ if(isset($_GET['apparaat_id'])){
 }
 
 
-       
-mysqli_close($conn);
+
 ?>

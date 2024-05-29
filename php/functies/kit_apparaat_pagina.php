@@ -49,5 +49,5 @@ else{
     echo '<p>Geen kits gevonden voor dit apparaat.</p>';
 }
 
-mysqli_close($conn);
+
 ?>

@@ -84,7 +84,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         list-style: none;
         margin:1em;
         padding:0;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
     }
 
@@ -116,6 +116,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         height: 10em;
         background-color: white;
         margin-top: 1em;
+        padding:10px;
     }
 
     /* Hoe leen je iets uit? */
@@ -233,7 +234,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     let title = document.createElement('h2');   
     container.appendChild(title);
         if(arrayOfItems){
-            console.log(arrayOfItems);
+        
         //code gegenereerd door chatGPT - only for design purposes;
     
         let currentNameIndex = 0;

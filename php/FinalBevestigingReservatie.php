@@ -75,38 +75,79 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 </div>
 <p class="bevestig">Deze items werden <b>succesvol</b> gereserveerd. Check je inbox voor een bevestigingsmail.</p>
 <div class="item_info_container">
-    <div class="item_info">
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
+   
         <?php 
 
- 
-    $reservering_info = $_SESSION['reservering_info'];
 
-    $query = "SELECT naam, merk FROM ITEM WHERE item_id={$reservering_info['itemId']}";
-    
+    if (isset($_SESSION['reservering_info'])){
+    foreach ($_SESSION['reservering_info'] as $reservering) {
+    $query = "SELECT i.*, COUNT(i.item_id) as aantal, u.uitleen_datum, u.inlever_datum
+    FROM UITGELEEND_ITEM ui 
+    JOIN EXEMPLAAR_ITEM ei on ei.exemplaar_item_id=ui.exemplaar_item_id 
+    JOIN ITEM i on i.item_id=ei.item_id 
+    JOIN UITLENING u on u.uitleen_id=ui.uitleen_id 
+    WHERE u.uitleen_id={$reservering['uitleen_id']}
+    GROUP BY i.item_id;";
+
     $query_result = mysqli_query($conn, $query);
 
-    if ($query_result) {
-        $item_row = mysqli_fetch_assoc($query_result);
-        $item_naam = $item_row['naam'];
-        $item_merk = $item_row['merk'];
-        $start_datum = $reservering_info['start_date'];
-        $eind_datum = $reservering_info['end_date'];
-        $aantal = $reservering_info['aantal'];
+    while ($query_result && $item_row = mysqli_fetch_assoc($query_result)) {
 
-        echo "<h2>" . $item_merk. ' - ' . $item_naam . "</h2>";
-        echo '<p class="data"> Van ' . $start_datum->format('d-m-Y')  . ' tot ' . $eind_datum->format('d-m-Y') . ' </p>';
+        $startDate=new dateTime($item_row['uitleen_datum']);
+        $startDateString=$startDate->format('d-m-Y');
 
-        echo '<h3>Aantal: '.$aantal .'</h3>';
+        $endDate=new dateTime($item_row['inlever_datum']);
+        $endDateString=$endDate->format('d-m-Y');
 
-
-        $mail_onderwerp = "Bevestiging reservatie";
-        $mail_body = "Beste,\n\nUw reservering is succesvol geplaatst.\n\nDetails van uw reservering:\n\n Item: $item_merk - $item_naam\n Aantal: $aantal\n Startdatum: " . $start_datum->format('d-m-Y') . "\n Einddatum: " . $eind_datum->format('d-m-Y') . "\n\nBedankt voor uw reservering.";
-        include 'functies/mail.php';
+        echo '<div class="item_info">';
+        echo '   <img src="'. $item_row['images'] . '" alt="foto apparaat">';
+        echo "<h2>" . $item_row['merk'] . ' - ' . $item_row['naam'] . "</h2>";
+        echo '<p class="data"> Van '. $startDateString . '  tot '. $endDateString . '</p>';
+        echo '<h3>Aantal: '. $item_row['aantal'] . ' </h3>';
+        echo '</div>';
     }
+        
+    }
+    }
+
+
+
+
+    // $reservationDetails = '';
+    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //     foreach ($_POST['items'] as $item) {
+    //         $itemId = $item['item_id'];
+    //         $startDate = $item['start_date'];
+    //         $endDate = $item['end_date'];
+    //         $aantal = $item['quantity'];
+
+    //         $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
+    //         $query_result = mysqli_query($conn, $query);
+
+    //         if ($query_result) {
+    //             $item_row = mysqli_fetch_assoc($query_result);
+                
+    //             $reservationDetails .= "Item: " . $item_row['merk'] . ' - ' . $item_row['naam'] . "\n";
+    //             $reservationDetails .= "Aantal: $aantal\n";
+    //             $reservationDetails .= "Startdatum: " . date('d-m-Y', strtotime($startDate)) . "\n";
+    //             $reservationDetails .= "Einddatum: " . date('d-m-Y', strtotime($endDate)) . "\n\n";
+    //         } else {
+    //             echo "Fout bij het ophalen van de itemgegevens.";
+    //         }
+    //     }
+    // }
+    // if (!empty($reservationDetails)) {
+    //     $email = $_SESSION['email'];
+    //     $to = $email;
+    //     $subject = "Bevestiging reservatie";
+    //     $message = "Beste,\n\nUw reservering is succesvol geplaatst.\n\nDetails van uw reservering:\n\n$reservationDetails\nBedankt voor uw reservering.";
+    //     $headers = "From: no-reply@yourdomain.com";
+        
+    //     mail($to, $subject, $message, $headers);
+    // }
         ?>
  
-    </div>
+  
 </div>
 <?php include 'footer.php'?>
 </body>

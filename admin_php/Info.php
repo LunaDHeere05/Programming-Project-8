@@ -1,3 +1,7 @@
+<?php
+include 'database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,9 +188,71 @@ margin: 0em 1em 0em 1em;
 .info-defect{
     margin: 2em 0em 1em 3em;
 }  
+
+#editableTable td, #editableTable th {
+    text-align: center;
+}
+
+.info-opening-hours{
+    margin: 1em 0em 1em 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: rgb(193, 193, 193) 4px solid;
+    border-radius: 1em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.info-opening-hours table {
+    margin: auto;
+    width: 80%;
+    border-collapse: collapse;
+}
+#save-button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    background-color: #1bbcb6;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 2em;
+    margin-bottom: 1em;
+
+}
+
+
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    var table = document.querySelector('#editableTable');
+    var changes = [];
+
+    table.addEventListener('blur', function(e) {
+        var target = e.target;
+        if (target.contentEditable === 'true') {
+            var row = target.parentElement;
+            var data = {
+                dagen: row.children[0].textContent,
+                begin_uren: row.children[1].textContent,
+                eind_uren: row.children[2].textContent
+            };
+            changes.push(data);
+        }
+    }, true);
+
+    document.getElementById('save-button').addEventListener('click', function() {
+        changes.forEach(function(data) {
+            $.post('functies/InfoUpdate.php', data);
+        });
+        changes = []; // Clear the changes
+    });
+});
+  </script>
 <div class="info_uitleen_uitleg">
       <h2>Hoe leen je iets uit?</h2>
       <ul>
@@ -215,44 +281,28 @@ margin: 0em 1em 0em 1em;
           <h3>Stap 4 <a href=""><img src="../images/svg/pen-to-square-regular.svg" alt=""></a></h3>
           <p>Haal het gereserveerde apparaat op in het medialab!</p>
         </li>
-      </ul>
+      l>
     </div>
 
     <!-- openings hours  -->
     <div class="info-opening-hours">
       <h1>Openingsuren <a href=""><img src="../images/svg/pen-to-square-regular.svg" alt=""></a></h1>
-      <table>
-        <tr>
-          <th>Maandag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
-        </tr>
-        <tr>
-          <th>Dinsdag</th>
-          <td>/</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <th>Woensdag</th>
-          <td>/</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <th>Donderdag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
-        </tr>
-        <tr>
-          <th>Vrijdag</th>
-          <td>10:00 - 12:00</td>
-          <td>12:30 - 17:00</td>
-        </tr>
-        <tr>
-          <th>Weekend</th>
-          <td>/</td>
-          <td>/</td>
-        </tr>
-      </table>
+      <?php
+      $sql = "SELECT * FROM OPENINGSTIJDEN ORDER BY FIELD(dagen, 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag')";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+          echo "<table id='editableTable'><tr><th>DAG</th><th>OPENINGSUUR</th><th>SLUITINGSUUR</th></tr>";
+          while($row = $result->fetch_assoc()) {
+              $begin_uren = $row["begin_uren"] === NULL ? 'Gesloten' : $row["begin_uren"];
+              $eind_uren = $row["eind_uren"] === NULL ? 'Gesloten' : $row["eind_uren"];
+              echo "<tr><td>" . $row["dagen"]. "</td><td contenteditable='true'>" . $begin_uren. "</td><td contenteditable='true'>" . $eind_uren. "</td></tr>";
+          }
+          echo "</table>";
+          echo "<button id='save-button'>Save Changes</button>";
+      } else {
+          echo "0 results";
+      }
+      ?>
     </div>
 
     <!-- sancties/defect  -->

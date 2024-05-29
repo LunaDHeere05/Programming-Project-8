@@ -6,6 +6,8 @@
     <title>Te laat</title>
     <?php include 'top_nav_admin.php'?>
     <style>
+
+
 .te_laat_tabel{
   width: 90%;
   text-align: center;
@@ -40,19 +42,17 @@
 </head>
 <body>
     <div class="rechter_grid">
+        <!-- <div class="zoeken_container">
+  </div> --> 
+
+    <!-- te laat tabel -->
         <div class="te_laat_tabel">
             <table>
-                <tr>
-                    <th>E-mail</th>
-                    <th>Apparaat</th>
-                    <th>Dagen te laat</th>
-                    <th>Meer info</th>
-                </tr>
-                <tr>
-                    <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
-                    <td>USB-C</td>
-                    <td>5</td>
-                    <td><a href="#"><img src="images/svg/circle-info-solid.svg" alt=""></a></td>
-                </tr>
+          <?php if(isset($_GET['zoekButton']))
+          {include 'functies/teLaat_zoeken.php';
+          }else {include 'functies/teLaat_ophalen.php';
+          } ?>
+
+               
             </table>
         </div>

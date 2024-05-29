@@ -61,12 +61,17 @@
       margin-top: 0.5em;
     }
 
+    .apparaat_beschrijving h1 {
+      color: grey;
+
+    }
+
     .beschrijving {
       padding: 0;
       margin: 0;
       font-weight: 300;
       margin-bottom: 1em;
-
+      color: grey;
     }
 
     .apparaat_beschrijving li {
@@ -466,7 +471,7 @@
     document.getElementById('item_id').value=itemId;
     // console.log(start_dateValue); 
 
-    // Startdatum sturen naar de PHP-file om 'aantal' te laten zien
+    // Startdatum sturen naar de PHP-file om  te checken hoeveel exemplaren van het item beschikbaar zijn
     fetch('functies/vrijeExemplaren.php', {
         method: 'POST',
         body: formData
@@ -504,7 +509,6 @@
   
       if ($userType == 'student') {
         echo "
-
         //student mag max. 2 weken vooraf reserveren:
         let maxDateUitlenen = new Date(datumUitlenen);
         maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
@@ -588,45 +592,35 @@ start_date.addEventListener('change', function() {
     }
   })
 })";
-      }
+      };   
+
     ?>
 
 
-
 //WINKELMAND
+document.getElementById('submitWinkelmand').addEventListener('click',function(e){
+  e.preventDefault()
 
-    //test
-    //localStorage.removeItem('winkelmand')
+  let itemId = <?php echo json_encode($item_id)?>;
 
-    //constructor voor items in winkelmand
-    function winkelmandItem(itemId,start,end,aantal,imageSrc, naam){
-      this.itemId=parseInt(itemId);
-      this.start=start;
-      this.end=end;
-      this.aantal=parseInt(aantal);
-      this.imageSrc=document.getElementById('imageSrc').src;
-      this.naam=document.getElementById('naamEnMerk').textContent;
-    }
-
-    //functie om items te pushen naar localStorage
-    function toevoegenWinkelmand(winkelmand){
-      let item=new winkelmandItem (item_id.value, start_date.value, end_date.value, quantity.value);
-      winkelmand.push(item);
-      localStorage.setItem('winkelmand', JSON.stringify(winkelmand));
-    }
-  
-    document.getElementById('submitWinkelmand').addEventListener('click',function(e){
-      e.preventDefault();
-      var winkelmand = JSON.parse(localStorage.getItem('winkelmand')) || [];
-      toevoegenWinkelmand(winkelmand)
-
-      //controle
-      console.log(winkelmand)
+  let formData = new FormData();
+    formData.append('startDate', document.getElementById('start_date').value);
+    formData.append('endDate', document.getElementById('end_date').value);
+    formData.append('itemId', itemId);
+    formData.append('aantal', document.getElementById('quantity').value);
+  console.log(formData)
+  fetch('functies/winkelmand.php', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.text())
+      .then(data => window.location.reload())
+    
+  });
 
 
-      //items laten zien in winkelmand
-      
-    })
+
+ 
+
 
 
    

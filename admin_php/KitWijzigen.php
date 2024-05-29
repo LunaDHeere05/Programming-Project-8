@@ -6,15 +6,16 @@
     <title>Defect</title>
     <?php include 'top_nav_admin.php'?>
     <style>
-        .kit_wijzig_toe{
+.kit_wijzig_toe{
+  width: 55%;
   display: flex;
   align-items: center;
-  margin: 1em;
+  margin: 1em auto;
   background-color: #D9D9D9;
   border-radius: 1.5em;
   padding: 0em 1em 0em 1em;
 }
-.kit_wijzig_toe p span{
+.kit_wijzig_toe input{
   background-color: #fff;
   padding: 0.5em;
   margin: 1em;
@@ -23,6 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
 }
 .kit_wijzig_container{
   display: flex;
@@ -32,7 +34,9 @@
   border: #D9D9D9;
   border-radius: 1em;
   padding: 1em;
-  margin: 1.5em;
+  margin: auto;
+  width: 80%;
+  margin-bottom: 1.5em;
 }
 .kit_wijzig_visueel_img img {
   background-color: #fff;
@@ -105,50 +109,11 @@ padding: 1em;
     </style>
 </head>
 <body>
-<div class="kit_wijzig_toe">
-          <h2>Naam van de kit:</h2>
-          <p><span>Video Kit GoPro hero 7</span></p>
-        </div>
-        <div class="kit_wijzig_container">
-          <div class="kit_wijzig_visueel_img">
-            <img
-              src="../images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
-              alt=""
-            />
-          </div>
-          <div class="kit_wijzig_informatie">
-            <h3>Naam: <span>Canon-M50</span></h3>
-            <h3>Apparaat-ID: <span>PO</span></h3>
-          </div>
-          <div class="kit_wijzig_verwijder">
-            <a href="">
-              Verwijder
-              <img src="../images/svg/circle-xmark-solid.svg" alt="" />
-            </a>
-          </div>
-        </div>
-        <div class="kit_wijzig_container">
-          <div class="kit_wijzig_visueel_img">
-            <img
-              src="../images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp"
-              alt=""
-            />
-          </div>
-          <div class="kit_wijzig_informatie">
-            <h3>Naam: <span>Canon-M50</span></h3>
-            <h3>Apparaat-ID: <span>PO</span></h3>
-          </div>
-          <div class="kit_wijzig_verwijder">
-            <a href="">
-              Verwijder
-              <img src="../images/svg/circle-xmark-solid.svg" alt="" />
-            </a>
-          </div>
-        </div>
+<?php include 'functies/kit_wijzigen.php'?>
         <div class="kit_toe_button">
           <div class="kit_toe_apparaat">
             <button type="submit">
-              Apparaat <img src="../images/svg/plus-solid.svg" alt="" />
+              Apparaat <img src="images/svg/plus-solid.svg" alt="" />
             </button>
           </div>
           <div class="kit_toe_opslaan">

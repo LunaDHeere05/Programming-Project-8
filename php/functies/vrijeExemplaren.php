@@ -3,58 +3,40 @@
 include '..\database.php';
 include '..\sessionStart.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
+    $start_date = $_POST['startDate'];
+    $end_date = $_POST['endDate'];
     $itemId = $_POST['itemId'];
 
 
     //beschikbaarheid checken
+    $vrijeExemplaren_query = "SELECT ei.exemplaar_item_id
+    FROM EXEMPLAAR_ITEM ei
+    WHERE ei.item_id = {$itemId}
+    AND NOT EXISTS (
+        SELECT 1
+        FROM UITGELEEND_ITEM ui
+        JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
+        WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+        AND (
+            (u.uitleen_datum <= '{$start_date}' AND u.inlever_datum >= '{$end_date}')
+            OR (u.uitleen_datum >= '{$start_date}' AND u.uitleen_datum < '{$end_date}')
+            OR (u.inlever_datum <= '{$end_date}' AND u.inlever_datum > '{$start_date}')
+            )
+        )
+    AND zichtbaarheid=1;
+    ";
 
-    $query="SELECT COUNT(exemplaar_item_id) as count FROM EXEMPLAAR_ITEM WHERE item_id={$itemId}";
-    $result = mysqli_query($conn, $query);
-    $result_row=mysqli_fetch_assoc($result);
-    
-    //we gaan er eerst van uit dat alle exemplaren van een item beschikbaar zijn
-    $aantalExemplaren = $result_row['count'];
- 
-    //dan gaan we checken hoeveel uitleningen van het item er deze week zijn en die aftrekken van $aantalExemplaren;
-    $uitgeleendeExemplaren_query = "SELECT 
-    ei.exemplaar_item_id, 
-    u.uitleen_datum, 
-    u.inlever_datum
-FROM 
-    UITGELEEND_ITEM ui
-LEFT JOIN 
-    UITLENING u ON ui.uitleen_id = u.uitleen_id
-LEFT JOIN 
-    EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
-WHERE 
-    ei.item_id = {$itemId}
-    AND (
-        (u.uitleen_datum <= '{$startDate}' AND u.inlever_datum >= '{$endDate}')
-        OR (u.uitleen_datum >= '{$startDate}' AND u.uitleen_datum < '{$endDate}')
-        OR (u.inlever_datum <= '{$endDate}' AND u.inlever_datum > '{$startDate}')
-    )
-";
-
+$vrijeExemplaren_result = mysqli_query($conn, $vrijeExemplaren_query);
 //eerste datum-conditie: controleert of een uitlening start op of vóór de beginperiode  en eindigt op of na de eindperiode
 //tweede datum-conditie:  controleert of een uitlening begint binnen de periode, dus na de startdatum maar vóór de einddatum.
 //derde datum-conditie: controleert of een uitlening eindigt op of vóór de eindatum en eindigt binnen de periode, dus na de startdatum
-    $uitgeleendeExemplaren_result = mysqli_query($conn, $uitgeleendeExemplaren_query);
-    $aantalExemplaren -= mysqli_num_rows($uitgeleendeExemplaren_result);
 
-    //we gaan ook checken of er exemplaren van het item onzichtbaar zijn. Indien dit het geval is, trekken we ze ook af van $aantalExemplaren
+$aantalExemplaren = mysqli_num_rows($vrijeExemplaren_result);
+echo $aantalExemplaren;
 
-    $onzichtbareExemplaren_query = "SELECT zichtbaarheid FROM EXEMPLAAR_ITEM WHERE zichtbaarheid=0;";
+$_SESSION['aantalExemplaren']=$aantalExemplaren;
 
-    $onzichtbareExemplaren_result = mysqli_query($conn, $onzichtbareExemplaren_query);
-    $aantalExemplaren -= mysqli_num_rows($onzichtbareExemplaren_result); 
-
-    echo $aantalExemplaren;
-
-    $_SESSION['aantalExemplaren']=$aantalExemplaren;
-
-    $aantal=$_SESSION['aantalExemplaren'];
+$aantal=$_SESSION['aantalExemplaren'];
 
     
 }
