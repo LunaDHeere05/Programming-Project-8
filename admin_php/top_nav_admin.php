@@ -101,7 +101,7 @@ nav {
 .zoeken_container{
   width: 90%;
   height: 3rem;
-  margin:auto 10px;
+  margin: auto 1em 1em 3em;
 }
 .zoeken form{
   display: flex;
