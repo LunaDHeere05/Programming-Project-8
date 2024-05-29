@@ -62,16 +62,37 @@ include $_SERVER['DOCUMENT_ROOT'] . '/Programming-Project-8/admin_php/database.p
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+function updateElements() {
+    var isUitgeleendElements = document.querySelectorAll(".isUitgeleend");
+    isUitgeleendElements.forEach(function(element) {
+        if(element.innerHTML == "1"){
+            element.innerHTML = "Ja";
+        } else {
+            element.innerHTML = "Nee";
+        }
+    });
+
+    var zichtbaarheidElements = document.querySelectorAll(".zichtbaarheid");
+    zichtbaarheidElements.forEach(function(element) {
+        if(element.innerHTML == "1"){
+            element.innerHTML = "Ja";
+        } else {
+            element.innerHTML = "Nee";
+        }
+    });
+}
+
 $(document).ready(function(){
   $("#zoekbalk").on("keyup", function() {
     var zoekquery = $(this).val();
     $.get("functies/Inventaris_exemplaaren.php", { zoekquery: zoekquery }, function(data) {
       $(".inventaris_tabel table").html(data);
+      updateElements(); // Call the function after the table is updated
     });
   });
 });
 
-window.onload = function() {
+ window.onload = function() {
             var isUitgeleendElements = document.querySelectorAll(".isUitgeleend");
             isUitgeleendElements.forEach(function(element) {
                 if(element.innerHTML == "1"){
@@ -105,11 +126,8 @@ window.onload = function() {
                 
             </div></div>
         </div>
-        <script>
-            
-        </script>
     </div>
 
-    
+
 </body>
 </html>

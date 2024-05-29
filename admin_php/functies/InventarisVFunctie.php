@@ -113,9 +113,10 @@ if(isset($_POST['submitForm'])){
         echo "Error deleting record: " . $conn->error;
     }
 
-    
-
+    // Close the database connection
     $conn->close();
+    // Close the FTP connection
+    ftp_close($ftpConnection);
     header('Location: ../Inventaris.php');
 
 }

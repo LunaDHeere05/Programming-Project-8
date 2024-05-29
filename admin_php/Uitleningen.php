@@ -57,6 +57,7 @@
 </head>
 <body>
     <div class="rechter_grid">
+    <?php include 'functies\uitleningen_zoeken.php'?>
         </div>
             <div class="uitlening_tabel">
                 <table>

@@ -1,7 +1,5 @@
 <?php
 include("database.php");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -98,6 +96,91 @@ include("database.php");
             filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
         }
 
+        .device_info {
+            margin: 2em 0em 2em 0em;
+            border: rgb(192, 192, 192) 3px solid;
+            padding: 0em 2em 0.5em 1em;
+            border-radius: 20px;
+        }
+
+        .image_upload {
+            margin: 2em 0em 2em 0em;
+            border: rgb(192, 192, 192) 3px solid;
+            padding: 0em 2em 0.5em 1em;
+            border-radius: 20px;
+        }
+
+        .manual_upload {
+            margin: 2em 0em 2em 0em;
+            border: rgb(192, 192, 192) 3px solid;
+            padding: 0em 2em 0.5em 1em;
+            border-radius: 20px;
+        }
+
+        .functionaliteiten {
+            margin: 2em 0em 2em 0em;
+            border: rgb(192, 192, 192) 3px solid;
+            padding: 0em 2em 0.5em 1em;
+            border-radius: 20px;
+        }
+
+        .functionaliteiten button {
+            background-color: #1BBCB6;
+            border-radius: 2em;
+            width: 15em;
+            height: 3em;
+            border: 0;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 1em 0em 0em 0em;
+        }
+
+        .functionaliteiten button:hover {
+            background-color: #0A7D7C;
+        }
+
+        .functionaliteiten input {
+            height: 2rem;
+            width: 100%;
+            border: 0;
+            border-radius: 2em;
+            margin: 0.5rem;
+        }
+
+        .doos_content {
+            margin: 2em 0em 2em 0em;
+            border: rgb(192, 192, 192) 3px solid;
+            padding: 0em 2em 0.5em 1em;
+            border-radius: 20px;
+        }
+
+        .doos_content button {
+            background-color: #1BBCB6;
+            border-radius: 2em;
+            width: 15em;
+            height: 3em;
+            border: 0;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 1em 0em 0em 0em;
+        }
+
+        .doos_content button:hover {
+            background-color: #0A7D7C;
+        }
+
+        .doos_content input {
+            height: 2rem;
+            width: 100%;
+            border: 0;
+            border-radius: 2em;
+            margin: 0.5rem;
+        }
+
+
+
         .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
@@ -164,58 +247,64 @@ include("database.php");
         <div class="inventaris_toe_block">
             <div class="inventaris_toe_block1">
                 <form id="form" method="POST" enctype="multipart/form-data">
-                    <div class="inventaris_toe">
-                        <h2>Apparaat naam:</h2>
-                        <input id="apparaat_naam" name="apparaat_naam" type="text" value="<?php echo $naam ?>">
+                    <div class="device_info">
+                        <div class="inventaris_toe">
+                            <h2>Apparaat naam:</h2>
+                            <input id="apparaat_naam" name="apparaat_naam" type="text" value="<?php echo $naam ?>">
+                        </div>
+                        <div class="inventaris_toe">
+                            <h2>Merk:</h2>
+                            <input id="merk" name="merk" type="text" value="<?php echo $merk ?>">
+                        </div>
+                        <div class="inventaris_toe">
+                            <h2>Categorie:</h2>
+                            <input id="categorie" name="categorie" type="text" value="<?php echo $categorie ?>">
+                        </div>
+                        <div class="inventaris_toe">
+                            <h2>Beschrijving:</h2>
+                            <input id="beschrijving" name="beschrijving" type="text" value="<?php echo $beschrijving ?>">
+                        </div>
                     </div>
-                    <div class="inventaris_toe">
-                        <h2>Merk:</h2>
-                        <input id="merk" name="merk" type="text" value="<?php echo $merk ?>">
+                    <div class="image_upload">    
+                        <h3>Images</h3>
+                        <input type="file" name="image">
                     </div>
-                    <div class="inventaris_toe">
-                        <h2>Categorie:</h2>
-                        <input id="categorie" name="categorie" type="text" value="<?php echo $categorie ?>">
+                    <div class="manual_upload">
+                        <h3>User Manual</h3>
+                        <input type="file" name="usermanual" value="<?php echo $gebruiksaanwijzing ?>">
+                        <input type="hidden" name="item_id" value="<?php echo $item_id ?>">
                     </div>
-                    <div class="inventaris_toe">
-                        <h2>Beschrijving:</h2>
-                        <input id="beschrijving" name="beschrijving" type="text" value="<?php echo $beschrijving ?>">
+                    <div class="functionaliteiten">
+                        <div class="inventaris_toe_text">
+                            <h2>Functionaliteit:</h2>
+                            <?php
+                            // Displaying each functionaliteit data
+                            foreach ($functionaliteitData as $functionaliteit) {
+                                echo "<input type='text' name ='functionaliteit[]' value='{$functionaliteit[0]}'><br>";
+                            }
+                            ?>
+                        </div>
+                        <div class="inventaris_toe_text">
+                            <input name="functionaliteit[]" type="text" placeholder="Apparaat functionaliteit ...">
+                            <button type="button" onclick="addInputFieldFunct()">Add another field</button>
+                        </div>
                     </div>
+                    <div class="doos_content">
+                        <div class="inventaris_toe_text">
+                            <h2>Accessoires in de doos:</h2>
+                            <?php
+                            // Displaying each inDoos data
+                            foreach ($inDoosData as $inDoos) {
+                                echo "<input type='text' name ='in_doos[]' value='{$inDoos[0]}'><br>";
+                            }
+                            ?>
+                        </div>
                     
-                    <h3>Images</h3>
-                    <input type="file" name="image">
-                    <h3>User Manual</h3>
-                    <input type="file" name="usermanual" value="<?php echo $gebruiksaanwijzing ?>">
-                    <input type="hidden" name="item_id" value="<?php echo $item_id ?>">
-                    
-
-                    <div class="inventaris_toe_text">
-                        <h2>Functionaliteit:</h2>
-                        <?php
-                        // Displaying each functionaliteit data
-                        foreach ($functionaliteitData as $functionaliteit) {
-                            echo "<input type='text' name ='functionaliteit[]' value='{$functionaliteit[0]}'><br>";
-                        }
-                        ?>
-                    </div>
-                    <div class="inventaris_toe_text">
-                        <input name="functionaliteit[]" type="text" placeholder="Apparaat functionaliteit ...">
-                        <button type="button" onclick="addInputFieldFunct()">Add another field</button>
-                    </div>
-
-                    <div class="inventaris_toe_text">
-                        <h2>Accessoires in de doos:</h2>
-                        <?php
-                        // Displaying each inDoos data
-                        foreach ($inDoosData as $inDoos) {
-                            echo "<input type='text' name ='in_doos[]' value='{$inDoos[0]}'><br>";
-                        }
-                        ?>
-
-                    <div class="inventaris_toe_text">
-                        <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">
+                        <div class="in_doos_input">
+                            <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">    
+                        </div>
                         <button type="button" onclick="addInputFieldDoos()">Add another field</button>
                     </div>
-                    
                     <div class="inventaris_toe_buttons">
                     <div class="inventaris_toe_verwijderen">
                         <button id="delete-btn" name="submitForm" type="button" onclick="openDeleteModal()">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
