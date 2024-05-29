@@ -6,6 +6,8 @@
     <title>Te laat</title>
     <?php include 'top_nav_admin.php'?>
     <style>
+
+
 .te_laat_tabel{
   width: 90%;
   text-align: center;
@@ -42,17 +44,14 @@
     <div class="rechter_grid">
         <!-- <div class="zoeken_container">
   </div> --> 
-    <?php include 'functies/teLaat_zoeken.php' ?>
+
     <!-- te laat tabel -->
         <div class="te_laat_tabel">
             <table>
-                <tr>
-                    <th>E-mail</th>
-                    <th>Apparaat</th>
-                    <th>Dagen te laat</th>
-                    <th>Meer info</th>
-                </tr>
-          <?php include 'functies/teLaat_ophalen.php' ?>
+          <?php if(isset($_GET['zoekButton']))
+          {include 'functies/teLaat_zoeken.php';
+          }else {include 'functies/teLaat_ophalen.php';
+          } ?>
 
                
             </table>

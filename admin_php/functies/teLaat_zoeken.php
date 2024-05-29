@@ -2,83 +2,61 @@
 include 'database.php';
 
 if (isset($_GET['zoekButton'])) {
+
+  // zoeken op id, naam van item, naam van student
     $zoek_query = $_GET['zoekquery'];
     if (!empty($zoek_query)) { // Controleer of de zoekopdracht niet leeg is
         $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
-        $zoek_resultaat = "SELECT * FROM WAARSCHUWING WHERE (email LIKE '$zoek_query%' OR exemplaar_item_id = '$zoek_query') AND waarschuwingsType = 'Te laat'";
+        $zoek_resultaat = "SELECT W.*,I.*
+        FROM WAARSCHUWING W
+        JOIN EXEMPLAAR_ITEM EI ON W.exemplaar_item_id = EI.exemplaar_item_id
+        JOIN ITEM I ON EI.item_id = I.item_id
+        WHERE (LOWER(W.email) LIKE LOWER('%$zoek_query%') 
+               OR (EXISTS (SELECT 1
+                          FROM WAARSCHUWING W2
+                          WHERE W2.exemplaar_item_id = EI.exemplaar_item_id)
+              )
+              AND (LOWER(I.naam) LIKE LOWER('%$zoek_query%') 
+                   OR LOWER(I.merk) LIKE LOWER('%$zoek_query%')
+                   OR EI.exemplaar_item_id LIKE '$zoek_query'
+              ))
+              AND W.waarschuwingsType = 'Te laat'";
+        
+
         $zoek_uitvoering_resultaat = mysqli_query($conn, $zoek_resultaat);
 
-        if ($zoek_uitvoering_resultaat) {
-            if (mysqli_num_rows($zoek_uitvoering_resultaat) > 0) {
-              
-                echo "<div class='result_tabel'>";
-                echo "<table>";
-                echo " <th>E-mail</th>";
-                echo "<th>Apparaat</th>";
-                echo " <th>Dagen te laat</th>";
-                echo " <th>Meer info</th>";
-                echo "<tr>";
-                while($result = mysqli_fetch_assoc($zoek_uitvoering_resultaat)){;
-                echo "<td>" . htmlspecialchars($result['email']) . "</td>";
-                echo "<td>" . htmlspecialchars($result['exemplaar_item_id']) . "</td>";
-                echo "<td>" . htmlspecialchars($result['waarschuwingDatum']) . "</td>";
+        if (mysqli_num_rows($zoek_uitvoering_resultaat) > 0) {
+          echo "    <tr>
+          <th>E-mail</th>
+          <th>Apparaat</th>
+          <th>Dagen te laat</th>
+          <th>Meer info</th>
+          </tr>";
+          while ($row = mysqli_fetch_assoc($zoek_uitvoering_resultaat)) {
+                  $huidigeDatum = new DateTime();
+                  $waarschuwingDatum = new DateTime($row['waarschuwingDatum']);
+  
+                  $verschil = $huidigeDatum->diff($waarschuwingDatum)->days;
+                  echo "<tr>";
+                  echo "<td>" . $row['email'] . "</td>";
+                  echo "<td>" . $row['merk'] . " - " . $row['naam'] . "</td>";
+                  echo "<td>" . $verschil . "</td>";
+                  echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
+                  echo "</tr>";
               }
-                echo "</tr>";
-                echo "</table>";
-                echo "</div>";
-                echo "<style>";
-                echo ".te_laat_tabel{
-                    display: none;}";
-                echo "</style>";
-             
-            } else {
+          }else {
                 echo "Geen resultaten gevonden";
             }
-        } else {
-            echo "Query failed: " . mysqli_error($conn);
-        }
+      mysqli_close($conn);
+
+    }else{
+      include 'functies/teLaat_ophalen.php';
+
     }
+
+
+
 }
 
-mysqli_close($conn);
+
 ?>
-
-<style>
-   
-    .result_tabel {
-      width: 90%;
-      text-align: center;
-      margin: auto;
-      margin-top: 2em;
-    }
-
-    .result_tabel table {
-      border-collapse: collapse;
-      margin: auto;
-      width: 100%;
-    }
-
-    .result_tabel th,
-    td {
-      width: 30%;
-      border-collapse: collapse;
-      border-bottom: 2px solid rgb(193, 193, 193);
-      border-left: 2px solid rgb(193, 193, 193);
-    }
-
-    .result_tabel tr:last-child td {
-      border-bottom: none;
-    }
-
-    .result_tabel th:first-child,
-    td:first-child {
-      border-left: none;
-    }
-
-    .result_tabel .meer_info {
-      width: 2em;
-      height: auto;
-      padding-top: 0.5em;
-      filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
-    }
-</style>
