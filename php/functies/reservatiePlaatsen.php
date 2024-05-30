@@ -1,6 +1,5 @@
 <?php
 
-
 //indien geen user is ingelogd;
 if(!isset($gebruikersnaam)){
   echo '<h2 class="login"> <a href="Profiel.php"> Log in</a> om een reservatie te plaatsen.</h2>';
@@ -15,8 +14,9 @@ if(!isset($gebruikersnaam)){
     <input type="date" id="end_date" name="end_date" step="7" required>
   </div>
   <div id="hoeveelheid">
-    <input type="hidden" id="item_id" name="item_id">
+    <input type="hidden" id="item_id" name="itemId">
     <input type="hidden" id="hiddenEndDate" name="hiddenEndDate">
+    <input type="hidden" name="reserveerNu">
     <div class="aantal">
       <label for="quantity">Aantal:</label>
       <input type="number" id="quantity" name="quantity" min="1" value="1" required>

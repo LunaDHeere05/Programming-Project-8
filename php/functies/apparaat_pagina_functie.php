@@ -2,7 +2,16 @@
 include 'database.php';
 
 if(isset($_GET['apparaat_id'])){
-    $item_id = $_GET['apparaat_id'];
+    if (!is_numeric($_GET['apparaat_id']) || intval($_GET['apparaat_id']) <= 0) {
+        echo "<script>
+        setTimeout(() => { 
+            window.location.href = 'Inventaris.php';
+          }, 150)
+        </script>";
+      }
+
+    $item_id = intval($_GET['apparaat_id']);
+
     $item_query = "SELECT * FROM ITEM WHERE item_id = $item_id";
     $item_result = mysqli_query($conn, $item_query);
 
@@ -65,14 +74,22 @@ if(isset($_GET['apparaat_id'])){
         // }
        
       
-    }
-    else{
+    }else{
         echo 'Geen informatie gevonden voor dit item.';
+        echo "<script>
+        setTimeout(() => { 
+            window.location.href = 'Inventaris.php';
+          }, 150)
+        </script>";
     }
 
 
 }else{
     echo "Geen item-id meegegeven in de URL.";
+    echo "<script>
+        window.location.href = '../Inventaris.php';
+    </script>";
+
 }
 
 

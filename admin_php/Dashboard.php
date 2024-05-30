@@ -205,9 +205,9 @@ include 'database.php';
                 success: function(response) {
                     console.log(response);
                     if (statusText.trim() === "Op te halen") {
-                        alert('Ophaling verwijderd.');
+                        alert('Ophaling verwijderd en waarschuwing gegenereerd.');
                     } else {
-                        alert('Inlevering verwijderd.');
+                        alert('Inlevering verwijderd en waarschuwing gegenereerd.');
                     }
                     fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
                 }

@@ -36,7 +36,7 @@ $result = mysqli_query($conn, $query);
         </div>';
         
         }
-        echo '<form action="functies/winkelmandReserveren.php" method="POST">
+        echo '<form action="ReservatieBevestigen.php" method="POST">
         <input type="submit" value="Reserveer nu">
     </form>';
     }else{
@@ -48,7 +48,6 @@ $result = mysqli_query($conn, $query);
     }
 }else{
   echo '<h2 class="login"> <a href="Profiel.php"> Log in</a> om jouw winkelmand te gebruiken.</h2>';
-
 }
 
 ?>

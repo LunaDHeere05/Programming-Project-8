@@ -24,32 +24,31 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     margin: 0em 4em 2em 4em;
     font-size: 20px;
 }
-.item_info_container{
-    background-color: rgb(193, 193, 193);
-    width: 80%;
-    margin: 1em auto;
-    border-radius: 2em;
-}
-.item_info{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-}
-.item_info img{
-    width: 15%;
-    height: 15%;
-    margin: auto 1em;
-}
-.verwijder{
-    position: absolute;
-    right: 0;
-    top: 0.5em;
-    width: 2em !important;
-}
-.item_info_container img{
-  width: 15%;
-}
+.item_info_container {
+            width: 90%;
+            margin: 1em auto;
+            border-radius: 2em;
+            display: flex;
+            flex-direction: column;
+            gap:1em;
+            justify-content: center;
+            align-items: center;
+        }
+        .item_info {
+            background-color: #edededcf;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            width:60em;
+            height:10em;
+            border-radius: 2em;
+        }
+        .item_info img {
+            width: 8em;
+            height: 8em;
+            margin: 1em;
+        }
 .bevestig_btn{
     background-color: #1bbcb6;
     padding: 1em;
@@ -79,15 +78,18 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 
         <?php 
 
-
-    if (isset($_SESSION['reservering_info'])){
+    if (isset($_SESSION['reservering_info']) && isset($gebruikersnaam)){
     foreach ($_SESSION['reservering_info'] as $reservering) {
+
+    //zeker zijn dat het een nummer is
+    $uitleen_id = intval($reservering['uitleen_id']); 
+
     $query = "SELECT i.*, COUNT(i.item_id) as aantal, u.uitleen_datum, u.inlever_datum
     FROM UITGELEEND_ITEM ui 
     JOIN EXEMPLAAR_ITEM ei on ei.exemplaar_item_id=ui.exemplaar_item_id 
     JOIN ITEM i on i.item_id=ei.item_id 
     JOIN UITLENING u on u.uitleen_id=ui.uitleen_id 
-    WHERE u.uitleen_id={$reservering['uitleen_id']}
+    WHERE u.uitleen_id=$uitleen_id
     GROUP BY i.item_id;";
 
     $query_result = mysqli_query($conn, $query);
@@ -107,8 +109,15 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         echo '<h3>Aantal: '. $item_row['aantal'] . ' </h3>';
         echo '</div>';
     }
-
     }
+    //verwijderen van reserveringsinfo
+    unset($_SESSION['reservering_info']);
+
+
+    }else{
+        echo "<script>
+        window.location.href = 'Inventaris.php';
+        </script>";
     }
 
 
