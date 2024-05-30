@@ -3,13 +3,12 @@ include '../database.php';
 
 $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
 
-// Updated query to join UITLENING, UITGELEEND_ITEM, EXEMPLAAR_ITEM, and ITEM tables
 $query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, uit.isOpgehaald, ui.email, it.naam
           FROM UITLENING ui
           INNER JOIN UITGELEEND_ITEM uit ON ui.uitleen_id = uit.uitleen_id
           INNER JOIN EXEMPLAAR_ITEM ei ON uit.exemplaar_item_id = ei.exemplaar_item_id
           INNER JOIN ITEM it ON ei.item_id = it.item_id
-          WHERE ui.uitleen_datum = '$date' OR ui.inlever_datum = '$date'
+          WHERE (ui.uitleen_datum = '$date' OR ui.inlever_datum = '$date') AND uit.isOpgehaald = 0
           ORDER BY ui.email";
 
 $result = mysqli_query($conn, $query);
@@ -23,7 +22,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $inlever_datum = $row['inlever_datum'];
     $isOpgehaald = $row['isOpgehaald'] ? "Ja" : "Nee";
     $email = $row['email'];
-    $naam = $row['naam']; // Fetching the naam from the ITEM table
+    $naam = $row['naam'];
     $status;
     
     if ($row['isOpgehaald'] == 1) {

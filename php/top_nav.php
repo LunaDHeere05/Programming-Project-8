@@ -461,7 +461,6 @@ document.addEventListener('click',function(e){
         window.location.reload();
       }, 150)
 })
-
   }
 })
   ;

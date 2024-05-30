@@ -1,15 +1,18 @@
 <?php
-include 'database.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Start the session if not already started
+}
 
-function getExemplaarItemIDs($item_id) {
-    include 'database.php';
-    include 'sessionStart.php';
+include 'C:\Xampp\htdocs\Programming-Project-8\php\database.php'; // Ensure this file correctly initializes $conn 
 
+function getExemplaarItemIDs($item_id, $conn, $gebruikersnaam) {
+    // SQL query to fetch exemplaar_item_id based on item_id and user's email
     $query = "SELECT ei.exemplaar_item_id 
               FROM EXEMPLAAR_ITEM ei 
               JOIN UITGELEEND_ITEM ui ON ui.exemplaar_item_id = ei.exemplaar_item_id 
               JOIN UITLENING u ON u.uitleen_id = ui.uitleen_id 
-              WHERE item_id = '$item_id' AND u.{$userType} = '$email'";
+              JOIN ITEM i ON i.item_id = ei.item_id
+              WHERE i.item_id = '$item_id' AND u.email = '$gebruikersnaam'";
     $result = mysqli_query($conn, $query);
 
     $exemplaar_item_ids = array();
@@ -21,9 +24,12 @@ function getExemplaarItemIDs($item_id) {
     return $exemplaar_item_ids;
 }
 
-if (isset($_POST['item_id'])) {
-    $item_id = $_POST['item_id']; // Retrieve item_id from the form submission
-    $exemplaar_item_ids = getExemplaarItemIDs($item_id); // Call the function to get all exemplaar_item_id values
+if (isset($_POST['item_id']) && isset($_SESSION['gebruikersnaam'])) {
+    $item_id = $_POST['item_id'];
+    $gebruikersnaam = $_SESSION['gebruikersnaam']; // Retrieve user's email from session
+
+    // Ensure the function gets the connection and session information
+    $exemplaar_item_ids = getExemplaarItemIDs($item_id, $conn, $gebruikersnaam);
 
     // Prepare the output in a variable
     $output = '';
@@ -55,19 +61,18 @@ if (isset($_POST['item_id'])) {
                                     </div>
                                 </div>
                             </div>';
-                            header("Location: ../DefectMelden.php");
             }
         }
+        // Only redirect if items are found
+        header('Location: ../DefectMelden.php');
+        exit;
     } else {
         $output = '<p>No items found with defects.</p>';
     }
 
     echo $output;
 } else {
-    echo '<p>No item ID provided.</p>';
+    echo '<p>No item ID provided or session username not set.</p>';
 }
-
-// Move header call here, after all logic but before any actual output is sent
-header("Location: ../DefectMelden.php");
 exit;
 ?>
