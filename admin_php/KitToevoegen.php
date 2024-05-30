@@ -1,254 +1,204 @@
+<?php
+include 'database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defect</title>
-    <?php include 'top_nav_admin.php'?>
-    <style>
-      .kit_toe {
-        display: flex;
-        align-items: center;
-        margin: 1em;
-        background-color: #D9D9D9;
-        border-radius: 1.5em;
-        padding: 1em;
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit Builder</title>
+  <?php include 'top_nav_admin.php'?>
 
-      .kit_toe input {
-        border-radius: 1em;
-        border: 0;
-        background-color: #fff;
-        height: 3em;
-        width: 73%;
-        margin: 0em 0em 0em 1em;
-        padding: 0em 1em 0em 1em;
-      }
+  <style>
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
 
-      .kit_toe_button {
-        display: flex;
-        justify-content: center;
-      }
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 70%; /* Could be more or less, depending on screen size */
+    }
 
-      #kit_toe_apparaat button {
-        background-color: #5B5B5B;
-        border-radius: 2em;
-        width: 10em;
-        height: 2em;
-        border: 0;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        margin: 1em 0em 0em 0em;
-        font-size: 1em;
-        display: flex;
-        align-items: center;
-        padding: 0em 0em 0em 1.5em;
-      }
+    .modal-content img {
+      width: 10%;
+      height: auto;
+    }
 
-      #kit_toe_apparaat img {
-        width: 1em;
-        height: auto;
-        margin-left: 1em;
-        filter: invert(100%) sepia(0%) saturate(5878%) hue-rotate(26deg) brightness(116%) contrast(115%);
-      }
+    .items {
+      display: flex;
+      width: 100%;
+      background-color: rgb(192,192,192);
+    }
 
-      .kit_toe_opslaan button {
-        background-color: #1BBCB6;
-        border-radius: 2em;
-        width: 10em;
-        height: 2em;
-        border: 0;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        margin: 1em 0em 0em 2em;
-        font-size: 1em;
-        display: flex;
-        align-items: center;
-        padding: 0em 0em 0em 3em;
-      }
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-      #apparaat_kiezen_container {
-        display: none; /* Initially hidden */
-        background-color: #edededcf;
-        width: 70%;
-        height: auto;
-        border-radius: 2em;
-        padding: 0.5em;
-        position: fixed;
-        z-index: 10000; /* Ensure this is higher than the blurred content */
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        overflow: auto;
-      }
-
-      .zoekbalk {
-        display: flex;
-        height: 3em;
-        width: 80%;
-        margin: auto;
-        background-color: white;
-        border-radius: 5em;
-      }
-
-      #zoeken_functie {
-        display: flex;
-        width: 100%;
-      }
-
-      #zoeken_functie input[type="submit"] {
-        background: url(images/svg/magnifying-glass-solid.svg) no-repeat center;
-        border: none;
-        background-color: none;
-        cursor: pointer;
-        width: 2em;
-        margin-right: 1em;
-      }
-
-      #zoek_input {
-        border: none;
-        background: none;
-        color: #5b5b5b;
-        width: 95%;
-        margin-left: 2em;
-      }
-
-      #zoek_input:focus {
-        outline: none;
-      }
-
-      #apparaat_kiezen_container button {
-        background: none;
-        border: none;
-      }
-
-      #apparaat_kiezen_container button img {
-        width: 2em;
-        height: auto;
-        position: absolute;
-        top: 1em;
-        right: 2em;
-      }
-
-      .apparaat_container {
-        display: flex;
-        background-color: #d9d9d9;
-        border-radius: 2em;
-        width: 98%;
-        margin: 2em auto;
-      }
-
-      .apparaat {
-        display: flex;
-        position: relative;
-      }
-
-      .apparaat img {
-        width: 20%;
-        margin: 1em;
-        background-color: white;
-        border-radius: 2em;
-        padding: 1em;
-      }
-
-      .apparaat_info {
-        display: flex;
-        flex-direction: column;
-        margin: auto 2em;
-      }
-
-      .apparaat_acties {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        justify-content: flex-end;
-      }
-
-      .apparaat_acties input[type=checkbox] {
-        appearance: none;
-        -webkit-appearance: none;
-        padding: 1em;
-        border: 0.25rem solid #1bbcb6;
-        border-radius: 50%;
-        margin-right: 3em;
-      }
-
-      .apparaat_acties input[type=checkbox]:checked {
-        background-color: #1bbcb6;
-      }
-
-      .hidden {
-        display: none;
-      }
-    </style>
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<div class="kit_toe">
-    <h2>Naam van de kit:</h2>
-    <input type="text">
-</div>
-<div class="kit_toe_button">
-    <div id="kit_toe_apparaat">
-        <button type="submit">Apparaat <img src="images/svg/plus-solid.svg" alt=""></button>
-    </div>
-    <div class="kit_toe_opslaan">
-      <button type="submit">Sla op</button>
-    </div>
-</div>
+  <?php
+  include 'database.php';
 
-<div id="apparaat_kiezen_container" class="hidden">
-  <div class="zoekbalk">
-    <form action="#" method="GET" id="zoeken_functie">
-      <input id="zoek_input" type="text" placeholder="Zoek op apparaatnaam of apparaat-ID" name="zoek_query">
-      <input type="submit" value="">
-    </form>
-  </div>
-  <div class="apparaten_lijst_container">
-    <div class="apparaat_container">
-      <div class="apparaat">
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-        <div class="apparaat_info">
-          <h2>Apparaatnaam</h2>
-          <p>Apparaat-ID: <span>1</span></p>
-        </div>
-      </div>
-      <div class="apparaat_acties">
-        <label for="">
-          <input type="checkbox">
-        </label>
-      </div>
-    </div>
-    <div class="apparaat_container">
-      <div class="apparaat">
-        <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="">
-        <div class="apparaat_info">
-          <h2>Apparaatnaam</h2>
-          <p>Apparaat-ID: <span>1</span></p>
-        </div>
-      </div>
-      <div class="apparaat_acties">
-        <label for="">
-          <input type="checkbox">
-        </label>
-      </div>
+  // Fetch items from the database
+  $query = "SELECT * FROM ITEM";
+  $result = mysqli_query($conn, $query);
+  $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  ?>
+ 
+
+  <!-- Input fields -->
+  <form>
+    <label for="kit_naam">Kit naam:</label><br>
+    <input type="text" id="kit_naam" name="kit_naam"><br>
+  </form>
+
+  <ul id="item-list"></ul>
+
+  <!-- Trigger/Open The Modal -->
+  <button id="myBtn">Open Modal</button>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Some text in the Modal..</p>
+      
+        <?php foreach ($items as $item): ?>
+          <div class="items">
+            <h3><?php echo $item['naam']; ?></h3>
+            <p><?php echo $item['item_id']; ?></p>
+            <img src="<?php echo $item['images']; ?>" alt="Item image">
+            <p><?php echo $item['beschrijving']; ?></p>
+            <button class="add-button" data-id="<?php echo $item['item_id']; ?>" data-name="<?php echo $item['naam']; ?>" data-description="<?php echo $item['beschrijving']; ?>" data-image="<?php echo $item['images']; ?>">Voeg toe</button>
+          </div>
+        <?php endforeach; ?>
     </div>
   </div>
-  <button><img id="sluit_popup" src="images/svg/xmark-solid.svg" alt="sluit venster"></button>
-</div>
+  <button id="save-button">Sla op</button>
 
-<script>
-  document.getElementById('kit_toe_apparaat').addEventListener('click', function() {
-    document.getElementById('apparaat_kiezen_container').classList.remove('hidden');
-    document.getElementById('apparaat_kiezen_container').style.display = 'block';
-    document.body.classList.add('blur');
+  <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Get all "Voeg toe" buttons
+var buttons = document.getElementsByClassName("add-button");
+
+// Add an event listener to each button
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function() {
+    // Get the item data from the button's data attributes
+    var itemId = this.getAttribute("data-id"); // Fetch the item_id
+    var itemName = this.getAttribute("data-name");
+    var itemDescription = this.getAttribute("data-description");
+    var itemImageLink = this.getAttribute("data-image");
+
+    // Create a new list item
+    var li = document.createElement("li");
+    li.innerHTML = '<img src="' + itemImageLink + '" alt="Item image"><br>' + itemName + '<br>' + itemDescription + '<br>' + itemId;
+
+    // Set the data-id attribute on the list item
+    li.setAttribute("data-id", itemId);
+
+    // Add the list item to the list
+    var list = document.getElementById("item-list");
+    list.appendChild(li);
   });
-  document.getElementById('sluit_popup').addEventListener('click', function() {
-    document.getElementById('apparaat_kiezen_container').classList.add('hidden');
-    document.body.classList.remove('blur');
-  });
+}
+
+// Get the "Sla op" button
+var saveButton = document.getElementById("save-button");
+
+// Add an event listener to the button
+saveButton.addEventListener("click", function() {
+  // Get all list items
+  var listItems = document.getElementById("item-list").children;
+
+  // Create an array to hold the item IDs
+  var itemIds = [];
+
+  // Loop through the list items and add each item ID to the array
+  for (var i = 0; i < listItems.length; i++) {
+    itemIds.push(listItems[i].getAttribute("data-id"));
+  }
+
+  // Convert the array to a JSON string
+  var itemIdsJson = JSON.stringify(itemIds);
+
+  // Get the kit_naam input field value
+  var kitNaam = document.getElementById("kit_naam").value;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "functies/kit_toevoegen.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log("Request successful. Response: " + this.responseText);
+      // Refresh the page
+      //location.reload();
+    } else if (this.readyState == 4) {
+      console.log("Request failed. Status: " + this.status);
+    }
+  };
+
+  xhr.onerror = function() {
+    console.log("Request error: " + this.status);
+  };
+
+  // Send the item_ids and kit_naam to the PHP file
+  xhr.send("item_ids=" + itemIdsJson + "&kit_naam=" + encodeURIComponent(kitNaam));
+});
 </script>
 </body>
 </html>
