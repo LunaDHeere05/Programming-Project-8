@@ -8,7 +8,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservatie bevestiging</title>
-    <link rel="stylesheet" href="/css/stylesheet.css">
+    <!-- <link rel="stylesheet" href="/css/stylesheet.css"> -->
     <style>
        .reserverenEnTerug{
     display: flex;
@@ -129,33 +129,6 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         window.location.href = 'Inventaris.php';
         </script>";
     }
-
-
-
-
-    // $reservationDetails = '';
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //     foreach ($_POST['items'] as $item) {
-    //         $itemId = $item['item_id'];
-    //         $startDate = $item['start_date'];
-    //         $endDate = $item['end_date'];
-    //         $aantal = $item['quantity'];
-
-    //         $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
-    //         $query_result = mysqli_query($conn, $query);
-
-    //         if ($query_result) {
-    //             $item_row = mysqli_fetch_assoc($query_result);
-
-    //             $reservationDetails .= "Item: " . $item_row['merk'] . ' - ' . $item_row['naam'] . "\n";
-    //             $reservationDetails .= "Aantal: $aantal\n";
-    //             $reservationDetails .= "Startdatum: " . date('d-m-Y', strtotime($startDate)) . "\n";
-    //             $reservationDetails .= "Einddatum: " . date('d-m-Y', strtotime($endDate)) . "\n\n";
-    //         } else {
-    //             echo "Fout bij het ophalen van de itemgegevens.";
-    //         }
-    //     }
-    // }
         ?>
 
 
