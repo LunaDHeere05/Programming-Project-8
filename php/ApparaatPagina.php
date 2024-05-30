@@ -613,7 +613,11 @@ document.getElementById('submitWinkelmand').addEventListener('click',function(e)
         method: 'POST',
         body: formData
       }).then(response => response.text())
-      .then(data => window.location.reload())
+      .then(data => {
+        window.location.reload();
+      })
+
+      
     
   });
 
