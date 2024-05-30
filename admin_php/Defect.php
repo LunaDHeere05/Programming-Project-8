@@ -140,7 +140,10 @@
     </style>
 </head>
 <body>
+<?php include 'functies/defect_zoeken.php'?>
+<div class = "defect_ophalen_container">
     <?php include 'functies/defect_ophalen.php'?>
+    </div>
     <div id="content">
         <div class="defect_add">
             <a href="DefectToevoegen.php">Defect toevoegen</a>
