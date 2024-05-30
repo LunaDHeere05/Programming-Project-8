@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start the session if not already started
 }
 
-include 'C:\Xampp\htdocs\Programming-Project-8\php\database.php'; // Ensure this file correctly initializes $conn 
+include '../database.php'; // Ensure this file correctly initializes $conn 
 
 function getExemplaarItemIDs($item_id, $conn, $gebruikersnaam) {
     // SQL query to fetch exemplaar_item_id based on item_id and user's email

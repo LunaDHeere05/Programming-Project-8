@@ -17,8 +17,9 @@
 }
 .filters {
   display: flex;
+  flex:1 0 basis;
   list-style: none;
-  width: 70%;
+  gap:2em;
   height: 2em;
   justify-content: space-between;
 }
@@ -27,6 +28,9 @@
   border: none;
   background-color: rgb(193, 193, 193);
   padding: 0em 1em;
+  margin:0 10px 10px 10px;
+  font-size: 100%;
+  text-align: left;
   background-color: #edededcf;
 }
 
@@ -80,6 +84,9 @@
   color:#1BBCB6;
 }
 
+.noResult{
+  margin:1em;
+}
 .beschikbaarheid_apparaat {
   display: flex;
   flex-direction: column;
@@ -90,9 +97,7 @@
 }
 
 .beschikbaarheid_apparaat h3{
-
   font-size: 120%;
-
 }
 .beschikbaarheid_apparaat img {
   width: 4em;
@@ -108,31 +113,41 @@
 <div class="zoekresultaat_container">
         <h3>Verfijn je resultaat: </h3>
         <ul class="filters">
-            <li>
-                <select name="Categorie" id="categorie">
-                    <option value="Categorie" disabled selected>Categorie</option>
-                    <?php include 'functies\filter_categorie_inventaris.php'; ?> <!-- Include the options dynamically from your database if needed -->
+            <li>    
+        <form action="Inventaris.php" method="GET" id='formCategorie'>
+                <select name="categorie" id="categorie">
+                    <option value="categorie" disabled selected>Categorie</option>
+                    <?php include 'functies\filter_categorie_inventaris.php'; ?> 
                 </select>
+        </form>
             </li>
             <li>
-                <select name="Merk" id="merk">
+        <form action="Inventaris.php" method="GET" id='formMerk'>
+                <select name="merk" id="merk">
                     <option value="merk" disabled selected>Merk</option>
                     <?php include 'functies\filter_merk_inventaris.php'; ?>
                 </select>
             </li>
+        </form>
             <li>
-                <select name="Beschrijving" id="beschrijving">
+        <form action="Inventaris.php" method="GET" id='formBeschrijving'>
+                <select name="beschrijving" id="beschrijving">
                     <option value="beschrijving" disabled selected>Beschrijving</option>
                     <?php include 'functies\filter_beschrijving_inventaris.php'; ?>
                 </select>
             </li>
+            </form>
             <li>
+        <form action="Inventaris.php" method="GET" id='formBeschikbaarheid'>
                 <select name="Beschikbaarheid" id="beschikbaarheid">
-                    <option value="Beschikbaarheid">Beschikbaarheid</option>
-                </select>
+                <option disabled selected>Beschikbaarheid</option>
+                </select>    
             </li>
+            </form>
         </ul>
     </div>
+
+ 
 
     <!-- apparatenlijst -->
         <ul class="apparatenlijst">
@@ -142,30 +157,30 @@
 
 
 <script>
-// Get the category parameter from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const selectedCategory = urlParams.get('category');
 
-// Set the selected category in the dropdown box
-  if (selectedCategory) {
-    const categoryDropdown = document.getElementById('categorie');
-    const option = document.createElement('option');
-    option.text = selectedCategory;
-    option.value = selectedCategory;
-    option.selected = true;
-    categoryDropdown.appendChild(option);
-  }
-  // document.querySelectorAll('.favoriet').forEach(function(button) {
-  //   button.addEventListener('click', function(event) {
-    
-  //     let favorite_img = this.querySelector('img');
-  //     if (favorite_img.src.endsWith('heart-regular.svg')) {
-  //       favorite_img.src = 'images/svg/heart-solid.svg';
-  //     } else {
-  //       favorite_img.src = 'images/svg/heart-regular.svg';
-  //     }
-  //   });
-  // });
+//gebruik van filters
+document.getElementById('categorie').addEventListener('change',function(e){
+  document.getElementById('formCategorie').submit()       
+})
+
+document.getElementById('merk').addEventListener('change',function(e){
+  document.getElementById('formMerk').submit()       
+})
+
+document.getElementById('beschrijving').addEventListener('change',function(e){
+  document.getElementById('formBeschrijving').submit()       
+})
+
+
+  document.getElementById("beschikbaarheid").addEventListener("click", function() {
+  document.getElementById("beschikbaarheid").parentElement.innerHTML="<input id='beschikbaarheid' type='date'>" 
+
+  document.getElementById("beschikbaarheid").addEventListener('change',function(e){
+  document.getElementById('formBeschikbaarheid').submit()       
+  })
+           
+  });
+
 </script>
 
 </body>

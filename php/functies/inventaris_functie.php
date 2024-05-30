@@ -2,6 +2,7 @@
 include 'database.php';
 
 
+//zoeken
 $zoek_query = isset($_GET['zoek_query']) ? $_GET['zoek_query'] : '';
 
 if (!empty($zoek_query)) {
@@ -15,6 +16,87 @@ if (!empty($zoek_query)) {
                       OR LOWER(beschrijving) LIKE LOWER('%$zoek_query%')";
 
     $item_info_result = mysqli_query($conn, $zoek_resultaat);
+
+}else if(isset($_GET['categorie'])){ //zoeken op categorie
+
+    $categorie_query = $_GET['categorie'];
+    //sql-injecties voorkomen
+    $categorie_query = mysqli_real_escape_string($conn, $categorie_query);
+
+    $zoek_resultaat = "SELECT * FROM ITEM 
+    WHERE LOWER(categorie) LIKE LOWER('%$categorie_query%')";
+    $item_info_result = mysqli_query($conn, $zoek_resultaat);
+
+    echo '<script> 
+    
+    for(let option of document.getElementsByClassName("categorieOption")){
+        if(option.value==' . json_encode($_GET['categorie']) . '){
+            option.selected=true;
+            break;
+        }
+    }
+    
+    </script>';
+ 
+    
+}else if(isset($_GET['merk'])){ //zoeken op merk
+
+    $merk_query = $_GET['merk'];
+    //sql-injecties voorkomen
+    $merk_query = mysqli_real_escape_string($conn, $merk_query);
+
+    $zoek_resultaat = "SELECT * FROM ITEM 
+    WHERE LOWER(merk) LIKE LOWER('%$merk_query%')";
+    $item_info_result = mysqli_query($conn, $zoek_resultaat);
+
+    echo '<script> 
+    
+    for(let option of document.getElementsByClassName("merkOption")){
+        if(option.value==' . json_encode($_GET['merk']) . '){
+            option.selected=true;
+            break;
+        }
+    }
+    
+    </script>';
+}else if(isset($_GET['beschrijving'])){ //zoeken op beschrijving
+
+    $beschrijving_query = $_GET['beschrijving'];
+    //sql-injecties voorkomen
+    $beschrijving_query = mysqli_real_escape_string($conn, $beschrijving_query);
+
+    $zoek_resultaat = "SELECT * FROM ITEM 
+    WHERE LOWER(beschrijving) LIKE LOWER('%$beschrijving_query%')";
+    $item_info_result = mysqli_query($conn, $zoek_resultaat);
+
+    echo '<script> 
+    for(let option of document.getElementsByClassName("beschrijvingOption")){
+        if(option.value==' . json_encode($_GET['beschrijving']) . '){
+            option.selected=true;
+            break;
+        }
+    }
+    </script>';
+
+}else if(isset($_GET['beschikbaarheid'])){ //zoeken op beschikbaarheid
+
+    $beschikbaarheid_query = $_GET['beschikbaarheid'];
+    //sql-injecties voorkomen
+    $beschikbaarheid_query = mysqli_real_escape_string($conn, $beschikbaarheid_query);
+
+    $zoek_resultaat = "SELECT * FROM ITEM 
+    WHERE LOWER(beschikbaarheid) LIKE LOWER('%$beschikbaarheid_query%')";
+    $item_info_result = mysqli_query($conn, $zoek_resultaat);
+
+    echo '<script> 
+    for(let option of document.getElementsByClassName("beschikbaarheidOption")){
+        if(option.value==' . json_encode($_GET['beschikbaarheid']) . '){
+            option.selected=true;
+            break;
+        }
+    }
+    </script>';
+    
 }else{
 // De volgende query is gewoon om de info over het apparaat te halen uit de databank
 $item_info = "SELECT * FROM ITEM";
@@ -23,6 +105,10 @@ $item_info_result = mysqli_query($conn, $item_info);
 if (!$item_info_result) {
     die('Query failed: ' . mysqli_error($conn));
 }
+}
+
+if(mysqli_num_rows($item_info_result)==0){
+    echo "<p class='noResult'> Geen resultaat gevonden <p>";
 }
 
 while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk item

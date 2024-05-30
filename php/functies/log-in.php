@@ -61,6 +61,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 header("Location: ../Home.php"); // Redirect other users to Home.php
             }
+            
         } else {
             $_SESSION['error_message'] = 'Ongeldig wachtwoord';
             header("Location: ../Profiel.php");

@@ -5,6 +5,6 @@ $beschrijving = "SELECT DISTINCT beschrijving FROM ITEM ORDER BY beschrijving AS
 $beschrijving_result = mysqli_query($conn, $beschrijving);
 
 while ($row = mysqli_fetch_assoc($beschrijving_result)) {
-    echo '<option value="' . $row['beschrijving'] . '">' . $row['beschrijving'] . '</option>';
+    echo '<option class="beschrijvingOption" value="' . $row['beschrijving'] . '">' . $row['beschrijving'] . '</option>';
 }
 ?>
