@@ -65,8 +65,6 @@ while($row=mysqli_fetch_assoc($result)){
                     echo 'Dit item is intussen al uitgeleend, sorry.';
                 }
       
-
-
                 $_SESSION['reservering_info'][] = [
                     'uitleen_id' => $uitleen_id,
                 ];
@@ -84,6 +82,10 @@ while($row=mysqli_fetch_assoc($result)){
     WHERE w.email = '$gebruikersnaam'";
     $result=mysqli_query($conn,$query);
 
-    
     header("Location: ../FinalBevestigingReservatie.php");
+}else{
+    echo "<script>
+        window.location.href = '../Home.php';
+    </script>";
+  
 }

@@ -35,7 +35,7 @@ if (mysqli_query($conn, $uitlening)) {
 
         $vrijeExemplaren_result = mysqli_query($conn, $vrijeExemplaren);
 
-        if(mysqli_num_rows($vrijeExemplaren_result)>0){
+        if(mysqli_num_rows($vrijeExemplaren_result)>=$aantal){
          while ($exemplaren_row = mysqli_fetch_assoc($vrijeExemplaren_result)) {
 
         $uitgeleendItem = "INSERT INTO UITGELEEND_ITEM (exemplaar_item_id, uitleen_id) 
@@ -60,9 +60,11 @@ if (mysqli_query($conn, $uitlening)) {
             }
   
 //informatie in een session steken om die te kunnen gebruiken in volgende page
-$_SESSION['reservering_info'] = [
+$_SESSION['reservering_info'] = []; 
+$_SESSION['reservering_info'][] = [
     'uitleen_id' => $uitleen_id,
 ];
+
 
     header("Location: ../FinalBevestigingReservatie.php");
 
