@@ -54,13 +54,47 @@
 
 <div class="activiteit">
   <?php
-  echo '<img src="images/png/workshop.png" alt="workshop flyer">';
+  include 'database.php';
+  
+  // Get the image from the database
+  $sql = "SELECT Flyer FROM ACTIVITEIT WHERE Activiteit_id = 1";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $imageLink = $row['Flyer'];
+    echo '<img src="' . $imageLink . '" alt="Image">';
+  }
+
+  // Get the Title from the database
+  $sql = "SELECT Act_Title FROM ACTIVITEIT WHERE Activiteit_id = 1";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $Act_title = $row['Act_Title'];
+  }
+
+  // Get the Info from the database
+  $sql = "SELECT Act_Info FROM ACTIVITEIT WHERE Activiteit_id = 1";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $ActInfo = $row['Act_Info'];
+  }
+
+  // Get the Date from the database
+  $sql = "SELECT Datum FROM ACTIVITEIT WHERE Activiteit_id = 1";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $ActDate = $row['Datum'];
+  }
+
+  echo '<div class="info_activiteit">';
+  echo '<h4>' . $Act_title . '</h4>';
+  echo '<p>' . $ActInfo . '</p>';
+  echo '<p>' . $ActDate . '</p>';
+  echo '</div>';
   ?>
-      <div class="info_activiteit">
-        <h3>Workshop 3D printing</h3>
-        <p>Deze workshop dient als een introductie tot het gebruik van 3D-printers, waarmee je later je eigen ontwerpen kunt leren printen. We willen benadrukken dat de workshop laagdrempelig is en geschikt is voor alle studenten, ongeacht hun ervaringsniveau. Maak je geen zorgen als je nog nooit met 3D-printers hebt gewerkt - we zullen je stap voor stap begeleiden. </p>
-        <h4>Wanneer?</h4>
-      </div>
 </div>
 </body>
 <?php include 'footer.php'; ?>

@@ -15,6 +15,8 @@ include 'database.php';
   display: flex;
 }
 
+
+
 .info_uitleen_uitleg img{
   height: auto;
   width: 1em;
@@ -219,6 +221,58 @@ margin: 0em 1em 0em 1em;
     font-size: 1em;
     margin-left: 2em;
     margin-bottom: 1em;
+}
+
+.Activiteiten{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0em 1em 3em;
+    border: rgb(193, 193, 193) 4px solid;
+    border-radius: 1em;
+    padding: 2em;
+}
+.Activiteiten button{
+    background-color: #1bbcb6;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+}
+
+.nieuwe_activiteit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nieuwe_activiteit input{
+    margin: 1em 0em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid rgb(193, 193, 193);
+    text-align: center;
+}
+.activiteit_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#ActTitle{
+    width: 20em;
+}
+
+#ActInfo{
+
+  width: 100%;
+  height: 20em;
+  overflow-x: scroll;
 
 }
 
@@ -247,13 +301,13 @@ margin: 0em 1em 0em 1em;
 
     document.getElementById('save-button').addEventListener('click', function() {
         changes.forEach(function(data) {
-            $.post('functies/InfoUpdate.php', data);
+            $.post('functies/InfoUrenUpdate.php', data);
         });
         changes = []; // Clear the changes
     });
 });
   </script>
-<div class="info_uitleen_uitleg">
+    <div class="info_uitleen_uitleg">
       <h2>Hoe leen je iets uit?</h2>
       <ul>
         <li>
@@ -328,8 +382,20 @@ margin: 0em 1em 0em 1em;
         op het apparaat.
       </p>
     </div>
+
+  <div class="Activiteiten">
+    <h2>Activiteiten</h2>
+    <div class="nieuwe_activiteit">
+      <form class="activiteit_form" action="functies/InfoActiviteitUpdate.php" method="POST" enctype="multipart/form-data">
+        <input id="ActTitle" name="ActTitle" type="text" placeholder="Activiteit Title">
+        <input id="ActInfo" name="ActInfo" type="text" placeholder="Nieuwe Activiteit">
+        <input id="form_input" name="ActDate" type="date" placeholder="Activiteit Datum">
+        <input id="form_input" name="flyer" type="file">
+        <button name="submit" type="submit">Verstuur</button>
+      </form>
+    </div>
+   
   </div>
-</div>
   <!-- form  -->
   <h2 class="info-form-h2">Nieuwe aankondigingen</h1>
     <form class="info-form">
