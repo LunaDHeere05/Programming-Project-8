@@ -37,7 +37,7 @@ include 'database.php';
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $itemNaamRow['merk'] . " - " . $itemNaamRow['naam'] . "</td>";
                 echo "<td>" . $verschil . "</td>";
-                echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
+                echo "<td><a href='#'><img src='images/svg/circle-info-solid.svg' alt='meer info'></a></td>";
                 echo "</tr>";
             }
         }
