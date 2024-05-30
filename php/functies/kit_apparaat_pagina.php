@@ -34,9 +34,9 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
                 <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
                 </li>';
             }
-            echo "</div><li id='selectie_toevoegen'>";
+            echo "<li id='selectie_toevoegen'>";
             echo "<p>Voeg selectie toe aan reservatie</p>";
-            echo "</li>";
+            echo "</li></div>";
             echo "</ul>" ;
         
          

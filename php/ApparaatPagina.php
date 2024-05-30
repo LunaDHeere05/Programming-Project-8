@@ -197,11 +197,26 @@
 
     .kits ul {
       display: flex;
+      flex-direction: column;
       list-style: none;
       width: 90%;
-      margin: 2em auto;
+      margin: 0.5em auto;
       justify-content: space-between;
     }
+    .kits_inhoud{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .kits_naam{
+      margin-bottom: 1em;
+    }
+
+    .kits_naam h1 {
+    margin:0em;
+}
 
     #selectie_toevoegen {
       background-color: #1bbcb6;
@@ -209,8 +224,8 @@
       padding: 1em;
       border-radius: 2em;
       margin: auto 0em;
-      height: 20%;
-      width: 10%;
+      height: 5em;
+      width: 14em;
       text-align: center;
     }
 
@@ -220,9 +235,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 20%;
+      width: 10em;
+      height: 15em;
       position: relative;
       padding: 1em 0em 0.5em 0em;
+      text-align: center;
     }
 
     .kits ul li img {
