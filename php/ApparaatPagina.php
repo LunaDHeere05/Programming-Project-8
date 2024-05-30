@@ -230,7 +230,7 @@
     }
 
     .kits ul li {
-      background-color: rgb(193, 193, 193);
+      background-color: #edededcf;
       border-radius: 2em;
       display: flex;
       flex-direction: column;
@@ -240,6 +240,11 @@
       position: relative;
       padding: 1em 0em 0.5em 0em;
       text-align: center;
+    }
+
+    .kits li:hover{
+      background-color: #b1b1b1cf;
+      transition-duration: 0.5s;
     }
 
     .kits ul li img {
@@ -263,11 +268,6 @@
     .dezelfde_categorie {
       width: 100%;
     }
-
-    .dezelfde_categorie_container {
-      display: flex;
-    }
-
     .dezelfde_categorie h1 {
       margin: 2em 0em 0em 2em;
     }
@@ -275,26 +275,34 @@
     .dezelfde_categorie ul {
       display: flex;
       list-style: none;
-      width: 90%;
-      margin: 2em auto;
-      justify-content: space-evenly;
-    }
-
-    .slider {
-      width: 2em;
-      height: auto;
-      margin: 1em;
+      margin:1em auto;
+      gap:0.5em;
+      justify-content: center;
     }
 
     .lijst_apparaten li {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 20%;
-      background-color: rgb(193, 193, 193);
+      justify-content: center;
+      width: 20em;
+      height:15em;
+      background-color: #edededcf;
       padding: 1em 1em 0.5em 1em;
       border-radius: 2em;
       margin: 0.7em;
+      text-align: center;
+   
+    }
+
+    .lijst_apparaten a{
+      text-decoration: none;
+      color:black;
+    }
+
+    .lijst_apparaten li:hover{
+      background-color: #b1b1b1cf;
+      transition-duration: 0.5s;
     }
 
     .lijst_apparaten li img {
@@ -340,21 +348,11 @@
       position: relative;
     }
 
-    .item_info img {
-      width: 15%;
-      height: 15%;
-      margin: auto 1em;
-    }
-
     .verwijder {
       position: absolute;
       right: 0;
       top: 0.5em;
       width: 2em !important;
-    }
-
-    .item_info_container img {
-      width: 15%;
     }
 
     .bevestig_btn {
@@ -404,13 +402,10 @@
 
   <div class="dezelfde_categorie">
     <h1>Van dezelfde categorie</h1>
-    <div class="dezelfde_categorie_container">
-      <img class="slider" src="images/svg/chevron-left-solid.svg" alt="links" class="verander">
       <ul class="lijst_apparaten">
         <?php include 'functies\dezelfde_categorie.php'?>
-      </ul>
-      <img class="slider" src="images/svg/chevron-right-solid.svg" alt="rechts">
-    </div>
+      </ul> 
+
   </div>
   <?php include 'footer.php' ?>
 

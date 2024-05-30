@@ -15,19 +15,19 @@ if(isset($_GET['apparaat_id'])) {
         // Select other items from the same category, excluding the current item
         $item_query = "SELECT naam, merk, item_id, images
                         FROM ITEM
-                        WHERE categorie = '$categorie' AND item_id != $apparaat_id";
+                        WHERE categorie = '$categorie' AND item_id != $apparaat_id
+                        LIMIT 5";
 
         $item_result = mysqli_query($conn, $item_query);
 
         if(mysqli_num_rows($item_result) > 0){
-            echo '<ul class="lijst_apparaten">';
             while($item_row = mysqli_fetch_assoc($item_result)){
-                echo '<li>';
+                echo '<li><a href="ApparaatPagina.php?apparaat_id=' . $item_row['item_id'] . '">';
                 echo '<img src="' . $item_row['images'] . '" alt="foto apparaat">';
                 echo '<h3>'.$item_row['merk']. '-' .$item_row['naam'].'</h3>';
                 echo '</li>';
             }
-            echo '</ul>';
+   
         }else{
             echo '<p>Geen items gevonden van dezelfde categorie.</p>';
         }
