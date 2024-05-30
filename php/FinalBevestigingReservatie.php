@@ -8,7 +8,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservatie bevestiging</title>
-    <link rel="stylesheet" href="/css/stylesheet.css">
+    <!-- <link rel="stylesheet" href="/css/stylesheet.css"> -->
     <style>
        .reserverenEnTerug{
     display: flex;
@@ -102,12 +102,22 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         $endDate=new dateTime($item_row['inlever_datum']);
         $endDateString=$endDate->format('d-m-Y');
 
+        $item_naam=$item_row['naam'];
+        $item_merk=$item_row['merk'];  
+        $item_aantal=$item_row['aantal']; 
+
         echo '<div class="item_info">';
         echo '   <img src="'. $item_row['images'] . '" alt="foto apparaat">';
-        echo "<h2>" . $item_row['merk'] . ' - ' . $item_row['naam'] . "</h2>";
+        echo "<h2>" . $item_merk. ' - ' . $item_naam. "</h2>";
         echo '<p class="data"> Van '. $startDateString . '  tot '. $endDateString . '</p>';
-        echo '<h3>Aantal: '. $item_row['aantal'] . ' </h3>';
+        echo '<h3>Aantal: '. $item_aantal. ' </h3>';
         echo '</div>';
+        $zender= 'no-reply-medialab@example.com';
+        $ontvanger = $gebruikersnaam;
+        $mail_onderwerp = "Bevestiging Uitlening ID: $uitleen_id";
+        $mail_body = "Beste $gebruikersnaam,\n\n Uw reservatie voor: $item_merk - $item_naam is succesvol verwerkt.\n\n Ophaling: $startDateString\n Inleverdatum: $endDateString\n\n Met vriendelijke groeten,\n\n Het Medialab team";
+        include 'functies/mail.php';
+
     }
     }
     //verwijderen van reserveringsinfo
@@ -119,42 +129,6 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         window.location.href = 'Inventaris.php';
         </script>";
     }
-
-
-
-
-    // $reservationDetails = '';
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //     foreach ($_POST['items'] as $item) {
-    //         $itemId = $item['item_id'];
-    //         $startDate = $item['start_date'];
-    //         $endDate = $item['end_date'];
-    //         $aantal = $item['quantity'];
-
-    //         $query = "SELECT naam, merk FROM ITEM WHERE item_id=$itemId";
-    //         $query_result = mysqli_query($conn, $query);
-
-    //         if ($query_result) {
-    //             $item_row = mysqli_fetch_assoc($query_result);
-
-    //             $reservationDetails .= "Item: " . $item_row['merk'] . ' - ' . $item_row['naam'] . "\n";
-    //             $reservationDetails .= "Aantal: $aantal\n";
-    //             $reservationDetails .= "Startdatum: " . date('d-m-Y', strtotime($startDate)) . "\n";
-    //             $reservationDetails .= "Einddatum: " . date('d-m-Y', strtotime($endDate)) . "\n\n";
-    //         } else {
-    //             echo "Fout bij het ophalen van de itemgegevens.";
-    //         }
-    //     }
-    // }
-    // if (!empty($reservationDetails)) {
-    //     $email = $_SESSION['email'];
-    //     $to = $email;
-    //     $subject = "Bevestiging reservatie";
-    //     $message = "Beste,\n\nUw reservering is succesvol geplaatst.\n\nDetails van uw reservering:\n\n$reservationDetails\nBedankt voor uw reservering.";
-    //     $headers = "From: no-reply@yourdomain.com";
-
-    //     mail($to, $subject, $message, $headers);
-    // }
         ?>
 
 

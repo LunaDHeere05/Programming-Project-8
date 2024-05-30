@@ -9,10 +9,6 @@ require 'vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 
-// Mail Info
-$zender= 'no-reply-medialab@example.com';
-$ontvanger = $gebruikersnaam;
-$mail_body = "Beste,\n\nUw reservering is succesvol geplaatst.\n\nDetails van uw reservering:\n\nBedankt voor uw reservering.";
 
 try {
     // Server settings

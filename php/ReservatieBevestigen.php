@@ -8,7 +8,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservatie bevestiging</title>
-    <link rel="stylesheet" href="../css/stylesheet.css">
+    <!-- <link rel="stylesheet" href="../css/stylesheet.css"> -->
     <style>
         .bevestig {
             margin: 0em 4em 2em 4em;
@@ -164,7 +164,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
                 echo '</div>';
                 echo '</form>';             
         }else{
-            echo '<p> Dit artikel is intussen al uitgeleend en wordt van je winkelmand verwijderd, sorry. </p>';
+            echo '<p> Dit artikel is intussen al uitgeleend en wordt uit je winkelmand verwijderd, sorry. </p>';
             echo '</div>';
             echo '</div>';
 
