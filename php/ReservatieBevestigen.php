@@ -164,7 +164,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
                 echo '</div>';
                 echo '</form>';             
         }else{
-            echo '<p> Dit artikel is intussen al uitgeleend en wordt van je winkelmand verwijderd, sorry. </p>';
+            echo '<p> Dit artikel is intussen al uitgeleend en wordt uit je winkelmand verwijderd, sorry. </p>';
             echo '</div>';
             echo '</div>';
 
