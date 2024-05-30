@@ -115,7 +115,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         $zender= 'no-reply-medialab@example.com';
         $ontvanger = $gebruikersnaam;
         $mail_onderwerp = 'Bevestiging Reservatie';
-        $mail_body = "Beste $gebruikersnaam,\n\n Uw reservatie voor $item_merk - $item_naam is succesvol verwerkt.\n\n Ophaling: $startDateString\n Inleverdatum: $endDateString\n\n Met vriendelijke groeten,\n\n Het Medialab team";
+        $mail_body = "Beste $gebruikersnaam,\n\n Uw reservatie voor: $item_merk - $item_naam is succesvol verwerkt.\n\n Ophaling: $startDateString\n Inleverdatum: $endDateString\n\n Met vriendelijke groeten,\n\n Het Medialab team";
         include 'functies/mail.php';
 
     }
