@@ -32,13 +32,15 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             position: relative;
             width:60em;
             height:10em;
+            padding: 1em;
             border-radius: 2em;
             transition: transform 0.5s ease; 
         }
-        .item_info .img {
+
+        .item_info img {
             width: 8em;
             height: 8em;
-            margin: 1em;
+               
         }
         .verwijder {
             position: absolute;
@@ -152,7 +154,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
                 $endDateString=$endDate->format('d-m-Y');
 
                 echo '<img class="verwijder" id='.$item_row['item_id'].' src="images/svg/xmark-solid.svg" alt="klik weg">';          
-                echo '<form action="functies/reserveren.php" method="POST" id="formBevestiging">';
+                echo '<form id="formBevestiging">';
                 echo '<p class="data"> Van ' .   $startDateString . ' tot ' .  $endDateString . ' </p>';
                 echo '<input type="hidden" name="itemId" value="' . $itemId . '">';
                 echo '<input type="hidden" name="start_date" value="' . $startDateString  . '">';
@@ -177,7 +179,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             echo '<script>
             setTimeout(function(){
                 window.location.reload();
-            }, 1500);
+            }, 2500);
             </script>';
 
         }
@@ -263,6 +265,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
                 echo '<p>Aantal: '.$aantal.'</p>';
                 echo '</div>';
                 echo '</div>';
+               
                 echo '</div>';
                 echo '<div class="bevestig_btn">';
                 echo '<form action="functies/reserveren.php" method="POST"> 

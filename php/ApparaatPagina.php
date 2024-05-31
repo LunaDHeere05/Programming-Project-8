@@ -372,6 +372,23 @@
       font-size: 20px;
       letter-spacing: 1px;
     }
+
+    @keyframes gradient {
+      0% {
+            color: #1bbcb6; /* Appelblauwzeegroen */
+        }
+        50% {
+            color: red;
+        }
+        100% {
+            color: #428bca; /* Appelblauwzeegroen */
+        }
+    
+    }
+
+    .animated-word {
+        animation: gradient 5s linear infinite;
+    }
   </style>
 </head>
 

@@ -6,6 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris</title>
+    <!-- <link
+            rel="icon"
+            href=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png"
+            type="image/x-icon"
+        /> -->
     <style>
     
 .zoekresultaat_container {
@@ -19,7 +25,7 @@
   display: flex;
   flex:1 0 basis;
   list-style: none;
-  gap:2em;
+  gap:1em;
   height: 2em;
   justify-content: space-between;
 }
@@ -84,6 +90,35 @@
   color:#1BBCB6;
 }
 
+#beschikbaarheidDate, #beschikbaarheidEnd {
+            font-size: 14px;
+            padding: 3px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        #beschikbaarheidDate:focus, #beschikbaarheidEnd:focus {
+            border-color: #66afe9;
+            outline: none;
+            box-shadow: 0 0 5px #1BBCB6;
+        }
+
+        #beschikbaarheidDate::-webkit-calendar-picker-indicator, #beschikbaarheidEnd::-webkit-calendar-picker-indicator {
+            background-color: #ccc;
+            border-radius: 50%;
+        }
+
+  #dateDiv{
+    display: flex;
+    gap:0.5em;
+    justify-content: center;
+    align-items: center;
+    margin:0 1em 0 0;
+  }
+
+
 .noResult{
   margin:1em;
 }
@@ -139,7 +174,7 @@
             </form>
             <li>
         <form action="Inventaris.php" method="GET" id='formBeschikbaarheid'>
-                <select name="Beschikbaarheid" id="beschikbaarheid">
+                <select id="beschikbaarheid">
                 <option disabled selected>Beschikbaarheid</option>
                 </select>    
             </li>
@@ -172,14 +207,109 @@ document.getElementById('beschrijving').addEventListener('change',function(e){
 })
 
 
-  document.getElementById("beschikbaarheid").addEventListener("click", function() {
-  document.getElementById("beschikbaarheid").parentElement.innerHTML="<input id='beschikbaarheid' type='date'>" 
+  document.getElementById("formBeschikbaarheid").addEventListener("click", function() {
+  document.getElementById("beschikbaarheid").parentElement.innerHTML="<div id='dateDiv'> <input id='beschikbaarheidDate' name='beschikbaarheid' step=7 type='date'><input id='beschikbaarheidEnd' name='beschikbaarheidEnd' step=7 type='date'> </div>" 
 
-  document.getElementById("beschikbaarheid").addEventListener('change',function(e){
-  document.getElementById('formBeschikbaarheid').submit()       
+  let vandaag = new Date();
+  let dayIndex = vandaag.getDay(); //maandag is index 1
+
+  //uitlenen kan enkel op maandag - dus beschikbaarheid kan enkel worden gecheckt op maandagen
+  let start_date = document.getElementById('beschikbaarheidDate');
+  let end_date = document.getElementById('beschikbaarheidEnd');
+  let datumUitlenen = new Date(vandaag)
+
+  switch (dayIndex) {
+    case 0:
+      datumUitlenen.setDate(vandaag.getDate() + 1);
+      break;
+    case 1:
+      datumUitlenen = vandaag;
+      break;
+    case 2:
+      datumUitlenen.setDate(vandaag.getDate() + 6);
+      break;
+    case 3:
+      datumUitlenen.setDate(vandaag.getDate() + 5);
+      break;
+    case 4:
+      datumUitlenen.setDate(vandaag.getDate() + 4);
+      break;
+    case 5:
+      datumUitlenen.setDate(vandaag.getDate() + 3);
+      break;
+    case 6:
+      datumUitlenen.setDate(vandaag.getDate() + 2);
+      break;
+  };
+
+  let minDateUitlenenString = datumUitlenen.toISOString().split('T')[0];
+  start_date.setAttribute('min', minDateUitlenenString);
+
+<?php 
+if ($userType == 'student') {
+  echo "
+  document.getElementById('beschikbaarheidEnd').style.display='none';
+
+  //student mag max. 2 weken vooraf reserveren:
+  let maxDateUitlenen = new Date(datumUitlenen);
+  maxDateUitlenen.setDate(datumUitlenen.getDate() + 7);
+  let maxDateUitlenenString=maxDateUitlenen.toISOString().split('T')[0];
+  start_date.setAttribute('max', maxDateUitlenenString);
+
+  document.getElementById('beschikbaarheidDate').addEventListener('change',function(e){
+    document.getElementById('formBeschikbaarheid').submit()       
+  })";
+
+} else if ($userType == "docent") {
+  echo "
+  let datumInleveren = new Date(vandaag); //op zoek naar volgende vrijdag
+  switch (dayIndex) {
+    case 0:
+      datumInleveren.setDate(vandaag.getDate() + 5);
+      break;
+    case 1:
+      datumInleveren.setDate(vandaag.getDate() + 4);
+      break;
+    case 2:
+      datumInleveren.setDate(vandaag.getDate() + 3);
+      break;
+    case 3:
+      datumInleveren.setDate(vandaag.getDate() + 2);
+      break;
+    case 4:
+      datumInleveren.setDate(vandaag.getDate() + 1);
+      break;
+    case 5:
+      datumInleveren = vandaag;
+      break;
+    case 6:
+      datumInleveren.setDate(vandaag.getDate() + 6);
+      break;
+  };
+
+  let minDateInleverenString = datumInleveren.toISOString().split('T')[0];
+  end_date.setAttribute('min', minDateInleverenString);
+
+start_date.addEventListener('change', function() {
+  //student mag max 1 week reserveren dus van maandag tot vrijdag
+
+  let new_date = new Date(start_date.value);
+  new_date.setDate(new_date.getDate() + 4); 
+  let endDate = new_date.toISOString().split('T')[0];
+  end_date.value='';
+  end_date.setAttribute('min', endDate);
+})
+
+document.getElementById('beschikbaarheidDate').addEventListener('change',function(e){
+  document.getElementById('beschikbaarheidEnd').addEventListener('change',function(e){
+  document.getElementById('formBeschikbaarheid').submit()      
+  }) 
+})";
+     
+    }
+
+    ?>
   })
-           
-  });
 
 </script>
 

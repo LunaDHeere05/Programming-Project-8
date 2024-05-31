@@ -25,7 +25,7 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
 
         if(mysqli_num_rows($item_result) > 0) {
             echo '<ul>';
-            echo '<div class = "kits_naam"><h1>' . $kit_row['naam'] . '</h1> </div><div class = "kits_inhoud">';
+            echo '<div class = "kits_naam animated-word"><h1>' . $kit_row['naam'] . '</h1> </div><div class = "kits_inhoud">';
 
             while($item_row = mysqli_fetch_assoc($item_result)) {
                 echo '<li>

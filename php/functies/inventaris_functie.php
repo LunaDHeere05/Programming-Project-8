@@ -84,18 +84,60 @@ if (!empty($zoek_query)) {
     //sql-injecties voorkomen
     $beschikbaarheid_query = mysqli_real_escape_string($conn, $beschikbaarheid_query);
 
-    $zoek_resultaat = "SELECT * FROM ITEM 
-    WHERE LOWER(beschikbaarheid) LIKE LOWER('%$beschikbaarheid_query%')";
-    $item_info_result = mysqli_query($conn, $zoek_resultaat);
-
-    echo '<script> 
-    for(let option of document.getElementsByClassName("beschikbaarheidOption")){
-        if(option.value==' . json_encode($_GET['beschikbaarheid']) . '){
-            option.selected=true;
-            break;
+      // controle of de datums valide zijn
+    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $beschikbaarheid_query) || !strtotime($beschikbaarheid_query)) {
+        die('Ongeldig datumformaat. Gebruik het formaat YYYY-MM-DD.');
         }
+        
+    $beginWeekBeschikbaarheid = new DateTime($beschikbaarheid_query); //maandag
+
+
+    // controle of ingegeven datum een maandag is. 
+    if ($beginWeekBeschikbaarheid->format('N') != 1) {
+        echo "<p>Ongeldig.</p>";
+        echo "<script>
+        window.location.href = 'Inventaris.php';
+        </script>";
     }
-    </script>';
+
+    if(isset($_GET['beschikbaarheidEnd'])){
+
+        $beschikbaarheidEnd_query = $_GET['beschikbaarheidEnd'];
+        //sql-injecties voorkomen
+        $beschikbaarheidEnd_query = mysqli_real_escape_string($conn, $beschikbaarheidEnd_query);
+
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $beschikbaarheidEnd_query) || !strtotime($beschikbaarheidEnd_query)) {
+            die('Ongeldig datumformaat. Gebruik het formaat YYYY-MM-DD.');
+            }
+       $eindeWeekBeschikbaarheid = new DateTime($beschikbaarheidEnd_query); //vrijdag
+    }else{
+        $eindeWeekBeschikbaarheid = (clone $beginWeekBeschikbaarheid)->modify('+4 days'); //vrijdag
+    }
+
+    $beschikbaarOp=true; 
+
+    $zoek_resultaat = "SELECT DISTINCT i.*
+    FROM ITEM i
+    JOIN EXEMPLAAR_ITEM ei on ei.item_id=i.item_id
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM UITGELEEND_ITEM ui
+        JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
+        WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+        AND (
+            (u.uitleen_datum <= '".$beginWeekBeschikbaarheid->format('Y-m-d')."' AND u.inlever_datum >= '" . $eindeWeekBeschikbaarheid->format('Y-m-d') ."')
+            OR (u.uitleen_datum >= '".$beginWeekBeschikbaarheid->format('Y-m-d')."'  AND u.uitleen_datum < '" . $eindeWeekBeschikbaarheid->format('Y-m-d') ."')
+            OR (u.inlever_datum <= '" . $eindeWeekBeschikbaarheid->format('Y-m-d') ."' AND u.inlever_datum > '".$beginWeekBeschikbaarheid->format('Y-m-d')."')
+            )
+        )
+    AND zichtbaarheid=1
+"; 
+
+$item_info_result = mysqli_query($conn, $zoek_resultaat);
+
+    echo "<script> 
+        document.getElementById('beschikbaarheid').innerHTML= '<option disabled selected>" .$beginWeekBeschikbaarheid->format('d-m-Y'). " tot " .$eindeWeekBeschikbaarheid->format('d-m-Y'). "</option>';
+    </script>";
     
 }else{
 // De volgende query is gewoon om de info over het apparaat te halen uit de databank
@@ -153,8 +195,16 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
     "; 
 
         $vrijeExemplaren_result = mysqli_query($conn, $vrijeExemplaren);
-     
-        if(mysqli_num_rows($vrijeExemplaren_result)>0){
+
+
+        if(isset($beschikbaarOp)){
+            $beschikbaardatum=new DateTime($_GET['beschikbaarheid']);
+            $beschikbaardatumString=$beschikbaardatum->format('d-m-Y');
+
+            echo "<h3 class='beschikbaar'> Beschikbaar op gekozen termijn </h3>";
+            $image = 'images/svg/circle-check-solid.svg';
+            $availability_filter = "invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);";
+        }else if(mysqli_num_rows($vrijeExemplaren_result)>0){
                     echo "<h3 class='beschikbaar'> Beschikbaar </h3>";
                     $image = 'images/svg/circle-check-solid.svg';
                     $availability_filter = "invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);";
@@ -167,11 +217,11 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
                 echo "<img style='filter: $availability_filter;' src='$image' alt='Availability Icon'>";
                 echo "</div>";
 
-        //checken of het apparaat in de favorietenlijst van de user zit
 
-        $imageFav='images/svg/heart-regular.svg';
 
         if(isset($gebruikersnaam)){
+        $imageFav='images/svg/heart-regular.svg';
+
         $favorietenQuery="SELECT * FROM FAVORIETE_ITEMS fi
         JOIN FAVORIETENLIJST f on f.fav_id=fi.fav_id
         WHERE f.email='$gebruikersnaam' and fi.item_id=" . $row_item['item_id'] . "";
@@ -182,13 +232,13 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
             $imageFav='images/svg/heart-solid.svg';
         }
 
-        }
-                echo "<div class='toevoegen'>";
-                echo '<form action="functies/wijzigenFavorieten.php" method="POST">';
-                echo '<input type="hidden" name="itemId" value='. $row_item['item_id'] .'>';
-                echo "<button class='favoriet' type='submit'><img src='$imageFav' alt='Favorietenlijst'></button>";
-                echo "</form>";
-                echo "</div>";
+        echo "<div class='toevoegen'>";
+        echo '<form action="functies/wijzigenFavorieten.php" method="POST">';
+        echo '<input type="hidden" name="itemId" value='. $row_item['item_id'] .'>';
+        echo "<button class='favoriet' type='submit'><img src='$imageFav' alt='Favorietenlijst'></button>";
+        echo "</form>";
+        echo "</div>";
+        }            
                 echo "</a>";
                 echo "</li>";
             }

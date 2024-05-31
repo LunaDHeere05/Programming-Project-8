@@ -30,5 +30,8 @@ $insertResult=mysqli_query($conn,$insert);
 }
 
 header("Location: ../Inventaris.php");
+}else{
+header("Location: ../Inventaris.php");
+    
 }
 
