@@ -22,6 +22,3 @@ if(mysqli_num_rows($result) > 0) {
         header("Location: ../FinalAnnulerenReservatie.php");
     }
 }
-exit();
-mysqli_close($conn);
-?>

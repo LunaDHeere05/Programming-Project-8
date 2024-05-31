@@ -15,7 +15,7 @@ $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
                 WHERE U.email = '$gebruikersnaam'"; 
 
 $result = mysqli_query($conn, $query);
-
+$allesannuleren = 0;
 if(mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         $inlever_datum_timestamp = strtotime($row['uitleen_datum']);
@@ -24,23 +24,29 @@ if(mysqli_num_rows($result) > 0) {
         $dagen_tot_inleveren = round($seconden_tot_inleveren / (60 * 60 * 24));
 
         if($dagen_tot_inleveren < 0){
-            $allesannuleren = "0%";
-            break;
-
-        }else{
-            $allesannuleren = "100%";
-           
+            $allesannuleren++;
         }
-            echo '
-            <div style="opacity: '.$allesannuleren.';" class="alles_annuleren">
-            <a href="ReservatieAnnuleren.php">
-              <p>Alles annuleren</p>
-              <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
-            </a>
-          </div>
-            ';
         }
     }
+}
+if($allesannuleren > 0){
+    echo '
+    <div style="opacity: 0%;" class="alles_annuleren">
+    <a href="ReservatieAnnuleren.php">
+      <p>Alles annuleren</p>
+      <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
+    </a>
+  </div>
+    ';
+}else{
+    echo '
+    <div style="opacity: 100%;" class="alles_annuleren">
+    <a href="ReservatieAnnuleren.php">
+      <p>Alles annuleren</p>
+      <img src="images/svg/circle-xmark-solid.svg" alt="xmark" />
+    </a>
+  </div>
+    ';
 }
 
 ?>

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$beschrijving', NOW(), '$bruikbaarheid', '$exemplaar_id')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Defect successfully added!";
+        //hier moet er geredirect worden naar de vorige pagina
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

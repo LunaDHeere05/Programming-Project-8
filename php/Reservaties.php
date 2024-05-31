@@ -220,7 +220,7 @@
         </div>
         <div class="reservatie-top">
           <h2>Nog op te halen</h2>
-          <?php include 'functies\reservatie_button_allesannuleren.php'?>
+          <?php include 'functies\reservatie_annuleren_verdwijnen.php'?>
           <form>
             <input type="submit" value="Selectie annuleren" style="color: #E30613;" id="selectie_annuleren">
           </form>

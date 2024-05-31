@@ -60,7 +60,7 @@ if(mysqli_num_rows($result) > 0) {
                                     <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].'</span></h3>
                                 </li>
                                 <li style="opacity: '.$annuleren.';" class="annuleer_btn" >
-                                <button>
+                                <button value="'.$row['exemplaar_item_id'].'">
                                     <p>Annuleren</p>
                                     <img src="images/svg/circle-xmark-solid.svg" alt="xmark"/>
                                 </button>

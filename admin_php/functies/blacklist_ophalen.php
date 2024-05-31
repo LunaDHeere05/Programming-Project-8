@@ -9,7 +9,7 @@ $query = "SELECT s.email,
           FROM PERSOON s
           JOIN WAARSCHUWING w ON s.email = w.email
           GROUP BY s.email
-          HAVING warningCount > 1 AND daysOnBlacklist <= 90
+          HAVING warningCount >= 2 AND daysOnBlacklist <= 90
           ORDER BY daysOnBlacklist DESC";
 
 $result = mysqli_query($conn, $query);

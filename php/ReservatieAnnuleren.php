@@ -82,7 +82,7 @@
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
                 JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND UI.isOpgehaald = 0
-                WHERE U.{$userType} = '$email'"; 
+                WHERE U.email = '$gebruikersnaam'"; 
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) > 0) {

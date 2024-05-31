@@ -32,6 +32,7 @@ if(mysqli_num_rows($result) > 0) {
             $status = "Binnen " .$dagen_tot_inleveren ." dagen inleveren";
             $kleur = "rgb(193, 193, 193)";
         }
+        
             echo '
             <div class="opgehaald_lijst_container">
                 <div class="opgehaald_reservatie_container">
@@ -57,10 +58,11 @@ if(mysqli_num_rows($result) > 0) {
                                     <div class="defect_btn">
                                     <form action="functies\defect_copies_ophalen.php" method="POST">
                                     <input type = "hidden" name="item_id" value="'.$row['item_id'].'">
-                                    <button class="defect_button">
+                                        <button class="defect_button">
                                             <p>Defect melden</p>
                                             <img src="images/svg/screwdriver-wrench-solid.svg" alt="defect"/>
                                         </button>
+                                    </form>
                                     </div>
                                     <div class="verleng_btn">
                                         <button>

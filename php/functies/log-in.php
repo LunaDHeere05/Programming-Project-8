@@ -25,6 +25,16 @@ $stmt_update->close();
 if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $gebruikersnaam = $_POST['gebruikersnaam'];
     $wachtwoord = $_POST['wachtwoord']; // Get password from user input
+    $user = $_POST[ 'user'];
+    $_SESSION['gebruikersnaam'] = $gebruikersnaam; //  NA check ww
+    // session rol = $row[type]
+    
+    // Check if the user exists in the database
+    $query = '';
+    $hashed_password = ''; // Initialize hashed password variable
+    
+    $query = 'SELECT * FROM PERSOON WHERE email=? AND rol=? LIMIT 1';
+    $_SESSION['user'] = $user;
 
     // Check if the user exists in the database
     $query = 'SELECT * FROM PERSOON WHERE email=? LIMIT 1';
