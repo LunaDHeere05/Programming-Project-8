@@ -17,26 +17,31 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
         
         // Hier is de overbodige query voor kitgegevens verwijderd
 
-        $item_query = "SELECT ITEM.naam, ITEM.merk, ITEM.beschrijving, ITEM.images, KIT.naam as kitNaam FROM ITEM 
+        $item_query = "SELECT ITEM.naam, ITEM.merk, ITEM.beschrijving, ITEM.images, ITEM.item_id, KIT.naam as kitNaam FROM ITEM 
                         INNER JOIN ITEM_KIT ON ITEM.item_id = ITEM_KIT.item_id 
                         INNER JOIN KIT ON KIT.kit_id = ITEM_KIT.kit_id 
                         WHERE ITEM_KIT.kit_id = $kit_id";
         $item_result = mysqli_query($conn, $item_query);
 
         if(mysqli_num_rows($item_result) > 0) {
-            echo '<ul>';
-            echo '<div class = "kits_naam animated-word"><h1>' . $kit_row['naam'] . '</h1> </div><div class = "kits_inhoud">';
+            echo '<ul class="kit">';
+            echo '<div class = "kits_naam animated-word"><h1>' . $kit_row['naam'] . '</h1> </div><div class = "kits_inhoud ">';
 
             while($item_row = mysqli_fetch_assoc($item_result)) {
                 echo '<li>
+                <img id="selectiebol" class="kitBol" src="images/svg/plus-circle.svg" alt="">
+                <input id="id" type="hidden" value=' . $item_row['item_id'] . '>
+                <a href="ApparaatPagina.php?apparaat_id=' . $item_row['item_id'] . '">
                 <img src="' . $item_row['images'] . '" alt="foto apparaat">
-                <h3>' . $item_row['merk'] . '-'.$item_row['naam']. '</h3>
-                <img id="selectiebol" src="images/svg/plus-circle.svg" alt="">
-                </li>';
+                <h3>' . $item_row['merk'] . '-'.$item_row['naam']. '</h3>            
+                </a></li>';
             }
-            echo "<li id='selectie_toevoegen'>";
+
+            if(isset($gebruikersnaam)){
+            echo "<div id='selectie_toevoegen'>";
             echo "<p>Voeg selectie toe aan reservatie</p>";
-            echo "</li></div>";
+            echo "</div></div>";
+            }
             echo "</ul>" ;
         
          

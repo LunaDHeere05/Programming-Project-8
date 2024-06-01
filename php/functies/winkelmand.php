@@ -47,8 +47,20 @@ $queryWinkelMandId="SELECT winkelmand_id FROM WINKELMAND WHERE email='$gebruiker
 $queryWinkelMandId_result=mysqli_query($conn,$queryWinkelMandId);
 $queryWinkelMandId_row=mysqli_fetch_assoc($queryWinkelMandId_result);
 
+//checken of item al in winkelmand staat
+$queryCheck="SELECT * FROM WINKELMAND_ITEMS WHERE item_id=$itemId AND winkelmand_id={$queryWinkelMandId_row['winkelmand_id']} AND uitleen_datum='{$startDate}' AND inlever_datum='{$endDate}'";
+$queryCheck_result=mysqli_query($conn,$queryCheck);
+
+if(mysqli_num_rows($queryCheck_result)>0){
+    $aantal+=mysqli_num_rows($queryCheck_result);
+    $updateQuery = "UPDATE `WINKELMAND_ITEMS` SET `aantal` = {$aantal} WHERE `item_id` = {$itemId} AND `winkelmand_id` = {$queryWinkelMandId_row['winkelmand_id']}";
+    mysqli_query($conn, $updateQuery);
+}else{
 $insertWinkelmand="INSERT INTO `WINKELMAND_ITEMS` (`winkelmand_id`, `item_id`, `uitleen_datum`, `inlever_datum`, `aantal`) VALUES (".$queryWinkelMandId_row['winkelmand_id'].", {$itemId}, '{$startDate}', '{$endDate}', {$aantal})";
 $insertWinkelmand_result=mysqli_query($conn,$insertWinkelmand); 
+
+}
+
 }
 }
 ?>

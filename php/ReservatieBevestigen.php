@@ -168,7 +168,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         }else{
             echo '<p> Dit artikel is intussen al uitgeleend en wordt uit je winkelmand verwijderd, sorry. </p>';
             echo '</div>';
-            echo '</div>';
+          
 
             $queryDelete="DELETE wi FROM WINKELMAND_ITEMS wi
             JOIN WINKELMAND w ON w.winkelmand_id=wi.winkelmand_id 
@@ -179,7 +179,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             echo '<script>
             setTimeout(function(){
                 window.location.reload();
-            }, 2500);
+            }, 4500);
             </script>';
 
         }

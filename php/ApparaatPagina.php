@@ -191,18 +191,27 @@
 
     /* kits */
 
+    .kits{
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap:1em;
+    }
+
     .kits h1 {
       margin: 2em 0em 0em 2em;
     }
 
-    .kits ul {
+    .kit{
       display: flex;
-      flex-direction: column;
       list-style: none;
       width: 90%;
-      margin: 0.5em auto;
-      justify-content: space-between;
+      gap:0.5em;
+      margin: 1em auto;
+      align-items: center;    
+
     }
+
     .kits_inhoud{
       display: flex;
       flex-direction: row;
@@ -215,8 +224,46 @@
     }
 
     .kits_naam h1 {
-    margin:0em;
+  
+    margin: 2em 2em 0em 2em;
+    text-align: left;
 }
+
+.kit li {
+      background-color: #edededcf;
+      box-shadow: 3px 2px 5px 5px #aaaaaa;
+      border-radius: 2em;
+      /* display: flex;
+      flex-direction: column;
+      align-items: center; */
+      width: 10em;
+      height: 15em;
+      position: relative;
+      padding: 1em 0em 0.5em 0em;
+      text-align: center;
+ 
+    }
+
+    .kits p{
+      text-align: center;
+    }
+
+    .kits a {
+      text-decoration: none;
+      color:black;
+    }
+    .kit li:hover{
+      background-color: #b1b1b1cf;
+      transition-duration: 0.5s;
+    }
+
+    .kit img {
+      width: 70%;
+      height: auto;
+      margin: 0em 0em 1em 0em;
+      background-color: white;
+      border-radius: 1em;
+    }
 
     #selectie_toevoegen {
       background-color: #1bbcb6;
@@ -227,41 +274,19 @@
       height: 5em;
       width: 14em;
       text-align: center;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .kits ul li {
-      background-color: #edededcf;
-      border-radius: 2em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 10em;
-      height: 15em;
-      position: relative;
-      padding: 1em 0em 0.5em 0em;
-      text-align: center;
-    }
-
-    .kits li:hover{
-      background-color: #b1b1b1cf;
-      transition-duration: 0.5s;
-    }
-
-    .kits ul li img {
-      width: 70%;
-      height: auto;
-      margin: 0em 0em 1em 0em;
-      background-color: white;
-      border-radius: 1em;
-    }
 
     #selectiebol {
+      cursor: pointer;
       background: none;
       filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
       position: absolute;
       width: 2em;
-      right: 0.5em;
-      top: 0.5em;
+      right: 0;
+      top: 0;
     }
 
     /* van dezelfde categorie */
@@ -389,6 +414,7 @@
     .animated-word {
         animation: gradient 5s linear infinite;
     }
+    
   </style>
 </head>
 
@@ -412,9 +438,10 @@
 
   <div class="kits">
     <h1>Kits</h1>
-    <ul>
+    <p id='kitMessage' ></p>
+    
       <?php include 'functies\kit_apparaat_pagina.php'?>
-    </ul>
+    
   </div>
 
   <div class="dezelfde_categorie">
@@ -532,10 +559,8 @@
 
     }
 
-   
-
+    let datumGekozen=false;
     <?php
-  
       if ($userType == 'student') {
         echo "
         //student mag max. 2 weken vooraf reserveren:
@@ -548,7 +573,9 @@
 
         start_date.addEventListener('change', function() {
             
-            console.log('startdate: '+start_date.value);          
+            console.log('startdate: '+start_date.value);    
+            datumGekozen=true; //voor het toeveogen van kits aan winkelmand moet er eerst een uitleentermijn gekozen worden
+
 
             //student mag max 1 week reserveren dus van maandag tot vrijdag
             let new_date = new Date(start_date.value);
@@ -616,6 +643,7 @@ start_date.addEventListener('change', function() {
     quantity.disabled=false;
     if(start_date.value<end_date.value){
     aantalUitDatabank(start_date.value,end_date.value)
+    datumGekozen=true; //voor het toeveogen van kits aan winkelmand moet er eerst een uitleentermijn gekozen worden
     }else{
       alert('Startdatum moet kleiner zijn dan einddatum.');
     }
@@ -644,14 +672,71 @@ document.getElementById('submitWinkelmand').addEventListener('click',function(e)
       }).then(response => response.text())
       .then(data => {
         window.location.reload();
-      })
-
-      
-    
+      })   
   });
 
+    //kits
+
+    let kitMessage=document.getElementById('kitMessage');
+    let kitItems=[]
+
+    document.querySelectorAll('.kitBol').forEach(function(button) {
+   
+    button.addEventListener('click', function() {
+
+    if(datumGekozen){
+    kitMessage.style.display='none'
+      if (button.src.endsWith('plus-circle.svg')) {
+        button.src = 'images/svg/plus-circle-fill.svg';
+        kitItems.push(parseInt(button.nextSibling.nextSibling.value))
+
+        console.log(kitItems)
+      } else {
+        button.src = 'images/svg/plus-circle.svg';
+        kitItems = kitItems.filter(element => element !== parseInt(button.nextSibling.nextSibling.value));
+        console.log(kitItems)
+      }
+
+    }else{
+    kitMessage.textContent='Voer eerst een uitleentermijn in.'
+    kitMessage.style.display='flex'
+  }
+
+    });
+
+  });
+
+  //kit toeveogen aan winkelmand
+  document.getElementById('selectie_toevoegen').addEventListener('click',function(){
+  let formKits = new FormData();
+
+  for(let item of kitItems){
+
+    formKits.append('startDate', document.getElementById('start_date').value);
+    formKits.append('endDate', document.getElementById('end_date').value);
+    formKits.append('itemId', parseInt(item));
+    formKits.append('aantal', 1);
+
+    fetch('functies/winkelmand.php', {
+        method: 'POST',
+        body: formKits
+      }).then(response => response.text())
+      .then(data => {
+        window.location.reload();
+      })   
+  }
+})
 
 
+//indien toeveogen aan winkelmand succesvol was 
+<?php 
+
+if(isset($winkelmandSucces)){
+
+}
+
+
+?>
  
 
 

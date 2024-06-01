@@ -100,7 +100,14 @@ if (!empty($zoek_query)) {
         </script>";
     }
 
-    if(isset($_GET['beschikbaarheidEnd'])){
+    if($userType=="student"){
+        if($_GET['beschikbaarheidEnd']!=''){
+            die('Als student, kunt u geen einddatum kiezen.');
+        }
+
+    }
+
+    if($_GET['beschikbaarheidEnd']!=''){
 
         $beschikbaarheidEnd_query = $_GET['beschikbaarheidEnd'];
         //sql-injecties voorkomen
