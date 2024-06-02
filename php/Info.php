@@ -273,7 +273,7 @@
       justify-content: center;
     }
 
-    .info-submit input[type=submit] {
+    .info-submit button[type=submit] {
       background-color: #1bbcb6;
       border-radius: 2em;
       width: 15%;
@@ -285,7 +285,7 @@
       font-weight: bold;
     }
 
-    .info-submit input[type=submit]::-ms-value {
+    .info-submit button[type=submit]::-ms-value {
       font-size: 15px;
     }
   </style>
@@ -397,23 +397,25 @@
       <input type="text" name="vraagInput" required>
     </div>
     <div class="info-submit">
-      <input type="submit" value="Verstuur" name="Verstuur">
+      <button type="submit" name="Verstuur">Verstuur</button>
     </div>
+    <?php
+    if (isset($_SESSION['gebruikersnaam'])) {
+      if (isset($_POST['Verstuur'])) {
+        $zender = 'AdminMedialab@example.com';
+        $ontvanger = $gebruikersnaam;
+        $mail_onderwerp = "Vraag Student: $gebruikersnaam";
+        $vraagInput = htmlspecialchars($_POST['vraagInput'], ENT_QUOTES, 'UTF-8');
+        $mail_body = $vraagInput;
+        include 'functies/mail.php';
+        echo "Je vraag is verstuurd!";
+      }
+    }else{
+      echo "Je moet ingelogd zijn om een vraag te kunnen stellen.";
+    }
+    ?>
   </form>
-  <?php
-  if(isset($_GET["gebruikersnaam"])){
-  if (isset($_POST['Verstuur'])) {
-    $zender = 'AdminMedialab@example.com';
-    $ontvanger = $gebruikersnaam;
-    $mail_onderwerp = "Vraag Student: $gebruikersnaam";
-    $vraagInput = htmlspecialchars($_POST['vraagInput'], ENT_QUOTES, 'UTF-8');
-    $mail_body = $vraagInput;
-    include 'functies/mail.php';
-  }
-} else {
-  echo "Log eerst in om een vraag te stellen";
-}
-  ?>
+
   <?php include("footer.php"); ?>
 
   <script>
