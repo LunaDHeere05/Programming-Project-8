@@ -112,6 +112,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         echo '<p class="data"> Van '. $startDateString . '  tot '. $endDateString . '</p>';
         echo '<h3>Aantal: '. $item_aantal. ' </h3>';
         echo '</div>';
+        
         $zender= 'no-reply-medialab@example.com';
         $ontvanger = $gebruikersnaam;
         $mail_onderwerp = "Bevestiging Uitlening ID: $uitleen_id";

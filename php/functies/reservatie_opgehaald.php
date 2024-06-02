@@ -7,7 +7,7 @@ if (!isset($gebruikersnaam)) {
 
 $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isOpgehaald, U.isVerlengd,
                 EI.exemplaar_item_id,
-                I.naam, I.beschrijving,I.images, I.item_id
+                I.naam, I.beschrijving,I.images
         FROM UITGELEEND_ITEM UI
         JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
@@ -17,30 +17,40 @@ $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
-        $inlever_datum_timestamp = strtotime($row['inlever_datum']);
-        $vandaag = time();
-        $seconden_tot_inleveren = round(($inlever_datum_timestamp - $vandaag));
-        $dagen_tot_inleveren = round($seconden_tot_inleveren / (60 * 60 * 24));
+      
+        $vandaag = new DateTime();
+        $vandaag->setTime(0, 0, 0);
+        
+        $vergelijkDatum = new DateTime($row['inlever_datum']);
+        $vergelijkDatum->setTime(0, 0, 0); 
+
+        $interval = $vandaag->diff($vergelijkDatum);
+        $dagen_tot_inleveren= $interval->days;
+
+        if ($vergelijkDatum < $vandaag) {
+            $dagen_tot_inleveren *= -1; // Maak het verschil negatief als de uitleendatum in de toekomst ligt
+        }
 
         if($dagen_tot_inleveren < 0){
             $status = "TE LAAT";
             $kleur = "rgba(227,6,19, 0.5)";
+            $annuleren = "none";
         }else if($dagen_tot_inleveren == 0){
             $status = "Vandaag inleveren";
-            $kleur = "rgb(193, 193, 193)";
+            $kleur = "#edededcf";
+            $annuleren = "flex";
         }else{
-            $status = "Binnen " .$dagen_tot_inleveren ." dagen inleveren";
-            $kleur = "rgb(193, 193, 193)";
+            $status = "Binnen " .$dagen_tot_inleveren ." dag(en) inleveren";
+            $kleur = "#edededcf";
+            $annuleren = "flex";
         }
         
             echo '
-            <div class="opgehaald_lijst_container">
                 <div class="opgehaald_reservatie_container">
-                    <label for="#">
-                        <input type="checkbox">
+                    <label  style="display: '.$annuleren.'>
+                        <input type="checkbox" value="' . $row['exemplaar_item_id'] . '">
                     </label>
                     <div class="reservatie_item">
-                        <a href="#" class="reservatie_item_a">
                             <ul style="background-color:'.$kleur.';">
                                 <li><img src="' . $row['images'] . '" alt=""></li>
                                 <li class="reservatie_info">
@@ -52,7 +62,7 @@ if(mysqli_num_rows($result) > 0) {
                                 <li class="status">
                                     <h3>Status:</h3>
                                     <p><b>'.$status.'</b></p>
-                                    <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].'</span></h3>
+                                    <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].' - '.$row['exemplaar_item_id'].' </span></h3>
                                 </li>
                                 <li>
                                     <div class="defect_btn">
@@ -72,8 +82,6 @@ if(mysqli_num_rows($result) > 0) {
                                     </div>
                                 </li>
                             </ul>
-                        </a>
-                    </div>
                 </div>
             </div>';
         }

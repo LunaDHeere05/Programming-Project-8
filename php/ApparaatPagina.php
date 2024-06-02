@@ -676,12 +676,10 @@ document.getElementById('submitWinkelmand').addEventListener('click',function(e)
   });
 
     //kits
-
     let kitMessage=document.getElementById('kitMessage');
     let kitItems=[]
 
     document.querySelectorAll('.kitBol').forEach(function(button) {
-   
     button.addEventListener('click', function() {
 
     if(datumGekozen){

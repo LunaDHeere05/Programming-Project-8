@@ -212,11 +212,11 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
             $image = 'images/svg/circle-check-solid.svg';
             $availability_filter = "invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);";
         }else if(mysqli_num_rows($vrijeExemplaren_result)>0){
-                    echo "<h3 class='beschikbaar'> Beschikbaar </h3>";
+                    echo "<h3 class='beschikbaar'> Volgend uitleentermijn: beschikbaar </h3>";
                     $image = 'images/svg/circle-check-solid.svg';
                     $availability_filter = "invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);";
         }else{
-                    echo "<h3> Uitgeleend </h3>";
+                    echo "<h3> Volgend uitleentermijn: uitgeleend </h3>";
                     $image = 'images/svg/circle-xmark-solid.svg';
                     $availability_filter = "invert(15%) sepia(88%) saturate(3706%) hue-rotate(347deg) brightness(94%) contrast(115%);";
                 }
