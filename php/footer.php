@@ -12,35 +12,28 @@
       </div>
       <div>
         <h1>Openingsuren</h1>
-        <table>
-          <tr>
-            <th>Maandag</th>
-            <td>10:00 - 12:00</td>
-            <td>12:30 - 17:00</td>
-          </tr>
-          <tr>
-            <th>Dinsdag</th>
-            <td colspan="2">Gesloten</td>
-          </tr>
-          <tr>
-            <th>Woensdag</th>
-            <td colspan="2">Gesloten</td>
-          </tr>
-          <tr>
-            <th>Donderdag</th>
-            <td>10:00 - 12:00</td>
-            <td>12:30 - 17:00</td>
-          </tr>
-          <tr>
-            <th>Vrijdag</th>
-            <td>10:00 - 12:00</td>
-            <td>12:30 - 17:00</td>
-          </tr>
-          <tr>
-            <th>Weekend</th>
-            <td colspan="2">Gesloten</td>
-          </tr>
-        </table>
+        <?php
+          include 'database.php';
+
+          $query = "SELECT * FROM OPENINGSTIJDEN ORDER BY FIELD(dagen, 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag')";
+          $result = mysqli_query($conn, $query);
+
+          if(mysqli_num_rows($result) > 0){
+            echo '<table>';
+            while($row = mysqli_fetch_assoc($result)){
+            echo '<tr>';
+            echo '<th>' . $row['dagen'] . '</th>';
+            
+            echo '<td>' . $row['begin_uren'] . '</td>';
+            echo '<td>' . $row['eind_uren'] . '</td>';
+
+            echo '</tr>';
+            }
+            echo '</table>';
+            }
+
+$conn->close();
+?>
       </div>
     </div>
       <div class="einde"><p>&copy;Groep 8 - Programming Project</p></div>
