@@ -56,15 +56,41 @@
     align-items: center;
     padding: 1em;
 }
-.reservatie-top form{
-  margin-left: auto;
-  margin-right: 1em;
+
+.reservatie-top form p{
+  font-weight: bold;
+  font-size: 16px;
 }
-.reservatie-top form input[type=submit]{
+
+.reservatie-top input[type=submit]{
   background-color: transparent;
   font-weight: bold;
   border: none;
   font-size: 16px;
+  color:#ccc;
+
+}
+
+#alles_annuleren{
+  color:#E30613
+}
+#forms{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 1em;
+  text-align: right;
+  gap:0.5em;
+
+}
+
+#forms input{
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border:2px solid ;
+  padding:5px;
+  border-radius: 1em;
+
 
 }
 .reservatie-top a img {
@@ -77,8 +103,7 @@
 .ophalen_reservatie_container, .opgehaald_reservatie_container{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 1em 2em 1em 0em;
+  justify-content: center;
 }
 .ophalen_reservatie_container input[type=checkbox], .opgehaald_reservatie_container input[type=checkbox]{
     appearance: none;
@@ -94,23 +119,15 @@
 .ophalen_reservatie_container input[type=checkbox]:checked, .opgehaald_reservatie_container input[type=checkbox]:checked{
     background-color: #1bbcb6;
 }
-
 .reservatie_item{
   width: 90%;
-}
-.reservatie_item_a{
-  text-decoration: none;
-  color: black;
-  width: 100%;
-}
-.reservatie_item a{
-  text-decoration: none;
-  color: black;
+  margin:1em;
 }
 .reservatie_item ul{
   display: flex;
   list-style: none;
   border-radius: 2em;
+  padding:0.5em;
   justify-content: space-between;
 }
 .reservatie_item ul li{
@@ -126,13 +143,14 @@
   margin-right: 3em;
   align-items: flex-end;
 }
-.reservatie_item_a ul li:first-child img{
+.reservatie_item ul li:first-child img{
   width: 10em;
-  margin: auto;
+  height:10em;
   margin: 1em auto;
   background-color: white;
   padding: 0.5em;
 }
+
 .status h3{
   color:black;
   font-weight: bold;
@@ -157,24 +175,27 @@
 .annuleer_btn button{
   margin: auto;
   display: flex;
-  background-color: #E30613;
-  border: none;
+  padding: 0 10px;
+  background-color: transparent;
+  border: 3px solid #E30613;
   border-radius: 2em;
-  width: 100%;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-.annuleer_btn button p{
-  color: white;
+  color: #E30613;
   font-weight: bold;
   font-size: 16px;
-  margin-left: 2em;
-
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
+
 .annuleer_btn button img{
   background-color: transparent;
-  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
+  margin:5px;
+  padding:5px;
+  width:2em;
+  filter: invert(27%) sepia(96%) saturate(7476%) hue-rotate(355deg) brightness(93%) contrast(100%);
+
 }
 
 .opgehaald_reservatie_container .status p{
@@ -218,14 +239,9 @@
           <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
         <h1>Mijn reservaties</h1>
         </div>
+   
         <div class="reservatie-top">
-          <h2>Nog op te halen</h2>
-          <?php include 'functies\reservatie_annuleren_verdwijnen.php'?>
-          <form>
-            <input type="submit" value="Selectie annuleren" style="color: #E30613;" id="selectie_annuleren">
-          </form>
-        </div>
-        <div class="ophalen_lijst_container">
+        <h2>Nog op te halen</h2>
         <?php include 'functies\reservatie_ophalen.php'?>
         </div>
 
@@ -244,12 +260,92 @@
         <?php include 'functies\reservatie_opgehaald.php'?>
         
         <script>
-  var annuleer_buttons = document.querySelectorAll('.reservatieAnnulerenBevestiging');
-  annuleer_buttons.forEach(function(button) {
+
+  //anuleren van items
+let arrayAnnuleerItems=[];
+
+  function annuleerItems(exemplaarId,uitleenId){
+    this.exemplaarId=exemplaarId;
+    this.uitleenId=uitleenId
+  };
+
+function toevoegenAanArray(eId,uId){
+  let item=new annuleerItems(parseInt(eId),parseInt(uId));
+  arrayAnnuleerItems.push(item);
+}
+
+function verwijderenUitArray(uId) {
+    arrayAnnuleerItems = arrayAnnuleerItems.filter(item => item.uitleenId !== parseInt(uId));
+}
+
+  document.querySelectorAll('.annulerenCheck').forEach(function(button) {
     button.addEventListener('click', function() {
-      window.location.href = 'ReservatieAnnuleren.php';
+      if (button.checked) {
+        button.src = 'images/svg/plus-circle-fill.svg';
+        toevoegenAanArray(button.value,button.id)
+
+      } else {
+        button.src = 'images/svg/plus-circle.svg';
+        verwijderenUitArray(button.id);
+      }
+
+      if(arrayAnnuleerItems.length>0){
+    document.getElementById('selectie_annuleren').style.color='#E30613'
+    document.getElementById('selectie_annuleren').style.borderColor='#E30613'
+
+    document.getElementById('selectie_annuleren').style.cursor='pointer'
+  }else{
+    document.getElementById('selectie_annuleren').style.color='#ccc'
+    document.getElementById('selectie_annuleren').style.borderColor='#ccc'
+    document.getElementById('selectie_annuleren').style.cursor='none'
+
+  }
     });
   });
+
+  //selectie annuleren
+  document.getElementById('formAnnuleer').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(arrayAnnuleerItems.length>0){
+      document.getElementById('hidden').value=JSON.stringify(arrayAnnuleerItems);
+      document.getElementById('formAnnuleer').submit();
+    }
+  })
+
+  //item annuleren
+  document.querySelectorAll('.annuleer').forEach(function(button) {
+    button.addEventListener('click', function() {
+      arrayAnnuleerItems=[];
+      toevoegenAanArray(parseInt(button.value),parseInt(button.id));
+      document.getElementById('hidden').value=JSON.stringify(arrayAnnuleerItems);
+      document.getElementById('formAnnuleer').submit();
+      console.log(document.getElementById('hidden').value)
+    });
+  });
+  
+  //alles annuleren 
+  if(document.querySelectorAll('.annulerenCheck').length==0){
+    document.getElementById('alles_annuleren').style.color="#ccc";
+    document.getElementById('alles_annuleren').style.borderColor="#ccc";
+  }
+  
+  document.getElementById('formAnnuleerAll').addEventListener('submit',function(e){
+    e.preventDefault();
+    arrayAnnuleerItems=[];
+    document.querySelectorAll('.annulerenCheck').forEach(function(button) {
+        button.checked
+        button.src = 'images/svg/plus-circle-fill.svg';
+        toevoegenAanArray(parseInt(button.value),parseInt(button.id));
+    })
+
+    if(arrayAnnuleerItems.length>0){
+      document.getElementById('hiddenAll').value=JSON.stringify(arrayAnnuleerItems);
+     this.submit();
+    }
+  })
+
+  
+
   var defect_buttons = document.querySelectorAll('.defect_button');
   defect_buttons.forEach(function(button) {
     button.addEventListener('click', function() {
@@ -257,7 +353,7 @@
     });
   });
 
-  var annuleren = document.getElementById('selectie_annuleren');
+
 </script>
 <?php include 'footer.php'?>
   </body>

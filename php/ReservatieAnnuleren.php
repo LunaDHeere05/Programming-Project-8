@@ -7,52 +7,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 minimal-scale=1.0" >
     <title>Reservatie annuleren</title>
     <style>
-.bevestig{
-    margin: 0em 4em 2em 4em;
-    font-size: 20px;
-}
-.item_info_container{
-    background-color: rgb(193, 193, 193);
-    width: 80%;
-    margin: 1em auto;
-    border-radius: 2em;
-}
-.item_info{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-}
-.item_info img{
-    width: 15%;
-    height: 15%;
-    margin: auto 1em;
-}
-.verwijder{
-    position: absolute;
-    right: 0;
-    top: 0.5em;
-    width: 2em !important;
-}
-.item_info_container img{
-  width: 15%;
-}
-.bevestig_btn{
-    background-color: #1bbcb6;
-    padding: 1em;
-    border-radius: 2em;
-    margin: auto;
-    width: 10em;
-    text-align: center;
-}
-.bevestig_btn button{
-  background: none;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  letter-spacing: 1px;
-}
+
+.bevestig {
+            margin: 0em 4em 2em 4em;
+            font-size: 20px;
+        }
+        .item_info_container {
+            width: 90%;
+            margin: 1em auto;
+            border-radius: 2em;
+            display: flex;
+            flex-direction: column;
+            gap:1em;
+            justify-content: center;
+            align-items: center;
+        }
+        .item_info {
+            background-color: #edededcf;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            width:60em;
+            height:10em;
+            padding: 2em;
+            border-radius: 2em;
+            transition: transform 0.5s ease; 
+        }
+
+        .item_info img {
+            width: 8em;
+            height: 8em;
+               
+        }
+        .verwijder {
+            position: absolute;
+            right: 2%;
+            top: 0;
+            width: 1.5em !important;
+            cursor:pointer;
+        }
+    
+        #formBevestiging{
+            display: flex;
+            flex-direction: column;
+            gap:1em;
+            justify-content: center;
+            align-items: center;
+        }
+        #formBevestiging .aantal{
+            width:55%;
+            text-align: center;
+        }
+        .bevestig_btn {
+            background-color: #1bbcb6;
+            padding: 1em;
+            border-radius: 2em;
+            margin: auto;
+            width: 10em;
+            text-align: center;
+        }
+        .bevestig_btn button {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
 .annulerenEnTerug{
   display: flex;
 }
@@ -75,14 +97,34 @@
     <p class="bevestig">Bevestig dat je deze items wilt <b>annuleren</b>.</p>
     <?php
     include 'database.php';
+
+    
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  
+    if (empty($_POST['ArrayAnnuleerItems'])) {
+        die('Er is een fout opgetreden. Gelieve opnieuw te proberen.');
+        }
+
+    $jsonString= $_POST['ArrayAnnuleerItems'];
+
+    echo "<script>var annuleerItems = JSON.parse('$jsonString');</script>";
+
+
+    $Ids = json_decode($jsonString, true);
+
+    foreach ($Ids as $Id) {
+        $exemplaarId = intval($Id['exemplaarId']);
+        $uitleenId = intval($Id['uitleenId']);
+  
     $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isVerlengd,
                 EI.exemplaar_item_id,
-                I.naam, I.beschrijving
+                I.naam, I.beschrijving, I.images, I.merk
                 FROM UITGELEEND_ITEM UI
                 JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id AND UI.isOpgehaald = 0
-                WHERE U.email = '$gebruikersnaam'"; 
+                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id 
+                WHERE U.email = '$gebruikersnaam' AND UI.isOpgehaald = 0 AND EI.exemplaar_item_id={$exemplaarId} AND U.uitleen_id={$uitleenId}"; 
+                
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) > 0) {
@@ -90,28 +132,33 @@
 
         echo'<div class="item_info_container">
         <div class="item_info">
-            <img src="images/webp/eos-m50-bk-ef-m15-45-stm-frt-2_b6ff8463fb194bfd9631178f76e73f9a.webp" alt="foto apparaat">
-            <h2>'.$row['naam'].'</h2>
+            <img src="'.$row['images'].'" alt="foto apparaat">
+            <h2>'.$row['merk'].' - '.$row['naam'].'</h2>
             <p class="data">van '.$row['uitleen_datum'].'<br> tot '.$row['inlever_datum'].'</p>
-            <h2>Aantal:</h2>
+            <h2>Aantal: 1</h2>
             <img class="verwijder"  src="images/svg/xmark-solid.svg" alt="klik weg">
         </div>
     </div> ';
     }
+    }else{
+        die('Er is een fout opgetreden. Gelieve opnieuw te proberen.');
     }
+    }
+}
+
 ?>
     <div class="bevestig_btn">
-        <a href="functies\reservatie_annuleren.php">
+            <form action="functies/reservatie_annuleren.php" method="POST">
+            <input type="hidden" id="hidden" name="ArrayAnnuleerItems">
             <button id="bevestig">Bevestig</button>
-        </a>
+        </form>
+  
     </div>
     <?php include 'footer.php'?>
 
     <script>
-          document.getElementById('bevestig').addEventListener('click', function() {
-            window.location.href = 'FinalAnnulerenReservatie.php';
-            });
-        
+
+document.getElementById('hidden').value = JSON.stringify(annuleerItems);
     </script>
 </body>
 </html>
