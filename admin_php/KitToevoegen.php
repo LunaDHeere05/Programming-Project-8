@@ -81,7 +81,7 @@ include 'database.php';
   <ul id="item-list"></ul>
 
   <!-- Trigger/Open The Modal -->
-  <button id="myBtn">Open Modal</button>
+  <button id="myBtn">voeg apparaat toe</button>
 
   <!-- The Modal -->
   <div id="myModal" class="modal">
@@ -89,7 +89,7 @@ include 'database.php';
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
+      <p>Kies de apparaaten voor de kit</p>
       
         <?php foreach ($items as $item): ?>
           <div class="items">
@@ -185,8 +185,8 @@ saveButton.addEventListener("click", function() {
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       console.log("Request successful. Response: " + this.responseText);
-      // Refresh the page
-      //location.reload();
+      // Redirect to the kits page
+      window.location.href = "kits.php";
     } else if (this.readyState == 4) {
       console.log("Request failed. Status: " + this.status);
     }
