@@ -130,11 +130,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
 
+            $startDate=new dateTime($row['uitleen_datum']);
+            $startDateString=$startDate->format('d-m-Y');
+    
+            $endDate=new dateTime($row['inlever_datum']);
+            $endDateString=$endDate->format('d-m-Y');
+
         echo'<div class="item_info_container">
         <div class="item_info">
             <img src="'.$row['images'].'" alt="foto apparaat">
             <h2>'.$row['merk'].' - '.$row['naam'].'</h2>
-            <p class="data">van '.$row['uitleen_datum'].'<br> tot '.$row['inlever_datum'].'</p>
+            <p class="data">van '.$startDateString.'<br> tot '.$endDateString.'</p>
             <h2>Aantal: 1</h2>
             <img class="verwijder"  src="images/svg/xmark-solid.svg" alt="klik weg">
         </div>

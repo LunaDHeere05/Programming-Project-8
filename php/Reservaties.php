@@ -27,27 +27,12 @@
 .reservatie-chevron-left {
     display: flex;
 }
-.alles_annuleren, .alles_verlengen{
-  display: flex;
-  background-color: #E30613;
-  width: 15%;
-  height: 2em;
-  border-radius: 1em;
-  align-items: center;
-}
-.alles_annuleren a, .alles_verlengen a{
-  display: flex;
-  text-decoration: none;
-  margin: auto;
-  color: white;
-}
-.alles_verlengen{
-  background-color: #1bbcb6;
 
-}
+
 .reservatie-top h2{
   color: #1bbcb6;
-  padding: 1em;
+  font-size: 180%;
+
   }
 
 .reservatie-top{
@@ -72,8 +57,15 @@
 }
 
 #alles_annuleren{
-  color:#E30613
+  color:#E30613;
+  cursor:pointer;
 }
+
+#alles_verlengen{
+  color:#1bbcb6;
+  cursor:pointer;
+}
+
 #forms{
   display: flex;
   flex-direction: column;
@@ -90,9 +82,8 @@
   border:2px solid ;
   padding:5px;
   border-radius: 1em;
-
-
 }
+
 .reservatie-top a img {
     margin: auto;
     height: 1em;
@@ -172,32 +163,50 @@
 .annuleer_btn{ 
   width: 50%;
 }
-.annuleer_btn button{
+.annuleer_btn button, .verleng_btn button{
   margin: auto;
   display: flex;
   padding: 0 10px;
   background-color: transparent;
-  border: 3px solid #E30613;
+  border: 3px solid;
   border-radius: 2em;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #E30613;
   font-weight: bold;
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.annuleer_btn button img{
+.annuleer_btn button{
+  border-color: #E30613;
+  color: #E30613;
+}
+
+.verleng_btn button{
+  border-color: #1bbcb6;
+  color:#1bbcb6
+}
+
+.annuleer_btn button:hover,.verleng_btn button:hover {
+  font-size: 18px;
+}
+.annuleer_btn button img, .verleng_btn button img{
   background-color: transparent;
   margin:5px;
   padding:5px;
   width:2em;
-  filter: invert(27%) sepia(96%) saturate(7476%) hue-rotate(355deg) brightness(93%) contrast(100%);
 
 }
 
+.annuleer_btn button img{
+  filter: invert(27%) sepia(96%) saturate(7476%) hue-rotate(355deg) brightness(93%) contrast(100%);
+}
+
+.verleng_btn button img{
+  filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%);
+}
 .opgehaald_reservatie_container .status p{
   color: #1bbcb6;
 
@@ -205,32 +214,7 @@
 .opgehaald_reservatie_container .reservatie_item ul li:last-child{
   width: 15%;
 }
-.defect_btn button, .verleng_btn button{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  background-color: #303030;
-  color: white;
-  border: none;
-  border-radius: 2em;
-  align-items: center;
-}
-.defect_btn button p, .verleng_btn button p{
-  margin-left: 1em;
-  font-weight: bold;
-  font-size: 16px;
-}
-.defect_btn button img, .verleng_btn button img{
-  width: 1.5em;
-  height: auto;
-  margin: 1em;
-  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(8deg) brightness(109%) contrast(101%);
-}
-.verleng_btn button{
-  background-color: #1bbcb6;
-  width: 100%;
-  margin-top: 2em;
-}
+
     </style>
   </head>
   <body>
@@ -247,52 +231,48 @@
 
         <div class="reservatie-top">
           <h2>Opgehaald</h2>
-          <div class="alles_verlengen">
-            <a href="#">
-              <p>Alles verlengen</p>
-              <img src="images/svg/calendar-regular.svg" alt="xmark" />
-            </a>
-          </div>
-          <form>
-            <input type="submit" value="Selectie verlengen" style="color: #1bbcb6;" id="selectie_verlengen">
-          </form>
-        </div>
         <?php include 'functies\reservatie_opgehaald.php'?>
+        </div>
         
         <script>
 
   //anuleren van items
 let arrayAnnuleerItems=[];
+let arrayVerlengItems=[];
 
-  function annuleerItems(exemplaarId,uitleenId){
-    this.exemplaarId=exemplaarId;
-    this.uitleenId=uitleenId
+  function arrayItems(exemplaarId,uitleenId){
+    this.exemplaarId=parseInt(exemplaarId);
+    this.uitleenId=parseInt(uitleenId)
   };
 
-function toevoegenAanArray(eId,uId){
-  let item=new annuleerItems(parseInt(eId),parseInt(uId));
-  arrayAnnuleerItems.push(item);
+function toevoegenAanArray(eId,uId, constructor, array){
+  let item=new constructor(parseInt(eId),parseInt(uId));
+  array.push(item);
 }
 
-function verwijderenUitArray(uId) {
-    arrayAnnuleerItems = arrayAnnuleerItems.filter(item => item.uitleenId !== parseInt(uId));
+function verwijderenUitAnnuleerArray(exemplaar, uId) {
+  arrayAnnuleerItems = arrayAnnuleerItems.filter(item => item.uitleenId !== parseInt(uId) || item.exemplaarId !== parseInt(exemplaar));
+}
+
+function verwijderenUitVerlengArray(exemplaar, uId) {
+  arrayVerlengItems = arrayVerlengItems.filter(item => item.uitleenId !== parseInt(uId) || item.exemplaarId !== parseInt(exemplaar));
 }
 
   document.querySelectorAll('.annulerenCheck').forEach(function(button) {
     button.addEventListener('click', function() {
       if (button.checked) {
         button.src = 'images/svg/plus-circle-fill.svg';
-        toevoegenAanArray(button.value,button.id)
-
+        toevoegenAanArray(button.value,button.id, arrayItems, arrayAnnuleerItems)
+        console.log(arrayAnnuleerItems)
       } else {
         button.src = 'images/svg/plus-circle.svg';
-        verwijderenUitArray(button.id);
+        verwijderenUitAnnuleerArray(button.value, button.id);
+        console.log(arrayAnnuleerItems)
       }
 
       if(arrayAnnuleerItems.length>0){
     document.getElementById('selectie_annuleren').style.color='#E30613'
     document.getElementById('selectie_annuleren').style.borderColor='#E30613'
-
     document.getElementById('selectie_annuleren').style.cursor='pointer'
   }else{
     document.getElementById('selectie_annuleren').style.color='#ccc'
@@ -316,7 +296,7 @@ function verwijderenUitArray(uId) {
   document.querySelectorAll('.annuleer').forEach(function(button) {
     button.addEventListener('click', function() {
       arrayAnnuleerItems=[];
-      toevoegenAanArray(parseInt(button.value),parseInt(button.id));
+      toevoegenAanArray(button.value,button.id, arrayItems, arrayAnnuleerItems)
       document.getElementById('hidden').value=JSON.stringify(arrayAnnuleerItems);
       document.getElementById('formAnnuleer').submit();
       console.log(document.getElementById('hidden').value)
@@ -327,15 +307,16 @@ function verwijderenUitArray(uId) {
   if(document.querySelectorAll('.annulerenCheck').length==0){
     document.getElementById('alles_annuleren').style.color="#ccc";
     document.getElementById('alles_annuleren').style.borderColor="#ccc";
+    document.getElementById('alles_annuleren').style.cursor="none";
   }
-  
+
   document.getElementById('formAnnuleerAll').addEventListener('submit',function(e){
     e.preventDefault();
     arrayAnnuleerItems=[];
     document.querySelectorAll('.annulerenCheck').forEach(function(button) {
         button.checked
         button.src = 'images/svg/plus-circle-fill.svg';
-        toevoegenAanArray(parseInt(button.value),parseInt(button.id));
+        toevoegenAanArray(button.value,button.id, arrayItems, arrayAnnuleerItems)
     })
 
     if(arrayAnnuleerItems.length>0){
@@ -344,16 +325,74 @@ function verwijderenUitArray(uId) {
     }
   })
 
-  
-
-  var defect_buttons = document.querySelectorAll('.defect_button');
-  defect_buttons.forEach(function(button) {
+  //---------------------
+  document.querySelectorAll('.verlengenCheck').forEach(function(button) {
     button.addEventListener('click', function() {
-      window.location.href = 'DefectMelden.php';
+      if (button.checked) {
+        button.src = 'images/svg/plus-circle-fill.svg';
+        toevoegenAanArray(button.value,button.id, arrayItems, arrayVerlengItems);
+        console.log(arrayVerlengItems)
+      } else {
+        button.src = 'images/svg/plus-circle.svg';
+        verwijderenUitVerlengArray(button.value,button.id);
+        console.log(arrayVerlengItems)
+      }
+
+      if(arrayVerlengItems.length>0){
+    document.getElementById('selectie_verlengen').style.color='#1bbcb6'
+    document.getElementById('selectie_verlengen').style.borderColor='#1bbcb6'
+    document.getElementById('selectie_verlengen').style.cursor='pointer'
+  }else{
+    document.getElementById('selectie_verlengen').style.color='#ccc'
+    document.getElementById('selectie_verlengen').style.borderColor='#ccc'
+    document.getElementById('selectie_verlengen').style.cursor='none'
+
+  }
     });
   });
 
 
+    //selectie verlengen
+    document.getElementById('formVerleng').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(arrayVerlengItems.length>0){
+      document.getElementById('hiddenV').value=JSON.stringify(arrayVerlengItems);
+      document.getElementById('formVerleng').submit();
+    }
+  })
+
+  //item verlengen
+  document.querySelectorAll('.verleng').forEach(function(button) {
+    button.addEventListener('click', function() {
+      arrayVerlengItems=[];
+      toevoegenAanArray(button.value,button.id, arrayItems, arrayVerlengItems);
+      document.getElementById('hiddenV').value=JSON.stringify(arrayVerlengItems);
+      document.getElementById('formVerleng').submit();
+    });
+  });
+  
+  //alles verlengen 
+  if(document.querySelectorAll('.verlengenCheck').length==0){
+    document.getElementById('alles_verlengen').style.color="#ccc";
+    document.getElementById('alles_verlengen').style.borderColor="#ccc";
+    document.getElementById('alles_verlengen').style.cursor="none";
+  }
+
+  document.getElementById('formVerlengAll').addEventListener('submit',function(e){
+    e.preventDefault();
+    arrayVerlengItems=[];
+    document.querySelectorAll('.verlengenCheck').forEach(function(button) {
+        button.checked
+        button.src = 'images/svg/plus-circle-fill.svg';
+        toevoegenAanArray(button.value,button.id, arrayItems, arrayVerlengItems);
+    })
+
+    if(arrayVerlengItems.length>0){
+      document.getElementById('hiddenVAll').value=JSON.stringify(arrayVerlengItems);
+     this.submit();
+    }
+  })
+ 
 </script>
 <?php include 'footer.php'?>
   </body>
