@@ -184,6 +184,9 @@
         console.log("Bevestigingsknop geklikt");
         // Sluit de popup
         verwijderPopup.style.display = "none";
+
+        // Refresh the page
+        location.reload();
       });
     });
   </script>
