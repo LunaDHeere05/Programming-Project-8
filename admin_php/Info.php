@@ -435,25 +435,30 @@ include 'database.php';
   <!-- form  -->
   <h2 class="info-form-h2">Nieuwe aankondigingen</h1>
     <form class="info-form" method="POST">
-      <div class="info-text"><input type="text" name="AankondigingsInput"></div>
+      <div class="info-text"><input type="text" name="AankondigingsInput" required></div>
       <div class="info-submit"><button type="submit" value="Verstuur" name="AankodigingsButton">Verstuur</button></div>
       <?php
+
       if (isset($_POST['AankodigingsButton'])) {
+        if(!empty($_POST['AankondigingsInput'])){
         $zender = 'AdminMedialab@example.com';
         $AankondigingsInput = htmlspecialchars($_POST['AankondigingsInput'], ENT_QUOTES, 'UTF-8');
         $mail_body = $AankondigingsInput;
-        $mail_onderwerp = 'Nieuwe aankondiging';
+        $mail_onderwerp = 'Nieuwe Aankondiging';
         $emailquery = "SELECT * FROM PERSOON WHERE rol = 'student'";
         $result = $conn->query($emailquery);
-        if ($result) {
+
+        if ($result){
+          $ontvanger = array();
+
           while ($row = $result->fetch_assoc()) {
-            $ontvangers[] = $row['email'];
+            $ontvanger[] = $row['email'];
           }
-          $ontvanger = implode(', ', $ontvangers);
-          echo $ontvanger;
-          // include 'functies/mail.php';
+          include '../php/functies/mail.php';
+          echo "Aankondiging is verstuurd!";
         }
       }
+    }
       ?>
     </form>
 </body>

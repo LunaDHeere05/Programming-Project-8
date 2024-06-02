@@ -23,7 +23,15 @@ try {
 
     // Ontvanger
     $mail->setFrom($zender, 'Admin');
-    $mail->addAddress($ontvanger);           
+    // Controleer of $ontvangers een array is of een string
+    if (is_array($ontvanger)) {
+        foreach ($ontvanger as $email) {
+            $mail->addAddress($email);
+        }
+    } else {
+        $mail->addAddress($ontvanger);
+    }
+        
 
     // Content
     $mail->isHTML(true);                                        // Stel e-mail format in op HTML
