@@ -38,6 +38,9 @@
   filter: invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg);
   padding-top: 0.5em;
 }
+td{
+  padding: 0.5em;
+}
         </style>
 </head>
 <body>

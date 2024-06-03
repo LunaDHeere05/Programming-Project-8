@@ -13,6 +13,10 @@
   border-radius: 2em;
   margin-left: 4em;
   margin-top: 2em;
+  position: absolute;
+  position: sticky;
+  bottom: 2em;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
 }
 .uitlening_toevoegen a{
   text-decoration: none;
@@ -53,6 +57,9 @@
     height: auto;
     padding-top: 0.5em;
   }
+td{
+  padding: 0.5em;
+}
         </style>
 </head>
 <body>
@@ -65,11 +72,6 @@
                         <th>E-mail</th>
                         <th>Apparaat</th>
                         <th>Inleverdatum</th>
-                    </tr>
-                    <tr>
-                        <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
-                        <td>Canon-M50</td>
-                        <td>02/06</td>
                     </tr>
                     <?php include 'functies\uitleningen_ophalen.php'?>
                 </table>
