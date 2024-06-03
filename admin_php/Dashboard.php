@@ -94,127 +94,6 @@ include 'database.php';
             color: white;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        function fetchReservations(date) {
-            $.ajax({
-                url: 'functies/dashboard_personen.php',
-                type: 'POST',
-                data: {date: date},
-                success: function(response) {
-                    $('.uitleningen_dashboard_container').html(response);
-                }
-            });
-        }
-        //functie voor maanden en dagen
-        function updateDatesAndMonth(startDate) {
-            var date = new Date(startDate);
-            var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
-            var startOfWeek = new Date(date.setDate(date.getDate() - date.getDay() + 1)); // Monday of the current week
-            $('.datums').empty();
-            $('.datums').append('<li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>');
-
-            for (let i = 0; i < 7; i++) {
-                var currentDay = new Date(startOfWeek);
-                currentDay.setDate(startOfWeek.getDate() + i);
-                var displayDate = currentDay.getDate();
-                var fullDate = currentDay.toISOString().split('T')[0];
-                var activeClass = fullDate === new Date().toISOString().split('T')[0] ? 'class="active"' : '';
-                $('.datums').append(`<li data-date='${fullDate}' ${activeClass}><h3>${displayDate}</h3></li>`);
-            }
-
-            $('.datums').append('<li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>');
-            $('#monday-date').val(startOfWeek.toISOString().split('T')[0]);
-            $('.agenda_container h2').text(monthNames[startOfWeek.getMonth()]);
-        }
-
-        // Fetch reservations for today's date on page load
-        var currentDate = new Date();
-        updateDatesAndMonth(currentDate);
-        fetchReservations(currentDate.toISOString().split('T')[0]);
-
-        $('.datums').on('click', 'li', function() {
-            let selectedDate = $(this).data('date');
-            $('.datums li').removeClass('active');
-            $(this).addClass('active');
-            fetchReservations(selectedDate);
-        });
-
-        $('.datums').on('click', '#prev-week', function() {
-            let currentMonday = new Date($('#monday-date').val());
-            currentMonday.setDate(currentMonday.getDate() - 7);
-            updateDatesAndMonth(currentMonday);
-            fetchReservations($('#monday-date').val());
-        });
-
-        $('.datums').on('click', '#next-week', function() {
-            let currentMonday = new Date($('#monday-date').val());
-            currentMonday.setDate(currentMonday.getDate() + 7);
-            updateDatesAndMonth(currentMonday);
-            fetchReservations($('#monday-date').val());
-        });
-
-        //CLick functies voor de iconen
-        //DEFECT:
-        $(document).on('click', '.iconen .schroevendraaier', function() {
-            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
-            $.ajax({
-                url: 'functies/markeer_als_defect.php',
-                type: 'POST',
-                data: {reservatieID: reservatieID},
-                success: function(response) {
-                    alert('Reservatie gemarkeerd als defect.');
-                }
-            });
-        });
-        //CHECK:
-        $(document).on('click', '.iconen .check', function() {
-            var $details = $(this).closest('.uitleningen_dashboard_details');
-            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
-            var statusText = $details.find('p').text();
-
-            $.ajax({
-                url: 'functies/verwijder_reservatie.php',
-                type: 'POST',
-                data: {
-                    reservatieID: reservatieID,
-                    statusText: statusText.trim() // Voeg statusText toe aan de data
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (statusText.trim() === "Op te halen") {
-                        alert('Reservatie opgehaald.');
-                    } else {
-                        alert('Reservatie ingeleverd.');
-                    }
-                    fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
-                }
-            });
-        });
-        //VERWIJDER:
-        $(document).on('click', '.iconen .verwijder_btn', function() {
-            var $details = $(this).closest('.uitleningen_dashboard_details');
-            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
-            var statusText = $details.find('p').text();
-
-            $.ajax({
-                url: 'functies/waarschuwing_dashboard.php',
-                type: 'POST',
-                data: {reservatieID: reservatieID},
-                success: function(response) {
-                    console.log(response);
-                    if (statusText.trim() === "Op te halen") {
-                        alert('Ophaling verwijderd en waarschuwing gegenereerd.');
-                    } else {
-                        alert('Inlevering verwijderd en waarschuwing gegenereerd.');
-                    }
-                    fetchReservations(new Date().toISOString().split('T')[0]); // Reservaties opnieuw laden na verwijdering
-                }
-            });
-        });
-    });//end script
-    </script>
 </head>
 <body>
     <div class="rechter_grid">
@@ -233,5 +112,61 @@ include 'database.php';
             <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
         </div>
     </div>
+
+    <script>
+        function updateDatesAndMonth(startDate) {
+    var date = new Date(startDate);
+    var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
+    var startOfWeek = new Date(date.setDate(date.getDate() - date.getDay() + 1)); // Monday of the current week
+
+    var datumsElement = document.querySelector('.datums');
+    datumsElement.innerHTML = '';
+    var prevWeekLi = document.createElement('li');
+    prevWeekLi.id = 'prev-week';
+    var prevWeekImg = document.createElement('img');
+    prevWeekImg.src = 'images/svg/chevron-left-solid.svg';
+    prevWeekImg.alt = 'links';
+    prevWeekLi.appendChild(prevWeekImg);
+    datumsElement.appendChild(prevWeekLi);
+
+    for (let i = 0; i < 7; i++) {
+        var currentDay = new Date(startOfWeek);
+        currentDay.setDate(startOfWeek.getDate() + i);
+        var displayDate = currentDay.getDate();
+        var fullDate = currentDay.toISOString().split('T')[0];
+
+        var li = document.createElement('li');
+        li.setAttribute('data-date', fullDate);
+        if (fullDate === new Date().toISOString().split('T')[0]) {
+            li.classList.add('active');
+        }
+
+        var h3 = document.createElement('h3');
+        h3.textContent = displayDate;
+        li.appendChild(h3);
+
+        datumsElement.appendChild(li);
+    }
+
+    var nextWeekLi = document.createElement('li');
+    nextWeekLi.id = 'next-week';
+    var nextWeekImg = document.createElement('img');
+    nextWeekImg.src = 'images/svg/chevron-right-solid.svg';
+    nextWeekImg.alt = 'rechts';
+    nextWeekLi.appendChild(nextWeekImg);
+    datumsElement.appendChild(nextWeekLi);
+
+    var mondayDateInput = document.querySelector('#monday-date');
+    if (mondayDateInput) {
+        mondayDateInput.value = startOfWeek.toISOString().split('T')[0];
+    }
+
+    var agendaTitle = document.querySelector('.agenda_container h2');
+    if (agendaTitle) {
+        agendaTitle.textContent = monthNames[startOfWeek.getMonth()];
+    }
+}
+
+    </script>
 </body>
 </html>
