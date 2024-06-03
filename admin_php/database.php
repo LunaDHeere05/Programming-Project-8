@@ -1,8 +1,13 @@
 <?php
-$servername = "dt5.ehb.be"; // Change this to your database server
-$username = "2324PROGPROJGR8"; // Change this to your database username
-$password = "P!j6WD5KL"; // Change this to your database password
-$database = "2324PROGPROJGR8"; // Change this to your database name
+require '../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$servername = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$database = $_ENV['DB_NAME'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);

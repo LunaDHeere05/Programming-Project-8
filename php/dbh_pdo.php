@@ -1,8 +1,13 @@
 <?php
-$host = "dt5.ehb.be";
-$dbname = "2324PROGPROJGR8";
-$username = "2324PROGPROJGR8";
-$password = "P!j6WD5KL";
+require '../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

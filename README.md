@@ -15,6 +15,11 @@
   </ul>
 
 <h1>Bronnenlijst per teamlid: </h1>
+
+![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)
+![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
+![Dev.to blog](https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white)
+ 
 <h3>Luna D'Heere</h3>
 <ol>
   <li>Voor het maken van een pop up:</li>
@@ -68,6 +73,9 @@
   </ul>
 </ol>
 <h3>Danial Mubeasher</h3>
+<ol>
+  <li>Bekijk de file "copilot-chat_Danial.txt" om de chat historiek te bekijken met github Copilot</li>
+</ol>
 <h3>Edson De Smet</h3>
 <ol>
   <li>Blacklist Admin:</li>
