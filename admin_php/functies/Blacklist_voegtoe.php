@@ -1,7 +1,6 @@
 <?php 
 include 'database.php';
 
-
 if(isset($_POST['voegToeButton'])){
 if(isset($_POST['email'])&&isset($_POST['reden'])){
     $email = htmlspecialchars($_POST['email']);
