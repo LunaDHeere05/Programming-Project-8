@@ -363,7 +363,7 @@
       <i class="info-angle-up"></i>
     </button>
     <h2>Wat moet ik doen indien ik mijn reservatie niet op tijd kan komen ophalen?</h2>
-    <p>antwoord vraag 1</p>
+    <p>In dit geval is het belangrijk dat je je reservatie zo snel mogelijk annuleert. Indien je dit niet doen krijg je een sanctie. Na twee sancties beland je op de blacklist en kan je apparaten voor de komende 3 maanden niet meer uitlenen.</p>
   </div>
   <div class="info-box">
     <button class="info-button">
@@ -371,7 +371,7 @@
       <i class="info-angle-up"></i>
     </button>
     <h2>Wat moet ik doen indien ik een apparaat beschadig?</h2>
-    <p>antwoord vraag 2</p>
+    <p>Als je een apparaat beschadigd hebt, meld je dit bij het inleveren van het apparaat aan de medewerker van het MediaLab. Afhankelijk van het defect zal de medewerker beslissen of er een sanctie volgt.</p>
   </div>
   <div class="info-box">
     <button class="info-button">
@@ -379,7 +379,7 @@
       <i class="info-angle-up"></i>
     </button>
     <h2>Hoe lang van tevoren kan ik een reservering maken?</h2>
-    <p>antwoord vraag 3</p>
+    <p>Studenten kunnen 2 weken op voorhand een apparaat reserveren. Voor docenten is hier geen limiet op. </p>
   </div>
   <div class="info-box">
     <button class="info-button">
@@ -387,7 +387,9 @@
       <i class="info-angle-up"></i>
     </button>
     <h2>Hoe ontvang ik een bevestiging van mijn reservering?</h2>
-    <p>antwoord vraag 4</p>
+    <p>Eens je gereserveerd hebt wordt er een automatische bevestigingsmail verstuurd naar het emailadres waarmee je hebt ingelogd. In deze mail kan je de details
+      van je reservatie nog eens extra terugvinden. Je reservatie is ook automatisch te zien op de website op de "reservatie" pagina in de navigatiebalk.
+    </p>
   </div>
 </div>
 <!-- form  -->
