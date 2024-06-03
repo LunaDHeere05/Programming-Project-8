@@ -40,7 +40,8 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         .item_info img {
             width: 8em;
             height: 8em;
-               
+            background-color: white;
+            padding:10px;               
         }
         .verwijder {
             position: absolute;

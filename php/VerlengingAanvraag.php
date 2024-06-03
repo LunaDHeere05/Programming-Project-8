@@ -8,57 +8,63 @@
     <title>Verlengen</title>
     <link rel="stylesheet" href="/css/stylesheet.css">
     <style>
-.bevestig {
+        .bevestig {
             margin: 0em 4em 2em 4em;
             font-size: 20px;
         }
+
         .item_info_container {
             width: 90%;
             margin: 1em auto;
             border-radius: 2em;
             display: flex;
             flex-direction: column;
-            gap:1em;
+            gap: 1em;
             justify-content: center;
             align-items: center;
         }
+
         .item_info {
             background-color: #edededcf;
             display: flex;
             justify-content: space-around;
             align-items: center;
             position: relative;
-            width:60em;
-            height:10em;
+            width: 60em;
+            height: 10em;
             padding: 2em;
             border-radius: 2em;
-            transition: transform 0.5s ease; 
+            transition: transform 0.5s ease;
         }
 
         .item_info img {
             width: 8em;
             height: 8em;
-               
+            background-color: white;
+            padding:10px;
         }
+
         .verwijder {
             position: absolute;
             right: 2%;
             top: 0;
             width: 1.5em !important;
-            cursor:pointer;
+            cursor: pointer;
         }
-    
-        #formBevestiging{
+
+        #formBevestiging {
             display: flex;
             flex-direction: column;
-            gap:1em;
+            gap: 1em;
             justify-content: center;
             align-items: center;
         }
-        #formBevestiging .aantal{
-            width:55%;
+
+        #formBevestiging .aantal {
+            width: 55%;
             text-align: center;
         }
+
         .bevestig_btn {
             background-color: #1bbcb6;
             padding: 1em;
@@ -67,6 +73,7 @@
             width: 10em;
             text-align: center;
         }
+
         .bevestig_btn button {
             background: none;
             border: none;
@@ -75,17 +82,20 @@
             font-size: 20px;
             letter-spacing: 1px;
         }
-.annulerenEnTerug{
-  display: flex;
-}
-.annulerenEnTerug img{
-  width: 1.5em;
-  height: auto;
-  margin: 1.5em;
-}
-.annulerenEnTerug h1{
-  margin: 0.6em 0.5em 0em 0.5em;
-}
+
+        .annulerenEnTerug {
+            display: flex;
+        }
+
+        .annulerenEnTerug img {
+            width: 1.5em;
+            height: auto;
+            margin: 1.5em;
+        }
+
+        .annulerenEnTerug h1 {
+            margin: 0.6em 0.5em 0em 0.5em;
+        }
         </style>
 </head>
 <body>

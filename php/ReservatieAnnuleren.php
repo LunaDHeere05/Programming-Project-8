@@ -40,7 +40,8 @@
         .item_info img {
             width: 8em;
             height: 8em;
-
+            background-color: white;
+            padding:10px;
         }
 
         .verwijder {
