@@ -38,6 +38,7 @@ if(mysqli_num_rows($result) > 0) {
             'item_id' => $row['item_id'],
             'inlever_datum' =>  $row['inlever_datum'],
             'uitleen_datum' =>  $row['uitleen_datum'],
+            'uitleen_id' => $row['uitleen_id'],
         ];
 
 
