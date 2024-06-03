@@ -3,12 +3,11 @@ include '../database.php';
 
 $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
 
-$query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, uit.isOpgehaald, ui.email, it.naam
+$query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, ui.isOpgehaald, ui.email, it.naam
           FROM UITLENING ui
-          INNER JOIN UITGELEEND_ITEM uit ON ui.uitleen_id = uit.uitleen_id
-          INNER JOIN EXEMPLAAR_ITEM ei ON uit.exemplaar_item_id = ei.exemplaar_item_id
+          INNER JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
           INNER JOIN ITEM it ON ei.item_id = it.item_id
-          WHERE (ui.uitleen_datum = '$date' OR ui.inlever_datum = '$date') AND uit.isOpgehaald = 0
+          WHERE (ui.uitleen_datum = '$date' OR ui.inlever_datum = '$date') AND ui.isOpgehaald = 0
           ORDER BY ui.email";
 
 $result = mysqli_query($conn, $query);
