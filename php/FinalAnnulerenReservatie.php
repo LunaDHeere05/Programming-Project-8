@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bevestiging annulatie</title>
-    <link rel="stylesheet" href="/css/stylesheet.css">
     <style>
 .bevestig {
             margin: 0em 4em 2em 4em;
@@ -114,6 +113,7 @@
         $row=mysqli_fetch_assoc($query_result);
         $item_naam=$row['naam'];
         $item_merk=$row['merk'];
+        $uitleenId=$annulatie['uitleen_id'];
 
 
         echo '<div class="item_info">
@@ -122,17 +122,13 @@
         <p class="data"> van '.$startDateString.' <br> tot '.$endDateString.'</p>
         <h2>Aantal: 1</h2>
         </div>';
-        
-        if (isset($_POST['bevestigAnnuleren'])) {
-
-            echo '<p class="bevestig">Deze items werden <b>succesvol</b> geannuleerd. Check je inbox voor een bevestigingsmail.</p>';
+            
             $ontvanger = $gebruikersnaam;
             $mail_onderwerp = "Annulatie reservatie: $uitleenId";
             $mail_body = "Uw reservatie: $item_merk, $item_naam werd succesvol geannuleerd.\n\n Met vriendelijke groeten, \n Het MediaLab Team";
             $zender = "MediaLab@example.com";
-            // include '../functies/mail.php';
-            echo $mail_body;
-        }
+            include 'functies/mail.php';
+    
     }
 
         unset($_SESSION['annuleer_info']);
