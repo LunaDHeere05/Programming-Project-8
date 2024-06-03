@@ -141,10 +141,10 @@
     <form id="voegToeForm" method="POST">
       <p>Voer de gegevens in:</p>
       <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" name="email" required maxlength="50">
       <br>
       <label for="reden">Reden:</label>
-      <input type="text" id="reden" name="reden" required>
+      <input type="text" id="reden" name="reden" required maxlength="50">
       <br>
       <button type="submit" class="confirmButton" id="confirmVoegToe" name="voegToeButton">Toevoegen</button>
       <?php include 'functies/Blacklist_voegtoe.php'; ?>
