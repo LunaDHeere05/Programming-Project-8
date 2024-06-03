@@ -11,36 +11,29 @@ include 'database.php';
   <?php include 'top_nav_admin.php'?>
 
   <style>
-    /* The Modal (background) */
     
     .rechter_grid{
       justify-content: center;
     }
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      width: 100%; 
+      height: 100%; 
+      overflow: auto;  
+      background-color: rgba(0,0,0,0.4); 
     }
 
     /* Modal Content */
     .modal-content {
       background-color: #fefefe;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 60%; /* Could be more or less, depending on screen size */
-    }
-
-    .modal-content img {
-      width: 10%;
-      height: auto;
+      margin: 15% auto; 
+      padding: 1.5em;
+      border: none;
+      width: 60%; 
     }
 
     .items {
@@ -48,99 +41,103 @@ include 'database.php';
       justify-content: space-between;
       align-items: center;
       background-color: #aaa;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 5px;
+      padding: 1em;
+      margin: 1.5em;
+      border-radius: 1em;
       width: 90%;
     }
 
     .items img {
-      width: 100px;
-      height: auto;
-      margin-right: 10px;
-      border-radius: 5px;
+      width: 8em;
+      height: 6em;
+      margin-right: 1em;
+      border-radius: 1em;
+      background-color: white;
     }
 
     .items button {
       background-color: #1BBCB6;
       color: white;
-      padding: 10px 20px;
+      padding: 1em;
       border: none;
       cursor: pointer;
-      border-radius: 20px;
+      border-radius: 2em;
+      margin: 1em;
     }
 
     .kitName {
-      margin: 10px;
-      border: 4px solid #ccc;
-      padding: 10px;
-      border-radius: 20px;
+      margin: 1em 0em 2em 8em;
+      border: 0.2em solid #ccc;
+      padding: 1em;
+      border-radius: 1.5em;
       width: 70%;
       display: flex;
     }
 
     .kitName label {
-      margin-right: 10px;
+      margin-right: 1em;
     }
 
     .kitName input {
       width: auto;
       flex-grow: 1;
-      border-radius: 20px;
-      padding-left: 10px;
+      border-radius: 2em;
+      padding-left: 0.7em;
     }
     .item {
       display: flex;
       width: 100%;
-      border: 4px solid #ccc;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 5px;
+      border: 0.2em solid #ccc;
+      padding: 1em;
+      margin: 1em;
+      border-radius: 0.5em;
       width: 70%;
       justify-content: space-around;
     }
 
     .item img {
-      width: 100px;
-      height: auto;
-      margin-right: 10px;
-      border-radius: 5px;
+      width: 7em;
+      height: 5em;
+      margin-right: 1em;
+      border-radius: 1em;
     }
 
     .item button {
       background-color: red;
       color: white;
-      padding: 10px 20px;
+      padding: 0.7em 1em 2em 1em;
       border: none;
       cursor: pointer;
-      border-radius: 20px;
-      height: 40px;
+      border-radius: 2em;
+      height: 3em;
+      margin: 1em;
     }
 
     #myBtn {
       background-color: #1BBCB6;
       color: white;
-      padding: 10px 20px;
+      padding: 1em;
       border: none;
       cursor: pointer;
-      border-radius: 20px;
-      margin-left: 2em;
+      border-radius: 2em;
+      margin: 0em 5em 2em 20em;
     }
 
     #save-button {
       background-color: #1BBCB6;
       color: white;
-      padding: 10px 20px;
+      padding: 1em 2em 1em 2em;
       border: none;
       cursor: pointer;
-      border-radius: 20px;
+      border-radius: 2em;
+      margin: 0em 20em 2em 5em;
     }
 
     /* The Close Button */
     .close {
       color: #aaa;
       float: right;
-      font-size: 28px;
+      font-size: 2.5em;
       font-weight: bold;
     }
 
