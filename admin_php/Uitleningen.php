@@ -66,14 +66,12 @@
                         <th>Apparaat</th>
                         <th>Inleverdatum</th>
                         <th>Meer info</th>
-                        <th>Verwijder</th>
                     </tr>
                     <tr>
                         <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
                         <td>Canon-M50</td>
                         <td>02/06</td>
                         <td><a href="#"><img class="meer_info" src="images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
-                        <td><a href="#"><img class="verwijder" src="images/svg/circle-xmark-solid.svg" alt="verwijder van blacklist"></a></td>
                     </tr>
                     <?php include 'functies\uitleningen_ophalen.php'?>
                 </table>

@@ -22,7 +22,6 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['items'] . "</td>";
         echo "<td>" . htmlspecialchars(date("d/m", strtotime($row['inlever_datum']))) . "</td>";
         echo "<td><a href='#'><img class='meer_info' src='images/svg/circle-info-solid.svg' alt='meer informatie'></a></td>";
-        echo "<td><a href='#'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
         
         //als de reservatie is verlengd moet da in een aparte rij komen anders zijn er problemen met de inlever_datum
@@ -43,7 +42,6 @@ if (mysqli_num_rows($result) > 0) {
                 echo "<td>" . htmlspecialchars($extendedRow['item']) . " (Verlengd)</td>";
                 echo "<td>" . htmlspecialchars(date("d/m", strtotime($extendedRow['inlever_datum']))) . "</td>";
                 echo "<td><a href='#'><img class='meer_info' src='images/svg/circle-info-solid.svg' alt='meer informatie'></a></td>";
-                echo "<td><a href='#'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
                 echo "</tr>";
             }
         }
