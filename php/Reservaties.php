@@ -153,7 +153,6 @@
 .status span{
   color: black;
   font-weight: normal;
-
 }
 .annuleer_btn img{
   width: 1.5em;

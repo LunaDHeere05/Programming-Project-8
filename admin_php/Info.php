@@ -404,21 +404,17 @@ include 'database.php';
     <p>
       Indien je het apparaat niet komt ophalen op de uitleendatum dat je hebt
       gekozen of je het apparaat te laat inlevert, wordt er een
-      <b>waarschuwing</b> bij je account toegevoegd. Eens je aan 2
-      waarschuwingen hebt kom je voor 3 maanden op een
+      <b>waarschuwing</b> bij je account toegevoegd. Eens je 2
+      waarschuwingen hebt, kom je voor 3 maanden op een
       <b>blacklist</b> waarbij je geen apparaten meer kan uitlenen tijdens die
       periode.
     </p>
   </div>
 
   <div class="info-defect">
-    <h2>Defect melden <a href=""><img src="../images/svg/pen-to-square-regular.svg" alt=""></a> </h2>
+    <h2>Verlengen & annuleren <a href=""><img src="../images/svg/pen-to-square-regular.svg" alt=""></a> </h2>
     <p>
-      Indien je een defect of schade heeft dan meld je dit zelf aan via de
-      reservaties pagina. Je klikt op de bijhorende knop en volgt de
-      instructies op de pagina. Zorg dat je het juiste apparaat aanklikt met
-      de bijhorende apparaat ID. Deze ID-sticker vind je terug als een sticker
-      op het apparaat.
+      Studenten kunnen reservaties eenmalig één week verlengen. Indien ze het een tweede keer willen verlengen, moeten zij het Medialab contacteren. Voor docenten geldt er hierop geen beperking. <br> Zowel docenten als studenten kunnen reservaties, tot en met de uitleendatum, annuleren indien ze dit wensen. 
     </p>
   </div>
 

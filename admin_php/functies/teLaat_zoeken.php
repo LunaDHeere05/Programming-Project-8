@@ -9,12 +9,13 @@ if (isset($_GET['zoekButton'])) {
         $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
         $zoek_resultaat = "SELECT W.*,I.*
         FROM WAARSCHUWING W
-        JOIN EXEMPLAAR_ITEM EI ON W.exemplaar_item_id = EI.exemplaar_item_id
+        JOIN UITLENING U on U.uitleen_id=W.uitleen_id
+        JOIN EXEMPLAAR_ITEM EI ON U.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
         WHERE (LOWER(W.email) LIKE LOWER('%$zoek_query%') 
                OR (EXISTS (SELECT 1
                           FROM WAARSCHUWING W2
-                          WHERE W2.exemplaar_item_id = EI.exemplaar_item_id)
+                          WHERE W2.uitleen_id = U.uitleen_id)
               )
               AND (LOWER(I.naam) LIKE LOWER('%$zoek_query%') 
                    OR LOWER(I.merk) LIKE LOWER('%$zoek_query%')
@@ -30,18 +31,19 @@ if (isset($_GET['zoekButton'])) {
           <th>E-mail</th>
           <th>Apparaat</th>
           <th>Dagen te laat</th>
-          <th>Meer info</th>
+
           </tr>";
           while ($row = mysqli_fetch_assoc($zoek_uitvoering_resultaat)) {
                   $huidigeDatum = new DateTime();
                   $waarschuwingDatum = new DateTime($row['waarschuwingDatum']);
   
                   $verschil = $huidigeDatum->diff($waarschuwingDatum)->days;
+                  $verschil += 1;
+
                   echo "<tr>";
-                  echo "<td>" . $row['email'] . "</td>";
+                  echo "<td><a href='mailto:" . $row['email'] . "'>" . $row['email'] . "</a></td>";
                   echo "<td>" . $row['merk'] . " - " . $row['naam'] . "</td>";
-                  echo "<td>" . $verschil . "</td>";
-                  echo "<td><a href='#'><img src='images/svg/circle-info-solid.svg' alt='meer info'></a></td>";
+                  echo "<td style='color:red;font-weight:bold';>" . $verschil . "</td>";
                   echo "</tr>";
               }
           }else {

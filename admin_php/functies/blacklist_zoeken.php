@@ -26,11 +26,11 @@ if (isset($_GET['zoekButton'])) {
               <th>Verwijder</th>
             </tr>";
       while ($result = mysqli_fetch_assoc($zoek_uitvoering_resultaat)) {
-        echo "<tr>
-                <td>" . htmlspecialchars($result['email']) . "</td>";
-        echo "<td>" . htmlspecialchars($result['blacklistReasons']) . "</td>";
-        echo "<td>" . htmlspecialchars($result['daysOnBlacklist']) . "</td>";
-        echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($result['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
+        echo "<tr>";
+        echo "<td><a href='mailto:" . $row['email'] . "'>" . $row['email'] . "</a></td>";
+        echo "<td>" . htmlspecialchars($row['blacklistReasons']) . "</td>";
+        echo "<td style='color:red;font-weight:bold'>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
+        echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
       }
     } else {

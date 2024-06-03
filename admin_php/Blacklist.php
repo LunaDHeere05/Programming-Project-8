@@ -7,6 +7,7 @@
   <title>Blacklist</title>
   <?php include 'top_nav_admin.php' ?>
   <style>
+
     .blacklist_tabel {
       width: 90%;
       text-align: center;
@@ -105,23 +106,32 @@
       cursor: pointer;
       color: black;
     }
-    .voegToe {
-  margin-top: 2em;
-  text-align: left;
-}
 
-.voegToe button {
-  background-color: #1BBCB6;
-  color: antiquewhite;
-  border-radius: 0.5rem;
-  padding: 0.5em;
-  margin-left: 0.5em;
-}
 
-.voegToe button:hover {
+
+.voegToe a:hover {
   cursor: pointer;
-  color: black;
+
 }
+
+.voegToe {
+            background-color: #1BBCB6;
+            text-align: center;
+            width: 23%;
+            border-radius: 2em;
+            margin-left: 4em;
+            margin-top: 2em;
+            position: absolute;
+            position: sticky;
+            bottom: 2em;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+        }
+
+        .voegToe a {
+            text-decoration: none;
+            color: white;
+        }
+     
   </style>
 </head>
 
@@ -130,9 +140,7 @@
 
     <!-- <div class="zoeken_container">
   </div> -->
-  <div class="voegToe">
-    <button id="openVoegToePopup">Voeg Persoon Toe</button>
-  </div>
+
 
 
   <div class="overlay" id="voegToePopup">
@@ -175,6 +183,10 @@
         } ?>
       </table>
     </div>
+
+  <div class="voegToe">
+            <h3><a id="openVoegToePopup">Persoon toevoegen</a></h3>
+        </div>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {

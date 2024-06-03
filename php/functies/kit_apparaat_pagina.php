@@ -39,7 +39,7 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
 
             if(isset($gebruikersnaam)){
             echo "<div id='selectie_toevoegen'>";
-            echo "<p>Voeg selectie toe aan reservatie</p>";
+            echo "<p>Voeg selectie toe aan winkelmand</p>";
             echo "</div></div>";
             }
             echo "</ul>" ;

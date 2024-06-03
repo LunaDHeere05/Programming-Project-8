@@ -3,7 +3,7 @@ include 'database.php';
 
         // Query to get the required data
         $query = "SELECT p.email, waarschuwingDatum AS datum,
-                         w.exemplaar_item_id
+                         w.uitleen_id
                   FROM PERSOON p
                   JOIN WAARSCHUWING w ON p.email = w.email
                   WHERE w.waarschuwingsType = 'Te laat' AND p.rol='student'
@@ -22,7 +22,8 @@ include 'database.php';
 
             $queryItemNaam = "SELECT i.item_id, i.naam, i.merk FROM ITEM i
             JOIN EXEMPLAAR_ITEM ei on ei.item_id=i.item_id
-            WHERE ei.exemplaar_item_id=" . $row['exemplaar_item_id'];
+            JOIN UITLENING u on ei.exemplaar_item_id=u.exemplaar_item_id
+            WHERE u.uitleen_id=" . $row['uitleen_id'];
 
             $itemNaam = mysqli_query($conn, $queryItemNaam);
             $itemNaamRow = mysqli_fetch_assoc($itemNaam);
@@ -32,10 +33,12 @@ include 'database.php';
                 $waarschuwingDatum = new DateTime($row['datum']);
 
                 $verschil = $huidigeDatum->diff($waarschuwingDatum)->days;
+                $verschil += 1;
+                
                 echo "<tr>";
-                echo "<td>" . $row['email'] . "</td>";
+                echo "<td><a href='mailto:" . $row['email'] . "'>" . $row['email'] . "</a></td>";
                 echo "<td>" . $itemNaamRow['merk'] . " - " . $itemNaamRow['naam'] . "</td>";
-                echo "<td>" . $verschil . "</td>";
+                echo "<td style='color:red;font-weight:bold'>" . $verschil . "</td>";
                 echo "</tr>";
             }
         }

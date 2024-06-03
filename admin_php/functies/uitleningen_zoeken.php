@@ -35,7 +35,7 @@ if (isset($_GET['zoekButton'])) {
               echo ".uitlening_tabel { display: none; }";
               echo "</style>";
           } else {
-                echo "Geen resultaten gevonden";
+                die("Geen resultaten gevonden");
             }
         } else {
             echo "Query failed: " . mysqli_error($conn);

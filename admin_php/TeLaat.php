@@ -41,6 +41,10 @@
 td{
   padding: 0.5em;
 }
+
+.te_laat_tabel a{
+  color:#1bbcb6;
+}
         </style>
 </head>
 <body>

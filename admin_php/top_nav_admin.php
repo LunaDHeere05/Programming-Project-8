@@ -74,6 +74,7 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   margin-left: 2em;
+  gap:1em;
 }
 .linker_nav ul li a{
   text-decoration: none;
@@ -140,7 +141,6 @@ nav {
     </div>
 <div class="keer_terug">
 <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
-        <h1>Dashboard</h1>
 </div>
 <div class="inhoud_body">
     <div class="linker_nav">

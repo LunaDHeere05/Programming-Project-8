@@ -49,7 +49,7 @@ include 'database.php';
         }
         .uitleningen_dashboard_details {
             display: flex;
-            width: 90%;
+            width: 95%;
             background-color: #D9D9D9;
             margin: auto;
             border-radius: 2em;
@@ -88,12 +88,126 @@ include 'database.php';
             border-radius: 2em;
             margin-left: 4em;
             margin-top: 2em;
+            position: absolute;
+            position: sticky;
+            bottom: 2em;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
         }
         .uitlening_toevoegen a {
             text-decoration: none;
             color: white;
         }
+
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        function fetchReservations(date) {
+            $.ajax({
+                url: 'functies/dashboard_personen.php',
+                type: 'POST',
+                data: {date: date},
+                success: function(response) {
+                    $('.uitleningen_dashboard_container').html(response);
+                }
+            });
+        }
+        //functie voor maanden en dagen
+        function updateDatesAndMonth(startDate) {
+            var date = new Date(startDate);
+            var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
+            var startOfWeek = new Date(date.setDate(date.getDate() - date.getDay() + 1)); // Monday of the current week
+            $('.datums').empty();
+            $('.datums').append('<li id="prev-week"><img src="images/svg/chevron-left-solid.svg" alt="links"></li>');
+
+            for (let i = 0; i < 7; i++) {
+                var currentDay = new Date(startOfWeek);
+                currentDay.setDate(startOfWeek.getDate() + i);
+                var displayDate = currentDay.getDate();
+                var fullDate = currentDay.toISOString().split('T')[0];
+                var activeClass = fullDate === new Date().toISOString().split('T')[0] ? 'class="active"' : '';
+                $('.datums').append(`<li data-date='${fullDate}' ${activeClass}><h3>${displayDate}</h3></li>`);
+            }
+
+            $('.datums').append('<li id="next-week"><img src="images/svg/chevron-right-solid.svg" alt="rechts"></li>');
+            $('#monday-date').val(startOfWeek.toISOString().split('T')[0]);
+            $('.agenda_container h2').text(monthNames[startOfWeek.getMonth()]);
+        }
+
+        // Fetch reservations for today's date on page load
+        var currentDate = new Date();
+        updateDatesAndMonth(currentDate);
+        fetchReservations(currentDate.toISOString().split('T')[0]);
+
+        $('.datums').on('click', 'li', function() {
+            let selectedDate = $(this).data('date');
+            $('.datums li').removeClass('active');
+            $(this).addClass('active');
+            fetchReservations(selectedDate);
+        });
+
+        $('.datums').on('click', '#prev-week', function() {
+            let currentMonday = new Date($('#monday-date').val());
+            currentMonday.setDate(currentMonday.getDate() - 7);
+            updateDatesAndMonth(currentMonday);
+            fetchReservations($('#monday-date').val());
+        });
+
+        $('.datums').on('click', '#next-week', function() {
+            let currentMonday = new Date($('#monday-date').val());
+            currentMonday.setDate(currentMonday.getDate() + 7);
+            updateDatesAndMonth(currentMonday);
+            fetchReservations($('#monday-date').val());
+        });
+
+        //CLick functies voor de iconen
+        //CHECK:
+        $(document).on('click', '.iconen .check', function() {
+            var $details = $(this).closest('.uitleningen_dashboard_details');
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            var statusText = $details.find('p').text();
+
+            $.ajax({
+                url: 'functies/reservatieCheck.php',
+                type: 'POST',
+                data: {
+                    reservatieID: reservatieID,
+                },
+                success: function(response) {
+                    location.reload();
+                    if (statusText.trim() === "Op te halen") {
+                        alert('Reservatie succesvol opgehaald.');
+                    } else {
+                        alert('Reservatie succesvol ingeleverd.');
+                    }
+                   
+                }
+            });
+        });
+
+        //VERWIJDER:
+        $(document).on('click', '.iconen .verwijder_btn', function() {
+            var $details = $(this).closest('.uitleningen_dashboard_details');
+            var reservatieID = $(this).closest('.uitleningen_dashboard_details').find('.naam_reservatieID span').text();
+            var statusText = $details.find('p').text();
+            $.ajax({
+                url: 'functies/reservatieKruis.php',
+                type: 'POST',
+                data: {reservatieID: reservatieID},
+                success: function(response) {
+                    console.log(response);
+                    // if (statusText.trim() === "Op te halen") {
+                    //     alert('Ophaling verwijderd en waarschuwing gegenereerd.');
+                    // } else {
+                    //     alert('Inlevering verwijderd en waarschuwing gegenereerd.');
+                    location.reload();
+                    alert("De betrokken student heeft een waarschuwing gekregen.");
+                }
+                
+            });
+        });
+    });//end script
+    </script>
 </head>
 <body>
     <div class="rechter_grid">
@@ -112,61 +226,5 @@ include 'database.php';
             <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
         </div>
     </div>
-
-    <script>
-        function updateDatesAndMonth(startDate) {
-    var date = new Date(startDate);
-    var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
-    var startOfWeek = new Date(date.setDate(date.getDate() - date.getDay() + 1)); // Monday of the current week
-
-    var datumsElement = document.querySelector('.datums');
-    datumsElement.innerHTML = '';
-    var prevWeekLi = document.createElement('li');
-    prevWeekLi.id = 'prev-week';
-    var prevWeekImg = document.createElement('img');
-    prevWeekImg.src = 'images/svg/chevron-left-solid.svg';
-    prevWeekImg.alt = 'links';
-    prevWeekLi.appendChild(prevWeekImg);
-    datumsElement.appendChild(prevWeekLi);
-
-    for (let i = 0; i < 7; i++) {
-        var currentDay = new Date(startOfWeek);
-        currentDay.setDate(startOfWeek.getDate() + i);
-        var displayDate = currentDay.getDate();
-        var fullDate = currentDay.toISOString().split('T')[0];
-
-        var li = document.createElement('li');
-        li.setAttribute('data-date', fullDate);
-        if (fullDate === new Date().toISOString().split('T')[0]) {
-            li.classList.add('active');
-        }
-
-        var h3 = document.createElement('h3');
-        h3.textContent = displayDate;
-        li.appendChild(h3);
-
-        datumsElement.appendChild(li);
-    }
-
-    var nextWeekLi = document.createElement('li');
-    nextWeekLi.id = 'next-week';
-    var nextWeekImg = document.createElement('img');
-    nextWeekImg.src = 'images/svg/chevron-right-solid.svg';
-    nextWeekImg.alt = 'rechts';
-    nextWeekLi.appendChild(nextWeekImg);
-    datumsElement.appendChild(nextWeekLi);
-
-    var mondayDateInput = document.querySelector('#monday-date');
-    if (mondayDateInput) {
-        mondayDateInput.value = startOfWeek.toISOString().split('T')[0];
-    }
-
-    var agendaTitle = document.querySelector('.agenda_container h2');
-    if (agendaTitle) {
-        agendaTitle.textContent = monthNames[startOfWeek.getMonth()];
-    }
-}
-
-    </script>
 </body>
 </html>

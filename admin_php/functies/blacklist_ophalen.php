@@ -23,9 +23,9 @@ if (mysqli_num_rows($result) > 0) {
   </tr>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+        echo "<td><a href='mailto:" . $row['email'] . "'>" . $row['email'] . "</a></td>";
         echo "<td>" . htmlspecialchars($row['blacklistReasons']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
+        echo "<td style='color:red;font-weight:bold'>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
         echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
     }
