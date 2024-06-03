@@ -16,8 +16,8 @@ try {
     $mail->isSMTP();                                            // Gebruik SMTP
     $mail->Host       = 'sandbox.smtp.mailtrap.io';                     // Mailtrap SMTP server
     $mail->SMTPAuth   = true;                                   // Activeer SMTP authenticatie
-    $mail->Username   = 'f34344e8582f12';               // Mailtrap SMTP gebruikersnaam
-    $mail->Password   = '62a8c5932291a4';               // Mailtrap SMTP wachtwoord
+    $mail->Username = '567fd854058950';
+    $mail->Password = 'cf5e41d6870bd1';             // Mailtrap SMTP wachtwoord
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Activeer TLS encryptie
     $mail->Port       = 587;                                    // TCP poort voor TLS
 
