@@ -5,14 +5,13 @@ include 'database.php';
 if (!isset($gebruikersnaam)) {
     echo '<p class="login"> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
 }else{
-$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
+$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum,
                 EI.exemplaar_item_id,
                 I.*
-                FROM UITGELEEND_ITEM UI
-                JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
+                FROM UITLENING U
+                JOIN EXEMPLAAR_ITEM EI ON U.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id 
-                WHERE U.email = '$gebruikersnaam' AND UI.isOpgehaald = 1"; 
+                WHERE U.email = '$gebruikersnaam' AND U.isOpgehaald = 1"; 
 
 $result = mysqli_query($conn, $query);
 
@@ -75,9 +74,8 @@ if(mysqli_num_rows($result) > 0) {
         WHERE ei.exemplaar_item_id= {$row['exemplaar_item_id']}
         AND NOT EXISTS (
             SELECT 1
-            FROM UITGELEEND_ITEM ui
-            JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-            WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+            FROM UITLENING u 
+            WHERE u.exemplaar_item_id = ei.exemplaar_item_id
             AND (
                 (u.uitleen_datum <= '{$volgendeMaandagString}' AND u.inlever_datum >= '{$volgendeVrijdagString}')
                 OR (u.uitleen_datum >= '{$volgendeMaandagString}' AND u.uitleen_datum < '{$volgendeVrijdagString}')
@@ -104,7 +102,7 @@ if(mysqli_num_rows($result) > 0) {
             if($dagen_tot_inleveren>=0 && $reserveringMogelijk==true){
             echo '
                 <label>
-                    <input class="verlengenCheck" type="checkbox" value="' . $row['exemplaar_item_id'] . '" id='.$row['uitleen_id'].'>
+                    <input class="verlengenCheck" type="checkbox" value='.$row['uitleen_id'].'>
                 </label>';
             }
             echo '
@@ -120,13 +118,13 @@ if(mysqli_num_rows($result) > 0) {
                                 <li class="status">
                                     <h3>Status:</h3>
                                     <p><b>'.$status.'</b></p>
-                                    <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].' - '.$row['exemplaar_item_id'].' </span></h3>
+                                    <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].' </span></h3>
                                 </li>';
 
                                 if($dagen_tot_inleveren>=0 && $reserveringMogelijk==true){
                                     echo '        
                                     <li  class="verleng_btn" >
-                                    <button class="verleng" value="'.$row['exemplaar_item_id'].'" id='.$row['uitleen_id'].'>
+                                    <button class="verleng" value='.$row['uitleen_id'].'>
                                         Verlengen
                                         <img src="images/svg/calendar-regular.svg" alt="xmark"/>
                                     </button>

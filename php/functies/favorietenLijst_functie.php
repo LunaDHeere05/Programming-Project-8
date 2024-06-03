@@ -30,19 +30,16 @@ if (!isset($gebruikersnaam)) {
 
         $vrijeExemplaren = "SELECT ei.exemplaar_item_id
            FROM EXEMPLAAR_ITEM ei
-           WHERE ei.item_id = " . $exemplaren_row['item_id'] . "
-           AND NOT EXISTS (
+           WHERE ei.item_id = " . $exemplaren_row['item_id'] . " AND ei.zichtbaarheid=1 AND NOT EXISTS (
                SELECT 1
-               FROM UITGELEEND_ITEM ui
-               JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-               WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+               FROM UITLENING u 
+               WHERE u.exemplaar_item_id = ei.exemplaar_item_id
                AND (
                    (u.uitleen_datum <= '" . $beginWeek->format('Y-m-d') . "' AND u.inlever_datum >= '" . $eindeWeek->format('Y-m-d') . "')
                    OR (u.uitleen_datum >= '" . $beginWeek->format('Y-m-d') . "'  AND u.uitleen_datum < '" . $eindeWeek->format('Y-m-d') . "')
                    OR (u.inlever_datum <= '" . $eindeWeek->format('Y-m-d') . "' AND u.inlever_datum > '" . $beginWeek->format('Y-m-d') . "')
                    )
-               )
-           AND zichtbaarheid=1
+               ) 
        ";
 
         $vrijeExemplaren_result = mysqli_query($conn, $vrijeExemplaren);

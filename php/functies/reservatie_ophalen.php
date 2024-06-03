@@ -5,14 +5,13 @@ include 'database.php';
 if (!isset($gebruikersnaam)) {
     echo '<p class="login"> <a href="Profiel.php"> Log in</a> om jouw reservaties te bekijken.</p>';
 }else{
-$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
+$query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum,
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving,I.images, I.merk
-                FROM UITGELEEND_ITEM UI
-                JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
+                FROM UITLENING U 
+                JOIN EXEMPLAAR_ITEM EI ON U.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id 
-                WHERE U.email = '$gebruikersnaam' AND UI.isOpgehaald = 0"; 
+                WHERE U.email = '$gebruikersnaam' AND U.isOpgehaald = 0"; 
 
 $result = mysqli_query($conn, $query);
 
@@ -69,7 +68,7 @@ if(mysqli_num_rows($result) > 0) {
                 if($dagen_tot_uitlenen>=0){
                 echo '
                     <label>
-                        <input class="annulerenCheck" type="checkbox" value="' . $row['exemplaar_item_id'] . '" id='.$row['uitleen_id'].'>
+                        <input class="annulerenCheck" type="checkbox" value='.$row['uitleen_id'].'>
                     </label>';
                 }
 
@@ -92,7 +91,7 @@ if(mysqli_num_rows($result) > 0) {
                 if($dagen_tot_uitlenen>=0){
                     echo '        
                     <li  class="annuleer_btn" >
-                    <button class="annuleer" value="'.$row['exemplaar_item_id'].'" id='.$row['uitleen_id'].'>
+                    <button class="annuleer" value='.$row['uitleen_id'].'>
                         Annuleren
                         <img src="images/svg/circle-xmark-solid.svg" alt="xmark"/>
                     </button>
