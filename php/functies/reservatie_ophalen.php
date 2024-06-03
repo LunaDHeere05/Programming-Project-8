@@ -31,7 +31,6 @@ if(mysqli_num_rows($result) > 0) {
     </div>
     ';
 
-
     while($row = mysqli_fetch_assoc($result)) {
 
         $vandaag = new DateTime();
@@ -72,14 +71,20 @@ if(mysqli_num_rows($result) > 0) {
                     </label>';
                 }
 
+                $startDate=new dateTime($row['uitleen_datum']);
+                $startDateString=$startDate->format('d-m-Y');
+        
+                $endDate=new dateTime($row['inlever_datum']);
+                $endDateString=$endDate->format('d-m-Y');
+
                 echo '
                     <div class="reservatie_item">
                             <ul style="background-color: '.$kleur.';">
                                 <li><img src="' . $row['images'] . '" alt=""></li>
                                 <li class="reservatie_info">
                                     <h3>' . $row['merk'] . ' - ' . $row['naam'] . '</h3>
-                                    <p>van ' . $row['uitleen_datum'] . '</p>
-                                    <p>tot ' . $row['inlever_datum'] . '</p>
+                                    <p>van ' .  $startDateString . '</p>
+                                    <p>tot ' .  $endDateString . '</p>
                                     <h3>Aantal: <br><span>1</span></h3>
                                 </li>
                                 <li class="status">

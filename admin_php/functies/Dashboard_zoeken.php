@@ -7,11 +7,11 @@ if (isset($_GET['zoekButton'])) {
     if (!empty($zoek_query)) { // Controleer of de zoekopdracht niet leeg is
         $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
         $zoek_resultaat = "SELECT u.email, u.uitleen_id, ei.exemplaar_item_id, i.merk, i.naam, u.inlever_datum
-        FROM UITLENING u
-        JOIN UITGELEEND_ITEM ui ON u.uitleen_id = ui.uitleen_id
-        JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
-        JOIN ITEM i ON ei.item_id = i.item_id
-        WHERE u.email LIKE '%$zoek_query%' OR ui.uitleen_id LIKE '%$zoek_query%' OR i.merk LIKE '%$zoek_query%' OR i.naam LIKE '%$zoek_query%'";
+                            FROM UITLENING u
+                            JOIN EXEMPLAAR_ITEM ei ON u.exemplaar_item_id = ei.exemplaar_item_id
+                            JOIN ITEM i ON ei.item_id = i.item_id
+                            WHERE u.email LIKE '%$zoek_query%' OR u.uitleen_id LIKE '%$zoek_query%' OR i.merk LIKE '%$zoek_query%' OR i.naam LIKE '%$zoek_query%'";
+
         $zoek_uitvoering_resultaat = mysqli_query($conn, $zoek_resultaat);
 
         if ($zoek_uitvoering_resultaat) {
