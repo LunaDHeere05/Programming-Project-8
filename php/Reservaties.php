@@ -197,7 +197,6 @@
   margin:5px;
   padding:5px;
   width:2em;
-
 }
 
 .annuleer_btn button img{
@@ -240,33 +239,24 @@
 let arrayAnnuleerItems=[];
 let arrayVerlengItems=[];
 
-  function arrayItems(exemplaarId,uitleenId){
-    this.exemplaarId=parseInt(exemplaarId);
-    this.uitleenId=parseInt(uitleenId)
-  };
 
-function toevoegenAanArray(eId,uId, constructor, array){
-  let item=new constructor(parseInt(eId),parseInt(uId));
-  array.push(item);
+function verwijderenUitAnnuleerArray(uId) {
+  arrayAnnuleerItems = arrayAnnuleerItems.filter(item => item !== uId);
 }
 
-function verwijderenUitAnnuleerArray(exemplaar, uId) {
-  arrayAnnuleerItems = arrayAnnuleerItems.filter(item => item.uitleenId !== parseInt(uId) || item.exemplaarId !== parseInt(exemplaar));
-}
-
-function verwijderenUitVerlengArray(exemplaar, uId) {
-  arrayVerlengItems = arrayVerlengItems.filter(item => item.uitleenId !== parseInt(uId) || item.exemplaarId !== parseInt(exemplaar));
+function verwijderenUitVerlengArray(uId) {
+  arrayVerlengItems = arrayVerlengItems.filter(item => item !== uId);
 }
 
   document.querySelectorAll('.annulerenCheck').forEach(function(button) {
     button.addEventListener('click', function() {
       if (button.checked) {
         button.src = 'images/svg/plus-circle-fill.svg';
-        toevoegenAanArray(button.value,button.id, arrayItems, arrayAnnuleerItems)
+        arrayAnnuleerItems.push(parseInt(button.value))
         console.log(arrayAnnuleerItems)
       } else {
         button.src = 'images/svg/plus-circle.svg';
-        verwijderenUitAnnuleerArray(button.value, button.id);
+        verwijderenUitAnnuleerArray(parseInt(button.value));
         console.log(arrayAnnuleerItems)
       }
 
@@ -296,7 +286,7 @@ function verwijderenUitVerlengArray(exemplaar, uId) {
   document.querySelectorAll('.annuleer').forEach(function(button) {
     button.addEventListener('click', function() {
       arrayAnnuleerItems=[];
-      toevoegenAanArray(button.value,button.id, arrayItems, arrayAnnuleerItems)
+      arrayAnnuleerItems.push(parseInt(button.value))
       document.getElementById('hidden').value=JSON.stringify(arrayAnnuleerItems);
       document.getElementById('formAnnuleer').submit();
       console.log(document.getElementById('hidden').value)
@@ -314,9 +304,9 @@ function verwijderenUitVerlengArray(exemplaar, uId) {
     e.preventDefault();
     arrayAnnuleerItems=[];
     document.querySelectorAll('.annulerenCheck').forEach(function(button) {
-        button.checked
+        button.checked=true
         button.src = 'images/svg/plus-circle-fill.svg';
-        toevoegenAanArray(button.value,button.id, arrayItems, arrayAnnuleerItems)
+        arrayAnnuleerItems.push(parseInt(button.value))
     })
 
     if(arrayAnnuleerItems.length>0){
@@ -330,11 +320,11 @@ function verwijderenUitVerlengArray(exemplaar, uId) {
     button.addEventListener('click', function() {
       if (button.checked) {
         button.src = 'images/svg/plus-circle-fill.svg';
-        toevoegenAanArray(button.value,button.id, arrayItems, arrayVerlengItems);
+        arrayVerlengItems.push(parseInt(button.value))
         console.log(arrayVerlengItems)
       } else {
         button.src = 'images/svg/plus-circle.svg';
-        verwijderenUitVerlengArray(button.value,button.id);
+        verwijderenUitVerlengArray(parseInt(button.value));
         console.log(arrayVerlengItems)
       }
 
@@ -365,7 +355,7 @@ function verwijderenUitVerlengArray(exemplaar, uId) {
   document.querySelectorAll('.verleng').forEach(function(button) {
     button.addEventListener('click', function() {
       arrayVerlengItems=[];
-      toevoegenAanArray(button.value,button.id, arrayItems, arrayVerlengItems);
+      arrayVerlengItems.push(parseInt(button.value))
       document.getElementById('hiddenV').value=JSON.stringify(arrayVerlengItems);
       document.getElementById('formVerleng').submit();
     });
@@ -384,7 +374,7 @@ function verwijderenUitVerlengArray(exemplaar, uId) {
     document.querySelectorAll('.verlengenCheck').forEach(function(button) {
         button.checked
         button.src = 'images/svg/plus-circle-fill.svg';
-        toevoegenAanArray(button.value,button.id, arrayItems, arrayVerlengItems);
+        arrayVerlengItems.push(parseInt(button.value))
     })
 
     if(arrayVerlengItems.length>0){

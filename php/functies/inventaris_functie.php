@@ -128,9 +128,8 @@ if (!empty($zoek_query)) {
     JOIN EXEMPLAAR_ITEM ei on ei.item_id=i.item_id
     WHERE NOT EXISTS (
         SELECT 1
-        FROM UITGELEEND_ITEM ui
-        JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-        WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+        FROM UITLENING u
+        WHERE u.exemplaar_item_id = ei.exemplaar_item_id
         AND (
             (u.uitleen_datum <= '".$beginWeekBeschikbaarheid->format('Y-m-d')."' AND u.inlever_datum >= '" . $eindeWeekBeschikbaarheid->format('Y-m-d') ."')
             OR (u.uitleen_datum >= '".$beginWeekBeschikbaarheid->format('Y-m-d')."'  AND u.uitleen_datum < '" . $eindeWeekBeschikbaarheid->format('Y-m-d') ."')
@@ -186,12 +185,10 @@ while ($row_item = mysqli_fetch_assoc($item_info_result)) { // Loopen over elk i
 
         $vrijeExemplaren = "SELECT ei.exemplaar_item_id
         FROM EXEMPLAAR_ITEM ei
-        WHERE ei.item_id = " . $row_item['item_id'] . "
-        AND NOT EXISTS (
+        WHERE ei.item_id = " . $row_item['item_id'] . " AND NOT EXISTS (
             SELECT 1
-            FROM UITGELEEND_ITEM ui
-            JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-            WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+            FROM UITLENING u 
+            WHERE u.exemplaar_item_id = ei.exemplaar_item_id
             AND (
                 (u.uitleen_datum <= '".$beginWeek->format('Y-m-d')."' AND u.inlever_datum >= '" . $eindeWeek->format('Y-m-d') ."')
                 OR (u.uitleen_datum >= '".$beginWeek->format('Y-m-d')."'  AND u.uitleen_datum < '" . $eindeWeek->format('Y-m-d') ."')

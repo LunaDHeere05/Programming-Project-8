@@ -113,17 +113,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Ids = json_decode($jsonString, true);
 
     foreach ($Ids as $Id) {
-        $exemplaarId = intval($Id['exemplaarId']);
-        $uitleenId = intval($Id['uitleenId']);
+        $uitleenId = intval($Id);
   
-    $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, UI.isVerlengd,
+    $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, 
                 EI.exemplaar_item_id,
                 I.naam, I.beschrijving, I.images, I.merk
-                FROM UITGELEEND_ITEM UI
-                JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
+                FROM UITLENING U 
+                JOIN EXEMPLAAR_ITEM EI ON U.exemplaar_item_id = EI.exemplaar_item_id
                 JOIN ITEM I ON EI.item_id = I.item_id
-                JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id 
-                WHERE U.email = '$gebruikersnaam' AND UI.isOpgehaald = 0 AND EI.exemplaar_item_id={$exemplaarId} AND U.uitleen_id={$uitleenId}"; 
+                WHERE U.email = '$gebruikersnaam' AND U.isOpgehaald = 0 AND U.uitleen_id={$uitleenId}"; 
                 
     $result = mysqli_query($conn, $query);
 
@@ -142,7 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>'.$row['merk'].' - '.$row['naam'].'</h2>
             <p class="data">van '.$startDateString.'<br> tot '.$endDateString.'</p>
             <h2>Aantal: 1</h2>
-            <img class="verwijder"  src="images/svg/xmark-solid.svg" alt="klik weg">
         </div>
     </div> ';
     }

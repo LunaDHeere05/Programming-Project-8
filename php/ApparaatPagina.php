@@ -724,21 +724,6 @@ document.getElementById('submitWinkelmand').addEventListener('click',function(e)
       })   
   }
 })
-
-
-//indien toeveogen aan winkelmand succesvol was 
-<?php 
-
-if(isset($winkelmandSucces)){
-
-}
-
-
-?>
- 
-
-
-
    
   </script>
 </body>

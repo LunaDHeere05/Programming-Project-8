@@ -33,9 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             WHERE ei.exemplaar_item_id = $exemplaarId 
             AND NOT EXISTS (
                 SELECT 1
-                FROM UITGELEEND_ITEM ui
-                JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-                WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+                FROM UITLENING u
+                WHERE u.exemplaar_item_id = ei.exemplaar_item_id
                 AND (
                     (u.uitleen_datum <= '{$volgendeMaandagString}' AND u.inlever_datum >= '{$volgendeVrijdagString}')
                     OR (u.uitleen_datum >= '{$volgendeMaandagString}' AND u.uitleen_datum < '{$volgendeVrijdagString}')
@@ -50,16 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $queryCheck_result=mysqli_query($conn, $queryCheck);   
         
         if(mysqli_num_rows($queryCheck_result)){
-
-            $queryVerleng="UPDATE `UITLENING` SET `uitleen_datum` = '{$volgendeVrijdagString}' WHERE `UITLENING`.`uitleen_id` = $uitleenId AND `UITGELEEND_ITEM`.`exemplaar_item_id`=$exemplaarId ;";
-
-
-
-
+            $queryVerleng="UPDATE `UITLENING` SET `uitleen_datum` = '{$volgendeVrijdagString}' WHERE `UITLENING`.`uitleen_id` = $uitleenId"; ///// HERE I AMMMM
         }
-
-
-
 
 
         //gegevens bijhouden om die te kunnen gebruiken in Final page
@@ -68,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'inlever_datum' =>  $row['inlever_datum'],
             'uitleen_datum' =>  $row['uitleen_datum'],
         ];
-
 
 
         header("Location: ../FinalAnnulerenReservatie.php");
