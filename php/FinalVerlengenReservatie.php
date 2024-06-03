@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bevestiging annulatie</title>
+    <title>Bevestiging verlengen</title>
     <style>
 .bevestig {
             margin: 0em 4em 2em 4em;
@@ -91,20 +91,21 @@
     <?php include 'top_nav.php'?>
     <div class="annulerenEnTerug">
         <a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><img src="images/svg/chevron-left-solid.svg" alt=""></a>
-        <h1>Annulatie</h1>
+        <h1>Verlengen</h1>
     </div>
-    <p class="bevestig">Deze items werden <b>succesvol</b> geannuleerd. Check je inbox voor een bevestigingsmail.</p>
+    <p class="bevestig">Deze items werden <b>succesvol</b> verlengd. Check je inbox voor een bevestigingsmail.</p>
     <div class="item_info_container">
         <?php 
-    if (isset($_SESSION['annuleer_info']) && isset($gebruikersnaam)){    
-    foreach ($_SESSION['annuleer_info'] as $annulatie) {
+    if (isset($_SESSION['verleng_info']) && isset($gebruikersnaam)){    
+    foreach ($_SESSION['verleng_info'] as $verleng) {
 
-        $itemId = intval($annulatie['item_id']);
+        $itemId = intval($verleng['item_id']);
+        $uitleenId= intval($verleng['uitleen_id']);
 
-        $startDate=new dateTime($annulatie['uitleen_datum']);
+        $startDate=new dateTime($verleng['uitleen_datum']);
         $startDateString=$startDate->format('d-m-Y');
 
-        $endDate=new dateTime($annulatie['inlever_datum']);
+        $endDate=new dateTime($verleng['inlever_datum']);
         $endDateString=$endDate->format('d-m-Y');
 
         $query="SELECT * from ITEM WHERE item_id={$itemId}";
@@ -113,7 +114,7 @@
         $row=mysqli_fetch_assoc($query_result);
         $item_naam=$row['naam'];
         $item_merk=$row['merk'];
-        $uitleenId=$annulatie['uitleen_id'];
+        $uitleenId=$verleng['uitleen_id'];
 
 
         echo '<div class="item_info">
@@ -124,8 +125,8 @@
         </div>';
             
             $ontvanger = $gebruikersnaam;
-            $mail_onderwerp = "Annulatie reservatie: $uitleenId";
-            $mail_body = "Beste $gebruikersnaam,\n\n Uw reservatie: $item_merk, $item_naam werd succesvol geannuleerd.\n\n Met vriendelijke groeten, \n Het MediaLab Team";
+            $mail_onderwerp = "Verleng reservatie: $uitleenId";
+            $mail_body = "Beste $gebruikersnaam,\n\nUw reservatie: $item_merk, $item_naam werd succesvol verlengd.\n\n Met vriendelijke groeten, \n Het MediaLab Team";
             $zender = "MediaLab@example.com";
             include 'functies/mail.php';
     

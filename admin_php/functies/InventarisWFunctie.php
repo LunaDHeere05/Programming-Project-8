@@ -45,16 +45,52 @@ if (isset($_POST["submitForm"])) {
     $file = $_FILES['image'];
     $ftpDirectory = '/www/images/';
     ftp_pasv($ftpConnection, true);
-    if (ftp_put($ftpConnection, $ftpDirectory . $file["name"], $file["tmp_name"], FTP_BINARY)) {        
-        $fileUrl = 'http://www.ppgroep8.be/images/' . $_FILES["image"]["name"];
+    
+    // Check if the file was uploaded successfully
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        // Handle upload error
+        echo "Error uploading image file: " . $file['error'];
+    } else {
+        // File uploaded successfully, check the temporary file location
+        $tmpFile = $file['tmp_name'];
+        if (!is_uploaded_file($tmpFile)) {
+            // Handle case where temporary file is not found
+            echo "Temporary image file not found!";
+        } else {
+            // Temporary file found, proceed with FTP upload
+            if (ftp_put($ftpConnection, $ftpDirectory . $file["name"], $tmpFile, FTP_BINARY)) {        
+                $fileUrl = 'http://www.ppgroep8.be/images/' . $_FILES["image"]["name"];
+            } else {
+                // Handle FTP upload error
+                echo "Error uploading image via FTP.";
+            }
+        }
     }
 
     //Upload the usermanual to the server
     $file = $_FILES['usermanual'];
     $ftpDirectory = '/www/handleidingen/';
     ftp_pasv($ftpConnection, true);
-    if (ftp_put($ftpConnection, $ftpDirectory . $file["name"], $file["tmp_name"], FTP_BINARY)) {
-        $manualLink = 'http://www.ppgroep8.be/handleidingen/' . $_FILES["handleiding"]["name"];
+    
+    // Check if the usermanual file was uploaded successfully
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        // Handle upload error
+        echo "Error uploading usermanual file: " . $file['error'];
+    } else {
+        // File uploaded successfully, check the temporary file location
+        $tmpFile = $file['tmp_name'];
+        if (!is_uploaded_file($tmpFile)) {
+            // Handle case where temporary file is not found
+            echo "Temporary usermanual file not found!";
+        } else {
+            // Temporary file found, proceed with FTP upload
+            if (ftp_put($ftpConnection, $ftpDirectory . $file["name"], $tmpFile, FTP_BINARY)) {
+                $manualLink = 'http://www.ppgroep8.be/handleidingen/' . $_FILES["handleiding"]["name"];
+            } else {
+                // Handle FTP upload error
+                echo "Error uploading usermanual via FTP.";
+            }
+        }
     }
 
     // Update each functionaliteit
@@ -104,6 +140,7 @@ if (isset($_POST["submitForm"])) {
     // Close the FTP connection
     ftp_close($ftpConnection);
     
-    header("Location: ../inventaris.php");
+    header("Location: ../Inventaris.php");
     exit();
 }
+?>

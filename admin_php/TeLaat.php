@@ -56,23 +56,3 @@
                
             </table>
         </div>
-
-<div class="meer_info_popup">
-  <div class="persoon">
-    <img src="" alt="">
-    <div class="persoon_info">
-      <h2>Naam<h2>
-      <p>student<p>
-    </div>
-    <div class="contacteer_btn">
-      <button>Contacteer</button>
-    </div>
-  </div>
-  <div class="meer_info">
-    <h2>Apparaat: <span>USB-C kabel</span></h2>
-    <h2>Categorie: <span>Kabels</span></h2>
-    <h2>Dagen: <span>5</span></h2>
-    <h2>blacklist: <span>Ja</span></h2>
-  </div>
-  <img src="admin_php\images\svg\xmark-solid.svg" alt="sluit venster">
-</div>

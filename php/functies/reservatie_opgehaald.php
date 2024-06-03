@@ -93,6 +93,25 @@ if(mysqli_num_rows($result) > 0) {
             $reserveringMogelijk=true;
         }
 
+        //checken of het item is verlengd
+        $queryVerlengdCheck="SELECT * FROM UITLENING WHERE uitleen_id={$row['uitleen_id']} AND isVerlengd=1";
+        $queryVerlengdCheck_result=mysqli_query($conn, $queryVerlengdCheck);
+
+        $alVerlengd=false;
+
+        if(mysqli_num_rows($queryVerlengdCheck_result)){
+            $alVerlengd=true;
+
+            //indien het een student is, kan die een item maar één keer verlengen
+            if ($userType=="student"){
+                $reserveringMogelijk=false;
+
+            }
+        }
+
+        
+
+
 
         echo '  </div>
         <div class="ophalen_lijst_container">
@@ -113,8 +132,6 @@ if(mysqli_num_rows($result) > 0) {
             $endDateString=$endDate->format('d-m-Y');
 
             echo '
-
-            
                     <div class="reservatie_item">
                             <ul style="background-color:'.$kleur.';">
                                 <li><img src="' . $row['images'] . '" alt=""></li>
@@ -125,7 +142,13 @@ if(mysqli_num_rows($result) > 0) {
                                     <h3>Aantal: <br><span>1</span></h3>
                                 </li>
                                 <li class="status">
-                                    <h3>Status:</h3>
+                                    <h3>Status:</h3>';
+                                    
+                                    if($alVerlengd==true){
+                                      echo '<p style="color:#1bbcb6;text-transform:uppercase; letter-spacing:1px;">Verlengd</p>';
+                                    }
+
+                                    echo '
                                     <p><b>'.$status.'</b></p>
                                     <h3>Reservatie-ID: <br> <span>'.$row['uitleen_id'].' </span></h3>
                                 </li>';

@@ -37,7 +37,7 @@
             transition: transform 0.5s ease;
         }
 
-        .item_info img {
+        .item_info .img {
             width: 8em;
             height: 8em;
             background-color: white;
@@ -147,7 +147,7 @@
 
                     echo '<div class="item_info_container">
         <div class="item_info">
-            <img src="' . $row['images'] . '" alt="foto apparaat">
+            <img class="img" src="' . $row['images'] . '" alt="foto apparaat">
             <h2>' . $row['merk'] . ' - ' . $row['naam'] . '</h2>
             <p class="data">van ' . $startDateString . '<br> tot ' . $endDateString . '</p>
             <h2>Aantal: 1</h2>

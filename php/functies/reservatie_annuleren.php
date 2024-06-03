@@ -34,6 +34,7 @@ if(mysqli_num_rows($result) > 0) {
     
         //gegevens bijhouden om die te kunnen gebruiken in Final page
 
+        if($delete_items_result){
         $_SESSION['annuleer_info'][] = [
             'item_id' => $row['item_id'],
             'inlever_datum' =>  $row['inlever_datum'],
@@ -41,6 +42,7 @@ if(mysqli_num_rows($result) > 0) {
             'uitleen_id' => $row['uitleen_id'],
         ];
 
+    }
 
 
         header("Location: ../FinalAnnulerenReservatie.php");
