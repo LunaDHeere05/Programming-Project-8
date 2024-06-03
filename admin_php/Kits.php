@@ -68,6 +68,25 @@ padding: 1em;
 .kit_visueel{
   display: flex;
   align-items: center;
+  
+}
+
+.kit_visueel_img_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+  width: 40%;
+  gap: 1em;
+  border: rgb(192, 192, 192) 4px solid;
+  border-radius: 1em;
+}
+
+.kit_visueel_img_container img{
+  width: 7em;
+  height: 7em;  
+  border-radius: 1em;
 }
 .kit_verwijder_kit a img{
   width: 1em;
