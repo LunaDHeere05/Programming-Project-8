@@ -6,7 +6,6 @@ $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
 // Check if the selected date is a Friday
 $dayOfWeek = date('N', strtotime($date));
 if ($dayOfWeek == 5) { // 5 represents Friday
-    echo "It's Friday. No items can be picked up on Fridays.";
     exit; // Stop further execution
 }
 
