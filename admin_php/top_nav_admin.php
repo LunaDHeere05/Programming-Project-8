@@ -145,14 +145,14 @@ nav {
 <div class="inhoud_body">
     <div class="linker_nav">
         <ul>
-            <li><h3><a href="Dashboard.php">Dashboard</a></h3></li>
-            <li><h3><a href="TeLaat.php">Te laat</a></h3></li>
-            <li><h3><a href="Blacklist.php">Blacklist</a></h3></li>
-            <li><h3><a href="Uitleningen.php">Uitleningen</a></h3></li>
-            <li><h3><a href="Inventaris.php">Inventaris</a></h3></li>
-            <li><h3><a href="Kits.php">Kits</a></h3></li>
-            <li><h3><a href="Info.php">Info</a></h3></li>
-            <li><h3><a href="Defect.php">Defect</a></h3></li>
+            <li><h3><a class="link" href="Dashboard.php">Dashboard</a></h3></li>
+            <li><h3><a class="link" href="TeLaat.php">Te laat</a></h3></li>
+            <li><h3><a class="link" href="Blacklist.php">Blacklist</a></h3></li>
+            <li><h3><a class="link" href="Uitleningen.php">Uitleningen</a></h3></li>
+            <li><h3><a class="link" href="Inventaris.php">Inventaris</a></h3></li>
+            <li><h3><a class="link" href="Kits.php">Kits</a></h3></li>
+            <li><h3><a class="link" href="Info.php">Info</a></h3></li>
+            <li><h3><a class="link" href="Defect.php">Defect</a></h3></li>
         </ul>
     </div>
     <div class="rechter_grid">
@@ -164,5 +164,18 @@ nav {
                 </form>
             </div>
         </div>
-
+<script>
+  let link=document.getElementsByClassName('link')
+//nav wordt blauw op page die open is 
+for(let i=0;i<link.length;i++){
+    var image = link[i].querySelector('img');
+    if(window.location.href==link[i].href){
+        if(image){
+            link[i].style.filter="invert(58%) sepia(17%) saturate(6855%) hue-rotate(139deg) brightness(103%) contrast(79%)";
+        }else{
+        link[i].style.color="#1BBCB6";
+        }
+    }
+}
+</script>
 </body>
