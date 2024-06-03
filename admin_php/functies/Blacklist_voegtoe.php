@@ -7,10 +7,9 @@ if(isset($_POST['email'])&&isset($_POST['reden'])){
     $reden = htmlspecialchars($_POST['reden']);
     $huidigeDatum = date("Y-m-d");
     
-    // $query = "INSERT INTO WAARSCHUWING (`waarschuwing_id`, `waarschuwingDatum`, `waarschuwingsType`, `email`, `exemplaar_item_id`) 
-    // VALUES (NULL, $huidigeDatum, $reden, $email, NULL)";
+  
 
-    $query = "INSERT INTO WAARSCHUWING (`waarschuwing_id`, `waarschuwingDatum`, `waarschuwingsType`, `email`, `exemplaar_item_id`) 
+    $query = "INSERT INTO WAARSCHUWING (`waarschuwing_id`, `waarschuwingDatum`, `waarschuwingsType`, `email`, `uitleen_id`) 
               VALUES (NULL, ?, ?, ?, NULL)";
     
     if ($stmt = $conn->prepare($query)) {

@@ -23,9 +23,12 @@ $vandaag=new DateTime();
 $vandaagString=$vandaag->format('Y-m-d');
 
 if($isOpgehaald==0){
-
     $insertQuery = "INSERT INTO `WAARSCHUWING` ( `waarschuwingDatum`, `waarschuwingsType`, `email`, `uitleen_id`) VALUES ('$vandaagString', 'niet opgehaald', '$email', '$uitleen_id')"; //reservatie niet opgehaald
     $insertQuery_result=mysqli_query($conn,$insertQuery);
+
+    $deleteQuery="DELETE U FROM UITLENING U WHERE uitleen_id=$uitleen_id"; //uitlening wordt dus verwijderd
+    $deleteQuery_result=mysqli_query($conn,$deleteQuery);
+
     
 }else{
    $insertQuery = "INSERT INTO `WAARSCHUWING` ( `waarschuwingDatum`, `waarschuwingsType`, `email`, `uitleen_id`) VALUES ('$vandaagString', 'te laat', '$email', '$uitleen_id')"; //reservatie niet ingeleverd
