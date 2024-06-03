@@ -127,9 +127,8 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         WHERE ei.item_id = {$itemId}
         AND NOT EXISTS (
             SELECT 1
-            FROM UITGELEEND_ITEM ui
-            JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-            WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+            FROM UITLENING u 
+            WHERE u.exemplaar_item_id = ei.exemplaar_item_id
             AND (
                 (u.uitleen_datum <= '" . $item_row['uitleen_datum'] . "' AND u.inlever_datum >=  '" . $item_row['inlever_datum'] . "' )
                 OR (u.uitleen_datum >= '" . $item_row['uitleen_datum'] . "'  AND u.uitleen_datum <  '" . $item_row['inlever_datum'] . "' )

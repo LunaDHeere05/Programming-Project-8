@@ -58,22 +58,6 @@ if(isset($_GET['apparaat_id'])){
 
         echo '</div>';
 
-
-        //defecten
-        // $defect_query="SELECT beschrijving FROM `DEFECT` WHERE DEFECT.item_id=$item_id";
-        // $defect_result=mysqli_query($conn, $defect_query);
-
-        // if(mysqli_num_rows($item_result) > 0){
-        //     echo "<h2 class='defecten'><span>Defecten</span></h2>
-        //     <ul>";
-        
-        //     while($defect_row = mysqli_fetch_assoc($defect_result)){
-        //         echo "<li>".$defect_row['functionaliteit']."</li>";
-        //     }
-        //     echo "</ul>";
-        // }
-       
-      
     }else{
         echo 'Geen informatie gevonden voor dit item.';
         echo "<script>

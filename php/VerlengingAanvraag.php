@@ -114,17 +114,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Ids = json_decode($jsonString, true);
 
     foreach ($Ids as $Id) {
-        $exemplaarId = intval($Id['exemplaarId']);
-        $uitleenId = intval($Id['uitleenId']);
+        $uitleenId = intval($Id);
   
        $query = "SELECT U.uitleen_id, U.uitleen_datum, U.inlever_datum, U.isVerlengd,
         EI.exemplaar_item_id,
         I.*
-        FROM UITGELEEND_ITEM UI
-        JOIN EXEMPLAAR_ITEM EI ON UI.exemplaar_item_id = EI.exemplaar_item_id
+        FROM UITLENING U 
+        JOIN EXEMPLAAR_ITEM EI ON U.exemplaar_item_id = EI.exemplaar_item_id
         JOIN ITEM I ON EI.item_id = I.item_id
-        JOIN UITLENING U ON UI.uitleen_id = U.uitleen_id 
-        WHERE U.email = '$gebruikersnaam' AND UI.isOpgehaald = 1 AND EI.exemplaar_item_id={$exemplaarId} AND U.uitleen_id={$uitleenId}"; 
+        WHERE U.email = '$gebruikersnaam' AND U.isOpgehaald = 1 AND U.uitleen_id={$uitleenId}"; 
                 
     $result = mysqli_query($conn, $query);
 
@@ -145,12 +143,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $queryCheck="SELECT ei.exemplaar_item_id
         FROM EXEMPLAAR_ITEM ei
-        WHERE ei.exemplaar_item_id = $exemplaarId
+        WHERE ei.exemplaar_item_id = {$row['exemplaar_item_id']}
         AND NOT EXISTS (
             SELECT 1
-            FROM UITGELEEND_ITEM ui
-            JOIN UITLENING u ON ui.uitleen_id = u.uitleen_id
-            WHERE ui.exemplaar_item_id = ei.exemplaar_item_id
+            FROM UITLENING u
+            WHERE u.exemplaar_item_id = ei.exemplaar_item_id
             AND (
                 (u.uitleen_datum <= '{$volgendeMaandagString}' AND u.inlever_datum >= '{$volgendeVrijdagString}')
                 OR (u.uitleen_datum >= '{$volgendeMaandagString}' AND u.uitleen_datum < '{$volgendeVrijdagString}')
@@ -184,7 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>'.$row['merk'].' - '.$row['naam'].' </h2>
             <p class="data">van '.$startDateString.'<br> <s> tot '. $endDateString.' </s> <br> tot <em> <strong> '.$vrijdag.' </strong></em></p>
             <h2>Aantal: 1</h2>
-            <img class="verwijder"  src="images/svg/xmark-solid.svg" alt="klik weg">
         </div>
     </div> ';
         }else{
@@ -204,6 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="hidden" id="hidden" name="ArrayVerlengItems">
             <button id="bevestig">Bevestig</button>
         </form>
+</div>
 
 <?php include 'footer.php'?>
 <script>

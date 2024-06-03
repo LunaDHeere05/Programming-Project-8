@@ -84,13 +84,11 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     //zeker zijn dat het een nummer is
     $uitleen_id = intval($reservering['uitleen_id']); 
 
-    $query = "SELECT i.*, COUNT(i.item_id) as aantal, u.uitleen_datum, u.inlever_datum
-    FROM UITGELEEND_ITEM ui 
-    JOIN EXEMPLAAR_ITEM ei on ei.exemplaar_item_id=ui.exemplaar_item_id 
+    $query = "SELECT i.*, u.uitleen_datum, u.inlever_datum
+    FROM UITLENING u
+    JOIN EXEMPLAAR_ITEM ei on ei.exemplaar_item_id=u.exemplaar_item_id 
     JOIN ITEM i on i.item_id=ei.item_id 
-    JOIN UITLENING u on u.uitleen_id=ui.uitleen_id 
-    WHERE u.uitleen_id=$uitleen_id
-    GROUP BY i.item_id;";
+    WHERE u.uitleen_id=$uitleen_id";
 
     $query_result = mysqli_query($conn, $query);
 
@@ -110,7 +108,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
         echo '   <img src="'. $item_row['images'] . '" alt="foto apparaat">';
         echo "<h2>" . $item_merk. ' - ' . $item_naam. "</h2>";
         echo '<p class="data"> Van '. $startDateString . '  tot '. $endDateString . '</p>';
-        echo '<h3>Aantal: '. $item_aantal. ' </h3>';
+        echo '<h3>Aantal: 1 </h3>';
         echo '</div>';
         
         $zender= 'no-reply-medialab@example.com';
