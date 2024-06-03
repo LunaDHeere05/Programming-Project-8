@@ -102,39 +102,50 @@
 
     }
 
-    .info-opening-hours table,
-    th,
-    td {
-      text-align: center;
-      padding: 1em;
-    }
+    .info-opening-hours {
+    padding: 0em 1em 0em 0em;
+    margin-bottom: 1em;
+  }
 
-    .info-opening-hours table th {
-      text-align: center;
-      border: none;
-      border-bottom: 2px solid rgb(193, 193, 193);
-    }
+.info-opening-hours table {
+  margin: auto;
+  width: 80%;
+  border-collapse: collapse;
+  }
+  
+.info-opening-hours table,th,td {
+    text-align: center;
+    padding: 1.5em;
+}
+.info-opening-hours table th {
+    text-align: start;
+    border: none;
+    border-bottom: 2px solid rgb(193, 193, 193);
+  }
+  .info-opening-hours table td{
+    border: none;
+    border-bottom: 2px solid rgb(193, 193, 193);
+  }
 
-    .info-opening-hours table td {
-      border: none;
-      border-bottom: 2px solid rgb(193, 193, 193);
-      border-left: 2px solid rgb(193, 193, 193);
-    }
+  .info-opening-hours table tr:last-child th, .info-opening-hours table tr:last-child td{
+    height: 2em;
+    border-bottom: none;
+  }
 
-    .info-opening-hours table tr:last-child th,
-    .info-opening-hours table tr:last-child td {
-      height: 2em;
-      border-bottom: none;
-    }
+  .info-opening-hours td {
+    border: 0.1em solid black;
+  }
 
-    .info-opening-hours td {
-      border: 0.1em solid black;
-    }
+  .info-opening-hours th {
+    border: 0.1em solid black;
+  }
 
-    .info-opening-hours th {
-      border: 0.1em solid black;
-    }
+  .info-opening-hours .enkel{
+    color:#E30613;
+  
+ 
 
+  }
     /* sancties/defect  */
 
     .info-sancties {
@@ -176,7 +187,7 @@
 
     .info-box {
       position: relative;
-      padding: 1em;
+      padding: 1.5em;
       border: 0.5em solid transparent;
       border-bottom-color: #1bbcb6;
       background-color: transparent;
@@ -288,6 +299,29 @@
     .info-submit button[type=submit]::-ms-value {
       font-size: 15px;
     }
+
+
+  .activeiteit-info{
+    margin:3em 0em 1em 3em
+  }
+  .activiteit{
+  display: flex;
+  align-items: center;
+}
+.activiteit img{
+  width: 25%;
+  margin: 1em 3em 0em 5em;
+}
+.info_activiteit{
+  width: 40%;
+}
+.info_activiteit p{
+  margin: 1.5em 0em;
+}
+.info_activiteit h4{
+  color:#1bbcb6;
+}
+
   </style>
 </head>
 
@@ -329,9 +363,15 @@
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
       echo "<table>";
-      echo "<tr><th>Dag</th><th>Openingsuur</th><th>Sluitingsuur</th></tr>";
       while ($row = $result->fetch_assoc()) {
+        if($row["dagen"] =="Maandag"){
+          echo "<tr><td >" . $row["dagen"] . " <span class='enkel'> - enkel ophalen</span></td><td>" . $row["begin_uren"] . "</td><td>" . $row["eind_uren"] . "</td></tr>";
+        }else if($row["dagen"] =="Vrijdag"){
+          echo "<tr><td >" . $row["dagen"] . " <span class='enkel'> - enkel inleveren</span></td><td>" . $row["begin_uren"] . "</td><td>" . $row["eind_uren"] . "</td></tr>";
+        }
+        else{
         echo "<tr><td>" . $row["dagen"] . "</td><td>" . $row["begin_uren"] . "</td><td>" . $row["eind_uren"] . "</td></tr>";
+        }
       }
       echo "</table>";
     } else {
@@ -392,6 +432,16 @@
     </p>
   </div>
 </div>
+
+<div class="activeiteit-info">
+<h2>Activiteiten</h2>
+<div class="activiteit">
+  <?php
+   include 'functies/activiteit.php';
+  ?>
+</div>
+</div>
+
 <!-- form  -->
 <h2 class="info-form-h2">Geen antwoord gevonden op je vraag? Vul dit formulier dan in. </h1>
   <form class="info-form" method="POST">

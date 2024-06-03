@@ -367,7 +367,6 @@ button{
     <div class="linker_navigatie" id='nav'>
         <a class='link' href="Info.php" ><h1 >Info</h1></a>
         <a class='link' href="Inventaris.php"><h1 >Inventaris</h1></a>
-        <a class='link' href="Kalender.php"><h1 >Kalender</h1></a>
         <a class='link' href="Reservaties.php"><h1>Reservaties</h1></a>
     
     </div>
