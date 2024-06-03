@@ -93,17 +93,23 @@ right: 20%;
 }
 
 .kit_add{
-  background-color: #D9D9D9;
+  background-color: #1BBCB6;
   margin: 1.5em;
   padding: 0.5em;
   border-radius: 2em;
   height: auto;
-  width: 7em;
+  width: 7.5em;
+  position: absolute;
+  position: sticky;
+  bottom: 2em;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
 }
 
 .kit_add a{
   color: #5B5B5B;
   text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
     </style>
   </head>

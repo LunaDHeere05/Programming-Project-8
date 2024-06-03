@@ -46,6 +46,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/Programming-Project-8/admin_php/database.p
   border-radius: 2em;
   margin-left: 4em;
   margin-top: 2em;
+  position: absolute;
+  position: sticky;
+  bottom: 2em;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+
 }
 .apparaat_toevoegen a{
   text-decoration: none;
