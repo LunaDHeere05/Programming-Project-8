@@ -149,7 +149,6 @@ nav {
             <li><h3><a href="TeLaat.php">Te laat</a></h3></li>
             <li><h3><a href="Blacklist.php">Blacklist</a></h3></li>
             <li><h3><a href="Uitleningen.php">Uitleningen</a></h3></li>
-            <li><h3><a href="Verlengingen.php">Verlengingen</a></h3></li>
             <li><h3><a href="Inventaris.php">Inventaris</a></h3></li>
             <li><h3><a href="Kits.php">Kits</a></h3></li>
             <li><h3><a href="Info.php">Info</a></h3></li>
