@@ -37,7 +37,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             transition: transform 0.5s ease; 
         }
 
-        .item_info img {
+        .item_info .img {
             width: 8em;
             height: 8em;
             background-color: white;

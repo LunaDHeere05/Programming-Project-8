@@ -408,7 +408,7 @@
         $ontvanger = $gebruikersnaam;
         $mail_onderwerp = "Vraag Student: $gebruikersnaam";
         $vraagInput = htmlspecialchars($_POST['vraagInput'], ENT_QUOTES, 'UTF-8');
-        $mail_body = $vraagInput;
+        $mail_body = "Beste $gebruikersnaam,\n\n $vraagInput ";
         include 'functies/mail.php';
         echo "Je vraag is verstuurd!";
       }
