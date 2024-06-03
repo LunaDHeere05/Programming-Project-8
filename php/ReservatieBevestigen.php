@@ -206,8 +206,14 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 
             if (empty($_POST['start_date']) || empty($_POST['hiddenEndDate']) || empty($_POST['itemId']) || empty($_POST['quantity'])) {
                 die('Alle velden moeten worden ingevuld.');
-                }
-
+            }
+            
+            // Check if quantity is a number
+            if (!is_numeric($_POST['quantity'])) {
+                header('Location: apparaat.php?item_id=' . $_POST['itemId']);
+                exit();
+            }
+            
             //checks 
             $startDate = $_POST['start_date'];
             $endDate = $_POST['hiddenEndDate'];

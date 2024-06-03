@@ -18,12 +18,20 @@ echo $categorie;
 echo $beschrijving;
 echo $image;
 
-
-if(isset($_POST['submitForm'])){
+if (isset($_POST['submitForm'])) {
+    // Check if the item is currently on loan
+    $checkLoanQuery = "SELECT COUNT(*) AS loan_count FROM UITLENING WHERE exemplaar_item_id IN (SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE item_id='$item_id')";
+    $result = $conn->query($checkLoanQuery);
+    $row = $result->fetch_assoc();
+    
+    if ($row['loan_count'] > 0) {
+        echo "<script>alert('U kan geen item verwijderen als deze uitgeleend is!');</script>";
+        echo "<script>window.location.href='../Inventaris.php';</script>";
+        exit();
+    }
 
     // Delete EXEMPLAAR_ITEM rows
     $deleteExemplaarItemQuery = "DELETE FROM EXEMPLAAR_ITEM WHERE item_id='$item_id'";
-
     if ($conn->query($deleteExemplaarItemQuery) === TRUE) {
         echo "Record deleted successfully";
     } else {
@@ -45,25 +53,19 @@ if(isset($_POST['submitForm'])){
     }
 
     // Delete image from FTP server
-
     // Get the file link from the database
     $fileLinkQuery = "SELECT images FROM ITEM WHERE item_id='$item_id'";
     $result = $conn->query($fileLinkQuery);
 
     if ($result->num_rows > 0) {
-        
         // Fetch the result
         $row = $result->fetch_assoc();
-
         // Define the file link
         $fileLink = $row['images'];
-
         // Parse the URL
         $parsedUrl = parse_url($fileLink);
-
         // Get the path
         $filePath = $parsedUrl['path'];
-
         // Prepend the directory to the file path
         $filePath = '/www' . $filePath;
 
@@ -75,35 +77,28 @@ if(isset($_POST['submitForm'])){
         }
     }
 
-    //Delete usermanual from FTP server
+    // Delete user manual from FTP server
     $usermanualLinkQuery = "SELECT gebruiksaanwijzing FROM ITEM WHERE item_id='$item_id'";
     $result = $conn->query($usermanualLinkQuery);
     if ($result->num_rows > 0) {
-
         // Fetch the result
         $row = $result->fetch_assoc();
-
         // Define the file link
         $usermanualLink = $row['gebruiksaanwijzing'];
-
         // Parse the URL
         $parsedUrl = parse_url($usermanualLink);
-
         // Get the path
         $filePath = $parsedUrl['path'];
-
         // Prepend the directory to the file path
         $filePath = '/www' . $filePath;
 
-        // Deleta file in file server
+        // Delete file in file server
         if (ftp_delete($ftpConnection, $filePath)) {
             echo "$filePath has been deleted";
         } else {
             echo "could not delete $filePath";
         }
     }
-
-    
 
     // Delete ITEM row
     $deleteItemQuery = "DELETE FROM ITEM WHERE item_id='$item_id'";
@@ -118,5 +113,5 @@ if(isset($_POST['submitForm'])){
     // Close the FTP connection
     ftp_close($ftpConnection);
     header('Location: ../Inventaris.php');
-
 }
+?>
