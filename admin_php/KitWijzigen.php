@@ -123,6 +123,7 @@
     padding: 8px;
     cursor: pointer;
     margin: 8px;
+    width: 10%;
 }
 
 #Sla-op {
