@@ -105,23 +105,62 @@
       cursor: pointer;
       color: black;
     }
-    
+    .voegToe {
+  margin-top: 2em;
+  text-align: left;
+}
+
+.voegToe button {
+  background-color: #1BBCB6;
+  color: antiquewhite;
+  border-radius: 0.5rem;
+  padding: 0.5em;
+  margin-left: 0.5em;
+}
+
+.voegToe button:hover {
+  cursor: pointer;
+  color: black;
+}
   </style>
 </head>
 
 <body>
   <div class="rechter_grid">
 
-  <!-- <div class="zoeken_container">
+    <!-- <div class="zoeken_container">
   </div> -->
+  <div class="voegToe">
+    <button id="openVoegToePopup">Voeg Persoon Toe</button>
+  </div>
+
+
+  <div class="overlay" id="voegToePopup">
+  <div class="popupContent">
+    <span class="closePopup" id="closeVoegToe">&times;</span>
+    <form id="voegToeForm" method="POST" action="path_to_your_php_script.php">
+      <p>Voer de gegevens in:</p>
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <label for="reden">Reden:</label>
+      <input type="text" id="reden" name="reden" required>
+      <br>
+      <button type="submit" class="confirmButton" id="confirmVoegToe" name="voegToeButton">Toevoegen</button>
+    </form>
+    <?php include'functies/Blacklist_voegtoe.php'; ?>
+  </div>
+</div>
+
+
 
     <div class="overlay" id="verwijderPopup">
       <div class="popupContent">
         <span class="closePopup" id="closeVerwijder">&times;</span>
         <div id="verwijderData"></div>
         <form id="verwijderform" method="POST">
-        <input type="hidden" id="studentEmail" name="email">
-        <button  type="submit" class="confirmButton" id="confirmVerwijder" name="verwijderButton">Bevestigen</button>
+          <input type="hidden" id="studentEmail" name="email">
+          <button type="submit" class="confirmButton" id="confirmVerwijder" name="verwijderButton">Bevestigen</button>
         </form>
       </div>
     </div>
@@ -129,25 +168,30 @@
     <!-- blacklist tabel -->
     <div class="blacklist_tabel" id="blacklist_tabel">
       <table>
-        <?php if(isset($_GET['zoekButton']))
-          {include 'functies/blacklist_zoeken.php';
-          }else {include 'functies/blacklist_ophalen.php';
-          } ?>
+        <?php if (isset($_GET['zoekButton'])) {
+          include 'functies/blacklist_zoeken.php';
+        } else {
+          include 'functies/blacklist_ophalen.php';
+        } ?>
       </table>
     </div>
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
       const verwijderLinks = document.querySelectorAll(".verwijder_link");
       const verwijderPopup = document.getElementById("verwijderPopup");
       const closeVerwijder = document.getElementById("closeVerwijder");
       const verwijderData = document.getElementById("verwijderData");
       const confirmVerwijder = document.getElementById("confirmVerwijder");
-      
+      const voegToePopup = document.getElementById("voegToePopup");
+      const openVoegToePopup = document.getElementById("openVoegToePopup");
+      const closeVoegToe = document.getElementById("closeVoegToe");
+      const confirmVoegToe = document.getElementById("confirmVoegToe");
+
       // popups
-      verwijderLinks.forEach(function (link) {
-        link.addEventListener("click", function (event) {
-          event.preventDefault(); 
+      verwijderLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
 
 
           const email = link.getAttribute("data-email");
@@ -164,19 +208,19 @@
       });
 
       // Sluit de popup wanneer de sluitknop wordt geklikt
-      closeVerwijder.addEventListener("click", function () {
+      closeVerwijder.addEventListener("click", function() {
         verwijderPopup.style.display = "none";
       });
 
       // Sluit de popup wanneer er buiten de popupinhoud wordt geklikt
-      window.addEventListener("click", function (event) {
+      window.addEventListener("click", function(event) {
         if (event.target === verwijderPopup) {
           verwijderPopup.style.display = "none";
         }
       });
 
       // Verwerk het klikken op de bevestigingsknop
-      confirmVerwijder.addEventListener("click", function () {
+      confirmVerwijder.addEventListener("click", function() {
 
         const email = verwijderData.querySelector("#studentEmail").textContent;
         document.getElementById("studentEmail").value = email;
@@ -188,8 +232,28 @@
         // Refresh the page
         location.reload();
       });
+      // Voeg toe popup
+      openVoegToePopup.addEventListener("click", function() {
+        voegToePopup.style.display = "block";
+      });
+
+      closeVoegToe.addEventListener("click", function() {
+        voegToePopup.style.display = "none";
+      });
+
+      window.addEventListener("click", function(event) {
+        if (event.target === voegToePopup) {
+          voegToePopup.style.display = "none";
+        }
+      });
+
+      confirmVoegToe.addEventListener("click", function() {
+        console.log("Toevoegen knop geklikt");
+        voegToePopup.style.display = "none";
+      });
     });
   </script>
+
 </body>
 
 </html>

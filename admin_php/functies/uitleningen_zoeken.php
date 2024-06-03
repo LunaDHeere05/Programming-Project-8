@@ -7,8 +7,7 @@ if (isset($_GET['zoekButton'])) {
         $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
         $zoek_resultaat = "SELECT u.email, ei.exemplaar_item_id, i.merk, i.naam, u.inlever_datum 
  FROM UITLENING u
- JOIN UITGELEEND_ITEM ui ON u.uitleen_id = ui.uitleen_id
- JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
+ JOIN EXEMPLAAR_ITEM ei ON u.exemplaar_item_id = ei.exemplaar_item_id
  JOIN ITEM i ON ei.item_id = i.item_id
  WHERE u.email LIKE '%$zoek_query%' OR ei.exemplaar_item_id LIKE '%$zoek_query%' OR i.merk LIKE '%$zoek_query%' OR i.naam LIKE '%$zoek_query%'";
         $zoek_uitvoering_resultaat = mysqli_query($conn, $zoek_resultaat);
@@ -21,8 +20,6 @@ if (isset($_GET['zoekButton'])) {
               echo " <th>E-mail</th>";
               echo " <th>Apparaat</th>";
               echo " <th>Inleverdatum</th>";
-              echo " <th>Meer info</th>";
-              echo " <th>Verwijder</th>";
               echo "</tr>";
 
               while ($result = mysqli_fetch_assoc($zoek_uitvoering_resultaat)) {
@@ -30,8 +27,6 @@ if (isset($_GET['zoekButton'])) {
                   echo "<td>" . htmlspecialchars($result['email']) . "</td>";
                   echo "<td>" . htmlspecialchars($result['merk'] . ' - ' . $result['naam']) . "</td>";
                   echo "<td>" . htmlspecialchars($result['inlever_datum']) . "</td>";
-                  echo "<td><a href='#'><img class='meer_info' src='images/svg/circle-info-solid.svg' alt='meer informatie'></a></td>";
-                  echo "<td><a href='#'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
                   echo "</tr>";
               }
               echo "</table>";
