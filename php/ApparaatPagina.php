@@ -665,6 +665,7 @@ document.getElementById('submitWinkelmand').addEventListener('click',function(e)
     formData.append('endDate', document.getElementById('end_date').value);
     formData.append('itemId', itemId);
     formData.append('aantal', document.getElementById('quantity').value);
+    console.log(document.getElementById('quantity').value);
   console.log(formData)
   fetch('functies/winkelmand.php', {
         method: 'POST',
