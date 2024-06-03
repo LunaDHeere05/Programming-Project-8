@@ -104,7 +104,6 @@
             justify-content: space-evenly;
             margin: 2em 1em 1em 1em;
             width: 100%;
-            background-color: blue;
         }
 
         .ja, .neen {

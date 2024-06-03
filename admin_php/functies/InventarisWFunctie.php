@@ -3,11 +3,7 @@
 include("../database.php");
 include("../ftp_server.php");
 
-print_r($_POST);
-
 if (isset($_POST["submitForm"])) {
-
-    echo 'checkpoint 1';
 
     $item_id = $_POST['item_id'];
     $apparaat = $_POST['apparaat_naam'];
@@ -19,19 +15,11 @@ if (isset($_POST["submitForm"])) {
     $functionaliteit = $_POST['functionaliteit'];
     $in_doos = $_POST['in_doos'];
 
-    echo 'checkpoint 2';
-
-    // Update ITEM table
-    $valueUpdateQuery = "UPDATE ITEM SET ";
-    if (!empty($apparaat)) $valueUpdateQuery .= "naam='$apparaat', ";
-    if (!empty($merk)) $valueUpdateQuery .= "merk='$merk', ";
-    if (!empty($categorie)) $valueUpdateQuery .= "categorie='$categorie', ";
-    if (!empty($beschrijving)) $valueUpdateQuery .= "beschrijving='$beschrijving', ";
-    if (!empty($link)) $valueUpdateQuery .= "gebruiksaanwijzing='$link', ";
+    $valueUpdateQuery = $conn->prepare("UPDATE ITEM SET naam=?, merk=?, categorie=?, beschrijving=?, gebruiksaanwijzing=? WHERE item_id=?");
+    $valueUpdateQuery->bind_param("sssssi", $apparaat, $merk, $categorie, $beschrijving, $link, $item_id);
+    $valueUpdateQuery->execute();
     // Remove trailing comma and space
-    $valueUpdateQuery = rtrim($valueUpdateQuery, ', ');
-    $valueUpdateQuery .= " WHERE item_id='$item_id'";
-    $conn->query($valueUpdateQuery);
+    $query = rtrim($query, ', ');
 
     // Get func_ids for this item_id
     $funcIdsQuery = "SELECT functionaliteit_id FROM FUNCTIONALITEIT WHERE item_id='$item_id'";
@@ -135,7 +123,7 @@ if (isset($_POST["submitForm"])) {
         }
     }
     // Close the database connection
-    mysqli_close($conn);
+    $conn->close();
 
     // Close the FTP connection
     ftp_close($ftpConnection);
