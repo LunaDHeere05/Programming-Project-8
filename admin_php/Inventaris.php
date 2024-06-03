@@ -80,6 +80,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/Programming-Project-8/admin_php/database.p
                   <th>Categorie</th>
                   <th>Apparaat-ID</th>
                   <th>Wijzigen</th>
+                  <th>Exemplaren</th>
                 </tr>
               </thead>
               <tbody>

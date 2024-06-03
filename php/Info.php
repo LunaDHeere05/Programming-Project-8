@@ -41,7 +41,7 @@
     }
 
     .info_uitleen_uitleg {
-      padding-bottom: 4em;
+      padding-bottom: 2em;
     }
 
     .info_titel {
@@ -76,8 +76,9 @@
     /* openings uren  */
     .info-opening-hours h1 {
       padding: 0.5em;
-      text-align: center;
+      text-align: left;
       font-size: 1.5em;
+      margin: 0em 0em 0.5em 2em;
     }
 
     .info-opening-hours {
@@ -95,12 +96,7 @@
       justify-content: center;
     }
 
-    .info-opening-hours h1 {
-      padding: 0em 0em 0.5em 0em;
-      text-align: left;
-      margin: 0em 0em 1em 2em;
-
-    }
+  
 
     .info-opening-hours {
     padding: 0em 1em 0em 0em;

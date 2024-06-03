@@ -84,5 +84,21 @@
         </div>
     </div>  
   </form>
+  <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const eyeImage = document.querySelector('.defect_toe img');
+            const eyeStateInput = document.querySelector('input[name="eye_state"]');
+
+            eyeImage.addEventListener('click', function() {
+                if (eyeStateInput.value === 'solid') {
+                    eyeImage.src = 'images/svg/eye-off-svgrepo-com.svg';
+                    eyeStateInput.value = 'not-solid';
+                } else {
+                    eyeImage.src = 'images/svg/eye-solid.svg';
+                    eyeStateInput.value = 'solid';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
