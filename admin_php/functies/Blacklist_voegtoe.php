@@ -1,6 +1,8 @@
 <?php 
-include 'datbase.php';
+include 'database.php';
 
+
+if(isset($_POST['voegToeButton'])){
 if(isset($_POST['email'])&&isset($_POST['reden'])){
     $email = htmlspecialchars($_POST['email']);
     $reden = htmlspecialchars($_POST['reden']);
@@ -29,4 +31,5 @@ if(isset($_POST['email'])&&isset($_POST['reden'])){
     echo "$email is toegevoegd aan de blacklist.";
 }
 $conn->close();
+}
 ?>

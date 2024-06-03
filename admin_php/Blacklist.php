@@ -139,6 +139,7 @@
   <div class="popupContent">
     <span class="closePopup" id="closeVoegToe">&times;</span>
     <form id="voegToeForm" method="POST" action="path_to_your_php_script.php">
+      <p>Voer de gegevens in:</p>
       <label for="email">E-mail:</label>
       <input type="email" id="email" name="email" required>
       <br>
@@ -147,6 +148,7 @@
       <br>
       <button type="submit" class="confirmButton" id="confirmVoegToe" name="voegToeButton">Toevoegen</button>
     </form>
+    <?php include'functies/Blacklist_voegtoe.php'; ?>
   </div>
 </div>
 
