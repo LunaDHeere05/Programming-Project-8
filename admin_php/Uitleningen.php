@@ -65,13 +65,11 @@
                         <th>E-mail</th>
                         <th>Apparaat</th>
                         <th>Inleverdatum</th>
-                        <th>Meer info</th>
                     </tr>
                     <tr>
                         <td><E-Mail>luna.dheere@student.ehb.be</E-Mail></td>
                         <td>Canon-M50</td>
                         <td>02/06</td>
-                        <td><a href="#"><img class="meer_info" src="images/svg/circle-info-solid.svg" alt="meer informatie"></a></td>
                     </tr>
                     <?php include 'functies\uitleningen_ophalen.php'?>
                 </table>

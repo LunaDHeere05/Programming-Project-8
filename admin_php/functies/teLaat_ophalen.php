@@ -17,7 +17,6 @@ include 'database.php';
         <th>E-mail</th>
         <th>Apparaat</th>
         <th>Dagen te laat</th>
-        <th>Meer info</th>
     </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
 
@@ -37,7 +36,6 @@ include 'database.php';
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $itemNaamRow['merk'] . " - " . $itemNaamRow['naam'] . "</td>";
                 echo "<td>" . $verschil . "</td>";
-                echo "<td><a href='#'><img src='images/svg/circle-info-solid.svg' alt='meer info'></a></td>";
                 echo "</tr>";
             }
         }
