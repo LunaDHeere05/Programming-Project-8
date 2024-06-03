@@ -16,10 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // The exemplaar_item_id exists, proceed with the insertion
-        $sql = "INSERT INTO DEFECT (beschrijving, datum, bruikbaarheid, exemplaar_item_id)
-                VALUES ('$beschrijving', NOW(), '$bruikbaarheid', '$exemplaar_id')";
+        $sql = "INSERT INTO DEFECT (beschrijving, datum, exemplaar_item_id)
+                VALUES ('$beschrijving', NOW(), '$exemplaar_id')";
+        $sql_defect = "UPDATE EXEMPLAAR_ITEM SET zichtbaarheid = '$bruikbaarheid' WHERE exemplaar_item_id = '$exemplaar_id'";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE && $conn->query($sql_defect) === TRUE) {
             // Redirect to the previous page or any other page as needed
             header("Location: ../Defect.php");
             exit();
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // The exemplaar_item_id does not exist in the EXEMPLAAR_ITEM table
-        echo "Error: The exemplaar_item_id does not exist.";
+        echo "<script>alert('Exemplaar item bestaat niet.');</script>";
     }
 }
 ?>

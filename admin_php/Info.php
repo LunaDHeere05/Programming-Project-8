@@ -258,6 +258,10 @@ include 'database.php';
       margin-bottom: 1em;
     }
 
+    #save-button:hover {
+      background-color: #0f9d96;
+    }
+
     .Activiteiten {
       display: flex;
       flex-direction: column;
@@ -371,7 +375,6 @@ include 'database.php';
         <h3>Stap 4 <a href=""><img src="../images/svg/pen-to-square-regular.svg" alt=""></a></h3>
         <p>Haal het gereserveerde apparaat op in het medialab!</p>
       </li>
-      l>
   </div>
 
   <!-- openings hours  -->
@@ -388,7 +391,7 @@ include 'database.php';
         echo "<tr><td>" . $row["dagen"] . "</td><td contenteditable='true'>" . $begin_uren . "</td><td contenteditable='true'>" . $eind_uren . "</td></tr>";
       }
       echo "</table>";
-      echo "<button id='save-button'>Save Changes</button>";
+      echo "<button id='save-button' onclick='alert(\"Wijzigingen opgeslaan\"); location.reload();'>Save Changes</button>";
     } else {
       echo "0 results";
     }
@@ -423,9 +426,9 @@ include 'database.php';
     <h2>Activiteiten</h2>
     <div class="nieuwe_activiteit">
       <form class="activiteit_form" action="functies/InfoActiviteitUpdate.php" method="POST" enctype="multipart/form-data">
-        <input id="ActTitle" name="ActTitle" type="text" placeholder="Activiteit Title">
-        <input id="ActInfo" name="ActInfo" type="text" placeholder="Nieuwe Activiteit">
-        <input id="form_input" name="ActDate" type="date" placeholder="Activiteit Datum">
+        <input id="ActTitle" name="ActTitle" type="text" placeholder="Activiteit Title" required>
+        <input id="ActInfo" name="ActInfo" type="text" placeholder="Nieuwe Activiteit" required>
+        <input id="form_input" name="ActDate" type="date" placeholder="Activiteit Datum" required>
         <input id="form_input" name="flyer" type="file">
         <button name="submit" type="submit">Verstuur</button>
       </form>

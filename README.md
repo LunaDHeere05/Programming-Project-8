@@ -1,3 +1,13 @@
+<h1>Inhoudstafel:</h1>
+<ol>
+  
+  [De opstelling van onze groep](https://github.com/LunaDHeere05/Programming-Project-8#de-opstelling-van-onze-groep-) <br>
+  [Bronnenlijst per teamlid](https://github.com/LunaDHeere05/Programming-Project-8#de-opstelling-van-onze-groep-) <br>
+  [Van start gaan met ons werk](https://github.com/LunaDHeere05/Programming-Project-8#de-opstelling-van-onze-groep-) <br>
+  [Gebruikte technologieën](https://github.com/LunaDHeere05/Programming-Project-8#de-opstelling-van-onze-groep-) <br>
+  
+</ol>
+
 <h1>De opstelling van onze groep: </h1>
 <ul>
   <li><b>Scrummaster:</b></li>

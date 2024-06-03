@@ -4,10 +4,15 @@ include '../database.php';
 include '../ftp_server.php';
 
 if(isset($_POST['submit'])){
+    if(empty($_POST['ActTitle']) || empty($_POST['ActInfo']) || empty($_POST['ActDate'])) {
+        die("ActTitle, ActInfo, and ActDate are required.");
+    }
+
     $Act_title = $_POST['ActTitle'];
     $ActInfo = $_POST['ActInfo'];
     $Flyer = $_FILES['flyer'];
     $Date = $_POST['ActDate'];
+
 
     //if there is no row in the database, insert a new row
     $sql = "SELECT * FROM ACTIVITEIT WHERE Activiteit_id = 1";
@@ -44,8 +49,12 @@ if(isset($_POST['submit'])){
     $ftpDirectory = '/www/images/';
     ftp_pasv($ftpConnection, true);
 
-    if (ftp_put($ftpConnection, $ftpDirectory . $file['name'], $file['tmp_name'], FTP_BINARY)) {
-        $fileUrl = 'http://www.ppgroep8.be/images/' . $file['name'];
+    if ($file['tmp_name'] != '') {
+        if (ftp_put($ftpConnection, $ftpDirectory . $file['name'], $file['tmp_name'], FTP_BINARY)) {
+            $fileUrl = 'http://www.ppgroep8.be/images/' . $file['name'];
+        }
+    } else {
+        $fileUrl = '';
     }
 
     $activiteitQuery = "UPDATE ACTIVITEIT SET Act_Info = '$ActInfo', flyer = '$fileUrl', Act_Title = '$Act_title', Datum = '$Date' WHERE Activiteit_id = 1";

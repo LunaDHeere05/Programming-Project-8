@@ -19,7 +19,7 @@ while($row = mysqli_fetch_assoc($result)){
     $row2 = mysqli_fetch_assoc($result2);
     $zichtbaarheid = $row2['zichtbaarheid'];
     
-    echo '<tr onclick="window.location=\'InventarisExemplaars.php?item_id='.$row['item_id'].'\';">';
+    echo '<tr >';
     echo '<td>'.$row['merk'].' - '.$row['naam'].'</td>';
     echo '<td>'.$row['categorie'].'</td>';
     echo '<td>'.$row['item_id'].'</td>';
@@ -31,6 +31,7 @@ while($row = mysqli_fetch_assoc($result)){
     }
     echo '<td><a href="#"><img src="images/svg/screwdriver-wrench-solid.svg" alt=""></a></td>';*/
     echo '<td><a href="InventarisW-V.php?item_id='.$row['item_id'].'"><img src="images/svg/pen-to-square-regular.svg" alt="apparaat wijzigen"></a></td>';
+    echo '<td><a href="InventarisExemplaars.php?item_id='.$row['item_id'].'"><img src="images/svg/circle-info-solid.svg" alt="apparaat wijzigen"></a></td>';
     echo '</tr>';
 
 }

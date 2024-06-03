@@ -5,18 +5,21 @@ include 'database.php';
 //zoeken
 $zoek_query = isset($_GET['zoek_query']) ? $_GET['zoek_query'] : '';
 
+$zoek_query = isset($_GET['zoek_query']) ? $_GET['zoek_query'] : '';
+
 if (!empty($zoek_query)) {
+    $zoek_query = "%{$zoek_query}%";
 
-    //sql-injecties voorkomen
-    $zoek_query = mysqli_real_escape_string($conn, $zoek_query);
-    
-    $zoek_resultaat = "SELECT * FROM ITEM 
-                      WHERE LOWER(naam) LIKE LOWER('%$zoek_query%')
-                      OR LOWER(merk) LIKE LOWER('%$zoek_query%')
-                      OR LOWER(beschrijving) LIKE LOWER('%$zoek_query%')";
+    $stmt = $conn->prepare("SELECT * FROM ITEM 
+                            WHERE LOWER(naam) LIKE LOWER(?)
+                            OR LOWER(merk) LIKE LOWER(?)
+                            OR LOWER(beschrijving) LIKE LOWER(?)");
 
-    $item_info_result = mysqli_query($conn, $zoek_resultaat);
+    $stmt->bind_param("sss", $zoek_query, $zoek_query, $zoek_query);
 
+    $stmt->execute();
+
+    $item_info_result = $stmt->get_result();
 }else if(isset($_GET['categorie'])){ //zoeken op categorie
 
     $categorie_query = $_GET['categorie'];
