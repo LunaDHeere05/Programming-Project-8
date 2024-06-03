@@ -114,6 +114,16 @@
 <p>De connectie met de vpn kan enkel gemaakt worden als je student of docent bent aan de Erasmus Hogeschool. Deze vpn is enkel nodig wanneer je dit project
 wil uittesten buiten het schoolgebouw.</p>
 <br>
+<li>Maak een .env file aan.</li>
+<p>Open het project met een IDE naar keuze. Maak in de root directory een .env file en plaats de gegevens van hieronder in de file: </p>
+
+```
+DB_HOST=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=
+```
+<p>De gegevens die hierin moeten ingevuld worden kunnen gevonden worden in de Teams channel van groep 8 in de files tab in de file ".env gegevens".</p>
 <li>Open het project in je browser</li>
 <p>Om de website te kunnen zien en gebruiken ga je naar <a href="http://127.0.0.1/Programming-Project-8">http://127.0.0.1/Programming-Project-8</a>. Als alles goed verlopen is, kan je nu de uitleenwebsite van het MediaLab zien en gebruiken !</p>
 </ol>
