@@ -143,9 +143,6 @@
 
                     $endDate = new dateTime($row['inlever_datum']);
                     $endDateString = $endDate->format('d-m-Y');
-                    $item_merk = $row['merk'];
-                    $item_naam = $row['naam'];
-                    
 
                     echo '<div class="item_info_container">
         <div class="item_info">
@@ -155,16 +152,6 @@
             <h2>Aantal: 1</h2>
         </div>
     </div> ';
-
-                    if (isset($_POST['bevestigAnnuleren'])) {
-
-                        echo '<p class="bevestig">Deze items werden <b>succesvol</b> geannuleerd. Check je inbox voor een bevestigingsmail.</p>';
-                        $ontvanger = $gebruikersnaam;
-                        $mail_onderwerp = "Annulatie reservatie: $uitleenId";
-                        $mail_body = "Uw reservatie: $item_merk, $item_naam werd succesvol geannuleerd.\n\n Met vriendelijke groeten, \n Het MediaLab Team";
-                        $zender = "MediaLab@example.com";
-                        include '../functies/mail.php';
-                    }
                 }
             }
         }

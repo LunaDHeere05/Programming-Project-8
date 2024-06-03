@@ -112,6 +112,9 @@
         $query_result=mysqli_query($conn,$query);
 
         $row=mysqli_fetch_assoc($query_result);
+        $item_naam=$row['naam'];
+        $item_merk=$row['merk'];
+
 
         echo '<div class="item_info">
         <img src="'.$row['images'].'" alt="foto apparaat">
@@ -119,6 +122,17 @@
         <p class="data"> van '.$startDateString.' <br> tot '.$endDateString.'</p>
         <h2>Aantal: 1</h2>
         </div>';
+        
+        if (isset($_POST['bevestigAnnuleren'])) {
+
+            echo '<p class="bevestig">Deze items werden <b>succesvol</b> geannuleerd. Check je inbox voor een bevestigingsmail.</p>';
+            $ontvanger = $gebruikersnaam;
+            $mail_onderwerp = "Annulatie reservatie: $uitleenId";
+            $mail_body = "Uw reservatie: $item_merk, $item_naam werd succesvol geannuleerd.\n\n Met vriendelijke groeten, \n Het MediaLab Team";
+            $zender = "MediaLab@example.com";
+            // include '../functies/mail.php';
+            echo $mail_body;
+        }
     }
 
         unset($_SESSION['annuleer_info']);
