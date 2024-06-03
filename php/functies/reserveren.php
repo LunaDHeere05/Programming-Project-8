@@ -41,7 +41,6 @@ $aantal= $_POST['aantal'];
     die('Item ID moet een positief getal zijn.');
   }
 
-
 //eerst checken of het item vrij is
         $vrijeExemplaren = "SELECT ei.exemplaar_item_id
         FROM EXEMPLAAR_ITEM ei
@@ -57,12 +56,11 @@ $aantal= $_POST['aantal'];
                 )
             )
         AND zichtbaarheid=1
-        LIMIT {$aantal}
-    "; 
-
+        LIMIT {$aantal}"; 
+        
         $vrijeExemplaren_result = mysqli_query($conn, $vrijeExemplaren);
 
-        if(mysqli_num_rows($vrijeExemplaren_result)>=$aantal){
+        if(mysqli_num_rows($vrijeExemplaren_result)==$aantal){
          while ($exemplaren_row = mysqli_fetch_assoc($vrijeExemplaren_result)) {
 
             $uitgeleendItem = "INSERT INTO UITLENING (email, exemplaar_item_id, uitleen_datum, inlever_datum) 
@@ -71,16 +69,11 @@ $aantal= $_POST['aantal'];
             $uitgeleendItem_result= mysqli_query($conn,$uitgeleendItem);
         
             $uitleen_id = mysqli_insert_id($conn);
-            $uitleen_id=$conn->insert_id;
 
             $_SESSION['reservering_info'][] = [
                 'uitleen_id' => $uitleen_id
             ];
 
-        //zonder dit werkt het niet - waarom??
-        if (!mysqli_query($conn, $uitgeleendItem)) {
-                    echo "Error inserting row into UITGELEEND_ITEM: " . mysqli_error($conn);
-                };   
             }
 
         }else{

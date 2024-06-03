@@ -84,8 +84,6 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
     //zeker zijn dat het een nummer is
     $uitleen_id = intval($reservering['uitleen_id']); 
 
-    echo $uitleen_id;
-
     $query = "SELECT i.*, u.uitleen_datum, u.inlever_datum
     FROM UITLENING u
     JOIN EXEMPLAAR_ITEM ei on ei.exemplaar_item_id=u.exemplaar_item_id 
