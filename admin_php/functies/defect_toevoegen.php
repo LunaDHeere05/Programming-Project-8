@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // The exemplaar_item_id does not exist in the EXEMPLAAR_ITEM table
-        echo "Error: The exemplaar_item_id does not exist.";
+        echo "<script>alert('Exemplaar item bestaat niet.');</script>";
     }
 }
 ?>
