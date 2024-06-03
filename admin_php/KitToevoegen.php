@@ -12,6 +12,10 @@ include 'database.php';
 
   <style>
     /* The Modal (background) */
+    
+    .rechter_grid{
+      justify-content: center;
+    }
     .modal {
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place */
@@ -31,7 +35,7 @@ include 'database.php';
       margin: 15% auto; /* 15% from the top and centered */
       padding: 20px;
       border: 1px solid #888;
-      width: 70%; /* Could be more or less, depending on screen size */
+      width: 60%; /* Could be more or less, depending on screen size */
     }
 
     .modal-content img {
@@ -41,8 +45,95 @@ include 'database.php';
 
     .items {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #aaa;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      width: 90%;
+    }
+
+    .items img {
+      width: 100px;
+      height: auto;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+
+    .items button {
+      background-color: #1BBCB6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .kitName {
+      margin: 10px;
+      border: 4px solid #ccc;
+      padding: 10px;
+      border-radius: 20px;
+      width: 70%;
+      display: flex;
+    }
+
+    .kitName label {
+      margin-right: 10px;
+    }
+
+    .kitName input {
+      width: auto;
+      flex-grow: 1;
+      border-radius: 20px;
+      padding-left: 10px;
+    }
+    .item {
+      display: flex;
       width: 100%;
-      background-color: rgb(192,192,192);
+      border: 4px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      width: 70%;
+      justify-content: space-around;
+    }
+
+    .item img {
+      width: 100px;
+      height: auto;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+
+    .item button {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      height: 40px;
+    }
+
+    #myBtn {
+      background-color: #1BBCB6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      margin-left: 2em;
+    }
+
+    #save-button {
+      background-color: #1BBCB6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
     }
 
     /* The Close Button */
@@ -73,7 +164,7 @@ include 'database.php';
  
 
   <!-- Input fields -->
-  <form>
+  <form class="kitName">
     <label for="kit_naam">Kit naam:</label><br>
     <input type="text" id="kit_naam" name="kit_naam"><br>
   </form>
@@ -93,9 +184,8 @@ include 'database.php';
       
         <?php foreach ($items as $item): ?>
           <div class="items">
-            <h3><?php echo $item['naam']; ?></h3>
-            <p><?php echo $item['item_id']; ?></p>
             <img src="<?php echo $item['images']; ?>" alt="Item image">
+            <h3><?php echo $item['naam']; ?></h3>
             <p><?php echo $item['beschrijving']; ?></p>
             <button class="add-button" data-id="<?php echo $item['item_id']; ?>" data-name="<?php echo $item['naam']; ?>" data-description="<?php echo $item['beschrijving']; ?>" data-image="<?php echo $item['images']; ?>">Voeg toe</button>
           </div>
@@ -145,7 +235,19 @@ for (var i = 0; i < buttons.length; i++) {
 
     // Create a new list item
     var li = document.createElement("li");
-    li.innerHTML = '<img src="' + itemImageLink + '" alt="Item image"><br>' + itemName + '<br>' + itemDescription + '<br>' + itemId;
+    li.classList.add('item');
+    li.innerHTML = '<img src="' + itemImageLink + '" alt="Item image"><br>' + itemName + '<br>' + itemDescription;
+
+    // Create a "wijzigen" button
+    var wijzigenButton = document.createElement("button");
+    wijzigenButton.textContent = "wijzigen";
+    wijzigenButton.addEventListener("click", function() {
+      // Remove the parent list item when the button is clicked
+      this.parentNode.remove();
+    });
+
+    // Append the "wijzigen" button to the list item
+    li.appendChild(wijzigenButton);
 
     // Set the data-id attribute on the list item
     li.setAttribute("data-id", itemId);

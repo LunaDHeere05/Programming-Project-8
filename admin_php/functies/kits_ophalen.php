@@ -116,18 +116,12 @@ if (mysqli_num_rows($result) > 0) {
     echo '</div>';
     echo '<div class="kit_visueel_container">';
     echo '<div class="kit_visueel">';
-    echo '<div class="kit_visueel_small" onclick="slideLeft(\'' . $kit_id . '\')">';
-    echo '<img src="images/svg/chevron-left-solid.svg" alt="left" />';
-    echo '</div>';
     echo '<div class="kit_visueel_img_container" id="kit_' . $kit_id . '">';
     foreach ($kit['items'] as $index => $item) {
-    echo '<div class="kit_visueel_img" style="display:' . ($index < 3 ? 'flex' : 'none') . ';">';
+    echo '<div class="kit_visueel_img">';
     echo '<img src="'.$item['image_path'].'" alt="' . $item['item_naam'] . '" />';
     echo '</div>';
     }
-    echo '</div>';
-    echo '<div class="kit_visueel_small" onclick="slideRight(\'' . $kit_id . '\')">';
-    echo '<img src="images/svg/chevron-right-solid.svg" alt="right" />';
     echo '</div>';
     echo '</div>';
     echo '<div class="kit_acties">';
