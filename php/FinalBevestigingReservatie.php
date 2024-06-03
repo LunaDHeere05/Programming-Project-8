@@ -102,8 +102,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
 
         $item_naam=$item_row['naam'];
         $item_merk=$item_row['merk'];  
-        $item_aantal=$item_row['aantal']; 
-
+     
         echo '<div class="item_info">';
         echo '   <img src="'. $item_row['images'] . '" alt="foto apparaat">';
         echo "<h2>" . $item_merk. ' - ' . $item_naam. "</h2>";

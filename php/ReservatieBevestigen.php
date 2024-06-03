@@ -178,7 +178,7 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             echo '<script>
             setTimeout(function(){
                 window.location.reload();
-            }, 4500);
+            }, 3500);
             </script>';
 
         }

@@ -4,6 +4,7 @@ include '../sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om
 include '../database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['reservering_info'] = []; 
   
     if (empty($_POST['start_date']) || empty($_POST['end_date']) || empty($_POST['itemId']) || empty($_POST['aantal'])) {
         die('Alle velden moeten worden ingevuld.');
@@ -40,8 +41,6 @@ $aantal= $_POST['aantal'];
     die('Item ID moet een positief getal zijn.');
   }
 
-
-
 //eerst checken of het item vrij is
         $vrijeExemplaren = "SELECT ei.exemplaar_item_id
         FROM EXEMPLAAR_ITEM ei
@@ -57,33 +56,30 @@ $aantal= $_POST['aantal'];
                 )
             )
         AND zichtbaarheid=1
-        LIMIT $aantal
-    "; 
-
+        LIMIT {$aantal}"; 
+        
         $vrijeExemplaren_result = mysqli_query($conn, $vrijeExemplaren);
 
-        if(mysqli_num_rows($vrijeExemplaren_result)>=$aantal){
+        if(mysqli_num_rows($vrijeExemplaren_result)==$aantal){
          while ($exemplaren_row = mysqli_fetch_assoc($vrijeExemplaren_result)) {
 
             $uitgeleendItem = "INSERT INTO UITLENING (email, exemplaar_item_id, uitleen_datum, inlever_datum) 
             VALUES ('$gebruikersnaam', '" . $exemplaren_row['exemplaar_item_id'] . "', '$start_date', '$end_date')";
 
-        //zonder dit werkt het niet - waarom??
-        if (!mysqli_query($conn, $uitgeleendItem)) {
-                    echo "Error inserting row into UITGELEEND_ITEM: " . mysqli_error($conn);
-                };   
+            $uitgeleendItem_result= mysqli_query($conn,$uitgeleendItem);
+        
+            $uitleen_id = mysqli_insert_id($conn);
+
+            $_SESSION['reservering_info'][] = [
+                'uitleen_id' => $uitleen_id
+            ];
+
             }
 
         }else{
                 echo 'Dit item is intussen al uitgeleend, sorry.';
             }
   
-//informatie in een session steken om die te kunnen gebruiken in volgende page
-$_SESSION['reservering_info'] = []; 
-$_SESSION['reservering_info'][] = [
-    'uitleen_id' => $uitleen_id,
-];
-
 
     header("Location: ../FinalBevestigingReservatie.php");
 

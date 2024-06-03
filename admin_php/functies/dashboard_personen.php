@@ -3,6 +3,13 @@ include '../database.php';
 
 $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
 
+// Check if the selected date is a Friday
+$dayOfWeek = date('N', strtotime($date));
+if ($dayOfWeek == 5) { // 5 represents Friday
+    echo "It's Friday. No items can be picked up on Fridays.";
+    exit; // Stop further execution
+}
+
 $query = "SELECT ui.uitleen_id, ui.uitleen_datum, ui.inlever_datum, ui.isOpgehaald, ui.email, it.naam
           FROM UITLENING ui
           INNER JOIN EXEMPLAAR_ITEM ei ON ui.exemplaar_item_id = ei.exemplaar_item_id
