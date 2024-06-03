@@ -67,22 +67,27 @@
         }
 
         .defect_add {
-            background-color: #D9D9D9;
+            background-color: #1BBCB6;
             margin: 1.5em;
             padding: 0.5em;
             border-radius: 2em;
             height: auto;
             width: 10em;
+            position: absolute;
+            position: sticky;  
+            bottom: 2em;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
         }
 
         .defect_add a {
-            color: #5B5B5B;
+            color: white;
+            font-weight: bold;
             text-decoration: none;
         }
 
         #bevestiging_hersteld, #bevestiging_verwijderen {
             width: 40%;
-            background-color: blue;
+            background-color: white;
             padding: 4em;
             text-align: center;
             border-radius: 2em;
@@ -103,7 +108,7 @@
 
         .ja, .neen {
             background-color: #1BBCB6;
-            width: 30%;
+            width: 10em;
             height: 3em;
             border-radius: 2em;
             color: white;
@@ -111,8 +116,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            border: none;
         }
-
+        .ja{}
         .neen {
             background-color: #E30613;
         }

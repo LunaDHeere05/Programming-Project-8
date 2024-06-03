@@ -87,7 +87,7 @@ footer table {
  color:white;
 }
 
-footer th,td{
+footer th, footer td{
 padding: 0.5em;
 border-bottom:0.1em solid white
 }
@@ -99,7 +99,7 @@ footer td{
     text-align: center;
 }
 
-footer table tr:last-child th, table tr:last-child td{
+footer table tr:last-child th, footer table tr:last-child td{
     border-bottom: none;
   }
 
