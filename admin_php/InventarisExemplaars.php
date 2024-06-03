@@ -117,7 +117,7 @@ $(document).ready(function(){
     <div class="rechter_grid">
         <div class="inventaris_tabel">
             <table>
-                <?php include 'functies\Inventaris_exemplaaren.php'?>
+                <?php include 'functies/Inventaris_exemplaaren.php'?>
             </table>
         </div>
         <div class="apparaat_toevoegen">
