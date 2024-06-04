@@ -361,7 +361,7 @@ button{
 </style>
 <nav>
     <div id="medialab">
-<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"> <p id="medialabTitle">medialab</p></a>
+<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"> <p id="medialabTitle">mediahub</p></a>
 
 </div>
     <div class="linker_navigatie" id='nav'>
