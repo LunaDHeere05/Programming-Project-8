@@ -391,7 +391,7 @@ include 'database.php';
         echo "<tr><td>" . $row["dagen"] . "</td><td contenteditable='true'>" . $begin_uren . "</td><td contenteditable='true'>" . $eind_uren . "</td></tr>";
       }
       echo "</table>";
-      echo "<button id='save-button' onclick='alert(\"Wijzigingen opgeslaan\"); location.reload();'>Save Changes</button>";
+      echo "<button id='save-button' onclick='alert(\"Wijzigingen opgeslaan\"); location.reload();'>Bevestigen</button>";
     } else {
       echo "0 results";
     }
