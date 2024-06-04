@@ -42,6 +42,11 @@
       <li>https://chatgpt.com/share/5065f64a-ddd3-4192-bcff-b43592bfaf66</li>
       <li>Lijnen: 1-54 in admin_php/functies/uitleningen_ophalen.php</li>
     </ul>
+  <li> https://chatgpt.com/share/69d61727-e7e5-49f7-855c-e63bb27b20f3 </li>
+  <li>https://chatgpt.com/share/244baf40-7476-4ce2-a39b-4d159be02221</li>
+  <li>https://chatgpt.com/share/f1a22c6d-8619-4377-90b3-6f41b50ccc02</li>
+  <li>https://chatgpt.com/share/b4a5b00f-d8a4-41d8-b7f0-aead7ef96fcd</li>
+  <li>https://chatgpt.com/share/b761e8ad-c2d4-43c9-a33d-6f88849b9d5d</li>
 </ol>
 <h3>Lars Paridaens</h3>
 <ol>
