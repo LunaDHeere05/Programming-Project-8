@@ -52,10 +52,9 @@
   </ul>
   <li>Voor het ophalen van local time:</li>
     <ul>
-     <li>Voorbeeld ChatGPT:</li>
 <ul> <li>https://www.php.net/manual/en/function.setlocale.php</li></ul>
     </ul>
-
+<ul> Voorbeeld ChatGPT code:</ul>
 <li>https://chatgpt.com/share/1ac67067-2c6a-43db-8e2c-7e81cf53936b</li>
 </ol>
 <h3>Anissa Sahli</h3>
