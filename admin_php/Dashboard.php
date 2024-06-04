@@ -211,20 +211,25 @@ include 'database.php';
 </head>
 <body>
     <div class="rechter_grid">
-    <?php include 'functies/Dashboard_zoeken.php' ?>
-        <div class="agenda_container">
-            <h2>Mei</h2> <!-- De maand wordt hier geüpdatet door JavaScript -->
-            <ul class="datums">
-                <!-- Datumknoppen worden hier dynamisch gegenereerd -->
-            </ul>
-            <input type="hidden" id="monday-date" value="">
-        </div>
-        <div class="uitleningen_dashboard_container">
-            <!-- Content will be loaded here via AJAX -->
-        </div>
-        <div class="uitlening_toevoegen">
-            <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
-        </div>
+    <?php if (isset($_GET['zoekButton'])) {
+        include 'functies/Dashboard_zoeken.php';
+        } else {
+          echo '   <div class="agenda_container">
+          <h2>Mei</h2> <!-- De maand wordt hier geüpdatet door JavaScript -->
+          <ul class="datums">
+              <!-- Datumknoppen worden hier dynamisch gegenereerd -->
+          </ul>
+          <input type="hidden" id="monday-date" value="">
+      </div>
+      <div class="uitleningen_dashboard_container">
+          <!-- Content will be loaded here via AJAX -->
+      </div>
+      <div class="uitlening_toevoegen">
+          <h3><a href="UitleningToevoegen.php">Uitlening toevoegen</a></h3>
+      </div>';
+        } ?>
+
+     
     </div>
 </body>
 </html>

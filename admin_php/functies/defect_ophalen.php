@@ -1,14 +1,19 @@
 <?php
 include 'database.php';
 
-$query = "SELECT defect_id, DEFECT.beschrijving, DEFECT.datum, bruikbaarheid, DEFECT.exemplaar_item_id, ITEM.naam, ITEM.item_id, ITEM.images
+$query = "SELECT defect_id, DEFECT.beschrijving, DEFECT.datum, bruikbaarheid, DEFECT.exemplaar_item_id, ITEM.naam, ITEM.item_id, ITEM.images, EI.zichtbaarheid
           FROM DEFECT
-          JOIN EXEMPLAAR_ITEM ON DEFECT.exemplaar_item_id = EXEMPLAAR_ITEM.exemplaar_item_id
-          JOIN ITEM ON EXEMPLAAR_ITEM.item_id = ITEM.item_id";
+          JOIN EXEMPLAAR_ITEM EI ON DEFECT.exemplaar_item_id = EI.exemplaar_item_id
+          JOIN ITEM ON EI.item_id = ITEM.item_id";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
+    
+
+      $zicht=$row['zichtbaarheid'];
+      $zichtbaarheid= $zicht==1? 'Ja':'Nee';
+
         echo '<div class="defect_container">
         <div class="defect_visueel_img">
             <img
@@ -21,6 +26,7 @@ if(mysqli_num_rows($result) > 0){
       echo '<h3>Apparaat-ID: <span>' .$row['item_id']. '</span></h3>';
       echo '<h3>Exemplaar-ID: <span>' .$row['exemplaar_item_id']. '</span></h3>';
       echo '<h3>Defect: <span>' .$row['beschrijving']. '</span></h3>';
+      echo '<h3> Zichtbaar: <span>' .$zichtbaarheid. '</span></h3>';
       echo '</div>
         <!-- images  -->
         <div class="defect_visueel">
