@@ -65,6 +65,10 @@ include 'database.php';
       margin: 1em;
     }
 
+    .items button:hover {
+      background-color: #1BBCB6;
+    }
+
     .kitName {
       margin: 1em 0em 2em 8em;
       border: 0.2em solid #ccc;
@@ -111,6 +115,15 @@ include 'database.php';
       border-radius: 2em;
       height: 3em;
       margin: 1em;
+    }
+
+    #item-list {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     #myBtn {
