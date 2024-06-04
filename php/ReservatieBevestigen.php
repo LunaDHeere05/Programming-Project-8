@@ -37,13 +37,13 @@ include 'sessionStart.php'; //AN: om te weten welke mail er gebruikt wordt om in
             transition: transform 0.5s ease; 
         }
 
-        .item_info .img {
+        .item_info img:not(.verwijder){
             width: 8em;
             height: 8em;
             background-color: white;
             padding:10px;               
         }
-        .verwijder {
+         .verwijder {
             position: absolute;
             right: 3%;
             top: 5%;

@@ -14,7 +14,8 @@
             margin: 1.5em;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: start;
+            gap:1em;
         }
 
         .defect_informatie span {
