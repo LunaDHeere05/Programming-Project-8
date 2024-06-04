@@ -10,7 +10,7 @@ if (isset($_GET['item_id']))
     $item_id = $_GET['item_id'];
     echo $item_id;
     // Add a new row to the EXEMPLAAR_ITEM table
-    $addExemplaarItemQuery = "INSERT INTO EXEMPLAAR_ITEM (item_id, isUitgeleend, zichtbaarheid) VALUES ('$item_id', 0, 1)";
+    $addExemplaarItemQuery = "INSERT INTO EXEMPLAAR_ITEM (item_id, zichtbaarheid) VALUES ('$item_id', 1)";
     if ($conn->query($addExemplaarItemQuery) === TRUE) {
         echo "Record added successfully";
     } else {
