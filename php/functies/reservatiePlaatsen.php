@@ -3,7 +3,19 @@
 //indien geen user is ingelogd;
 if(!isset($gebruikersnaam)){
   echo '<h2 class="login"> <a href="Profiel.php"> Log in</a> om een reservatie te plaatsen.</h2>';
+
 }else{
+
+      //check om te zien of een user in de blacklist staat
+      $queryCheck="SELECT W.* FROM WAARSCHUWING W
+      JOIN PERSOON P on P.email=W.email
+      WHERE W.email='$gebruikersnaam' AND P.rol='student'";
+
+      $queryCheck_result=mysqli_query($conn,$queryCheck);
+
+      if(mysqli_num_rows($queryCheck_result)>=2){
+         echo '<h2 class="login"> Je kan geen items reserveren omdat je in de blacklist zit.</h2>';
+      }else{
     //html
     echo '<div class="datum">
     <label for="start_date">Begindatum:</label>
@@ -28,5 +40,6 @@ if(!isset($gebruikersnaam)){
     <p>Voeg toe</p>
     <img src="images/svg/cart-shopping-solid.svg" alt="winkelmandje">
   </button>';
+    }
   }
 ?>

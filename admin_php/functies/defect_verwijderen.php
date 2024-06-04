@@ -11,13 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = mysqli_fetch_assoc($result);
         $exemplaar_item_id = $row['exemplaar_item_id'];
 
-        // First, delete from WAARSCHUWING table
-        $deleteWaarschuwingQuery = "DELETE FROM WAARSCHUWING WHERE exemplaar_item_id = $exemplaar_item_id";
-        $deleteWaarschuwingResult = mysqli_query($conn, $deleteWaarschuwingQuery);
-
-        if (!$deleteWaarschuwingResult) {
-            die('Error deleting from WAARSCHUWING: ' . mysqli_error($conn));
-        }
 
         // Then, delete from UITLENING table
         $deleteUitgeleendQuery = "DELETE FROM UITLENING WHERE exemplaar_item_id = $exemplaar_item_id";

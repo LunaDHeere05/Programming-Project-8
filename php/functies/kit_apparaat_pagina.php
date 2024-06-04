@@ -1,6 +1,18 @@
 <?php
 include 'database.php';
 
+      //check om te zien of een user in de blacklist staat
+      $queryCheck="SELECT W.* FROM WAARSCHUWING W
+      JOIN PERSOON P on P.email=W.email
+      WHERE W.email='$gebruikersnaam' AND P.rol='student'";
+
+      $queryCheck_result=mysqli_query($conn,$queryCheck);
+
+      if(mysqli_num_rows($queryCheck_result)>=2){
+         echo '<h2 style="text-align:center"> Je kan geen items reserveren omdat je in de blacklist zit.</h2>';
+      }else{
+      
+
 if(isset($_GET['apparaat_id'])) {
     $apparaat_id = $_GET['apparaat_id'];
 
@@ -53,6 +65,6 @@ if(isset($kit_result) && mysqli_num_rows($kit_result) > 0) {
 else{
     echo '<p>Geen kits gevonden voor dit apparaat.</p>';
 }
-
+      }
 
 ?>

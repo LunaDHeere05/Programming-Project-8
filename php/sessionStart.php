@@ -6,4 +6,6 @@ if (isset($_SESSION['gebruikersnaam'])) {
     $gebruikersnaam = $_SESSION['gebruikersnaam'];
     $userType = $_SESSION['userType'];
 }
+
+
 ?>
