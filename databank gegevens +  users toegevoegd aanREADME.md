@@ -137,7 +137,36 @@ DB_DATABASE=
 <li>Open het project in je browser</li>
 <p>Om de website te kunnen zien en gebruiken ga je naar <a href="http://127.0.0.1/Programming-Project-8">http://127.0.0.1/Programming-Project-8</a>. Als alles goed verlopen is, kan je nu de uitleenwebsite van het MediaLab zien en gebruiken !</p>
 </ol>
+<h1>Databank gegevens:</h1>
+  
+  <p>De databank kan geraadpleegd worden met deze link: <a href="https://dt5.ehb.be/phpmyadmin/index.php?route=/&route=%2F&db=2324PROGPROJGR8&table=ITEM"> https://dt5.ehb.be/phpmyadmin/index.php?route=/&route=%2F&db=2324PROGPROJGR8&table=ITEM </a>. De inloggegevens zijn dezelfde als gebruikt voor de .env file. </p>
 
+<h3>De users waarmee er getest kan worden zijn: </h3>
+  <ol type=1>
+    <li>Studenten: (het wachtwoord is steeds het emailadres)</li>
+    <ul>
+      <li>student1@example.com</li>
+      <li>student2@example.com</li>
+      <li>student3@example.com</li>
+      <li>student4@example.com</li>
+      <li>student5@example.com</li>
+    </ul>
+    <li>Docenten: (het wachtwoord is steeds het emailadres)</li>
+    <ul>
+        <li>docent1@example.com</li>
+       <li>docent2@example.com</li>
+       <li>docent3@example.com</li>
+       <li>docent4@example.com</li>
+    </ul>
+    <li>Medewerkers van het medialab:</li>
+    <ul>
+        <li>admin1@example.com -> wachtwoord = admin1</li>
+        <li>admin2@example.com -> wachtwoord = admin2</li>
+    </ul>
+  </ol>
+
+  <br>
+  
 <h1>Technologieën gebruikt:</h1>
 
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
