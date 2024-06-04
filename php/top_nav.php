@@ -361,7 +361,7 @@ button{
 </style>
 <nav>
     <div id="medialab">
-<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"> <p id="medialabTitle">medialab</p></a>
+<a href="Home.php"><img class="ehb_logo" src="images/jpg/horizontaal EhB-logo (transparante achtergrond).png" alt="EhB-logo"> <p id="medialabTitle">mediahub</p></a>
 
 </div>
     <div class="linker_navigatie" id='nav'>
@@ -380,16 +380,6 @@ button{
 <!-- zoekbalk -->
 <div class="zoekbalk_container">
     <div class="zoekbalk">
-        <!--categorieën halen uit databank-->
-        <select name="categorie" id="" >
-            <option value="alles"></option>
-            <option value="audio">Audio</option>
-            <option value="belichting">Belichting</option>
-            <option value="tools">Tools</option>
-            <option value="varia">Varia</option>
-            <option value="video">Video</option>
-            <option value="xr">XR</option>
-        </select>
         <form action="Inventaris.php" method="GET" id="zoeken_functie">
         <input id="zoek_input" type="text" placeholder="Geef een zoekterm in ..." name="zoek_query">
         <input type="submit" value="">

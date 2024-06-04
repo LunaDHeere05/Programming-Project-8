@@ -22,10 +22,11 @@ if (mysqli_num_rows($result) > 0) {
     <th>Verwijder</th>
   </tr>";
     while ($row = mysqli_fetch_assoc($result)) {
+        $daysOnBlacklist=$row['daysOnBlacklist']+1;
         echo "<tr>";
         echo "<td><a href='mailto:" . $row['email'] . "'>" . $row['email'] . "</a></td>";
         echo "<td>" . htmlspecialchars($row['blacklistReasons']) . "</td>";
-        echo "<td style='color:red;font-weight:bold'>" . htmlspecialchars($row['daysOnBlacklist']) . "</td>";
+        echo "<td style='color:red;font-weight:bold'> $daysOnBlacklist</td>";
         echo "<td><a href='#' class='verwijder_link' data-email='" . htmlspecialchars($row['email']) . "'><img class='verwijder' src='images/svg/circle-xmark-solid.svg' alt='verwijder van blacklist'></a></td>";
         echo "</tr>";
     }
