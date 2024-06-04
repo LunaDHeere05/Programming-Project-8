@@ -132,6 +132,10 @@
             color: white;
         }
      
+
+        .blacklist_tabel a{
+  color:#1bbcb6;
+}
   </style>
 </head>
 
