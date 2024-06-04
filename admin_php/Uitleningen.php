@@ -58,7 +58,7 @@
     padding-top: 0.5em;
   }
 td{
-  padding: 0.5em;
+  padding: 1em 0.1em 1em 0.1em;
 }
         </style>
 </head>
