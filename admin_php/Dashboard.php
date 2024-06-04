@@ -196,6 +196,10 @@ include 'database.php';
                 data: {reservatieID: reservatieID},
                 success: function(response) {
                     console.log(response);
+                    // if (statusText.trim() === "Op te halen") {
+                    //     alert('Ophaling verwijderd en waarschuwing gegenereerd.');
+                    // } else {
+                    //     alert('Inlevering verwijderd en waarschuwing gegenereerd.');
                     location.reload();
                     alert("De betrokken student heeft een waarschuwing gekregen.");
                 }
