@@ -71,7 +71,7 @@ td{
                     <tr>
                         <th>E-mail</th>
                         <th>Apparaat</th>
-                        <th>Inleverdatum</th>
+                        <th>Uilteentermijn</th>
                     </tr>
                     <?php include 'functies\uitleningen_ophalen.php'?>
                 </table>

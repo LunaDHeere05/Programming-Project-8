@@ -3,7 +3,7 @@ include 'database.php';
 
 $query = "SELECT u.uitleen_id, 
                  u.email,
-                 u.inlever_datum,
+                 u.inlever_datum, u.uitleen_datum,
                  GROUP_CONCAT(CONCAT(i.merk, ' - ', i.naam) SEPARATOR '<br>') AS items,
                  u.isVerlengd
           FROM UITLENING u
@@ -19,12 +19,12 @@ if (mysqli_num_rows($result) > 0) {
         echo "<tr>";
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
         echo "<td>" . $row['items'] . "</td>";
-        echo "<td>" . htmlspecialchars(date("d/m", strtotime($row['inlever_datum']))) . "</td>";
+        echo "<td>" . htmlspecialchars(date("d/m", strtotime($row['uitleen_datum']))) . " - " . htmlspecialchars(date("d/m", strtotime($row['inlever_datum']))) . " </td>";
         echo "</tr>";
         
         //als de reservatie is verlengd moet da in een aparte rij komen anders zijn er problemen met de inlever_datum
         if ($row['isVerlengd'] == 1) {
-            $extendedQuery = "SELECT u.email, u.inlever_datum,
+            $extendedQuery = "SELECT u.*,
                                      CONCAT(i.merk, ' - ', i.naam) AS item
                               FROM UITLENING u
                               JOIN EXEMPLAAR_ITEM ei ON u.exemplaar_item_id = ei.exemplaar_item_id
@@ -37,7 +37,7 @@ if (mysqli_num_rows($result) > 0) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($extendedRow['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($extendedRow['item']) . " (Verlengd)</td>";
-                echo "<td>" . htmlspecialchars(date("d/m", strtotime($extendedRow['inlever_datum']))) . "</td>";
+                echo "<td>" . htmlspecialchars(date("d/m", strtotime($extendedRow['uitleen_datum']))) . " - " . htmlspecialchars(date("d/m", strtotime($extendedRow['inlever_datum']))) . " </td>";
                 echo "</tr>";
             }
         }
