@@ -223,7 +223,7 @@
         </div>
    
         <div class="reservatie-top">
-        <h2>Nog op te halen</h2>
+        <h2 style="color: #E30613;">Nog op te halen</h2>
         <?php include 'functies\reservatie_ophalen.php'?>
         </div>
 
