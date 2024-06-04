@@ -192,6 +192,8 @@ include("database.php");
         overflow: auto; /* Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        justify-content: center;
+        align-items: center;
         }
 
         /* Modal Content/Box */
@@ -201,6 +203,23 @@ include("database.php");
         padding: 20px;
         border: 1px solid #888;
         width: 80%; /* Could be more or less, depending on screen size */
+        justify-content: center;
+        align-items: center;
+        
+        }
+
+        #confirm-save-changes-btn, #confirm-delete-btn, #cancel-delete-btn, #cancel-save-changes-btn {
+        background-color: #1BBCB6;
+        border-radius: 2em;
+        width: 5em;
+        height: 2em;
+        border: 0;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 1em 0em 0em 0em;
+        align-items: center;
+        justify-content: center;
         }
 
         /* The Close Button */
@@ -270,7 +289,7 @@ include("database.php");
                         <input type="file" name="image">
                     </div>
                     <div class="manual_upload">
-                        <h3>User Manual</h3>
+                        <h3>Handleiding</h3>
                         <input type="file" name="usermanual" value="<?php echo $gebruiksaanwijzing ?>">
                         <input type="hidden" name="item_id" value="<?php echo $item_id ?>">
                     </div>
@@ -286,7 +305,7 @@ include("database.php");
                         </div>
                         <div class="inventaris_toe_text">
                             <input name="functionaliteit[]" type="text" placeholder="Apparaat functionaliteit ...">
-                            <button type="button" onclick="addInputFieldFunct()">Add another field</button>
+                            <button type="button" onclick="addInputFieldFunct()">Nieuw Functionaliteit</button>
                         </div>
                     </div>
                     <div class="doos_content">
@@ -303,11 +322,11 @@ include("database.php");
                         <div class="in_doos_input">
                             <input name="in_doos[]" type="text" placeholder="Wat zit er in de doos?">    
                         </div>
-                        <button type="button" onclick="addInputFieldDoos()">Add another field</button>
+                        <button type="button" onclick="addInputFieldDoos()">Nieuw Randapparatuur</button>
                     </div>
                     <div class="inventaris_toe_buttons">
                     <div class="inventaris_toe_verwijderen">
-                        <button id="delete-btn" name="submitForm" type="button" onclick="openDeleteModal()">Apparaat verwijderen <img src="../images/svg/circle-xmark-solid.svg" alt="x"></button>
+                        <button id="delete-btn" name="submitForm" type="button" onclick="openDeleteModal()">Apparaat verwijderen <img src="images/svg/xmark-solid.svg" alt="x"></button>
                         <input type="hidden" id="delete-input" name="submitForm" value="delete">
                         <input type="hidden" value="Apparaat verwijderen">
                     </div>
@@ -329,7 +348,7 @@ include("database.php");
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Are you sure you want to delete this item?</p>
+                <p>Weet u zeker dat u dit item wilt verwijderen?</p>
                 <button id="confirm-delete-btn">Yes</button>
                 <button id="cancel-delete-btn">No</button>
             </div>
@@ -340,7 +359,7 @@ include("database.php");
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Are you sure you want to save changes?</p>
+                <p>Weet u zeker dat u de wijzigingen wilt opslaan?</p>
                 <button id="confirm-save-changes-btn">Yes</button>
                 <button id="cancel-save-changes-btn">No</button>
             </div>

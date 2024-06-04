@@ -1,12 +1,8 @@
 <?php 
 // Database credentials
-$servername = "dt5.ehb.be"; 
-$username = "2324PROGPROJGR8"; 
-$password = "P!j6WD5KL"; 
-$database = "2324PROGPROJGR8";
+include 'database.php';
 
 try {
-   
     $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -16,10 +12,10 @@ try {
         $apparaat = filter_input(INPUT_POST, "apparaat", FILTER_SANITIZE_SPECIAL_CHARS);
         $uitDatum = date("Y-m-d");
 
-        if(empty($email) || empty($apparaat)){
+        if (empty($email) || empty($apparaat)) {
             echo "Vul alle velden in!";
         } else {
-            // check om te zien of de email bestaat
+            // Check if the email exists
             $emailquery = "SELECT email FROM PERSOON WHERE email = :email";
             $emailstmt = $conn->prepare($emailquery);
             $emailstmt->execute(['email' => $email]);
@@ -28,7 +24,7 @@ try {
             if ($emailResult) {
                 $inDatum = $_POST['datum'];
 
-                // Check of het apparaat een item of kit is en haal het id op
+                // Check if the device is an item or kit and get its ID
                 $itemquery = "SELECT 'item' AS type, item_id AS id FROM ITEM WHERE naam = :apparaat UNION SELECT 'kit' AS type, kit_id AS id FROM KIT WHERE naam = :apparaat";
                 $itemstmt = $conn->prepare($itemquery);
                 $itemstmt->execute(['apparaat' => $apparaat]);
@@ -38,113 +34,31 @@ try {
                     $apparaat_id = $itemresult['id'];
                     $apparaat_type = $itemresult['type'];
 
-                    // Insert the loan record
-                    $sql_lening = "INSERT INTO `UITLENING` (`uitleen_datum`, `inlever_datum`, `isVerlengd`, `email`) VALUES (:uitDatum, :inDatum, '0', :email)";
-                    $stmt_lening = $conn->prepare($sql_lening);
-                    if($stmt_lening->execute(['uitDatum' => $uitDatum, 'inDatum' => $inDatum, 'email' => $email])){
-                        $uitleen_id = $conn->lastInsertId();
+                    // Check if the exemplaar_item_id exists
+                    $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE exemplaar_item_id = :exemplaar_id";
+                    $exemplaarstmt = $conn->prepare($exemplaarquery);
+                    $exemplaarstmt->execute(['exemplaar_id' => $apparaat_id]);
+                    $exemplaarresult = $exemplaarstmt->fetch();
 
-                        if ($apparaat_type == 'item') {
-                            // Check of een item exemplaar beschikbaar is
-                            $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE isUitgeleend = '0' AND item_id = :apparaat_id LIMIT 1";
-                            $exemplaarstmt = $conn->prepare($exemplaarquery);
-                            $exemplaarstmt->execute(['apparaat_id' => $apparaat_id]);
-                            $exemplaarresult = $exemplaarstmt->fetch();
-
-                            if ($exemplaarresult) {
-                                $exemplaar_id = $exemplaarresult['exemplaar_item_id'];
-
-                                // Insert the loaned item record   
-                                //voeg isOpgehaald toe
-                                $sql_uitgeleend_item = "INSERT INTO `UITGELEEND_ITEM` (`isVerlengd`, `exemplaar_item_id`, `uitleen_id`, `isOpgehaald`) VALUES ('0', :exemplaar_id, :uitleen_id, '0')";
-                                $stmt_item = $conn->prepare($sql_uitgeleend_item);
-
-                                if($stmt_item->execute(['exemplaar_id' => $exemplaar_id, 'uitleen_id' => $uitleen_id])){
-                                    // Update EXEMPLAAR_ITEM isUitgeleend status
-                                    $update_query = "UPDATE `EXEMPLAAR_ITEM` SET `isUitgeleend` = '1' WHERE `exemplaar_item_id` = :exemplaar_id";
-                                    $update_stmt = $conn->prepare($update_query);
-                                    
-                                    if($update_stmt->execute(['exemplaar_id' => $exemplaar_id])){
-                                        echo "Uitlening toegevoegd!";
-                                    } else {
-                                        echo "Uitlening toegevoegd, maar kon exemplaar niet bijwerken.";
-                                    }
-                                } else {
-                                    echo "Uitlening niet toegevoegd!";
-                                }
-                            } else {
-                                echo "Geen beschikbaar exemplaar gevonden!";
-                            }
-                        } else if ($apparaat_type == 'kit') {
-                            // haal alle items in the kit op
-                            $kititemsquery = "SELECT item_id FROM ITEM_KIT WHERE kit_id = :kit_id";
-                            $kititemsstmt = $conn->prepare($kititemsquery);
-                            $kititemsstmt->execute(['kit_id' => $apparaat_id]);
-                            $kititems = $kititemsstmt->fetchAll();
-
-                            $allItemsAvailable = true;
-                            foreach ($kititems as $kititem) {
-                                $item_id = $kititem['item_id'];
-
-                                // Check of een item exemplaar beschikbaar is voor elk item in de kit
-                                $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE isUitgeleend = '0' AND item_id = :item_id LIMIT 1";
-                                $exemplaarstmt = $conn->prepare($exemplaarquery);
-                                $exemplaarstmt->execute(['item_id' => $item_id]);
-                                $exemplaarresult = $exemplaarstmt->fetch();
-
-                                if (!$exemplaarresult) {
-                                    $allItemsAvailable = false;
-                                    break;
-                                }
-                            }
-
-                            if ($allItemsAvailable) {
-                                foreach ($kititems as $kititem) {
-                                    $item_id = $kititem['item_id'];
-
-                                    // Check if an item exemplar is available for each item in the kit
-                                    $exemplaarquery = "SELECT exemplaar_item_id FROM EXEMPLAAR_ITEM WHERE isUitgeleend = '0' AND item_id = :item_id LIMIT 1";
-                                    $exemplaarstmt = $conn->prepare($exemplaarquery);
-                                    $exemplaarstmt->execute(['item_id' => $item_id]);
-                                    $exemplaarresult = $exemplaarstmt->fetch();
-
-                                    $exemplaar_id = $exemplaarresult['exemplaar_item_id'];
-
-                                    // Insert the loaned item record
-                                    $sql_uitgeleend_item = "INSERT INTO `UITGELEEND_ITEM` (`isVerlengd`, `exemplaar_item_id`, `uitleen_id`) VALUES ('0', :exemplaar_id, :uitleen_id)";
-                                    $stmt_item = $conn->prepare($sql_uitgeleend_item);
-                                    $stmt_item->execute(['exemplaar_id' => $exemplaar_id, 'uitleen_id' => $uitleen_id]);
-
-                                    // Update EXEMPLAAR_ITEM isUitgeleend status
-                                    $update_query = "UPDATE `EXEMPLAAR_ITEM` SET `isUitgeleend` = '1' WHERE `exemplaar_item_id` = :exemplaar_id";
-                                    $update_stmt = $conn->prepare($update_query);
-                                    $update_stmt->execute(['exemplaar_id' => $exemplaar_id]);
-                                }
-
-                                // Update KIT uitleen_id
-                                $update_kit_query = "UPDATE `KIT` SET `uitleen_id` = :uitleen_id WHERE `kit_id` = :kit_id";
-                                $update_kit_stmt = $conn->prepare($update_kit_query);
-                                if ($update_kit_stmt->execute(['uitleen_id' => $uitleen_id, 'kit_id' => $apparaat_id])) {
-                                    echo "Kit uitlening toegevoegd!";
-                                } else {
-                                    echo "Kon kit uitleen_id niet bijwerken.";
-                                }
-                            } else {
-                                echo "Geen beschikbaar exemplaar gevonden voor een of meer items in de kit!";
-                            }
+                    if ($exemplaarresult) {
+                        // exemplaar_item_id exists, proceed with the insertion
+                        $sql_lening = "INSERT INTO `UITLENING` (`uitleen_datum`, `inlever_datum`, `isVerlengd`, `email`, `exemplaar_item_id`) VALUES (:uitDatum, :inDatum, '0', :email, :exemplaar_id)";
+                        $stmt_lening = $conn->prepare($sql_lening);
+                        if ($stmt_lening->execute(['uitDatum' => $uitDatum, 'inDatum' => $inDatum, 'email' => $email, 'exemplaar_id' => $apparaat_id])) {
+                            $uitleen_id = $conn->lastInsertId();
+                            echo "Uitlening successfully added with ID: " . $uitleen_id;
+                        } else {
+                            echo "Failed to add uitlening.";
                         }
                     } else {
-                        echo "Uitlening niet toegevoegd!";
+                        // exemplaar_item_id doesn't exist, handle this case
+                        echo "Exemplaar item id doesn't exist!";
                     }
-                } else {
-                    echo "Apparaat niet gevonden!";
                 }
-            } else {
-                echo "Email niet gevonden!";
             }
         }
-    } 
-} catch (PDOException $e) {
+    }
+} catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
